@@ -1,110 +1,88 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5//2.13
-import QtGraphicalEffects 1.12
+import QtQuick 2.13
+import QtQuick.Controls 2.13
+import QtGraphicalEffects 1.13
+
+import "./"
 import "../secondqml"
+
 BasicMenuStyle
 {
-    id: idRootMenu
-    property int  maxImplicitWidth: 200
-   // background: Rectangle{color: "#061f3b";anchors.fill: parent}
-    function createMenuItem(name,actionshortcut,actionsource,actionIcon,cmd,bSeparator,bEnable)
-    {
-        //console.log("name,"+name,",bEnable =" + bEnable)
-        var component = Qt.createComponent("BasicMenuItem.qml");
-        if (component.status === Component.Ready)
-        {
-            var obje = component.createObject(idRootMenu, {actionName:name});
-            obje.actionName = name;
-            obje.actionShortcut = actionshortcut;
-            if(actionIcon.length > 0)
-            {
-                obje.icon.source = actionIcon;
+    id: root
+    property int maxImplicitWidth: 200
+    property var menuItems
+    property var recentFilesObj
+    property var testModelsObj
+    property var filamentObj
+    property var nozzleObj
+    property var uploadObj
+    property bool recentFilesMenuCreated: false
+    property bool testModelsMenuCreated: false
+    property bool filamentMenuCreated
+
+    function active() {
+        initSubMenu()
+        popup()
+    }
+
+    function initSubMenu() {
+        if (recentFilesObj && !recentFilesMenuCreated) {
+            recentFilesMenuCreated = true
+            let obj = recentFilesCom.createObject(root, {});
+            addMenu(obj)
+        }
+ 
+        if (testModelsObj && !testModelsMenuCreated) {
+            testModelsMenuCreated = true
+            let obj = testModelsCom.createObject(root, {});
+            addMenu(obj)
+        }
+
+        if (filamentObj && !filamentMenuCreated) {
+            filamentMenuCreated = true
+            let obj = filamentModelCom.createObject(root, {});
+            addMenu(obj)
+        }
+    }
+
+    Repeater {
+        model: menuItems
+        delegate: BasicMenuItem {
+            actionCmdItem: modelData
+            actionName: modelData.name
+            actionShortcut: modelData.shortcut
+            enabled: modelData.enabled
+            separatorVisible: modelData.bSeparator
+            actionSource: modelData.source
+
+            Rectangle {
+                height: 1
+                width: parent.width
+                color: "#BBBBBB"
+                visible: false
+                Component.onCompleted: {
+                    console.log(modelData.icon)
+                    if (modelData.location == "top") {
+                        visible = true;
+                        anchors.top = parent.top
+                    } else if (modelData.location == "bottom") {
+                        visible = true;
+                        anchors.bottom = parent.bottom
+                    }
+                }
             }
-            obje.actionSource = actionsource;
-            obje.actionCmdItem = cmd;
-            obje.separatorVisible= bSeparator;
-            obje.enabled = bEnable;
-            idRootMenu.addItem(obje)
+            
+            Image {
+                id: img
+                anchors.left: parent.left
+                anchors.leftMargin: 12 * screenScaleFactor
+                anchors.verticalCenter: parent.verticalCenter
+                width: 12 * screenScaleFactor
+                height: 12 * screenScaleFactor
+                source: modelData.source
+            }
+
         }
-    }
 
-    function initMenu()
-    {
-        var actionMaps = rClickComandsData.getCommandsMap();
-        var listObj = actionMaps[0]
-        for(var i = 0; i<listObj.length ; i++)
-        {
-            var strName = listObj[i].name;
-            var strShortcut = listObj[i].shortcut;
-            var strSource = listObj[i].source;
-            var strIcon = listObj[i].icon;
-            var bSubMenu = listObj[i].bSubMenu;
-            var bSeparator = listObj[i].bSeparator;
-            var bEnable = listObj[i].enabled;
-            var bVisible= listObj[i].visible;
-            if(!bVisible)continue
-
-           if(bSubMenu)
-           {
-               var component = Qt.createComponent("BasicRClickSubMenu.qml");
-               var obje = component.createObject(idRootMenu, {title:strName});
-               obje.mymodel = listObj[i].subMenuActionmodel;
-               obje.myItemObj = listObj[i];
-               obje.separator = bSeparator;
-               obje.enabled = bEnable;
-               idRootMenu.addMenu(obje);
-           }
-           else
-           {
-               createMenuItem(strName,strShortcut,strSource,strIcon,listObj[i],bSeparator,bEnable);
-           }
-        }
-    }
-
-    function uploadModelDlgCombobox(data, isLocalFile){
-        idUploadModelDlg.insertListModeData(data, isLocalFile)
-        idUploadModelDlg.show()
-    }
-
-    function uploadModelError()
-    {
-        idUploadModelDlg.visible = false
-        idUploadModelDlg.uploadModelFailed()
-        idUploadModelFailedDlg.visible = true
-    }
-
-    function updateUploadProgressValue(value)
-    {
-        idUploadModelDlg.progressValue = value
-    }
-
-    function uploadModelSuccess()
-    {
-        idUploadModelDlg.uploadModelSuccess()
-    }
-
-    UploadModelDlg{
-        id: idUploadModelDlg
-        onModelUpload:
-        {
-            slicePlugin.uploadModelToAliyun(categoryId, groupName, groupDesc, isShare, isOriginal, modelType, license, isCombine)
-        }
-        onViewMyModel:
-        {
-            slicePlugin.viewMyModel("mymodel")
-            idUploadModelDlg.visible = false
-        }
-    }
-
-    UploadMessageDlg{
-        id: idUploadModelFailedDlg
-        msgText: qsTr("Failed to upload model!")
-        cancelBtnVisible: false
-        visible: false
-        onSigOkButtonClicked:
-        {
-            idUploadModelFailedDlg.close()
-        }
     }
 
     background: Rectangle {
@@ -112,45 +90,106 @@ BasicMenuStyle
         color: Constants.itemBackgroundColor//"#061F3B"
         border.width: 1
         border.color: "black"
+        radius: 5
 
         Rectangle
-		{
-			id: mainLayout			
-			anchors.fill: parent			
-			anchors.margins: 5
-			color: Constants.themeColor
-			opacity: 1
-		}
-	
-		DropShadow {
-			anchors.fill: mainLayout
-			horizontalOffset: 5
-			verticalOffset: 5
-			radius: 8
-			samples: 17
-			source: mainLayout
+        {
+            id: mainLayout
+            anchors.fill: parent
+            anchors.margins: 5
+            color: Constants.themeColor
+            opacity: 1
+        }
+
+        DropShadow {
+            anchors.fill: mainLayout
+            horizontalOffset: 5
+            verticalOffset: 5
+            radius: 8
+            samples: 17
+            source: mainLayout
             color: Constants.dropShadowColor // "#333333"
-		}
-    }
-    Component.onCompleted:
-    {
-//        initMenu()
-//        var menuItemObj = idRootMenu.takeItem(5)
-        maxImplicitWidth = implicitContentWidth > maxImplicitWidth ? implicitContentWidth :maxImplicitWidth;
-        initMenu()
+        }
     }
 
-    //上传模型的功能
-    function uploadModelBtnClick(type)
-    {
-        console.log("99999999999 =", type)
-        if(type == "modelUpload")
-        {
-            slicePlugin.uploadModelBtnClick()
+    Component.onCompleted:{
+        // if (nozzleObj) {
+        //     var noObj = nozzleMenuCom.createObject(root, {});
+        //     addMenu(noObj)
+        // }
+
+        // if (uploadObj) {
+        //     var uploadObj = upload_sub_menuCom.createObject(root, {});
+        //     addMenu(uploadObj)
+        // }
+
+        // maxImplicitWidth = Math.max(implicitContentWidth, maxImplicitWidth)
+        // if (!kernel_global_const.cxcloudEnabled) {
+        //     removeMenu(upload_sub_menu)
+        // }
+    }
+
+    Component{
+        id: recentFilesCom
+
+        BasicRClickSubMenu {
+            id: recentFilesMenu
+            myItemObj: recentFilesObj
+            title: recentFilesObj.name
+            mymodel: recentFilesObj.subMenuActionmodel
+            enabled: recentFilesObj.enabled
+            separator: recentFilesObj.Separator
         }
-        else if(type == "modelLocalFileUpload")
-        {
-            slicePlugin.uploadModelLocalFileBtnClick()
+    }
+
+    Component{
+        id: testModelsCom
+
+
+        BasicRClickSubMenu {
+            id: testModelsMenu
+            myItemObj: testModelsObj
+            title: testModelsObj.name
+            mymodel: testModelsObj.subMenuActionmodel
+            enabled: testModelsObj.enabled
+            separator: testModelsObj.Separator
+        }
+    }
+
+    Component{
+        id: filamentModelCom
+
+        BasicRClickSubMenu {
+            id: filamentModelMenu
+            myItemObj: filamentModelObj
+            title: filamentModelObj.name
+            mymodel: filamentModelObj.subMenuActionmodel
+            enabled: filamentModelObj.enabled
+            separator: filamentModelObj.Separator
+        }
+    }
+
+    Component{
+        id: nozzleMenuCom
+        BasicRClickSubMenu {
+            id: nozzleMenu
+            myItemObj: nozzleObj
+            title: nozzleObj.name
+            mymodel: nozzleObj.subMenuActionmodel
+            enabled: nozzleObj.enabled
+            separator: nozzleObj.Separator
+        }
+    }
+
+    Component{
+        id: upload_sub_menuCom
+        BasicRClickSubMenu {
+            id: upload_sub_menu
+            myItemObj: uploadObj
+            title: uploadObj.name
+            mymodel: uploadObj.subMenuActionmodel
+            enabled: uploadObj.enabled
+            separator: uploadObj.Separator
         }
     }
 }

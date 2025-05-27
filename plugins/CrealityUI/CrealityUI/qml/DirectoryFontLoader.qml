@@ -33,14 +33,17 @@ import Qt.labs.folderlistmodel 2.12
 QtObject {
     id: loader
 
-    property url fontDirectory: "qrc:/UI/fonts/"//"file:///"+appDir +"/123/"+ relativeFontDirectory //
-    property string relativeFontDirectory: Qt.platform.os === "windows" ? "fonts":"../Resources/fonts"
-    function loadFont(url) {
+    property var fontList: []
 
+    property url fontDirectory: fontsPath  //"file:///"+appDir +"/123/"+ relativeFontDirectory //
+    property string relativeFontDirectory: Qt.platform.os === "windows" ? "fonts":"../Resources/fonts"
+    signal fontLoaded()
+    function loadFont(url) {
+        console.log("load font:"+url)
         var fontLoader = Qt.createQmlObject('import QtQuick 2.12; FontLoader { source: "' + url + '"; }',
                                             loader,
                                             "dynamicFontLoader");
-        console.log(fontLoader.name)
+        fontList.push(fontLoader.name)
     }
 
     property FolderListModel folderModel: FolderListModel {
@@ -55,7 +58,7 @@ QtObject {
                 for (i = 0; i < count; i++) {
                     loadFont(folderModel.get(i, "fileURL"))
                 }
-                console.log(loader.fontDirectory)
+                fontLoaded()
             }
         }
     }

@@ -47,7 +47,7 @@ Button {
               elide: Text.ElideRight
               text: propertyButton.text
               //font: propertyButton.font
-              font.pixelSize: 16
+              font.pointSize: Constants.labelFontPointSize_14
               font.family: "Microsoft YaHei UI"//"Source Han Sans CN"
         }
     }

@@ -19,7 +19,7 @@ BasicDialog
         width:120
         height:30
         text: qsTr("Project Name:")
-        font.pixelSize: 16
+        font.pointSize: Constants.labelFontPointSize_16
         color:"white"//"black"
 		verticalAlignment: Qt.AlignVCenter
 		horizontalAlignment: Qt.AlignRight
@@ -30,27 +30,14 @@ BasicDialog
         anchors.left: idLabel.right
         anchors.leftMargin: 10
         anchors.top: idLabel.top
-        //anchors.topMargin: -8
         width: 200
         height: 30
         color: "white"
         text: "Untitled"
-        font.pixelSize: 16
+        font.pointSize: Constants.labelFontPointSize_16
         verticalAlignment: Qt.AlignVCenter
-        onTextEdited:
-        {}
-        //Rectangle
-        //{
-        //    anchors.fill: parent
-        //    color: "white"
-        //    z:-1
-        //    x:-5
-        //    border.width: 1
-        //    border.color: "#707070"
-        //}
+        onTextEdited:{}
     }
-
-
 
     BasicDialogButton {
         id: basicComButton

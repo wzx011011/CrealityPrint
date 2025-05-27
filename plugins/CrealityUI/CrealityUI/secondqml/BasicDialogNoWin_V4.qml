@@ -12,17 +12,19 @@ CusRoundedBg {
     property alias cloader: contentLoader
     property real shadowWidth: 0
     property real titleHeight: 30* screenScaleFactor
-    property string title: "basic Dialog"
+    property string title: ""
     property Component bdContentItem
     property alias titleTextColor: closeBtn.fontColor
+    property alias closeBtnVis: closeBtn.closeBtnVis
+    property alias titleColor: closeBtn.color
 
-    allRadius: true
     borderColor: Constants.dialogBorderColor
 
     width: 300
     height: 200
     radius: 5
-    color: Constants.itemBackgroundColor
+    clip: true
+    color: Constants.lpw_titleColor
     signal closed()
 
     Rectangle{
@@ -30,8 +32,9 @@ CusRoundedBg {
         anchors.fill: parent
         anchors.margins: shadowWidth
         color: parent.color
+        border.width: 0
         clip: true
-        radius: 5
+        radius: eo_askDialog.radius
         //标题栏
         CusPopViewTitle {
             id:closeBtn
@@ -47,7 +50,7 @@ CusRoundedBg {
             closeBtnHeight: 8
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
-            radius: 5
+            radius: eo_askDialog.radius
             leftTop: true
             rightTop: true
             clickedable: false
@@ -55,25 +58,32 @@ CusRoundedBg {
             closeBtnVis: false
             onCloseClicked:{
                 closed()
+                eo_askDialog.visible = false
             }
         }
 
-        Loader{
-            id: contentLoader
-            anchors.top: closeBtn.bottom
-            anchors.horizontalCenter: closeBtn.horizontalCenter
-            width: parent.width
-            height: parent.height - closeBtn.height
-            sourceComponent: bdContentItem
+//        MouseArea{//用来捕获鼠标事件，使点击在框内不影响模型的选中状态
+//            anchors.top: closeBtn.bottom
+//            anchors.horizontalCenter: closeBtn.horizontalCenter
+//            width: parent.width
+//            height: parent.height - closeBtn.height
+            Loader{
+                id: contentLoader
+                anchors.top: closeBtn.bottom
+                anchors.horizontalCenter: closeBtn.horizontalCenter
+                width: parent.width
+                height: parent.height - closeBtn.height
+                sourceComponent: bdContentItem
+            }
         }
-    }
+//    }
 
-    DropShadow {
-        anchors.fill: bgRec
-        radius: 8
-        spread: 0.2
-        samples: 17
-        source: bgRec
-        color:Constants.dropShadowColor
-    }
+    //    DropShadow {
+    //        anchors.fill: bgRec
+    //        radius: 8
+    //        spread: 0.2
+    //        samples: 17
+    //        source: bgRec
+    //        color:Constants.dropShadowColor
+    //    }
 }

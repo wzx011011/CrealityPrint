@@ -13,9 +13,9 @@ Rectangle{
 
     property var foldingPanelMap: {0: 0}
     //property var clusterDeviceWorkingCnt: 0
-   // property var clusterDeviceIdlingCnt: 0
-   // property var clusterTaskPrintingCnt: 0
-   // property var clusterTaskWaitingCnt: 0
+    // property var clusterDeviceIdlingCnt: 0
+    // property var clusterTaskPrintingCnt: 0
+    // property var clusterTaskWaitingCnt: 0
 
     signal sigTaskItemConformStatus(var data, var status)
     signal sigTaskItemControlChildTaskStatus(var dnName, var operation)
@@ -76,13 +76,13 @@ Rectangle{
             deleteFoldingPanelMap()
             for(var i = 0; i < IotData.groupTaskDeviceModelTypeArray.length; i++)
             {
-                var obj = componentGcode.createObject(idPrintTaskList, {"seriesName": IotData.groupTaskSeriesNameMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "deviceNum": IotData.groupTaskDeviceNumMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "printingCnt": IotData.groupTaskPrintingCntMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "waitingCnt": IotData.groupTaskWaitingCntMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "finishCnt": IotData.groupTaskFinishCntMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "isFoldPanelCameraShow": IotData.groupVideoMap[IotData.groupTaskDeviceModelTypeArray[i]], 
-                                    "seriesId": IotData.groupTaskDeviceModelTypeArray[i]})
+                var obj = componentGcode.createObject(idPrintTaskList, {"seriesName": IotData.groupTaskSeriesNameMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "deviceNum": IotData.groupTaskDeviceNumMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "printingCnt": IotData.groupTaskPrintingCntMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "waitingCnt": IotData.groupTaskWaitingCntMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "finishCnt": IotData.groupTaskFinishCntMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "isFoldPanelCameraShow": IotData.groupVideoMap[IotData.groupTaskDeviceModelTypeArray[i]],
+                                                          "seriesId": IotData.groupTaskDeviceModelTypeArray[i]})
                 obj.sigFoldPanelConformStatus.connect(foldPanelConformStatus)
                 obj.sigFoldPanelControlChildTaskStatus.connect(foldPanelControlChildTaskStatus)
                 obj.sigPanelVidelBtnClick.connect(foldPanelVidelBtnClick)
@@ -111,7 +111,7 @@ Rectangle{
         for(var key in foldingPanelMap)
         {
             var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
+            if(strkey != "-0-")
             {
                 foldingPanelMap[key].deleteChildTaskItemMap() //delete foldingPanel child
                 
@@ -119,7 +119,7 @@ Rectangle{
                 delete foldingPanelMap[key]
             }
             else{
-                 delete foldingPanelMap[key]
+                delete foldingPanelMap[key]
             }
         }
     }
@@ -160,7 +160,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 28
-                                        font.pixelSize:14
+                                        font.pointSize: Constants.labelFontPointSize_12
                                         text: qsTr("Device")
                                         font.weight: "Bold"
                                         color:"#333333"
@@ -171,7 +171,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 20
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         text: qsTr("Number of your devices")
                                         font.weight: "Bold"
                                         color:"#333333"
@@ -187,7 +187,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 20
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         text: qsTr("+Create more tasks")
                                         font.weight: "Bold"
                                         color:"#1E9BE2"
@@ -240,7 +240,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 28
-                                        font.pixelSize:14
+                                        font.pointSize: Constants.labelFontPointSize_12
                                         text: qsTr("File")
                                         font.weight: "Bold"
                                         color:"#333333"
@@ -251,7 +251,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 20
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         text: qsTr("Number of files you printed")
                                         font.weight: "Bold"
                                         color:"#333333"
@@ -267,7 +267,7 @@ Rectangle{
                                         x:15
                                         width: parent.width
                                         height: 20
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         text: qsTr("+Add more print files")
                                         font.weight: "Bold"
                                         color:"#1E9BE2"
@@ -313,7 +313,7 @@ Rectangle{
                                 x:15
                                 width: parent.width
                                 height: 28
-                                font.pixelSize:14
+                                font.pointSize: Constants.labelFontPointSize_12
                                 text: qsTr("Team")
                                 font.weight: "Bold"
                                 color:"#333333"
@@ -324,7 +324,7 @@ Rectangle{
                                 x:15
                                 width: parent.width
                                 height: 20
-                                font.pixelSize:12
+                                font.pointSize: Constants.labelFontPointSize_10
                                 text: qsTr("Your team information")
                                 font.weight: "Bold"
                                 color:"#333333"
@@ -340,7 +340,7 @@ Rectangle{
                                 x:15
                                 width: parent.width
                                 height: 20
-                                font.pixelSize:12
+                                font.pointSize: Constants.labelFontPointSize_10
                                 text: qsTr("Get to know our team")
                                 font.weight: "Bold"
                                 color:"#1E9BE2"
@@ -370,7 +370,7 @@ Rectangle{
                     StyledLabel{
                         width: 160
                         height: parent.height
-                        font.pixelSize:16
+                        font.pointSize: Constants.labelFontPointSize_14
                         color: "#333333"
                         text: qsTr("Sort And Filter")
                         font.weight: "Bold"
@@ -390,8 +390,6 @@ Rectangle{
                     y: 1
                     width: parent.width - 2
                     height: parent.height - 2
-                    hpolicy: ScrollBar.AlwaysOff
-                    vpolicy: ScrollBar.AsNeeded
                     clip : true
                     visible: {
                         //return true
@@ -415,8 +413,6 @@ Rectangle{
                     y: 1
                     width: parent.width - 2
                     height: parent.height - 2
-                    hpolicy: ScrollBar.AlwaysOff
-                    vpolicy: ScrollBar.AsNeeded
                     clip : true
                     visible: {
                         //return false

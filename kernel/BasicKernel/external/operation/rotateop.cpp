@@ -1,510 +1,811 @@
 #include "rotateop.h"
 
-#include "qtuser3d/math/space3d.h"
-#include "qtuser3d/math/angles.h"
+#include <QtCore/qmath.h>
+#include <QQmlProperty>
 
 #include "interface/visualsceneinterface.h"
 #include "interface/selectorinterface.h"
 #include "interface/camerainterface.h"
-#include "interface/modelinterface.h"
 #include "interface/eventinterface.h"
-#include <QtCore/qmath.h>
-#include <QQmlProperty>
-#include "data/fdmsupportgroup.h"
+#include "interface/reuseableinterface.h"
 #include "interface/spaceinterface.h"
+#include "interface/modelgroupinterface.h"
 
-using namespace creative_kernel;
-RotateOp::RotateOp(creative_kernel::AbstractKernelUI* pKernel, QObject* parent)
-	:SceneOperateMode(parent)
-	, m_mode(TMode::null)
-	, m_pKernelUI(pKernel)
-{
-	m_helperEntity = new qtuser_3d::RotateHelperEntity();
-	m_isRoate = false;
-}
+#include "kernel/kernelui.h"
+#include "data/spaceutils.h"
 
-RotateOp::~RotateOp()
-{
-}
+#include "qtuser3d/math/angles.h"
+#include "qtuser3d/math/space3d.h"
+#include "qtuser3d/trimesh2/conv.h"
+#include "qtusercore/property/qmlpropertysetter.h"
 
-void RotateOp::setMessage(bool isRemove)
+namespace creative_kernel
 {
-	if (isRemove)
+	RotateOp::RotateOp(QObject* parent)
+		: MoveOperateMode(parent)
+		, tip_component_(nullptr)
 	{
-		for (size_t i = 0; i < m_selectedModels.size(); i++)
-		{
-			ModelN* model = m_selectedModels.at(i);
-			if (model->hasFDMSupport())
-			{
-				FDMSupportGroup* p_support = m_selectedModels.at(i)->fdmSupport();
-				p_support->clearSupports();
-			}
-			
-			// ��ո���ģ��
-			if (model->hasAttach())
-			{
-				m_selectedModels.at(i)->clearAttachModel();
-			}
+		m_type = qtuser_3d::SceneOperateMode::ReusableMode;
+		m_helperEntity = new qtuser_3d::Rotate3DHelperEntity();
+		m_helperEntity->setCameraController(cameraController());
+		m_isRoate = false;
+
+		auto* ui_parent = getKernelUI()->glMainView();
+
+		tip_component_ = new QQmlComponent{ qmlEngine(ui_parent),
+			QUrl{ QStringLiteral("qrc:/CrealityUI/qml/RotateTip.qml") }, this };
+
+		tip_object_ = tip_component_->create(qmlContext(ui_parent));
+		if (tip_object_ != nullptr) {
+			tip_object_->setParent(ui_parent);
+			qtuser_qml::writeObjectProperty(tip_object_, QStringLiteral("parent"), ui_parent);
 		}
+
+		connect(this, &MoveOperateMode::moving, this, [=]()
+			{
+				m_isMoving = true;
+				updateHelperEntity();
+				m_isMoving = false;
+			});
+	}
+
+	RotateOp::~RotateOp()
+	{
+	}
+
+	void RotateOp::onAttach()
+	{
+		m_helperEntity->attach();
+
+		QList<qtuser_3d::Pickable*> pickableList = m_helperEntity->getPickables();
+		for (qtuser_3d::Pickable* pickable : pickableList)
+		{
+			tracePickable(pickable);
+		}
+
+		addModelNSelectorTracer(this);
+		onSelectionsChanged();
+		QList<qtuser_3d::LeftMouseEventHandler*> handlers = m_helperEntity->getLeftMouseEventHandlers();
+		for (qtuser_3d::LeftMouseEventHandler* handler : handlers)
+		{
+			addLeftMouseEventHandler(handler);
+		}
+		addWheelEventHandler(this);
+		addLeftMouseEventHandler(this);
+		addHoverEventHandler(this);
+		traceSpace(this);
+
+		m_helperEntity->setPickSource(visPickSource());
+		m_helperEntity->setScreenCamera(visCamera());
+		m_helperEntity->setRotateCallback(this);
+
 		requestVisUpdate(true);
-	}
-}
 
-bool RotateOp::getMessage()
-{
-	//if (m_selectedModels.size())
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+		m_bShowPop = true;
+	}
+
+	void RotateOp::onDettach()
 	{
-		ModelN* model = m_selectedModels.at(i);
-		if (model->hasFDMSupport())
+		m_helperEntity->detach();
+
+		QList<qtuser_3d::Pickable*> pickableList = m_helperEntity->getPickables();
+		for (qtuser_3d::Pickable* pickable : pickableList)
 		{
-			FDMSupportGroup* p_support = m_selectedModels.at(i)->fdmSupport();
-			if (p_support->fdmSupportNum())
-			{
-				return true;
-			}
+			unTracePickable(pickable);
 		}
 
-		if (model->hasAttach())
+		removeModelNSelectorTracer(this);
+		visHide(m_helperEntity);
+		m_selectedModels.clear();
+
+		QList<qtuser_3d::LeftMouseEventHandler*> handlers = m_helperEntity->getLeftMouseEventHandlers();
+		for (qtuser_3d::LeftMouseEventHandler* handler : handlers)
 		{
-			return true;
+			removeLeftMouseEventHandler(handler);
+		}
+		removeWheelEventHandler(this);
+		removeLeftMouseEventHandler(this);
+		removeHoverEventHandler(this);
+		unTraceSpace(this);
+
+		m_helperEntity->setPickSource(nullptr);
+		m_helperEntity->setScreenCamera(nullptr);
+		m_helperEntity->setRotateCallback(nullptr);
+
+		requestVisUpdate(true);
+
+		m_bShowPop = false;
+	}
+
+	void RotateOp::onLeftMouseButtonPress(QMouseEvent* event)
+	{
+		MoveOperateMode::onLeftMouseButtonPress(event);
+	}
+
+	void RotateOp::onLeftMouseButtonRelease(QMouseEvent* event)
+	{
+		MoveOperateMode::onLeftMouseButtonRelease(event);
+	}
+
+	void RotateOp::rotateByAxis(const QList<creative_kernel::ModelN*>& models, QVector3D axis, float angle)
+	{
+		if (models.isEmpty())
+			return;
+
+		trimesh::dvec3 rotateCenter = modelsBox(models).center();
+
+		QList<ModelGroup*> gs = findRelativeGroups(models);
+		beginNodeSnap(gs, models);
+
+		for (size_t i = 0; i < models.size(); i++)
+		{
+			ModelN* model = models.at(i);
+			model->rotateByStandardAngle(axis, angle);
+
+			ModelGroup* group = model->getModelGroup();
+			trimesh::xform gMatrix = group->getMatrix();
+			trimesh::xform gMatrix_inv = trimesh::inv(gMatrix);
+
+			trimesh::dvec3 c = gMatrix_inv * rotateCenter;
+			trimesh::dvec3 v0 = gMatrix_inv * trimesh::dvec3(0.0);
+			trimesh::dvec3 v1 = gMatrix_inv * trimesh::dvec3(axis.x(), axis.y(), axis.z());
+			trimesh::dvec3 v = v1 - v0;
+			trimesh::xform rot = trimesh::xform::rot(angle * M_PI_180, v);
+
+			trimesh::xform snap_matrix = model->getMatrix();
+			trimesh::xform xf = trimesh::xform::trans(c) * rot * trimesh::xform::trans(-c) * snap_matrix;
+			model->setMatrix(xf);
+
+			if (axis.x() != 0 || axis.y() != 0)
+				model->resetNestRotation();
+		}
+
+		for (size_t i = 0; i < gs.size(); i++)
+		{
+			ModelGroup* g = gs.at(i);
+			g->layerBottom();
+			g->updateSweepAreaPath();
+		}
+
+		endNodeSnap();
+	}
+
+	void RotateOp::onLeftMouseButtonMove(QMouseEvent* event)
+	{
+		
+		if (tip_object_ && m_isRoate)
+		{
+			QPoint point = event->pos();
+			setTipObjectPos(point + QPoint(10, 10));
+		}
+		else {
+			MoveOperateMode::onLeftMouseButtonMove(event);
 		}
 	}
-	return false;
-}
 
-void RotateOp::onAttach()
-{
-    QList<ModelN*> selectModels = selectionms();
-	tracePickable(m_helperEntity->xPickable(), false);
-	tracePickable(m_helperEntity->yPickable(), false);
-	tracePickable(m_helperEntity->zPickable(), false);
-
-	for (int i = 0; i < selectModels.size(); i++)
+	void RotateOp::onLeftMouseButtonClick(QMouseEvent* event)
 	{
-		creative_kernel::appendSelect(selectModels.at(i));
-	}
-
-    //if(selectModels.length()>0)
-    //{
-    //    creative_kernel::selectOne(selectModels.at(0));
-    //}
-
-	addSelectTracer(this);
-	onSelectionsChanged();
-	addLeftMouseEventHandler(this);
-
-	if (m_pKernelUI != nullptr)
-	{
-		m_pKernelUI->switchPopupMode();
-	}
-	m_bShowPop = true;
-    //set left tool bar pop to autoclose status
-//   QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(true)));
-}
-
-void RotateOp::onDettach()
-{
-	unTracePickable(m_helperEntity->xPickable(), false);
-	unTracePickable(m_helperEntity->yPickable(), false);
-	unTracePickable(m_helperEntity->zPickable(), false);
-
-	visHide(m_helperEntity);
-	//setSelectedModel(nullptr);
-	m_selectedModels.clear();
-
-	removeSelectorTracer(this);
-	requestVisUpdate(true);
-
-	removeLeftMouseEventHandler(this);
-
-	if (m_pKernelUI != nullptr)
-	{
-		m_pKernelUI->switchPopupMode();
-	}
-	m_bShowPop = false;
-    //restore left tool bar status
- //   QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(false)));
-}
-
-void RotateOp::onLeftMouseButtonPress(QMouseEvent* event)
-{
-	m_mode = TMode::null;
-	m_spacePoints.clear();
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		Pickable* pickable = checkPickable(event->pos(), nullptr);
-		if (pickable == m_helperEntity->xPickable()) m_mode = TMode::x;
-		if (pickable == m_helperEntity->yPickable()) m_mode = TMode::y;
-		if (pickable == m_helperEntity->zPickable()) m_mode = TMode::z;
-
-		m_spacePoints.push_back(process(event->pos(), m_selectedModels[i]));
-
-		m_saveAngle = 0;
-		m_isRoate = true;
-
-		m_selectedModels[i]->setNeedCheckScope(0);
-	}
-
-	fillChangeStructs(m_changes, true);
-}
-
-void RotateOp::perform(const QPoint& point, bool reversible, bool needcheck)
-{
-	QVector3D axis;
-	float angle = 0;
-	if (m_selectedModels.size() > 0)
-	{
-		process(point, axis, angle);
-		axis.normalize();
-	}
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		QQuaternion oldq = m_selectedModels[i]->localQuaternion();
-		QQuaternion q = m_selectedModels[i]->rotateByStandardAngle(axis, angle);
-
-		qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
-		QVector3D zoffset = QVector3D(0.0f, 0.0f, -box.min.z());
-
-		QVector3D oldPosition = m_selectedModels[i]->localPosition();
-		QVector3D newPosition = m_selectedModels[i]->localPosition();
-
-		mixTRModel(m_selectedModels[i], oldPosition, newPosition, oldq, q, reversible, needcheck);
 
 	}
 
-	if (m_selectedModels.size() > 0)
+	void RotateOp::onWheelEvent(QWheelEvent* event)
 	{
-		m_displayRotate = m_selectedModels.back()->localRotateAngle();
 	}
-	
-	requestVisUpdate(true);
-}
 
-void RotateOp::onLeftMouseButtonRelease(QMouseEvent* event)
-{
-	m_isRoate = false;
-	if (m_selectedModels.size() && (m_mode != TMode::null))
+	void RotateOp::onHoverEnter(QHoverEvent* event)
 	{
-		perform(event->pos(), false, true);
+	}
 
-		for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void RotateOp::onHoverLeave(QHoverEvent* event)
+	{
+
+	}
+
+	void RotateOp::onHoverMove(QHoverEvent* event)
+	{
+		if (m_isRoate)
+			return;
+
+		qtuser_3d::Pickable* pickable = checkPickable(event->pos(), nullptr);
+		
+		if (pickable == m_helperEntity->xPickable())
 		{
-			qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
-			QVector3D zoffset = QVector3D(0.0f, 0.0f, -box.min.z());
-			QVector3D oldPosition = m_selectedModels[i]->localPosition();
-			QVector3D newPosition = m_selectedModels[i]->localPosition() + zoffset;
-
-			moveModel(m_selectedModels[i], oldPosition, newPosition, false);
-
-			m_selectedModels[i]->setNeedCheckScope(1);
+			setRotateAngle(QVector3D(1.0, 0.0, 0.0), 0.0f);
+			QPoint point = event->pos();
+			setTipObjectPos(point + QPoint(10, 10));
 		}
-		emit rotateChanged();
-		if (m_pKernelUI != nullptr)
+		else if (pickable == m_helperEntity->yPickable())
 		{
-			m_pKernelUI->switchPopupMode();
+			setRotateAngle(QVector3D(0.0, 1.0, 0.0), 0.0f);
+			QPoint point = event->pos();
+			setTipObjectPos(point + QPoint(10, 10));
+		} 
+		else if (pickable == m_helperEntity->zPickable())
+		{
+			setRotateAngle(QVector3D(0.0, 0.0, 1.0), 0.0f);
+			QPoint point = event->pos();
+			setTipObjectPos(point + QPoint(10, 10));
 		}
- //       QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(true)));
-        m_bShowPop = false;
+		else {
+			setTipObjectVisible(false);
+		}
 	}
-	QList<creative_kernel::ModelN*> alls = creative_kernel::modelns();
-	for (size_t i = 0; i < alls.size(); i++)
+
+	void RotateOp::setSelectedModel(QList<creative_kernel::ModelN*> models)
 	{
-		alls[i]->setNeedCheckScope(1);
+		//trace selected node
+		m_selectedModels = models;
+		qDebug() << "setSelectedModel";
+		buildFromSelections();
 	}
 
-	fillChangeStructs(m_changes, false);
-	mixUnions(m_changes, true);
-	m_changes.clear();
-}
-
-void RotateOp::rotateByAxis(QVector3D& axis,float & angle)
-{
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void RotateOp::onSelectionsChanged()
 	{
-		QQuaternion oldQ = m_selectedModels[i]->localQuaternion();
-		QQuaternion q = m_selectedModels[i]->rotateByStandardAngle(axis, angle);
+		QList<creative_kernel::ModelN*> selections = selectionms();
+		setSelectedModel(selections);
 
-		qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
-		QVector3D zoffset = QVector3D(0.0f, 0.0f, -box.min.z());
-		QVector3D localPosition = m_selectedModels[i]->localPosition();
-		QVector3D newPosition = localPosition + zoffset;
-		//m_selectedModels[i]->setLocalPosition(newPosition);
-		mixTRModel(m_selectedModels[i], localPosition, newPosition, oldQ, q, true);
-		emit rotateChanged();
+		creative_kernel::initSelectedGroupsBoudingBox(m_lastGroupBoxes);
+		
+		emit mouseLeftClicked();
 	}
-}
 
-void RotateOp::onLeftMouseButtonMove(QMouseEvent* event)
-{
-	if (m_selectedModels.size() && (m_mode != TMode::null))
-	{
-		perform(event->pos(), true, false);
-        emit rotateChanged();
-        if(!m_bShowPop)
-        {
-            //QQmlProperty::write(getKernelUI()->leftToolbar(), "showPop", QVariant::fromValue(true));
-            //QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(false)));
-            m_bShowPop=true;
-        }
-	}
-}
-
-void RotateOp::onLeftMouseButtonClick(QMouseEvent* event)
-{
-	
-}
-
-void RotateOp::setSelectedModel(QList<creative_kernel::ModelN*> models)
-{
-	//trace selected node
-	m_selectedModels = models;
-    if(m_selectedModels.size())
-        m_displayRotate = m_selectedModels.back()->localRotateAngle();
-	qDebug() << "setSelectedModel";
-	buildFromSelections();
-}
-
-void RotateOp::onSelectionsChanged()
-{
-	QList<creative_kernel::ModelN*> selections = selectionms();
-	//setSelectedModel(selections.size() > 0 ? selections.at(0) : nullptr);
-	setSelectedModel(selections);
-    //lisugui 2021-1-30
-//    AbstractKernelUI::getSelf()->refreshPickPanel();
-
-	bool flag = (selections.size() == 0) ? false : true;
-	AbstractKernelUI::getSelf()->switchShowPop(flag);
-
-	emit mouseLeftClicked();
-}
-
-void RotateOp::selectChanged(qtuser_3d::Pickable* pickable)
-{
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		if (pickable == m_selectedModels[i])
-			updateHelperEntity();
-	}
-	if (m_selectedModels.size() > 0)
-	{
-		m_displayRotate = m_selectedModels.at(0)->localRotateAngle();
-		emit rotateChanged();
-	}
-}
-
-void RotateOp::buildFromSelections()
-{
-	if (m_selectedModels.size())
+	void RotateOp::onSceneChanged(const trimesh::dbox3& box)
 	{
 		updateHelperEntity();
-		visShow(m_helperEntity);
-	}
-	else
-	{
-		visHide(m_helperEntity);
+
+		creative_kernel::checkSelectedGroupsBoudingBox(m_lastGroupBoxes);
 	}
 
-	requestVisUpdate(true);
-	emit rotateChanged();
-}
-
-void RotateOp::reset()
-{
-	qDebug() << "rotate reset";
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void RotateOp::onModelGroupModified(ModelGroup* _model_group, const QList<ModelN*>& removes, const QList<ModelN*>& adds)
 	{
-		QQuaternion oldQ = m_selectedModels[i]->localQuaternion();
-		QQuaternion q = QQuaternion();
-		//m_selectedModels[i]->setLocalQuaternion(q);
-		m_selectedModels[i]->resetRotate();
-
-		qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
-		QVector3D zoffset = QVector3D(0.0f, 0.0f, -box.min.z());
-
-		QVector3D oldPosition = m_selectedModels[i]->localPosition();
-		QVector3D newPosition = oldPosition + zoffset;
-
-		mixTRModel(m_selectedModels[i], oldPosition, newPosition, oldQ, q, true);
-
-		//moveModel(m_selectedModels[i], oldPosition, newPosition, true);
-	}
-    m_displayRotate = QVector3D();
-	emit rotateChanged();
-}
-
-QVector3D RotateOp::rotate()
-{
-	if (m_selectedModels.size())
-	{
-
-        return m_displayRotate;
+		if (!_model_group->models().isEmpty())
+		{
+			onSelectionsChanged();
+		}
 	}
 
-	return QVector3D(0.0f, 0.0f, 0.0f);
-}
-
-void RotateOp::setRotate(QVector3D rotate)
-{
-	qDebug() << "rotate setRotate" << rotate;
-
-	if (m_selectedModels.size() == 0)
+	void RotateOp::onStartRotate()
 	{
-		return;
+		auto groups = selectedGroups();
+		auto models = selectedParts();
+
+		if (groups.isEmpty() && models.isEmpty())
+		{
+			return;
+		}
+
+		if (groups.size() > 0)
+		{
+			onStartRotate_groups(groups);
+		}
+		else if (models.size() > 0) {
+			onStartRotate_models(models);
+		}
+
+		creative_kernel::forceHideBox(true);
 	}
 
-	creative_kernel::ModelN* m = m_selectedModels.back();
-	QVector3D currentAngles = m->localRotateAngle();
-    m_displayRotate = rotate;
-	rotate = rotate - currentAngles;
-	
+	void RotateOp::onRotate(QQuaternion q)
 	{
+		auto groups = selectedGroups();
+		if (groups.size() > 0)
+		{
+			onRotate_groups(q, groups);
+			emit rotateChanged();
+		}
+		else {
+			auto list = selectedParts();
+			onRotate_models(q, list);
+			emit rotateChanged();
+		}
+	}
+
+	void RotateOp::setRotateAngle(QVector3D axis, float angle)
+	{
+		if (tip_object_ == nullptr)
+			return;
+
+		setTipObjectVisible(true);
+
+		//axis = m_helperEntity->getCurrentRotateAxis();
+		//angle = m_helperEntity->getCurrentRotAngle();
+
+		if (axis == QVector3D(1.0, 0.0, 0.0))
+		{
+			QQmlProperty::write(tip_object_, "rotateAxis", QVariant::fromValue<QString>("X"));
+		}
+		else if (axis == QVector3D(0.0, 1.0, 0.0)) {
+
+			QQmlProperty::write(tip_object_, "rotateAxis", QVariant::fromValue<QString>("Y"));
+		}
+		else if (axis == QVector3D(0.0, 0.0, 1.0))
+		{
+			QQmlProperty::write(tip_object_, "rotateAxis", QVariant::fromValue<QString>("Z"));
+		}
+
+		QQmlProperty::write(tip_object_, "rotateValue", QVariant::fromValue<float>(angle));
+	}
+
+	void RotateOp::onEndRotate(QQuaternion q)
+	{
+		auto groups = selectedGroups();
+		if (groups.size() > 0)
+		{
+			onEndRotate_groups(q, groups);
+		}
+		else {
+			auto list = selectedParts();
+			onEndRotate_models(q, list);
+		}
+		creative_kernel::forceHideBox(false);
+		endNodeSnap();
+		requestVisUpdate(true);
+	}
+
+	void RotateOp::buildFromSelections()
+	{
+		if (m_selectedModels.size())
+		{
+			updateHelperEntity();
+			visShow(m_helperEntity);
+		}
+		else
+		{
+			visHide(m_helperEntity);
+		}
+
+		requestVisPickUpdate(true);
+		emit rotateChanged();
+	}
+
+	void RotateOp::reset()
+	{
+		auto groups = selectedGroups();
+		if (groups.size() > 0)
+		{
+			reset_groups(groups);
+		}
+		else {
+			auto list = selectedParts();
+			reset_models(list);
+		}
+	}
+
+	QVector3D RotateOp::rotate()
+	{
+		auto groups = selectedGroups();
+		if (groups.size() > 0)
+		{
+			return rotate_groups(groups);
+		}
+		else {
+			auto list = selectedParts();
+			return rotate_models(list);
+		}
+	}
+
+	void RotateOp::setRotate(QVector3D rotate)
+	{
+		auto groups = selectedGroups();
+		if (groups.size() > 0)
+		{
+			setRotate_groups(rotate, groups);
+		}
+		else {
+			auto list = selectedParts();
+			setRotate_models(rotate, list);
+		}
+	}
+
+	void RotateOp::updateHelperEntity()
+	{
+		if (m_selectedModels.size() && (!m_isRoate || m_isMoving))
+		{
+			trimesh::dbox3 box = creative_kernel::modelsBox(m_selectedModels);
+			m_helperEntity->onBoxChanged(qtuser_3d::triBox2Box3D(box));
+		}
+	}
+
+	bool RotateOp::getShowPop()
+	{
+		return m_bShowPop;
+	}
+
+	bool RotateOp::shouldMultipleSelect()
+	{
+		return true;
+	}
+
+	void RotateOp::reset_models(QList<creative_kernel::ModelN*>& models)
+	{
+		if (models.isEmpty())
+		{
+			return;
+		}
+
+		QList<ModelGroup*> groups = findRelativeGroups(models);
+		beginNodeSnap(groups, models);
+
+		qDebug() << "rotate reset";
+		for (size_t i = 0; i < models.size(); i++)
+		{
+			models[i]->resetRotate();
+
+			{
+				trimesh::xform xMatrix = models[i]->getMatrix();
+				QMatrix4x4 gMatrix = qtuser_3d::xform2QMatrix(trimesh::fxform(xMatrix));
+				QVector3D trans = gMatrix.column(3).toVector3D();
+
+				QVector3D scale;
+				scale.setX(QVector3D(gMatrix(0, 0), gMatrix(1, 0), gMatrix(2, 0)).length());
+				scale.setY(QVector3D(gMatrix(0, 1), gMatrix(1, 1), gMatrix(2, 1)).length());
+				scale.setZ(QVector3D(gMatrix(0, 2), gMatrix(1, 2), gMatrix(2, 2)).length());
+
+				QVector3D actualTrans = trans / scale;
+
+				trimesh::xform newMatrix = trimesh::xform::scale(scale.x(), scale.y(), scale.z()) * trimesh::xform::trans(actualTrans);
+
+				models[i]->setMatrix(newMatrix);
+				models[i]->dirty();
+			}
+		}
+
+		for (size_t i = 0; i < groups.size(); i++)
+		{
+			ModelGroup* g = groups.at(i);
+			g->layerBottom();
+			g->updateSweepAreaPath();
+		}
+
+		endNodeSnap();
+
+		updateSpaceNodeRender(models, true);
+
+		updateHelperEntity();
+
+		emit rotateChanged();
+
+	}
+
+	QVector3D RotateOp::rotate_models(QList<creative_kernel::ModelN*>& models)
+	{
+		if (models.size() == 1)
+		{
+			return models.at(0)->localRotateAngle();
+		}
+		return QVector3D(0.0f, 0.0f, 0.0f);
+	}
+
+	void RotateOp::setRotate_models(QVector3D rotate, QList<creative_kernel::ModelN*>& models)
+	{
+		qDebug() << "rotate setRotate" << rotate;
+
+		if (models.isEmpty())
+		{
+			return;
+		}
+		QVector3D currentAngles = this->rotate();
+		rotate = rotate - currentAngles;
+
+		QVector3D axis(0.0f, 0.0f, 0.0f);
+		float angle = 0.0f;
 		if (qAbs(rotate.x()) > 0.000001)
 		{
-			QVector3D axis = QVector3D(1.0f, 0.0f, 0.0f);
-			float angle = rotate.x();			
-			rotateByAxis(axis, angle);
+			axis = QVector3D(1.0f, 0.0f, 0.0f);
+			angle = rotate.x();
 		}
 		if (qAbs(rotate.y()) > 0.000001)
 		{
-			QVector3D axis = QVector3D(0.0f, 1.0f, 0.0f);
-			float angle = rotate.y();
-			rotateByAxis(axis, angle);
+			axis = QVector3D(0.0f, 1.0f, 0.0f);
+			angle = rotate.y();
 		}
 		if (qAbs(rotate.z()) > 0.000001)
 		{
-			QVector3D axis = QVector3D(0.0f, 0.0f, 1.0f);
-			float angle = rotate.z();
-			rotateByAxis(axis, angle);
+			axis = QVector3D(0.0f, 0.0f, 1.0f);
+			angle = rotate.z();
+		}
+
+		rotateByAxis(models, axis, angle);
+
+		emit rotateChanged();
+		updateHelperEntity();
+		requestVisUpdate(true);
+
+	}
+
+	void RotateOp::onStartRotate_models(QList<creative_kernel::ModelN*>& models)
+	{
+		if (models.isEmpty())
+		{
+			return;
+		}
+
+		m_isRoate = true;
+
+		m_rotateCenter = modelsBox(models).center();
+		
+		for (size_t i = 0; i < models.size(); i++)
+		{
+			models[i]->rotateByStandardAngle(QVector3D(0.0, 0.0, 0.0), 0.0, false);
+			models[i]->snapMatrix();
+		}
+
+		QList<ModelGroup*>gs = findRelativeGroups(models);
+		beginNodeSnap(gs, models);
+		setNeedCheckScope(0);
+
+		//Hide possible conflict states
+		for (ModelGroup* g : gs)
+		{
+			g->setNozzleRegionVisibility(false);
+			g->setOuterLinesVisibility(false);
+		}
+
+	}
+
+	void RotateOp::onRotate_models(QQuaternion q, QList<creative_kernel::ModelN*>& models)
+	{
+		QVector3D axis; float angle;
+		q.getAxisAndAngle(&axis, &angle);
+
+		for (size_t i = 0; i < models.size(); i++)
+		{
+			ModelN* model = models.at(i);
+			model->rotateByStandardAngle(m_helperEntity->getCurrentRotateAxis(), m_helperEntity->getCurrentRotAngle(), true);
+			
+			ModelGroup* group = model->getModelGroup();
+			trimesh::xform gMatrix = group->getMatrix();
+			trimesh::xform gMatrix_inv = trimesh::inv(gMatrix);
+
+			trimesh::dvec3 c = gMatrix_inv * m_rotateCenter;
+			trimesh::dvec3 v0 = gMatrix_inv * trimesh::dvec3(0.0);
+			trimesh::dvec3 v1 = gMatrix_inv * trimesh::dvec3(axis.x(), axis.y(), axis.z());
+			trimesh::dvec3 v = v1 - v0;
+			trimesh::xform rot = trimesh::xform::rot(angle * M_PI_180, v);
+
+			trimesh::xform snap_matrix = model->getSnapMatrix();
+			trimesh::xform xf = trimesh::xform::trans(c) * rot * trimesh::xform::trans(-c) * snap_matrix;
+			model->setMatrix(xf);
+		}
+
+		updateSpaceNodeRender(models, false);
+
+		setNeedCheckScope(0);
+
+		requestVisUpdate(false);
+	}
+
+	void RotateOp::onEndRotate_models(QQuaternion q, QList<creative_kernel::ModelN*>& models)
+	{
+		if (models.isEmpty())
+		{
+			return;
+		}
+
+		for (size_t i = 0; i < models.size(); i++)
+		{
+			models[i]->rotateByStandardAngle(m_helperEntity->getCurrentRotateAxis(), m_helperEntity->getCurrentRotAngle(), true);
+
+			if (std::abs(q.x() - q.y()) > 0.00001)
+			{
+				models[i]->resetNestRotation();
+			}
+		}
+
+		QList<ModelGroup* > groups = findRelativeGroups(models);
+		for (ModelGroup* group : groups)
+		{
+			group->layerBottom();
+			group->updateSweepAreaPath();
+		}
+		
+		updateSpaceNodeRender(groups, false);
+		updateSpaceNodeRender(models, false);
+		updateHelperEntity();
+
+		emit rotateChanged();
+		m_bShowPop = false;
+		m_isRoate = false;
+
+		setTipObjectVisible(false);
+	}
+
+	void RotateOp::onStartRotate_groups(QList<creative_kernel::ModelGroup*>& groups)
+	{
+		beginNodeSnap(groups, QList<ModelN*>());
+		m_isRoate = true;
+
+		m_rotateCenter = groupsGlobalBoundingBox(groups).center();
+
+		for (size_t i = 0; i < groups.size(); i++)
+		{
+			groups[i]->rotateByStandardAngle(QVector3D(0.0, 0.0, 0.0), 0.0, false);
+			groups[i]->snapMatrix();
+
+			//Hide possible conflict states
+			groups[i]->setNozzleRegionVisibility(false);
+			groups[i]->setOuterLinesVisibility(false);
+		}
+
+		setNeedCheckScope(0);
+	}
+
+	void RotateOp::onRotate_groups(QQuaternion q, QList<creative_kernel::ModelGroup*>& groups)
+	{
+		QMatrix4x4 qm;
+		qm.rotate(q);
+		trimesh::xform qxf = trimesh::xform(qtuser_3d::qMatrix2Xform(qm));
+
+		for (size_t i = 0; i < groups.size(); i++)
+		{
+			groups[i]->rotateByStandardAngle(m_helperEntity->getCurrentRotateAxis(), m_helperEntity->getCurrentRotAngle(), true);
+
+			trimesh::dvec3 c = m_rotateCenter;
+			trimesh::xform snap_matrix = groups[i]->getSnapMatrix();
+			trimesh::xform xf = trimesh::xform::trans(c) * qxf * trimesh::xform::trans(- c) * snap_matrix;
+			groups[i]->setMatrix(xf);
+		}
+
+		updateSpaceNodeRender(groups, false);
+
+		setNeedCheckScope(0);
+		requestVisUpdate(true);
+	}
+
+	void RotateOp::onEndRotate_groups(QQuaternion q, QList<creative_kernel::ModelGroup*>& groups)
+	{
+		if (groups.isEmpty())
+		{
+			return;
+		}
+
+		for (size_t i = 0; i < groups.size(); i++)
+		{
+			groups[i]->rotateByStandardAngle(m_helperEntity->getCurrentRotateAxis(), m_helperEntity->getCurrentRotAngle(), true);
+			groups[i]->layerBottom();
+			groups[i]->updateSweepAreaPath();
 		}
 
 		updateHelperEntity();
-		requestVisUpdate(true);
+
+		emit rotateChanged();
+		m_bShowPop = false;
+		m_isRoate = false;
+
+		setTipObjectVisible(false);
 	}
-}
 
-void RotateOp::startRotate()
-{
-}
-
-void RotateOp::process(const QPoint& point, QVector3D& axis, float& angle)
-{
-	//QVector3D p = process(point);
-
-	axis = QVector3D(0.0f, 0.0f, 1.0f);
-	QVector3D planeCenter = QVector3D(0.0f, 0.0f, 0.0f);
-	
-	//if (m_selectedModels.size())
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void RotateOp::reset_groups(QList<creative_kernel::ModelGroup*>& groups)
 	{
-		ModelN* model = m_selectedModels.at(i);
-		if (model->hasFDMSupport() || model->hasAttach())
+		qDebug() << __FUNCTION__;
+		if (groups.isEmpty())
 		{
-			emit supportMessage();
-			break;
+			return;
+		}
+
+		beginNodeSnap(groups, QList<ModelN*>());
+
+		for (creative_kernel::ModelGroup* g : groups)
+		{
+			g->resetRotate();
+
+			QMatrix4x4 initMatrix;
+			trimesh::xform xMatrix = g->getMatrix();
+			QMatrix4x4 gMatrix = qtuser_3d::xform2QMatrix(trimesh::fxform(xMatrix));
+			QVector3D trans = gMatrix.column(3).toVector3D();
+
+			QVector3D scale;
+			scale.setX(QVector3D(gMatrix(0, 0), gMatrix(1, 0), gMatrix(2, 0)).length());
+			scale.setY(QVector3D(gMatrix(0, 1), gMatrix(1, 1), gMatrix(2, 1)).length());
+			scale.setZ(QVector3D(gMatrix(0, 2), gMatrix(1, 2), gMatrix(2, 2)).length());
+
+			//QQuaternion qrot = initq;
+
+			initMatrix.translate(trans);
+			//initMatrix.rotate(qrot);
+			initMatrix.scale(scale);
+
+			g->setMatrix(trimesh::xform(qtuser_3d::qMatrix2Xform(initMatrix)));
+			g->layerBottom();
+			g->updateSweepAreaPath();
+			g->dirty();
+		}
+		
+		updateSpaceNodeRender(groups, true);
+		endNodeSnap();
+
+		updateHelperEntity();
+
+		requestVisPickUpdate(true);
+		emit rotateChanged();
+	}
+
+	QVector3D RotateOp::rotate_groups(QList<creative_kernel::ModelGroup*>& groups)
+	{
+		if (groups.size() == 1)
+		{
+			return groups.at(0)->localRotateAngle();
+		}
+		return QVector3D(0.0f, 0.0f, 0.0f);
+	}
+
+	void RotateOp::setRotate_groups(QVector3D rotate, QList<creative_kernel::ModelGroup*>& groups)
+	{
+		qDebug() << __FUNCTION__;
+
+		if (groups.isEmpty()) return;
+
+		beginNodeSnap(groups, QList<ModelN *>());
+
+		QVector3D currentAngles = this->rotate();
+		rotate = rotate - currentAngles;
+
+		QVector3D axis = QVector3D(0.0f, 0.0f, 0.0f);
+		float angle = 0.0f;
+
+		if (qAbs(rotate.x()) > 0.000001)
+		{
+			axis = QVector3D(1.0f, 0.0f, 0.0f);
+			angle = rotate.x();
+		}
+		if (qAbs(rotate.y()) > 0.000001)
+		{
+			axis = QVector3D(0.0f, 1.0f, 0.0f);
+			angle = rotate.y();
+		}
+		if (qAbs(rotate.z()) > 0.000001)
+		{
+			axis = QVector3D(0.0f, 0.0f, 1.0f);
+			angle = rotate.z();
+		}
+
+		for (creative_kernel::ModelGroup* g : groups)
+		{
+			g->rotateByStandardAngle(axis, angle);
+
+			trimesh::xform rot = trimesh::xform::rot(angle * M_PI_180, axis);
+			
+			trimesh::xform m = g->getMatrix();
+			trimesh::dvec3 c = g->globalBoundingBox().center();
+			
+			trimesh::xform xf = trimesh::xform::trans(c) * rot * trimesh::xform::trans(-c) * m;
+			g->setMatrix(xf);
+
+			g->layerBottom();
+			g->updateSweepAreaPath();
+		}
+		
+		endNodeSnap();
+
+		requestVisPickUpdate(true);
+		emit rotateChanged();
+	}
+
+	void RotateOp::setTipObjectPos(const QPoint& point)
+	{
+		if (tip_object_)
+		{
+			QQmlProperty::write(tip_object_, "posX", QVariant::fromValue<int>(point.x()));
+			QQmlProperty::write(tip_object_, "posY", QVariant::fromValue<int>(point.y()));
+		}
+	}
+
+	void RotateOp::setTipObjectVisible(bool visible)
+	{
+		if (tip_object_)
+		{
+			QQmlProperty::write(tip_object_, "isVisible", QVariant::fromValue<bool>(visible));
 		}
 	}
 	
-//	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	bool RotateOp::getTipObjectVisible()
 	{
-		int i = m_selectedModels.size() - 1;
-		QVector3D p = process(point, m_selectedModels[i]);
-		qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
-		planeCenter = box.center();
-
-		QVector3D delta;
-		QVector3D oc0 = m_spacePoints[i] - planeCenter;
-		QVector3D oc1 = p - planeCenter;
-		if (oc0.length() != 0.0f && oc1.length() != 0.0f)
+		if (tip_object_)
 		{
-			oc0.normalize();
-			oc1.normalize();
-
-			if (oc0 == oc1)
-			{
-				angle = 0.0f;
-			}
-			else if (oc0 == -oc1)
-			{
-				angle = 180.0f;
-			}
-			else
-			{
-				axis = QVector3D::crossProduct(oc0, oc1);
-				axis.normalize();
-				for (int j = 0; j < 3; j++)
-				{
-					if (qAbs(axis[j]) < 0.01)
-					{
-						axis[j] = 0;
-					}
-					else
-					{
-						axis[j] = axis[j] > 0 ? 1 : -1;
-					}
-				}
-				angle = qAcos(QVector3D::dotProduct(oc0, oc1)) * 180.0f / 3.1415926f;
-				float baseAngle = m_saveAngle;
-				m_saveAngle = angle;
-				angle -= baseAngle;
-			}
+			QVariant var = QQmlProperty::read(tip_object_, "isVisible");
+			return var.toBool();
 		}
+
+		return false;
 	}
-	//angle = 0.0f;
-}
-
-QVector3D RotateOp::process(const QPoint& point, creative_kernel::ModelN* model)
-{
-	qtuser_3d::Ray ray = visRay(point);
-
-	QVector3D planeCenter;
-	QVector3D planeDir;
-	getProperPlane(planeCenter, planeDir, ray, model);
-
-	QVector3D c;
-	qtuser_3d::lineCollidePlane(planeCenter, planeDir, ray, c);
-	return c;
-}
-
-void RotateOp::getProperPlane(QVector3D& planeCenter, QVector3D& planeDir, qtuser_3d::Ray& ray, creative_kernel::ModelN* model)
-{
-	planeCenter = QVector3D(0.0f, 0.0f, 0.0f);
-
-	if (model)
-	{
-		qtuser_3d::Box3D box = model->globalSpaceBox();
-		planeCenter = box.center();
-	}
-
-	if (m_mode == TMode::x)  // x
-	{
-		planeDir = QVector3D(1.0f, 0.0f, 0.0f);
-	}
-	else if (m_mode == TMode::y)
-	{
-		planeDir = QVector3D(0.0f, 1.0f, 0.0f);
-	}
-	else if (m_mode == TMode::z)
-	{
-		planeDir = QVector3D(0.0f, 0.0f, 1.0f);
-	}
-}
-
-void RotateOp::updateHelperEntity()
-{
-	if (m_selectedModels.size() && !m_isRoate)
-	{
-		qtuser_3d::Box3D box = m_selectedModels[m_selectedModels.size() - 1]->globalSpaceBox();
-		m_helperEntity->onBoxChanged(box);
-	}
-}
-
-void RotateOp::onMachineSelectChange()
-{
-	updateHelperEntity();
-}
-
-bool RotateOp::getShowPop()
-{
-	return m_bShowPop;
 }

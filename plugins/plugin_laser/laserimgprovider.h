@@ -9,6 +9,8 @@ class LaserImgProvider : public QQuickImageProvider
     //Q_OBJECT
 public:
     explicit LaserImgProvider();
+    ~LaserImgProvider();
+
     QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize);
     void setObject(const QString& id, DrawObject* drawObj);
     QString providerUrl() {return m_providerUrl;}

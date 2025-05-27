@@ -11,7 +11,6 @@ namespace qtuser_3d
 {
 	class PureColorEntity;
 	class ModelNEntity;
-	class SelectEntity;
 }
 
 class RepairOp: public qtuser_3d::SceneOperateMode

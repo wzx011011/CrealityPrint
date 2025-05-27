@@ -7,19 +7,22 @@ BasicMenuItemStyle
     property var actionIconSource
     property  var actionSource
     property  var  actionCmdItem
+    itemChecked:idMenItem.itemChecked
     separatorVisible: true
     signal loadSouce(string title,var commd)
 
     Shortcut {
-            sequence: idMenItem.actionShortcut
-            onActivated:
-            {
-                triggered()
-            }
+        sequence: idMenItem.actionShortcut
+        onActivated:
+        {
+            triggered()
         }
+    }
 
     onTriggered: {
-        actionCmdItem.execute();
+        if(actionCmdItem){
+            Qt.callLater(actionCmdItem.execute)
+        }
     }
 
 }

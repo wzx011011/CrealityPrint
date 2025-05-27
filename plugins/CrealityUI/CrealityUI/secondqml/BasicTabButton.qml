@@ -10,6 +10,7 @@ T.TabButton {
     property color textColor: (control.checked||control.hovered) ? Constants.textColor : Constants.textColor
     property color buttonColor: (control.checked||control.hovered)? Constants.tabButtonSelectColor: Constants.tabButtonNormalColor
     property var strTooptip: ""
+    property var positionTooptip: BasicTooltip.Position.TOP
     property var tooltipX: control.width*0.75
     property var tooltipY: 2
 
@@ -19,6 +20,7 @@ T.TabButton {
     property int rBorderwidth : borderWidth
     property int tBorderwidth : borderWidth
     property int bBorderwidth : borderWidth
+    property alias pointSize: curText.fontPointSize
     property string fontText: ""
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -33,19 +35,13 @@ T.TabButton {
     spacing: 4
     font{
         family: Constants.labelFontFamily
-        pointSize: Constants.labelFontPointSize
+        pointSize: Constants.labelFontPointSize_9
     }
 
     BasicTooltip {
         id: idTooptip
-        x: tooltipX
-        y: tooltipY
-        visible: control.hovered
+        visible: text !== "" && control.hovered
         text: strTooptip
-        font:Constants.font
-        height: 20
-        width : strTooptip.length ===0 ? 0: contentWidth + 10
-
     }
 
     //自定义的QmlIconLabel
@@ -58,11 +54,13 @@ T.TabButton {
         height: 20
         width: 20
         CusText{
+            id: curText
             anchors.centerIn: parent
             fontText: control.fontText
-            fontPointSize: Constants.labelFontPointSize
+            fontPointSize: Constants.labelFontPointSize_9
             fontWeight: Font.Bold
             fontColor: control.textColor
+//            fontPointSize: control.font.pointSize
         }
     }
 

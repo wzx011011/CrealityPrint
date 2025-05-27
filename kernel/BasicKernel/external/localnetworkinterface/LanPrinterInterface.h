@@ -4,7 +4,8 @@
 #include "RemotePrinter.h"
 #include <unordered_map>
 #include <functional>
-
+#include "RemotePrinterSession.h"
+#include <future>
 namespace creative_kernel
 {
 	class BASIC_KERNEL_API LanPrinterInterface
@@ -17,8 +18,8 @@ namespace creative_kernel
 		const std::string cUrlSuffixState = "/protocal.csp";
 
 	public:
-		void getDeviceState(const std::string& strServerIp, std::function<void(std::unordered_map<std::string, std::string>)> callback);
-		int sendFileToDevice(const std::string& strIp, std::string filePath, std::function<void(float)> callback, std::function<void(std::string)> errorCallback);
+		void getDeviceState(const std::string& strServerIp, std::function<void(std::unordered_map<std::string, std::string>, RemotePrinterSession)> callback, RemotePrinterSession printerSession = {});
+		std::future<void> sendFileToDevice(const std::string& strIp, const std::string& fileName, const std::string& filePath, std::function<void(float)> callback, std::function<void(int)> errorCallback);
 		std::list<std::string> getFileListFromDevice(const std::string& strIp, std::function<void(std::string)> callback);
 		void getFileList(const std::string& strIp);
 		int controlPrinter(const std::string& strServerIp, const PrintControlType& cmdType, const std::string& value = "", std::function<void()> callback = nullptr);

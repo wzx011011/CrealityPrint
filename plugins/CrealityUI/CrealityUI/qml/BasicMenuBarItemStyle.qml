@@ -15,16 +15,21 @@ MenuBarItem {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
-    leftPadding : 8
-    rightPadding: 10
-    topPadding: 5
+//    leftPadding : 8
+//    rightPadding: 10
+//    topPadding: 5
+
+//    padding: 0
+    leftPadding: 0
+    rightPadding: 0
     // set font
     font{
-            family: Constants.labelFontFamily
-            pointSize: Constants.labelFontPointSize
-            weight: Constants.labelFontWeight
+        family: Constants.labelFontFamilyBold
+        pointSize: Constants.labelFontPointSize_9
+        weight: Font.Bold
+        //            bold: true
+    }
 
-        }
     contentItem: IconLabel {
         spacing: control.spacing
         mirrored: control.mirrored
@@ -36,13 +41,9 @@ MenuBarItem {
         color: control.textColor
     }
     background: Rectangle {
-            y : 5
-            x:2
-            radius:5
-            color: control.backgroundColor
-            height: control.height - 10
-            width: control.width-2
-            border.width: 0//hovered ? 1 :0
-            border.color: Constants.menuBarBtnColor_border
-        }
+        //            radius:5
+        color: control.backgroundColor
+        border.width: 0//hovered ? 1 :0
+        border.color: Constants.menuBarBtnColor_border
+    }
 }

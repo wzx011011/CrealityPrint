@@ -31,7 +31,7 @@ ColumnLayout {
 
             text: rootElement.title
             color: Constants.right_panel_text_default_color
-            font.pointSize: Constants.labelFontPointSize
+            font.pointSize: Constants.labelFontPointSize_9
             font.family: Constants.panelFontFamily
             verticalAlignment: Qt.AlignVCenter
         }

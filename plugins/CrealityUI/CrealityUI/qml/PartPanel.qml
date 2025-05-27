@@ -3,92 +3,58 @@ import QtQuick.Controls 2.0
 import QtQuick.Controls.Styles 1.4
 import "../secondqml"
 
-BasicDialogNoWin_V4 {
+LeftPanelDialog {
     //    width: 190
     //    height: 100
     id : idRootRect
     width: 300* screenScaleFactor
-    height: 364 * screenScaleFactor
+    height: 260 * screenScaleFactor
     title: qsTr("Split")
-    radius: 0
-    color: Constants.itemBackgroundColor
     property var control
-    
-    onControlChanged:
-    {
-        if(control)
-        {
-            console.log("onControlChanged!!")
-            control.onPositionChanged.disconnect(onPositionChange)
-            control.onPositionChanged.connect(onPositionChange)
+    property var curSplitType: 2
+    property bool isSelectPart: kernel_model_selector.selectedPartsNum > 0
 
-            control.onRotateAngleChanged.disconnect(onRotateAngleChange)
-            control.onRotateAngleChanged.connect(onRotateAngleChange)
+    onIsSelectPartChanged: {
+        if (isSelectPart)
+        {
+            __cutParts.checked = true
+            __cutParts.enabled = false
+            if (control)
+                control.bCutToParts = true
+        }
+        else 
+        {
+            __cutParts.enabled = true
         }
     }
 
-    function onPositionChange()
-    {
-        console.log("onPositionChanged")
-        //signalsBlocked(true)
-        cloader.item.x_pos.setRealValue(control.position.x)
-        cloader.item.y_pos.setRealValue(control.position.y)
-        cloader.item.z_pos.setRealValue(control.position.z)
-        //signalsBlocked(false)
+    onCurSplitTypeChanged: {
+        if(control) {
+            //control.offsetVal = 0
+            control.changeAxisType(idRootRect.curSplitType)
+        }
     }
-
-    function onRotateAngleChange()
-    {
-        //        console.log("onRotateAngleChanged：")
-        //signalsBlocked(true)
-        cloader.item.x_rotate.setRealValue(control.dir.x)
-        cloader.item.y_rotate.setRealValue(control.dir.y)
-        cloader.item.z_rotate.setRealValue(control.dir.z)
-        //signalsBlocked(false)
-    }
-
-    
     function resetPos(){
-        cloader.item.x_pos.setRealValue(control.defauletPos.x)
-        cloader.item.y_pos.setRealValue(control.defauletPos.y)
-        cloader.item.z_pos.setRealValue(control.defauletPos.z)
+        curSplitType = 2
+        control.offsetVal = 0
+        gapvalue.realValue = 0
+        control.modelGap(0)
+
+        __indicateCheck.checked = false
+        control.bCutToParts = false
+        control.indicateEnabled(false)
+    }
+    MouseArea{//捕获鼠标点击空白地方的事件
+        anchors.fill: parent
+        onClicked:
+        {
+            focus = true
+        }
     }
 
-    function resetRotate(){
-        cloader.item.x_rotate.setRealValue(control.defauletDir.x)
-        cloader.item.y_rotate.setRealValue(control.defauletDir.y)
-        cloader.item.z_rotate.setRealValue(control.defauletDir.z)
-    }
-
-    function lock()
-    {
-        if(control)
-            control.blockSignalSplitChanged(true)
-    }
-    function unlock()
-    {
-        if(control)
-            control.blockSignalSplitChanged(false)
-    }
-    function signalsBlocked(blocked)
-    {
-        cloader.item.x_pos.bSignalsBlcked = blocked
-        cloader.item.y_pos.bSignalsBlcked = blocked
-        cloader.item.z_pos.bSignalsBlcked = blocked
-
-        cloader.item.x_rotate.bSignalsBlcked = blocked
-        cloader.item.y_rotate.bSignalsBlcked = blocked
-        cloader.item.z_rotate.bSignalsBlcked = blocked
-    }
-
-    bdContentItem:Rectangle {
-        property alias x_pos: x_pos
-        property alias y_pos: y_pos
+    Item {
         property alias z_pos: z_pos
-        property alias x_rotate: x_rotate
-        property alias y_rotate: y_rotate
-        property alias zrotate: z_rotate
-        color: Constants.lpw_bgColor
+        anchors.fill: idRootRect.panelArea
         Column
         {
             anchors.top: parent.top
@@ -100,283 +66,223 @@ BasicDialogNoWin_V4 {
                 text: qsTr("Position:")
                 font.family: Constants.labelFontFamily
             }
-
             Row {
-                spacing: 20* screenScaleFactor
+                bottomPadding: 10 * screenScaleFactor
+                width : parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: 5*screenScaleFactor
+                Repeater{
+                    model:ListModel{
+
+                        ListElement{imgSource: "qrc:/UI/photo/splitSvg/splitCenterX.svg"}
+                        ListElement{imgSource: "qrc:/UI/photo/splitSvg/splitCenterY.svg"}
+                        ListElement{imgSource: "qrc:/UI/photo/splitSvg/splitCenterZ.svg"}
+                        ListElement{imgSource: "qrc:/UI/photo/splitSvg/splitCenterXYZ.svg"}
+                    }
+                    delegate: __splitBtnType
+                }
+
+            }
+
+            Row
+            {
+                spacing: 10* screenScaleFactor
                 anchors.horizontalCenter: parent.horizontalCenter
                 StyledLabel {
-                    color: "#FB0202"
-                    width: 15* screenScaleFactor
+                    color: Constants.textColor
+                    width: 50 * screenScaleFactor
+                    text: qsTr("Offset") + ":"
+//                    width: 15* screenScaleFactor
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "X:"
+                    font.pointSize: Constants.labelFontPointSize_9
                     font.family: Constants.labelFontFamily
-                    font.pointSize: 9
+
+                    opacity: z_pos.opacity
                 }
-                LeftToolSpinBox {
-                    id:x_pos
-                    width: 212* screenScaleFactor
+
+
+                CusStyledSpinBox {
+                    id: z_pos
+
+                    enabled: kernel_model_selector.selectedNum > 0
+
+                    width: 200* screenScaleFactor
                     height: 28* screenScaleFactor
                     anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:0//-9999
-                    realTo:9999
-                    realValue:  control ? control.position.x : 0
-                    font.pointSize: 9
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("x_pos")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.position.x = x_pos.realValue
-                            unlock()
+
+                    stepSize: 0.1 * Math.pow(10, decimals)
+                    from: -9999 * Math.pow(10, decimals)
+                    to: 9999 * Math.pow(10, decimals)
+                    decimals: 2
+                    unitchar: "mm"
+                    realValue: control.offsetVal.toFixed(2)
+                    font.pointSize: Constants.labelFontPointSize_9
+                    textValidator: RegExpValidator {
+                        regExp: /[\+ \-]?(\d{1,4})([.,]\d{1,2})?$/ ///^([\+ \-]?(\d{1,4})([.,]\d{1,3})?$/
+                    }
+
+                    onTextContentChanged: {
+                        if (realValue != result)
+                        realValue = result
+                        
+                    }
+
+                    onRealValueChanged: {
+                        if (realValue != control.offsetVal)
+                            control.offsetVal = realValue
+                    }
+
+                    Connections {
+                        target: control
+
+                        onOffsetValChanged: {
+                            let offset = control.offsetVal.toFixed(2)
+                            if (z_pos.realValue != offset)
+                                z_pos.realValue = offset
                         }
                     }
                 }
-
             }
             Row
             {
-                spacing: 20* screenScaleFactor
+                spacing: 10* screenScaleFactor
                 anchors.horizontalCenter: parent.horizontalCenter
                 StyledLabel {
-                    color: "#00FD00"
-                    text: "Y:"
-                    width: 15* screenScaleFactor
+                    color: Constants.textColor
+                    width: 50 * screenScaleFactor
+                    text: qsTr("Gap") + ":"
                     anchors.verticalCenter: parent.verticalCenter
-                    font.family: Constants.labelFontFamily
-                    font.pointSize: 9
-                }
-                LeftToolSpinBox {
-                    id:y_pos
-                    width: 212* screenScaleFactor
-                    height: 28* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:0//-9999
-                    realTo:9999
-                    font.pointSize: 9
-                    realValue: control ? control.position.y : 0
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("y_pos")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.position.y = y_pos.realValue
-                            unlock()
-                        }
-                    }
-                }
-            }
-            Row
-            {
-                spacing: 20* screenScaleFactor
-                anchors.horizontalCenter: parent.horizontalCenter
-                StyledLabel {
-                    color: "#008FFD"
-                    text: "Z:"
-                    width: 15* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                     font.family: Constants.labelFontFamily
                 }
-                LeftToolSpinBox {
-                    id:z_pos
-                    width: 212* screenScaleFactor
+
+                CusStyledSpinBox {
+                    id: gapvalue
+
+                    width: 200* screenScaleFactor
                     height: 28* screenScaleFactor
                     anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:0//-9999
-                    realTo:9999
-                    font.pointSize: 9
-                    realValue: control ? control.position.z : 0
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("z_pos")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.position.z = z_pos.realValue
-                            unlock()
-                        }
 
+                    stepSize: 1 * Math.pow(10, decimals)
+                    from: -999 * Math.pow(10, decimals)
+                    to: 999 * Math.pow(10, decimals)
+                    decimals: 2
+                    unitchar: "mm"
+                    realValue: control.gap.toFixed(2)
+                    font.pointSize: Constants.labelFontPointSize_9
+                    textValidator: RegExpValidator {
+                        regExp: /[\+ \-]?(\d{1,4})([.,]\d{1,2})?$/ ///^([\+ \-]?(\d{1,4})([.,]\d{1,3})?$/
                     }
+
+                    onTextContentChanged: {
+                        if (realValue != result)
+                            realValue = result
+                        
+                    }
+
+                    onRealValueChanged: {
+                        control.modelGap(realValue)
+                    }
+
                 }
-            }
 
-            Item{
-                width: 20* screenScaleFactor
-                height: 10* screenScaleFactor
             }
-
-            StyledLabel {
-                color: Constants.textColor
-                text: qsTr("Rotate:")
-                font.pointSize: 9
-                font.family: Constants.labelFontFamily
-            }
-
             Row {
-                spacing: 20* screenScaleFactor
-                anchors.horizontalCenter: parent.horizontalCenter
-                StyledLabel {
-                    color: "#FB0202"
-                    text: "X:"
-                    width: 15* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pointSize: 9
-                    font.family: Constants.labelFontFamily
-                }
-                LeftToolSpinBox {
-                    id:x_rotate
-                    width: 212* screenScaleFactor
-                    height: 28* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:-9999
-                    realTo:9999
-                    font.pointSize: 9
-                    realValue: control ? control.dir.x : 0
-                    textValidator: RegExpValidator {
-                        regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
+                StyleCheckBox
+                {
+                    id : __indicateCheck
+                    width: 120 * screenScaleFactor
+                    height: 20 * screenScaleFactor
+                    checked :  false
+                    text : qsTr("Indicate")
+                    onClicked:
+                    {
+                        focus = true
+                        control.indicateEnabled(checked)
                     }
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("x_rotate")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.dir.x = x_rotate.realValue
-                            unlock()
-                        }
-                    }
-                    unitchar: qsTr("(°)")
                 }
 
+                StyleCheckBox
+                {
+                    id : __cutParts
+                    width: 120 * screenScaleFactor
+                    height: 20 * screenScaleFactor
+                    checked : control ? control.bCutToParts : false
+                    text : qsTr("Cut to parts")
+//                    visible: kernel_global_const.isDebug
+                    onClicked:
+                    {
+                        focus = true
+                        control.bCutToParts = checked
+                    }
+                }
             }
             Row
             {
-                spacing: 20* screenScaleFactor
                 anchors.horizontalCenter: parent.horizontalCenter
-                StyledLabel {
-                    color: "#00FD00"
-                    text: "Y:"
-                    width: 15* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.family: Constants.labelFontFamily
-                    font.pointSize: 9
-                }
-                LeftToolSpinBox {
-                    id:y_rotate
-                    width: 212* screenScaleFactor
-                    height: 28* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:-9999
-                    realTo:9999
-                    font.pointSize: 9
-                    realValue:control ? control.dir.y : 0
-                    textValidator: RegExpValidator {
-                        regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
-                    }
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("y_rotate")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.dir.y = y_rotate.realValue
-                            unlock()
-                        }
-                    }
-                    unitchar: qsTr("(°)")
-                }
-
-            }
-            Row
-            {
-                spacing: 20* screenScaleFactor
-                anchors.horizontalCenter: parent.horizontalCenter
-                StyledLabel {
-                    color: "#008FFD"
-                    text: "Z:"
-                    width: 15* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.family: Constants.labelFontFamily
-                    font.pointSize: 9
-                }
-                LeftToolSpinBox {
-                    id:z_rotate
-                    width: 212* screenScaleFactor
-                    height: 28* screenScaleFactor
-                    anchors.verticalCenter: parent.verticalCenter
-                    realStepSize:5
-                    realFrom:-9999
-                    realTo:9999
-                    font.pointSize: 9
-                    realValue: control ? control.dir.z : 0
-                    textValidator: RegExpValidator {
-                        regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
-                    }
-                    onValueEdited:{
-                        if(control)
-                        {
-                            console.log("z_rotate")
-                            if(isNaN(realValue)) return
-                            lock()
-                            control.dir.z = z_rotate.realValue
-                            unlock()
-                        }
-                    }
-                    unitchar: qsTr("(°)")
-                }
-            }
-
-            Item{
-                width: 20* screenScaleFactor
-                height: 15* screenScaleFactor
-            }
-
-            Row
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 20* screenScaleFactor
+                spacing: 10* screenScaleFactor
                 BasicButton {
                     id: reset
-                    width: 124* screenScaleFactor
+                    width: 125* screenScaleFactor
                     height: 28* screenScaleFactor
                     text : qsTr("Reset")
-                    btnRadius:14
+                    btnRadius:14* screenScaleFactor
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.imageButtomPointSize
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked: {
-                        resetPos();
-                        resetRotate();
-                        control.undo();//
+                        resetPos()
+
+
                     }
 
                 }
 
                 BasicButton {
                     id: slice
-                    width: 124* screenScaleFactor
+                    width: 125* screenScaleFactor
                     height: 28* screenScaleFactor
                     text : qsTr("Start Split")
-                    btnRadius:14
+                    btnRadius:14* screenScaleFactor
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize:  Constants.imageButtomPointSize
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked: {
                         control.split();
                     }
+                }
+            }
+        }
+        Component
+        {
+            id: __splitBtnType
+            CusImglButton
+            {
+                width: 61* screenScaleFactor
+                height: 39* screenScaleFactor
+                shadowEnabled : false
+                opacity : enabled ? 1 : 0.7
+                defaultBtnBgColor: Constants.themeColor_secondary
+                hoveredBtnBgColor:  Constants.themeColor_secondary
+                borderWidth: hovered ? 2 :1
+                hoverBorderColor: Constants.themeGreenColor
+                selectedBtnBgColor: Constants.themeGreenColor
+                selectBorderColor:"transparent"
+                font.family: Constants.labelFontFamily
+                font.weight: Constants.labelFontWeight
+                enabledIconSource: imgSource
+                highLightIconSource: imgSource
+                pressedIconSource: imgSource
+                bottonSelected : idRootRect.curSplitType === index
+                onClicked:
+                {
+
+                    idRootRect.curSplitType = index
+                    control.offsetVal = 0
                 }
             }
         }

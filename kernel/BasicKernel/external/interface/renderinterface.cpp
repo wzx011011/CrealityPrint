@@ -1,40 +1,41 @@
 #include "renderinterface.h"
 
-#include "qtuserqml/gl/glquickitem.h"
+#include "qtuser3d/module/rendercenter.h"
+#include "qtuser3d/module/quickscene3dwrapper.h"
 
-#include "external/kernel/rendercenter.h"
-#include "external/kernel/kernel.h"
-#include "external/kernel/visualscene.h"
+#include "kernel/kernel.h"
+#include "kernel/visualscene.h"
+
 namespace creative_kernel
 {
 	void registerResidentNode(Qt3DCore::QNode* node)
 	{
-		getRenderCenter()->registerResidentNode(node);
+		getKernel()->renderCenter()->registerResidentNode(node);
 	}
 
 	void unRegisterResidentNode(Qt3DCore::QNode* node)
 	{
-		getRenderCenter()->unRegisterResidentNode(node);
+		getKernel()->renderCenter()->unRegisterResidentNode(node);
 	}
 
 	void renderRenderGraph(qtuser_3d::RenderGraph* graph)
 	{
-		getRenderCenter()->renderRenderGraph(graph);
+		getKernel()->renderCenter()->renderRenderGraph(graph);
 	}
 
 	bool isRenderRenderGraph(qtuser_3d::RenderGraph* graph)
 	{
-		return getRenderCenter()->isRenderRenderGraph(graph);
+		return getKernel()->renderCenter()->isRenderRenderGraph(graph);
 	}
 
 	void registerRenderGraph(qtuser_3d::RenderGraph* graph)
 	{
-		getRenderCenter()->registerRenderGraph(graph);
+		getKernel()->renderCenter()->registerRenderGraph(graph);
 	}
 
 	void renderOneFrame()
 	{
-		getRenderCenter()->renderOneFrame();
+		getKernel()->renderCenter()->renderOneFrame();
 	}
 
 	bool isRenderDefaultRenderGraph()
@@ -49,16 +50,16 @@ namespace creative_kernel
 
 	void setContinousRender()
 	{
-		getRenderCenter()->glQuickItem()->setAlways(true);
+		getKernel()->renderCenter()->scene3DWrapper()->setAlways(true);
 	}
 
 	void setCommandRender()
 	{
-		getRenderCenter()->glQuickItem()->setAlways(false);
+		getKernel()->renderCenter()->scene3DWrapper()->setAlways(false);
 	}
 
-	void oglCompute(computeFunc func)
-	{
-		getRenderCenter()->compute(func);
-	}
+	// void setCommandRenderEx()
+	// {
+	// 	getKernel()->renderCenter()->scene3DWrapper()->setAlways(false);
+	// }
 }

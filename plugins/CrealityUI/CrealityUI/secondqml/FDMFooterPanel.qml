@@ -1,439 +1,259 @@
+import "../qml"
+import "../secondqml"
+import QtGraphicalEffects 1.12
+import QtQml 2.13
 import QtQuick 2.13
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.13
 
-import ".."
-import "../qml"
-
 Rectangle {
-  color: "transparent"
+    id: root
 
-  property alias panelWidth: idFDMFooter.width
-  property int panelHeight: 104 * screenScaleFactor
+    property int panelWidth: 460 * screenScaleFactor
+    property int panelHeight: 50 * screenScaleFactor
+    //Control options
+    property var speedFlag: kernel_slice_model.currentStepSpeed
+    property var randomstep: 0
+    property var previewSlider: ""
+    property bool startAnimation: false
+    property color labelColor: Constants.currentTheme ? "#333333" : "#FFFFFF"
+    //Display range
+    property alias stepMax: stepSlider.maximumValue
+    property alias currentStep: stepSlider.value
+    property alias onlyLayer: idOnlyShow.isChecked
+    property string slice_start_img: "qrc:/UI/photo/slice_start.svg"
+    property string slice_stop_img: "qrc:/UI/photo/slice_stop.svg"
+    property string layer_current_img: "qrc:/UI/photo/layer_current.svg"
+    property string layer_all_img: "qrc:/UI/photo/layer_all.svg"
 
-  height: panelHeight
+    signal stepSliderChange(var value)
 
-  property color defaultBgColor: Constants.itemBackgroundColor
-  property color labelColor: Constants.textColor
-
-  property var  previewflow
-
-  //Animation
-
-  property bool isStart: false
-  signal speedSliderChange(var value)
-  //Control options
-  property var cmbCurrerntText
-  property var cmbCurrentIndex : idColorCmb.currentIndex
-
-  signal currentCmbIndexChange()
-
-  property var onlyLayerNum : idLayerNum.realValue
-
-  property var speedFlag : 1
-  property var randomstep : 0
-
-  //Layer display range
-  property alias currentLayer : layeSlider.value
-  property alias currentStep : stepSlider.value
-  property alias layerMax : layeSlider.maximumValue
-  property alias stepMax : stepSlider.maximumValue
-  signal layerSliderChange(var value)
-  signal stepSliderChange(var value)
-  property alias timebtn : idTimerDown
-
-  //
-  property alias onlyShowCheck: idNozzle.checked
-
-  Rectangle {
-    id:idFDMFooter
-
-    anchors.centerIn: parent
-    height: parent.height
-
-    color: defaultBgColor
-    border.color: Constants.right_panel_border_default_color
-    border.width: 1
-    radius: 5
-
-    onVisibleChanged: {
-      if (visible) {
-        idColorCmb.displayText = idColorModel.get(idColorCmb.currentIndex).modeldata
-      }
+    function update() {
+        idOnlyShow.isChecked = false;
+        stepMax = kernel_slice_model.steps;
+        currentStep = kernel_slice_model.steps;
     }
 
-    RowLayout {
-      x: 20 * screenScaleFactor
-      y: 10 * screenScaleFactor
-      width: parent.width - x * 2
-      height: parent.height - y * 2
+    function onlyShowLayer() {
+        if (idOnlyShow.isChecked)
+            kernel_slice_model.showOnlyLayer(previewSlider.value);
+        else
+            kernel_slice_model.showOnlyLayer(-1);
+    }
 
-      spacing: 20 * screenScaleFactor
+    width: panelWidth
+    color: "transparent"
+    height: panelHeight
+    onSpeedFlagChanged: {
+        if (root.speedFlag > 0)
+            idTimerDown.interval = root.speedFlag;
 
-      ColumnLayout {
-        Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: 180 * screenScaleFactor
-        Layout.fillHeight: true
+    }
 
-        BasicDialogButton {
-          Layout.alignment: Qt.AlignCenter
-          Layout.fillWidth: true
-          Layout.preferredHeight: 28 * screenScaleFactor
+    MouseArea {
+        id: wheelFilter
 
-          text : isStart ? qsTr("Suspend") : qsTr("Start")
-          btnTextColor: Constants.right_panel_slice_text_default_color
-          defaultBtnBgColor : Constants.right_panel_slice_button_default_color
-          hoveredBtnBgColor : Constants.right_panel_slice_button_hovered_color
-          btnBorderW: 0
-          btnRadius: 5
-
-          onSigButtonClicked: {
-            if(layeSlider.value === layeSlider.maximumValue) {
-              layeSlider.value = 0;
-            }
-
-            //startOrSuspend()
-
-            if(isStart) {
-              idTimerDown.stop()
-              isStart =! isStart;
-              previewflow.slicePreviewSetOp("IsAnimate", 0);
-            } else {
-              idTimerDown.start();
-              isStart =! isStart;
-              previewflow.slicePreviewSetOp("IsAnimate", 1);
-            }
-          }
+        anchors.fill: parent
+        propagateComposedEvents: false
+        onWheel: {
         }
+    }
+    
+    Connections {
+        target: kernel_kernel
+
+        onCurrentPhaseChanged: {
+            if (kernel_kernel.currentPhase != 1)
+                idTimerDown.stop()
+        }
+    }
+
+    Timer {
+        id: idTimerDown
+
+        repeat: true
+        interval: 30
+        triggeredOnStart: true
+        onTriggered: {
+            if (stepSlider.value < stepSlider.maximumValue) {
+                stepSlider.value += 1;
+                randomstep = true;
+                return ;
+            }
+            if (previewSlider.value < previewSlider.to) {
+                previewSlider.value += 1;
+                stepSlider.value = 0; //idPreviewWay.currentIndex === 0 ? 0 : stepSlider.maximumValue;
+                randomstep = true;
+                return ;
+            }
+            kernel_slice_model.setAnimationState(0);
+            startAnimation = !startAnimation;
+            randomstep = false;
+            idTimerDown.stop();
+        }
+    }
+
+    Rectangle {
+        width: panelWidth
+        height: panelHeight
+        //anchors.centerIn: parent
+        color: Constants.currentTheme ? "#FFFFFF" : "#4B4B4D"
+        border.color: Constants.currentTheme ? "#CBCBCC" : "#262626"
+        border.width: 1
+        radius: 5
+        layer.enabled: true
 
         RowLayout {
-          Layout.alignment: Qt.AlignCenter
-          Layout.fillWidth: true
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          StyledLabel {
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            text: qsTr("Printing Speed:")
-            color: labelColor
-          }
-
-          StyledSlider {
-            id : speedSlider
-
-            Layout.fillWidth: true
+            anchors.fill: parent
             Layout.alignment: Qt.AlignVCenter
+            spacing: 5 * screenScaleFactor
 
-            sliderHeight: 2 * screenScaleFactor
-
-            value: 50
-            minimumValue: 1
-            maximumValue: 150
-
-            onValueChanged: {
-              speedSliderChange(value)
+            Item {
+                Layout.preferredWidth: 5 * screenScaleFactor
             }
-          }
-        }
-      }
 
-      Rectangle {
-        width: 1
-        height: parent.height
-        color: Constants.right_panel_menu_split_line_color
-      }
+            CusImglButton {
+                id: animationBtn
 
-      GridLayout {
-        Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: 240 * screenScaleFactor
-        Layout.fillHeight: true
+                Layout.preferredWidth: 28 * screenScaleFactor
+                Layout.preferredHeight: 28 * screenScaleFactor
+                imgWidth: 10 * screenScaleFactor
+                imgHeight: 12 * screenScaleFactor
+                enabledIconSource: startAnimation ? root.slice_stop_img : root.slice_start_img
+                highLightIconSource: startAnimation ? root.slice_stop_img : root.slice_start_img
+                pressedIconSource: startAnimation ? root.slice_stop_img : root.slice_start_img
+                defaultBtnBgColor: Constants.themeGreenColor
+                selectedBtnBgColor:  Constants.themeGreenColor
+                hoveredBtnBgColor: Qt.lighter(Constants.themeGreenColor, 1.1) //Constants.right_panel_slice_button_hovered_color
+                borderWidth: 0
+                onClicked: {
+                    if (previewSlider.value === previewSlider.to){
+                        previewSlider.value = 0;
+                        stepSlider.value = 0
+                    }
 
-        columns: 4
-
-        Rectangle {
-          width:1
-          height: 1
-        }
-
-        Label {
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          text: qsTr("Preview Way")
-          font.pointSize: Constants.labelFontPointSize
-          font.family: Constants.labelFontFamily
-          font.weight: Constants.labelFontWeight
-          color: labelColor
-          verticalAlignment: Text.AlignVCenter
-
-          onTextChanged: {
-            console.log("Preview Way changed !!")
-            idColorCmb.displayText = idColorModel.get(idColorCmb.currentIndex).modeldata
-          }
-        }
-
-        BasicCombobox {
-          id: idColorCmb
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.fillWidth: true
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          cmbRadius: 5
-          clip: true
-
-          //打印速度 ,结构 ,喷头
-          model: ListModel {
-            id: idColorModel
-            ListElement { modeldata: qsTr("Each Step") }
-            ListElement { modeldata: qsTr("Each Layer") }
-          }
-
-          currentIndex: 0
-          onCurrentIndexChanged: {
-            cmbCurrerntText = idColorModel.get(currentIndex).modeldata
-            displayText = cmbCurrerntText
-            currentCmbIndexChange()
-          }
-        }
-
-        Rectangle {
-          width:1
-          height: 1
-        }
-
-        StyleCheckBox {
-          id: idNozzle
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          checkedState: 0
-
-          onCheckedChanged: {
-            console.log("checkState = " + checkedState)
-            if(checkedState === 0) {
-              previewflow.slicePreviewCommonOp("unsetOnlyLayer")
-            } else {
-              console.log("onlyLayerNum = " + onlyLayerNum)
-              previewflow.slicePreviewSetOp("OnlyLayer", onlyLayerNum)
+                    if (startAnimation) {
+                        idTimerDown.stop(); 
+                        randomstep = false;
+                        startAnimation = !startAnimation;
+                        kernel_slice_model.setAnimationState(0);
+                    } else {
+                        kernel_slice_model.setAnimationState(1);
+                        startAnimation = !startAnimation;
+                        randomstep = true;
+                        idTimerDown.start();
+                    }
+                }
             }
-          }
-        }
 
-        Label {
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          text: qsTr("Only Show")
-          font.pointSize: Constants.labelFontPointSize
-          font.family: Constants.labelFontFamily
-          font.weight: Constants.labelFontWeight
-          color: labelColor
-          verticalAlignment: Text.AlignVCenter
-        }
-
-        StyledSpinBox {
-          id: idLayerNum
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.fillWidth: true
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          radius: 5
-
-          realFrom: 0
-          realTo: currentLayer
-          realStepSize: 1
-          realValue: 0
-          unitchar: ""
-
-          textObj.validator:IntValidator {
-            bottom: 0
-            top: 99999
-          }
-
-          onValueEdited: {
-            if (idNozzle.checkedState > 0) {
-              console.log("edit Value =" + idLayerNum.realValue)
-              previewflow.slicePreviewSetOp("OnlyLayer", idLayerNum.realValue)
+            Label {
+                Layout.preferredWidth: contentWidth * screenScaleFactor
+                Layout.preferredHeight: 28 * screenScaleFactor
+                font.family: Constants.labelFontFamily
+                font.weight: Constants.labelFontWeight
+                font.pointSize: Constants.labelFontPointSize_9
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                text: qsTr("Steps Number")
+                color: labelColor
             }
-          }
-        }
 
-        Label {
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
+            StyledSlider {
+                id: stepSlider
 
-          text: qsTr("Layer")
-          color: labelColor
-          verticalAlignment: Text.AlignVCenter
-          horizontalAlignment: Text.AlignHCenter
-        }
-      }
+                Layout.fillWidth: true
+                Layout.preferredHeight: 28 * screenScaleFactor
+                stepSize: 1
+                maximumValue: 40
+                sliderHeight: 4 * screenScaleFactor
+                handleWidth: 18 * screenScaleFactor
+                handleHeight: 18 * screenScaleFactor
+                handleBorderColor: Qt.darker(Constants.themeGreenColor, 1.2)
+                handleBorderWidth: 2
+                onValueChanged: {
+                   
+                    stepInput.realValue = value;
+                    stepSliderChange(value);
+                    console.log(stepSlider.maximumValue,value, "maximumValuemaximumValue")
+                    if (stepSlider.maximumValue > 0 && value > 0 && !startAnimation && stepSlider.maximumValue!=value)
+                        kernel_slice_model.setCurrentLayerFocused(1);
+                    
+                    // if(value!==stepSlider.maximumValue)
+                    //   kernel_slice_model.setIndicatorVisible(true)
+                }
+                
+            }
+            Shortcut {
+                context: Qt.WindowShortcut
+                sequence: "Right"
+                onActivated:stepSlider.value++
+            }
+            Shortcut {
+                context: Qt.WindowShortcut
+                sequence: "Left"
+                onActivated:stepSlider.value--
+            }
 
-      Rectangle {
-        width: 1
-        height: parent.height
-        color: Constants.right_panel_menu_split_line_color
-      }
 
-      GridLayout {
-        Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: 330 * screenScaleFactor
-        Layout.fillHeight: true
-
-        columns: 3
-
-        Label {
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          verticalAlignment: Qt.AlignVCenter
-          horizontalAlignment: Qt.AlignHCenter
-
-          text: qsTr("Steps Number:")
-          font.family: Constants.labelFontFamily
-          font.weight: Constants.labelFontWeight
-          font.pointSize: Constants.labelFontPointSize
-          color: labelColor
-        }
-
-        StyledSlider {
-          id : stepSlider
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.fillWidth: true
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          minimumValue :0
-          sliderHeight: 2
-
-          onValueChanged: {
-            sliderStepInput.value = value
-            stepSliderChange(value)
-          }
-        }
-
-        StyledSpinBox {
-          id: sliderStepInput
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredWidth: 70 * screenScaleFactor
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          radius: 5
-
-          realStepSize: 1
-          realFrom: 0
-          realTo: stepSlider.maximumValue
-          realValue: stepSlider.value
-          value: stepSlider.value
-          decimals: 0
-          unitchar: ""
-
-          textObj.validator:IntValidator {
-            bottom : 0
-            top : 99999
-          }
-
-          onValueEdited: {
-            stepSlider.value = realValue
-          }
-        }
-
-        Label {
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          verticalAlignment: Qt.AlignVCenter
-          horizontalAlignment: Qt.AlignHCenter
-
-          text: qsTr("Layers Number:")
-          font.family: Constants.labelFontFamily
-          font.weight: Constants.labelFontWeight
-          font.pointSize: Constants.labelFontPointSize
-          color: labelColor
-        }
-
-        StyledSlider {
-            id : layeSlider
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
+            
+        CusStyledSpinBox
+        {
+            id: stepInput
+            Layout.preferredWidth: 66 * screenScaleFactor
             Layout.preferredHeight: 28 * screenScaleFactor
-
+            decimals: 0
+            realFrom:0
+            realTo: stepSlider.maximumValue
+            // realStepSize: 1
+            realValue: stepSlider.value
+            value: stepSlider.value
             stepSize: 1
-            sliderHeight: 2
-            minimumValue: 0
-            maximumValue: 40
-
-            onValueChanged: {
-              layerInput.value = value
-              layerSliderChange(value)
-            }
-        }
-
-        StyledSpinBox {
-          id: layerInput
-
-          Layout.alignment: Qt.AlignCenter
-          Layout.preferredWidth: 70 * screenScaleFactor
-          Layout.preferredHeight: 28 * screenScaleFactor
-
-          radius: 5
-
-          realStepSize: 1
-          realFrom: 0
-          realTo: layeSlider.maximumValue
-          realValue: layeSlider.value
-          value: layeSlider.value
-          decimals: 0
-          unitchar: ""
-
-          textObj.validator:IntValidator {
-            bottom: 0
-            top: 99999
-          }
-
-          onValueEdited: {
-            layeSlider.value = value
-          }
-        }
+            unitchar: ""
+            onTextContentChanged: stepSlider.value = result
+        
       }
 
-      Timer {
-        id:idTimerDown;
-        interval: speedSlider.value > 0 ? (3000 / (speedSlider.value * speedFlag)) : 3000;
-        repeat: true;
-        triggeredOnStart: true;
 
-        onTriggered: {
-          if (cmbCurrentIndex === 0) {
-            randomstep = 1
-            stepSlider.value += 1
+            CusImglButton {
+                id: idOnlyShow
 
-            if (stepSlider.value >= stepSlider.maximumValue) {
-              layeSlider.value += 1
+                property bool isChecked: false
 
-              if (layeSlider.value > layeSlider.maximumValue) {
-                idTimerDown.stop();
-                previewflow.slicePreviewSetOp("IsAnimate", 0);
-              } else if(layeSlider.value === layeSlider.maximumValue) {
-              } else {
-                stepSlider.value = 0
-              }
+                Layout.preferredWidth: 28 * screenScaleFactor
+                Layout.preferredHeight: 28 * screenScaleFactor
+                imgWidth: 16 * screenScaleFactor
+                imgHeight: 16 * screenScaleFactor
+                defaultBtnBgColor: "transparent"
+                hoveredBtnBgColor: "transparent"
+                selectedBtnBgColor: "transparent"
+                opacity: 1
+                borderWidth: 0
+                text: qsTr("Click to toggle showing only the current layer")
+                cusTooltip.position: BasicTooltip.Position.TOP
+                shadowEnabled: Constants.currentTheme
+                enabledIconSource: isChecked ? root.layer_current_img : root.layer_all_img
+                pressedIconSource: isChecked ? root.layer_current_img : root.layer_all_img
+                highLightIconSource: isChecked ? root.layer_current_img : root.layer_all_img
+                onClicked: {
+                    isChecked = !isChecked;
+                    animationBtn.enabled = !isChecked;
+                    onlyShowLayer();
+                }
             }
-          } else {
-            layeSlider.value += 1
 
-            if (layeSlider.value > layeSlider.maximumValue) {
-              idTimerDown.stop();
-              previewflow.slicePreviewSetOp("IsAnimate", 0);
-            } else if(stepSlider.value === stepSlider.maximumValue) {
+            Item {
+                Layout.preferredWidth: 5 * screenScaleFactor
             }
-          }
+
         }
-      }
+
+        layer.effect: DropShadow {
+            radius: 8
+            spread: 0.2
+            samples: 17
+            color: Constants.currentTheme ? "#BBBBBB" : "#333333"
+        }
+
     }
-  }
+
 }

@@ -1,27 +1,45 @@
-﻿import QtQuick 2.0
+﻿import QtQuick 2.15
+
 import CrealityUI 1.0
 import "qrc:/CrealityUI"
-QtObject {
-      id: root
-      property var crealityVersion: ""
-      property QtObject $splashScreen:Splash {
-//              timeoutInterval:1000
-//              onTimeout:{
-//              }
-          //versionText : crealityVersion
-          }
-      property var loader: Loader{
-          id:idMainWindow
-          asynchronous: true
-          source: "qrc:/scence3d/res/MainWindow.qml"
-          active: false
-          onLoaded: {
-              console.log("scence3d/res/MainWindow.qml!!!!!")
-              $splashScreen.visible = false
-              idMainWindow.item.showWizardDlg()
-          }
-      }
-      Component.onCompleted:{
-          loader.active = true;
-      }
-  }
+
+Item {
+    // initialize Constants before load ui components
+    readonly property var _ : Constants
+
+    Connections {
+        target: Constants.directoryFontLoader
+        onFontLoaded: {
+            splash_loader.active = true
+        }
+    }
+
+    Loader {
+        id: splash_loader
+        active: false
+        source: "qrc:/CrealityUI/qml/Splash.qml"
+        onLoaded: {
+            item.show()
+            main_window_loader.active = true
+        }
+    }
+
+    Loader {
+        id: main_window_loader
+        active: false
+        anchors.fill: parent
+        anchors.margins: frameLessView && frameLessView.isMax &&!frameLessView.isCompatible? 7 * screenScaleFactor : 0
+
+        asynchronous: true
+        sourceComponent: MainWindow2 {}
+
+        onLoaded: {
+            splash_loader.sourceComponent = null
+            item.initialized = true
+            console.log("main loaded")
+            if(!kernel_kernel.blTestEnabled())
+                autoSaveProject.startAutoSave()
+            kernel_kernel.processCommandLine()
+        }
+    }
+}

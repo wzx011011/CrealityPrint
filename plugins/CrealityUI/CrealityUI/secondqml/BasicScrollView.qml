@@ -34,10 +34,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
-import QtQuick.Controls 2.5
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Controls.impl 2.15
+
+import "../qml"
 
 ScrollView {
     id: control
@@ -50,42 +51,30 @@ ScrollView {
     property int verticalWidth: 10
     property int horizontalHeight: 10
 
-	property alias hpolicy: idHScroll.policy
-    property alias hpolicyVisible: idHScroll.visible
-    property alias hpolicyindicator: idHScroll.contentItem
+    property bool hpolicyVisible: false
+    property Item hpolicyindicator
 
-	property alias vpolicy: idVScroll.policy
-    property alias vpolicyVisible: idVScroll.visible
-    property alias vpolicyindicator: idVScroll.contentItem
+    property bool bgVisible: false
+    property bool vpolicyVisible: true
+    property Item vpolicyindicator
 
-    property var hSize: idHScroll.size
-    property var vSize: idVScroll.size
-    property var hPosition: idHScroll.position
-    property alias vPosition: idVScroll.position
+    property real hSize
+    property real vSize
+    property real hPosition
+    property real vPosition
+    property real hPolicy
+    property real vPolicy
+    hoverEnabled: true
 
     function setVScrollBarPosition(value){
         idVScroll.position = value
     }
-
-    ScrollBar.vertical: ScrollBar {
-        id: idVScroll
-        parent: control
-        x: control.mirrored ? 0 : control.width - width
-        y: control.topPadding
-        width: verticalWidth
-        height: control.availableHeight
-        active: control.ScrollBar.horizontal.active
-        policy: ScrollBar.AlwaysOn
-    }
-
-    ScrollBar.horizontal: ScrollBar {
-        id: idHScroll
-        parent: control
-        x: control.leftPadding
-        y: control.height - height
-        width: control.availableWidth
-        height: horizontalHeight
-        active: control.ScrollBar.vertical.active
-        policy: ScrollBar.AlwaysOn
+    ScrollBar.vertical.policy: (contentHeight > height) ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+    background: Rectangle
+    {
+        visible: bgVisible
+        color: Constants.itemBackgroundColor
+        border.width:1
+        border.color:hovered ? Constants.textRectBgHoveredColor : Constants.dialogItemRectBgBorderColor
     }
 }

@@ -76,7 +76,7 @@ Rectangle {
         BasicSubMenu{
             id : __fileHistory
             separator : false
-            title : qsTr("Recently files")
+            title : cxTr("Recent Files")
             mymodel : actionCommands.getOpt("Recently files").subMenuActionmodel
         }
         BasicSubMenu{
@@ -240,14 +240,6 @@ Rectangle {
            }
 
            BasicMenuItem{
-               actionName: qsTr("Manage Materials")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Manage Materials")
-               }
-           }
-
-           BasicMenuItem{
                actionName: qsTr("Manage Printer")
                enabled : true
                onTriggered: {
@@ -272,13 +264,13 @@ Rectangle {
 
        BasicMenu {
            id: modelLibraryMenu
-           title: qsTr("Models")
+           title: qsTr("Model Library")
            // ...
            BasicMenuItem{
-               actionName: qsTr("Models")
+               actionName: qsTr("Model Library")
                enabled : true
                onTriggered: {
-                   excuteOpt("Models")
+                   excuteOpt("Model Library")
                }
            }
        }
@@ -290,9 +282,7 @@ Rectangle {
            BasicMenuItem{
                actionName: qsTr("Creality Cloud Printing")
                enabled : true
-               onTriggered: {
-                   excuteOpt("Creality Cloud Print")
-               }
+               //onTriggered:
            }
            BasicMenuItem{
                actionName: qsTr("USB Printing")

@@ -2,16 +2,21 @@ import QtQuick 2.10
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.13
 import "../secondqml"
-BasicDialogNoWin_V4 {
+LeftPanelDialog {
     id : control_1
-    color: Constants.itemBackgroundColor
     title: qsTr("Clone")
     width: 300* screenScaleFactor
     height: 168* screenScaleFactor
     readonly property int margin: 10
     property var control
-    bdContentItem:Rectangle {
-        color: Constants.lpw_bgColor
+    
+    MouseArea{//捕获鼠标点击空白地方的事件
+        anchors.fill: parent
+    }
+
+    Item {
+        anchors.fill: control_1.panelArea
+
         Column{
             anchors.top: parent.top
             anchors.topMargin: 30* screenScaleFactor
@@ -28,7 +33,7 @@ BasicDialogNoWin_V4 {
                     Layout.preferredWidth: 60* screenScaleFactor
                     text: qsTr("Clone Number:")
                     color: Constants.textColor
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                     Layout.alignment: Qt.AlignVCenter
                 }
 
@@ -43,8 +48,12 @@ BasicDialogNoWin_V4 {
                     radius: 5
                     text: "1"
                     font.pointSize: 9
-                    validator: IntValidator {bottom: 1; top: 9;}//by TCJ
+                    validator: IntValidator {bottom: 1; top: 99;}//by TCJ
                     Layout.alignment: Qt.AlignVCenter
+
+                    onAccepted: {
+                        add_support.sigButtonClicked()
+                    }
                 }
             }
 
@@ -55,9 +64,8 @@ BasicDialogNoWin_V4 {
                 btnBorderW:1
                 anchors.horizontalCenter: parent.horizontalCenter
                 borderColor: Constants.lpw_BtnBorderColor
-                borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                defaultBtnBgColor: Constants.lpw_BtnColor
-                hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                 width: 258* screenScaleFactor
                 height: 28* screenScaleFactor
                 pointSize: 9

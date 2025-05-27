@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=Creality_Print
-GenericName=Creality_Print
-Comment=Creality_Print
+Name=E-Tech_Print
+GenericName=E-Tech_Print
+Comment=E-Tech_Print
 Exec=AppRun %F
 Icon=default
 Terminal=false
 Type=Application
-Categories=Development
+Categories=Development;

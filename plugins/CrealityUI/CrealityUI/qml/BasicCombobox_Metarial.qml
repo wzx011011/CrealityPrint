@@ -17,23 +17,22 @@ ComboBox {
     property color backgroundColor: Constants.right_panel_combobox_background_color
 
     property color itemNormalColor: Constants.right_panel_item_default_color
-    property color itemHighlightColor: Constants.right_panel_item_checked_color
+    property color itemHighlightColor: Constants.currentTheme ?"#d6d6dc": "#4E7992"   // Constants.right_panel_item_checked_color
     property color itemBorderColor: Constants.right_panel_border_default_color
-    //    property int cmbRadius: 3
-    property int showCount: 5              //最多显示的item个数
+    property color popupColor: "#1E9BE2"
+    property real btnWidth: 120 * screenScaleFactor
+    property real btnHeight: 24 * screenScaleFactor
+    property int showCount: 7             //最多显示的item个数
     //
     property int cmbHeight: 28 * screenScaleFactor
     property int popHeight: 28 * screenScaleFactor
-    property int btnHeight: 24
-    property var mysource : "qrc:/UI/photo/downBtn.png"
-    property var mysource_d : "qrc:/UI/photo/downBtn_d.png"
+    property var mysource : "qrc:/UI/photo/downBtn.svg"
+    property var mysource_d : "qrc:/UI/photo/downBtn_d.svg"
     property var popPadding: 20
     property var contentPadding: 10
-    property real contentFontPixelsize:12
     signal currentContentChanged(var ctext)
     signal addMaterialClick()
     signal sigManagerClick()
-    //signal delModelData(var dataName)
 
     delegate: ItemDelegate
     {
@@ -42,7 +41,6 @@ ComboBox {
         contentItem: Rectangle
         {
             anchors.fill: parent
-
             Text {
                 id:myText
                 x:5//popPadding
@@ -66,14 +64,12 @@ ComboBox {
         anchors.rightMargin: 5
         implicitHeight: 16 * screenScaleFactor
         implicitWidth: 16 * screenScaleFactor
-        //        radius: 3
         anchors.verticalCenter: control.verticalCenter
-        //        color: control.pressed ? Constants.cmbIndicatorRectColor_pressed_basic : Constants.cmbIndicatorRectColor_basic
         Image {
-            width: sourceSize.width
-            height: sourceSize.height
+            width: sourceSize.width* screenScaleFactor
+            height: sourceSize.height* screenScaleFactor
             anchors.centerIn: parent
-            source:  control.down || control.hovered ? mysource_d :  mysource //"qrc:/qt-project.org/imports/QtQuick/Controls.2/images/double-arrow.png"
+            source:  control.down || control.hovered ? mysource_d :  mysource
             opacity: enabled ? 1 : 0.3
             fillMode: Image.Pad
 
@@ -88,7 +84,6 @@ ComboBox {
         anchors.rightMargin: control.indicator.width + control.spacing
         text: control.displayText
         font: control.font
-        //        font.pixelSize: contentFontPixelsize
         color: textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
@@ -98,7 +93,7 @@ ComboBox {
         }
     }
     background: Rectangle {
-        border.color: itemBorderColor
+        border.color: control.popup.visible? popupColor: itemBorderColor
         border.width:   1
         color: "transparent"
         radius: 5
@@ -107,17 +102,14 @@ ComboBox {
     popup: Popup {
         y: control.height
         width: control.width
-        padding: 5
-        //         topPadding: 0
+        horizontalPadding: 1
+        verticalPadding: 2
         implicitHeight:  __col.height + 10
-//        control.delegateModel ? (control.delegateModel.count<showCount
-//                                                  ? control.delegateModel.count * popHeight + btnHeight + 2 + 5
-//                                                  : showCount*popHeight + popHeight + 2 + 5) : btnHeight + 5
         contentItem:Item{
             Column {
                 id : __col
                 width: parent.width
-                spacing: 2
+                spacing: 3
                 ListView {
                     id: listview
                     clip: true
@@ -149,8 +141,8 @@ ComboBox {
                     anchors.horizontalCenter: parent.horizontalCenter
                     CusButton {
                         id:addBtn
-                        width: 120 * screenScaleFactor
-                        height : 24 * screenScaleFactor
+                        width: btnWidth
+                        height : btnHeight
                         radius: 5
                         txtContent: qsTr("Add")
                         enabled: true
@@ -163,8 +155,8 @@ ComboBox {
 
                     CusButton {
                         id:managerBtn
-                        width: 120 * screenScaleFactor
-                        height : 24 * screenScaleFactor
+                        width: btnWidth
+                        height : btnHeight
                         radius: 5
                         txtContent: qsTr("Manage")
                         enabled: true
@@ -179,7 +171,7 @@ ComboBox {
         }
         background: Rectangle {
             border.width: 1
-            border.color: itemBorderColor
+            border.color: control.popup.visible? popupColor: itemBorderColor
             color: control.itemNormalColor
             radius: 5
         }

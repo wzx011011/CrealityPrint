@@ -1,38 +1,42 @@
-#include "laserscene.h"
-#include "drawobject.h"
-#include "laserexportfile.h"
 #include <QtQml/QQmlProperty>
 #include <QtDebug>
 #include <QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QQmlApplicationEngine>
-
-#include "qtusercore/string/stringtool.h"
 #include <QFileInfo>
-#include "kernel/abstractkernel.h"
-#include "interface/camerainterface.h"
-#include "interface/selectorinterface.h"
-#include "interface/spaceinterface.h"
-#include "interface/modelinterface.h"
-#include "qtuserqml/property/qmlpropertysetter.h"
-#include "us/slicermanager.h"
-#include "inout/cxopenandsavefilemanager.h"
-#include"c2dlib.h"
-#include"lasergcodework.h"
-#include "interface/jobsinterface.h"
-#include"c2dlib.h"
 #include <QFontDatabase>
-
-#include "kernel/kernel.h"
-#include "data/modelspaceundo.h"
-#include "fmesh/dxf/load.h"
-#include "fmesh/svg/load.h"
-#include "PlotterUndo.h"
-#include "kernel/translator.h"
 #include <QSettings>
 #include <QQmlContext>
 #include <math.h>
+#include <QQuickView>
+
+#include "laserscene.h"
+#include "drawobject.h"
+#include "laserexportfile.h"
+#include "qtusercore/string/stringtool.h"
+#include "interface/camerainterface.h"
+#include "interface/selectorinterface.h"
+#include "interface/spaceinterface.h"
+//#include "interface/modelinterface.h"
+#include "cxkernel/interface/undointerface.h"
+#include "interface/uiinterface.h"
+#include "interface/commandinterface.h"
+#include "cxkernel/interface/iointerface.h"
+#include "interface/machineinterface.h"
+#include "qtusercore/property/qmlpropertysetter.h"
+#include "qtusercore/module/systemutil.h"
+#include"c2dlib.h"
+#include"lasergcodework.h"
+#include "cxkernel/interface/jobsinterface.h"
+#include"c2dlib.h"
+
+#include "kernel/kernel.h"
+#include "data/modelspaceundo.h"
+#include "PlotterUndo.h"
+#include "kernel/translator.h"
+#include "kernel/kernelui.h"
+
 
 #define LASER_IMAGE_PROVIDER "image://laserImgProvider/"
 #define PLOTTER_IMAGE_PROVIDER "image://plotterImgProvider/"
@@ -40,17 +44,16 @@ using namespace creative_kernel;
 using namespace qtuser_3d;
 using namespace qtuser_qml;
 
-class SlicerManager;
-class GlobalSetting;
-
 QRect getModuleRect(QImage* previewImage);
 QImage createImageWithOverlay(const QImage& baseImage, const QImage& overlayImage);
-LaserScene::LaserScene(QObject* parent,SCENETYPE type):QObject(parent)
+LaserScene::LaserScene(QObject* parent, SCENETYPE type)
+    : QObject(parent)
+    , m_tempSave(false)
 {
     m_type = type;
     sharpCnt = 0;
-    m_plotterUndo = new PlotterUndo(getKernel()->undoGroup());
-    m_LaserUndo = new PlotterUndo(getKernel()->undoGroup());
+    m_plotterUndo = new PlotterUndo(this);
+    m_LaserUndo = new PlotterUndo(this);
     m_pDrawObjectModel = new DrawObjectModel(this);
     m_imgProvider = new LaserImgProvider();
     m_pLaserSettings = new LaserSettings();
@@ -58,27 +61,29 @@ LaserScene::LaserScene(QObject* parent,SCENETYPE type):QObject(parent)
     m_3in1exporter = new CX2DLib();
     m_laserExport = new LaserExportFile();
     m_laserExport->setParentObj(this);
-    QQmlApplicationEngine* engine = creative_kernel::AbstractKernelUI::getSelf()->getRegisterUIVariables();
-    m_rightPanel = engine->rootObjects().first();
-    engine->rootContext()->setContextProperty("laserScene", this);
+    QQmlEngine* engine = getKernelUI()->getQmlEngine();
+
+    m_rightPanel = getKernelUI()->appWindow();
+    //m_rightPanel = engine->rootObjects().first();
     if(m_type==SCENETYPE::LASER)
     {
+        engine->rootContext()->setContextProperty("laserScene", this);
         if(m_rightPanel)
         {
             QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objLaserItem");
             if(pObjLaserPanel)
             {
                 writeObjectProperty(pObjLaserPanel, "control", this);
-                writeObjectProperty(pObjLaserPanel, "itemModel", this->drawObjectModel());
                 writeObjectProperty(pObjLaserPanel, "settingsModel", this->m_pLaserSettings);
             }
         }
-        m_laserscene = AbstractKernelUI::getSelf()->getUI("glmainview")->parent()->findChild<QObject*>("laserView");
+        m_laserscene = getKernelUI()->getUI("glmainview")->parent()->findChild<QObject*>("laserView");
         if(m_laserscene)
         {
             writeObjectProperty(m_laserscene, "control", this);
+            writeObjectProperty(m_laserscene, "itemModel", this->drawObjectModel());
         }
-        engine->addImageProvider(QLatin1String("laserImgProvider"), m_imgProvider);
+        registerImageProvider(QLatin1String("laserImgProvider"), m_imgProvider);
         m_imgProvider->setProviderUrl(LASER_IMAGE_PROVIDER);
     }
     if(m_type==SCENETYPE::PLOTTER)
@@ -89,44 +94,41 @@ LaserScene::LaserScene(QObject* parent,SCENETYPE type):QObject(parent)
             if(pObjLaserPanel)
             {
                 writeObjectProperty(pObjLaserPanel, "control", this);
-                writeObjectProperty(pObjLaserPanel, "itemModel", this->drawObjectModel());
                 writeObjectProperty(pObjLaserPanel, "settingsModel", this->m_pPlotterSettings);
             }
         }
-        m_laserscene = AbstractKernelUI::getSelf()->getUI("glmainview")->parent()->findChild<QObject*>("plotterView");
+        m_laserscene = getKernelUI()->getUI("glmainview")->parent()->findChild<QObject*>("plotterView");
         if(m_laserscene)
         {
             writeObjectProperty(m_laserscene, "control", this);
+            writeObjectProperty(m_laserscene, "itemModel", this->drawObjectModel());
         }
-        engine->addImageProvider(QLatin1String("plotterImgProvider"), m_imgProvider);
+
+        registerImageProvider(QLatin1String("plotterImgProvider"), m_imgProvider);
         m_imgProvider->setProviderUrl(PLOTTER_IMAGE_PROVIDER);
     }
 
-    m_switchModel = AbstractKernelUI::getSelf()->getUI("glmainview")->parent()->findChild<QObject*>("switchModelLayout")->findChild<QObject*>("switchModel");
-    if (m_switchModel)
-    {
-        QObject::disconnect(m_switchModel, SIGNAL(fdmView()), this, SLOT(onFDMView()));
-        QObject::disconnect(m_switchModel, SIGNAL(laserView()), this, SLOT(onLaserView()));
-        QObject::disconnect(m_switchModel, SIGNAL(plotterView()), this, SLOT(onPlotterView()));
-
-        QObject::connect(m_switchModel, SIGNAL(fdmView()), this, SLOT(onFDMView()));
-        QObject::connect(m_switchModel, SIGNAL(laserView()), this, SLOT(onLaserView()));
-        QObject::connect(m_switchModel, SIGNAL(plotterView()), this, SLOT(onPlotterView()));
-
-        //QObject::connect(AbstractKernelUI::getSelf(), SIGNAL(sigChangeMenuLanguage), m_switchModel, SLOT(onChangeLanguage()));
-        disconnect(Translator::getInstance(), SIGNAL(languageChanged()), this, SLOT(slotLanguageChanged()));
-        connect(Translator::getInstance(), SIGNAL(languageChanged()), this, SLOT(slotLanguageChanged()));
-    }
-
+    cxkernel::registerOpenHandler(this);
     onFDMView();
 
     slotLanguageChanged();
-
-    CXFILE.registerOpenHandler(this);
 }
+
 LaserScene::~LaserScene()
 {
     delete m_pDrawObjectModel;
+}
+
+void LaserScene::uninitialize()
+{
+    if (m_type == SCENETYPE::LASER)
+    {
+        removeImageProvider(QLatin1String("laserImgProvider"));
+    }
+    if (m_type == SCENETYPE::PLOTTER)
+    {
+        removeImageProvider(QLatin1String("plotterImgProvider"));
+    }
 }
 
 DrawObjectModel *LaserScene::drawObjectModel()
@@ -138,34 +140,7 @@ QObject *LaserScene::laserSettings()
 {
     return m_pLaserSettings;
 }
-//void LaserScene::addDragRectObject(QObject* obj, int sharpType)
-//{
-//    QString strSharpName = "";
-//    switch (sharpType)
-//    {
-//    case 1:
-//        strSharpName = "Sharp";
-//        break;
-//    case 2:
-//        strSharpName = "Ellipse";
-//        break;
-//    case 4:
-//        strSharpName = "Path";
-//        break;
-//    case 5:
-//        strSharpName = "Text";
-//        break;
-//    default:
-//        break;
-//    }
-//
-//    DrawObject *pDrawObject = new DrawObject(this);
-//    pDrawObject->setName(strSharpName + QString::number(sharpCnt));
-//    pDrawObject->setQmlObject(obj);
-//    m_pDrawObjectModel->addDrawObject(pDrawObject);
-//    sharpCnt++;
-//    
-//}
+
 void LaserScene::addDragRectObject(QObject* obj, int sharpType)
 {
     QString name = getTheDragRectObjectName(sharpType);
@@ -256,43 +231,40 @@ QObject* LaserScene::selectObject(int index)
         if(pDrawObject->qmlObject())
         {
             QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "onRectSelected",Q_ARG(QVariant, QVariant::fromValue(pDrawObject->qmlObject())));
-            //QQmlProperty::write(pDrawObject->qmlObject(), "selected", true);
+            setSelectObject(pDrawObject->qmlObject());
+            return pDrawObject->qmlObject();
         }
-        return pDrawObject->qmlObject();
     }
     return nullptr;
 }
 
 QObject* LaserScene::selectMulObject(QList<int> indexList)
 {
-    QList<QObject*> drawObjectList;
-    int i = 0;
-    for (; i < indexList.size(); i++)
-    {
-        DrawObject* pDrawObject = m_pDrawObjectModel->getData(indexList[i]);
-        if (pDrawObject)
-        {
-            if (pDrawObject->qmlObject())
-            {
-                //QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "onRectMulSelected", Q_ARG(QVariant, QVariant::fromValue(pDrawObject->qmlObject())));
-                drawObjectList.append(pDrawObject->qmlObject());
-                //QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "onRectMulSelected", Q_ARG(QVariant, QVariant::fromValue(drawObjectList)));
-                //QQmlProperty::write(pDrawObject->qmlObject(), "selected", true);
-            }
-        }
-    }
-    if(i == indexList.size() && indexList.size() > 0)
-    {
-        DrawObject* pDrawObject = m_pDrawObjectModel->getData(indexList[i-1]);
-        if (pDrawObject)
-        {
-            if (pDrawObject->qmlObject())
-            {
-                QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "onRectMulSelected", Q_ARG(QVariant, QVariant::fromValue(drawObjectList)));
-            }
-        }
-    }
+  if (indexList.empty()) {
+    clearSelectAllObject();
+    setClearSelectAllObject();
     return nullptr;
+  }
+
+  if (indexList.size() == 1) {
+    return selectObject(indexList.front());
+  }
+
+  QList<QObject*> drawObjectList;
+  for (size_t i = 0; i < indexList.size(); i++) {
+      DrawObject* pDrawObject = m_pDrawObjectModel->getData(indexList[i]);
+      if (pDrawObject && pDrawObject->qmlObject()) {
+          drawObjectList.append(pDrawObject->qmlObject());
+      }
+  }
+
+  DrawObject* pDrawObject = m_pDrawObjectModel->getData(indexList[indexList.size() - 1]);
+  if (pDrawObject && pDrawObject->qmlObject()) {
+      QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "onRectMulSelected", Q_ARG(QVariant, QVariant::fromValue(drawObjectList)));
+      return pDrawObject->qmlObject();
+  }
+
+  return nullptr;
 }
 
 void LaserScene::createImageObject(const QString &filename)
@@ -301,10 +273,10 @@ void LaserScene::createImageObject(const QString &filename)
     QVariant returnedValue;
     //QMetaObject::invokeMethod(m_laserscene, "createImageSharp");
     QMetaObject::invokeMethod(m_laserscene, "createImageSharp",Q_RETURN_ARG(QVariant, returnedValue));
-    us::GlobalSetting* globalsetting = SlicerManager::instance().globalsettings();
-    int machine_width = globalsetting->settings().value("machine_width")->value().toInt();
-    int machine_height = globalsetting->settings().value("machine_depth")->value().toInt();
-    QString Machine = SlicerManager::instance().getCurrentMachine();
+    QSharedPointer<us::USettings> globalsetting(createCurrentGlobalSettings());
+    int machine_width = globalsetting->settings().value("machine_width")->toInt();
+    int machine_height = globalsetting->settings().value("machine_depth")->toInt();
+    QString Machine = currentMachineName();
     if (Machine == "Ender-3 V2 Laser") {
         machine_width = machine_width - 60;
     }
@@ -323,66 +295,6 @@ void LaserScene::createImageObject(const QString &filename)
         if (showFileName.indexOf(".dxf") >= 0 || showFileName.indexOf(".svg") >= 0)
         {
             std::string strname = filename.toLocal8Bit().constData();
-            ClipperLibXYZ::Paths* imgPaths;
-            if (showFileName.indexOf(".dxf") >= 0)
-            {
-                imgPaths = cdrdxf::loadDXFFile(strname.c_str());
-            }
-            else
-            {
-                imgPaths = cdrdxf::loadSVGFile(strname.c_str());
-            }
-            
-            if (imgPaths)
-            {
-                ClipperLibXYZ::Clipper a;
-                a.AddPaths(*imgPaths, ClipperLibXYZ::PolyType::ptClip, true);
-                ClipperLibXYZ::IntRect rect = a.GetBounds();
-                imageW = rect.right - rect.left;
-                imageH = rect.bottom - rect.top;
-                double scalse = imageW > imageH ? imageH / 2000. : imageW / 2000.;
-                int extra_pixels = 50;
-                imageW = imageW / scalse + 0.5 + extra_pixels * 2;
-                imageH = imageH / scalse + 0.5 + extra_pixels * 2;
-
-                imgdata = QImage(imageW, imageH, QImage::Format_ARGB32);
-                imgdata.fill(QColor(Qt::white));
-                QPainter painter;
-                painter.setPen(QPen(Qt::black, 2));
-                painter.begin(&imgdata);
-                painter.setBrush(Qt::NoBrush);
-                bool allClosePolygon = true;
-                QPainterPath pathImg;
-                for (ClipperLibXYZ::Path path : *imgPaths)
-                {
-                    if (path.size() <= 2 || path[0] != path.back())
-                    {
-                        allClosePolygon = false;
-                    }
-
-                    for (int num = 0; num < path.size(); num++)
-                    {
-                        ClipperLibXYZ::IntPoint pt = path[num];
-                        QPoint p1((pt.X - rect.left) / scalse + extra_pixels + 0.5, (pt.Y - rect.top) / scalse + extra_pixels + 0.5);
-                        num == 0 ? pathImg.moveTo(p1): pathImg.lineTo(p1);
-
-                        ClipperLibXYZ::IntPoint pt_next = path[num + 1 < path.size() ? num + 1 : 0];
-                        QPoint p2((pt_next.X - rect.left) / scalse + extra_pixels + 0.5, (pt_next.Y - rect.top) / scalse + extra_pixels + 0.5);
-                        if (pt != pt_next)
-                        {
-                            painter.drawLine(p1, p2);
-                        }
-                    }
-                }
-                if(allClosePolygon)
-                    painter.fillPath(pathImg, Qt::black);
-                painter.end();
-                if (showFileName.indexOf(".dxf") >= 0)
-                {
-                    imgdata = CX2DLib::CXFlipImage(imgdata, true, false);
-                }
-            }
-            else
             {
                 QImage imgload(filename);
                 QRect moduleRect = getModuleRect(&imgload);
@@ -453,83 +365,80 @@ void LaserScene::createImageObject(const QString &filename)
 }
 void LaserScene::setSelectObject(QObject *obj)
 {
-    if(m_type==SCENETYPE::LASER)
-    {
+    if (m_type == SCENETYPE::LASER) {
         QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objLaserItem");
-        if(pObjLaserPanel)
-        {
-            QQmlProperty::write(pObjLaserPanel, "currentIndex", m_pDrawObjectModel->getIndex(obj));
+        if (pObjLaserPanel) {
+            QQmlProperty::write(pObjLaserPanel, "selShape", QVariant::fromValue(obj));
         }
-    }else{
-
+    } else {
         QObject* pObjPlotterItem = m_rightPanel->findChild<QObject*>("objPlotterItem");
-        if(pObjPlotterItem)
-        {
-            QQmlProperty::write(pObjPlotterItem, "currentIndex", m_pDrawObjectModel->getIndex(obj));
+        if (pObjPlotterItem) {
+            QQmlProperty::write(pObjPlotterItem, "selShape", QVariant::fromValue(obj));
         }
     }
+
+    QList<int> indexList{ m_pDrawObjectModel->getIndex(obj) };
+    QMetaObject::invokeMethod(m_laserscene, "syncSelectedIndexList", Q_ARG(QVariant, QVariant::fromValue(indexList)));
 }
 void LaserScene::setSelectMulObject(QList<QObject*> objectList)
 {
-    QList<int> indexList;
-    if (m_type == SCENETYPE::LASER)
-    {
-        for (int i = 0; i < objectList.size(); i++) {
-            indexList.append(m_pDrawObjectModel->getIndex(objectList[i]));
-        }
+    if (objectList.empty()) {
+        clearSelectAllObject();
+        setClearSelectAllObject();
+        return;
+    }
 
+    if (objectList.size() == 1) {
+        setSelectObject(objectList.front());
+        return;
+    }
+
+    if (m_type == SCENETYPE::LASER) {
         QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objLaserItem");
-        if (pObjLaserPanel)
-        {
-            QMetaObject::invokeMethod(pObjLaserPanel, "handleCtrlSelectObject", Q_ARG(QVariant, QVariant::fromValue(indexList)));
+        if (pObjLaserPanel) {
+            QQmlProperty::write(pObjLaserPanel, "selShape", QVariant::fromValue(nullptr));
         }
-    }
-    else {
-        for (int i = 0; i < objectList.size(); i++) {
-            indexList.append(m_pDrawObjectModel->getIndex(objectList[i]));
-        }
-
+    } else {
         QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objPlotterItem");
-        if (pObjLaserPanel)
-        {
-            QMetaObject::invokeMethod(pObjLaserPanel, "handleCtrlSelectObject", Q_ARG(QVariant, QVariant::fromValue(indexList)));
+        if (pObjLaserPanel) {
+            QQmlProperty::write(pObjLaserPanel, "selShape", QVariant::fromValue(nullptr));
         }
     }
+
+    QList<int> indexList;
+    for (int i = 0; i < objectList.size(); i++) {
+        indexList.append(m_pDrawObjectModel->getIndex(objectList[i]));
+    }
+    QMetaObject::invokeMethod(m_laserscene, "syncSelectedIndexList", Q_ARG(QVariant, QVariant::fromValue(indexList)));
 }
 void LaserScene::clearSelectAllObject()
 {
     DrawObject* pDrawObject = m_pDrawObjectModel->getData(0);
-    if (pDrawObject)
-    {
-        if (pDrawObject->qmlObject())
-        {
-            QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "clearSelectedStatus");
-        }
+    if (pDrawObject && pDrawObject->qmlObject()) {
+        QMetaObject::invokeMethod(pDrawObject->qmlObject()->parent(), "clearSelectedStatus");
     }
 }
 void LaserScene::setClearSelectAllObject()
 {
-    if (m_type == SCENETYPE::LASER)
-    {
+    if (m_type == SCENETYPE::LASER) {
         QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objLaserItem");
-        if (pObjLaserPanel)
-        {
-            QMetaObject::invokeMethod(pObjLaserPanel, "clearModelListIndex");
+        if (pObjLaserPanel) {
+            QQmlProperty::write(pObjLaserPanel, "selShape", QVariant::fromValue(nullptr));
         }
-    }
-    else {
+    } else {
         QObject* pObjLaserPanel = m_rightPanel->findChild<QObject*>("objPlotterItem");
-        if (pObjLaserPanel)
-        {
-            QMetaObject::invokeMethod(pObjLaserPanel, "clearModelListIndex");
+        if (pObjLaserPanel) {
+            QQmlProperty::write(pObjLaserPanel, "selShape", QVariant::fromValue(nullptr));
         }
     }
+
+    QMetaObject::invokeMethod(m_laserscene, "syncSelectedIndexList", Q_ARG(QVariant, QVariant::fromValue(QList<int>{})));
 }
 int LaserScene::width()
 {
-    us::GlobalSetting* globalsetting = SlicerManager::instance().globalsettings();
-    int machine_width = globalsetting->settings().value("machine_width")->value().toInt();
-    QString Machine = SlicerManager::instance().getCurrentMachine();
+    QSharedPointer<us::USettings> globalsetting(createCurrentGlobalSettings());
+    int machine_width = globalsetting->settings().value("machine_width")->toInt();
+    QString Machine = currentMachineName();
     if (Machine == "Ender-3 V2 Laser")
     {
         machine_width = machine_width - 60;
@@ -538,15 +447,17 @@ int LaserScene::width()
 }
 int LaserScene::height()
 {
-    us::GlobalSetting* globalsetting = SlicerManager::instance().globalsettings();
-    int machine_height = globalsetting->settings().value("machine_depth")->value().toInt();
+    QSharedPointer<us::USettings> globalsetting(createCurrentGlobalSettings());
+    int machine_height = globalsetting->settings().value("machine_depth")->toInt();
     return machine_height*3;
 }
+
 void LaserScene::open()
 {
-    CXFILE.open();
-
+    m_tempSave = false;
+    cxkernel::openFile();
 }
+
 void LaserScene::handle(const QString& fileName)
 {
     QFileInfo info(fileName);
@@ -561,6 +472,8 @@ void LaserScene::handle(const QString& fileName)
         {
             saveLocalGcodeFileFail();
         }
+
+        m_tempSave = false;
     }
     else
     {
@@ -625,13 +538,17 @@ void LaserScene::detectObject(QObject* obj, long long newX, long long newY, doub
         QMetaObject::invokeMethod(obj, "showWarningColor", Q_ARG(QVariant, QVariant::fromValue(false)));
     }
 }
-QStringList LaserScene::supportFilters()
+QString LaserScene::filter()
 {
-    QStringList filters;
-    filters<<"jpg"<<"bmp"<<"png"<<"dxf"<<"svg";
-    return filters;
+    QString _filter = QString("Image File (*.jpg *.bmp *.png *.dxf *.svg)");
+    if (m_tempSave)
+    {
+        _filter = QString("GCode File (*.gcode)");
+        m_tempSave = false;
+    }
+    return _filter;
 }
-QString LaserScene::supportOpenModel()
+QString LaserScene::filterKey()
 {
     if(m_type == SCENETYPE::LASER)
         return "laser";
@@ -639,24 +556,25 @@ QString LaserScene::supportOpenModel()
         return "plotter";
     return "";
 }
+
 void LaserScene::onFDMView()
 {
-    getKernel()->modelSpaceUndo()->setActive(true);
+    cxkernel::setUndoStack(getKernel()->modelSpaceUndo());
 }
+
 void LaserScene::onLaserView()
 {
     if (m_type == SCENETYPE::LASER)
     {
-        m_LaserUndo->setActive(true);
-    }
-    
+        cxkernel::setUndoStack(m_LaserUndo);
+    } 
 }
 
 void LaserScene::onPlotterView()
 {
     if (m_type == SCENETYPE::PLOTTER)
     {
-        m_plotterUndo->setActive(true);
+        cxkernel::setUndoStack(m_plotterUndo);
     }
 }
 
@@ -785,6 +703,7 @@ void LaserScene::grayImage(QObject *obj,int value)
     int contrastValue = QQmlProperty::read(obj, "contrastValue").toInt();
     int brightValue = QQmlProperty::read(obj, "brightnessValue").toInt();
     int setWhiteVal = QQmlProperty::read(obj, "whiteValue").toInt();
+    if (setWhiteVal > 230) setWhiteVal = 230;
     QMetaObject::invokeMethod(drawObj->qmlObject(), "setAnimation", Q_ARG(QVariant, QVariant::fromValue(true)));
     QImage *grad_image = new QImage;
     // *grad_image = drawObj->originImageData().convertToFormat(QImage::Format_Grayscale8,Qt::AutoColor);
@@ -1007,38 +926,22 @@ void LaserScene::genLaserGcode()
     worker->setOrigin(m_origin);
     worker->setExporter(m_3in1exporter);
     connect(worker.data(), SIGNAL(genGcodeSuccess(QString)), this, SLOT(onGenGcodeSuccess(QString)));
-    creative_kernel::executeJob(worker);
+    cxkernel::executeJob(worker);
 }
 void LaserScene::onGenGcodeSuccess(QString gcodeBuf)
 {
-#if 0
-    qDebug() << " laser localSaveTmp save gcode";
-    QString fileName = getCanWriteFolder() + "/" + "tmp.gcode";
-    qDebug() << "localSaveTmp " << fileName;
-    if (QFile::exists(fileName))
-    {
-        QFile::remove(fileName);
-    }
-    m_gcodeBuf = gcodeBuf;
-    m_strTmpFilePath = fileName;
-    //this->handle(fileName);
-    saveGcode(fileName);
-#endif
-    //m_laserExport->localFileSaveSuccess(this);
     saveLocalGcodeFile();
 }
 
 void LaserScene::saveLocalGcodeFile()
 {
-    QStringList filters;
-    filters << "gcode";
-    CXFILE.save(this, filters);
+    m_tempSave = true;
+    cxkernel::saveFile(this, QString("%1.gcode").arg(QFileInfo(m_pDrawObjectModel->getData(0)->name()).baseName()));
 }
-
 
 void LaserScene::accept()
 {
-    CXFILE.openLastSaveFolder();
+    cxkernel::openLastSaveFolder();
 }
 
 bool LaserScene::saveGcode(const QString& fileName)
@@ -1061,39 +964,6 @@ bool LaserScene::saveGcode(const QString& fileName)
     {
         return false;
     }
-#if 0
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        qDebug() << "can't open file " << fileName;
-        return false;
-    }
-    //������ļ�
-    QTextStream in(&file);
-
-    in << ";Generate BY CXSW  "<<endl;
-    in << ";time:" << __TIMESTAMP__<<endl;
-    if (!m_prefixString.toStdString().empty())
-    {
-        std::vector<std::string> vctTemp;
-        qtuser_core::SplitString((char*)m_prefixString.toStdString().data(), vctTemp, "\\n");
-        for (size_t i = 0; i < vctTemp.size(); i++)
-        {
-            in << vctTemp[i].data() << endl;
-        }
-    }
-    in << m_gcodeBuf.toStdString().data();
-    if (!m_tailCode.toStdString().empty())
-    {
-        std::vector<std::string> vctTemp;
-        qtuser_core::SplitString((char*)m_tailCode.data(), vctTemp, "\\n");
-        for (size_t i = 0; i < vctTemp.size(); i++)
-        {
-            in << vctTemp[i].data() << endl;
-        }
-    }
-    file.close();
-#endif
 }
 
 
@@ -1101,30 +971,26 @@ QString LaserScene::getTmpFilePeth()
 {
     return m_strTmpFilePath;
 }
-void LaserScene::localSaveTmpGcode()
-{
 
-}
 void LaserScene::saveLocalGcodeFileSuccess()
 {
-    /*m_strMessageText = tr("Save Gcode success!");
-    AbstractKernelUI::getSelf()->executeCommand("requestMenuDialog", this, "messageSingleBtnDlg");*/
-
     m_strMessageText = tr("Save Finished, Open Local Folder");
-    AbstractKernelUI::getSelf()->executeCommand("requestMenuDialog", this, "messageDlg");
+    requestQmlDialog(this, "messageDlg");
 }
+
 void LaserScene::saveLocalGcodeFileFail()
 {
     m_strMessageText = tr("Save Gcode failed!");
-    AbstractKernelUI::getSelf()->executeCommand("requestMenuDialog", this, "messageSingleBtnDlg");
+    requestQmlDialog(this, "messageSingleBtnDlg");
 }
+
 QStringList LaserScene::getFontFamilys()
 {
     QFontDatabase database;
     const QStringList fontFamilies = database.families();
     return fontFamilies;
-
 }
+
 QStringList LaserScene::getFontFamilysStyles(QString family)
 {
     QFontDatabase database;

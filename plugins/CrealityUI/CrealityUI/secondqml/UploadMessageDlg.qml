@@ -1,98 +1,158 @@
-import QtQuick 2.0
-import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+
 import "../qml"
+import "../components"
 
-BasicDialog{
+BasicDialogV4 {
+    id: root
 
-    property var msgText: "message contect"
-    property var otherMsg: ""
-    property var cancelBtnVisible: true
-    property var ignoreBtnVisible: false
+    property string msgText: "message contect"
+    property string otherMsg: ""
+    property bool acceptBtnVisible: true
+    property bool cancelBtnVisible: true
+    property bool ignoreBtnVisible: false
     property var okBtnText: qsTr("Ok")
     property var ignoreBtnText: qsTr("Ignore")
     property var cancelBtnText: qsTr("Cancel")
     property var messageType: 0
     property var isInfo: false
+    property var labelPointSize: 9
 
     signal sigOkButtonClicked()
     signal sigIgnoreButtonClicked()
     signal sigCancelButtonClicked()
 
-    id: idDialog
-    width: 500*screenScaleFactor
-    height: 160*screenScaleFactor
-    titleHeight : 30*screenScaleFactor
+    width: 500 * screenScaleFactor
+    height: {
+        const line_count = msgText.split('\n').length
+        return (160 + (line_count - 1) * 15) * screenScaleFactor
+    }
+    titleHeight: 30 * screenScaleFactor
     title: qsTr("Message")
+    maxBtnVis: false
 
-    Row{
-        x: (idDialog.width - idUploadImage.width - idMsgLabel.contentWidth)/2
-        y: 50*screenScaleFactor
-        spacing: 10
-        Image{
-            id: idUploadImage
-            height:sourceSize.height
-            width: sourceSize.width
-            source: messageType == 0 || isInfo ? "qrc:/UI/photo/UploadSuccess.png" : (messageType == 1 ? "qrc:/UI/photo/upload_msg.png" : "qrc:/UI/photo/upload_success_image.png")
+    onVisibleChanged: {}
+
+    bdContentItem: ColumnLayout {
+        spacing: 10 * screenScaleFactor
+
+        Item {
+            Layout.fillHeight: true
         }
-        StyledLabel{
-            id: idMsgLabel
-            width: idDialog.width - 130*screenScaleFactor - idUploadImage.sourceSize.width
-            height: idUploadImage.sourceSize.height
-            wrapMode: Text.WordWrap
-            text: msgText
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment:Text.AlignLeft
+
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.topMargin: 10 * screenScaleFactor
+            Layout.leftMargin: 10 * screenScaleFactor
+            Layout.rightMargin: 10 * screenScaleFactor
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Image {
+                Layout.minimumWidth: sourceSize.width
+                Layout.maximumWidth: Layout.minimumWidth
+                Layout.minimumHeight: sourceSize.height
+                Layout.maximumHeight: Layout.minimumHeight
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignRight
+                source: messageType == 0 || isInfo ? "qrc:/UI/photo/UploadSuccess.png"
+                      : messageType == 1           ? "qrc:/UI/photo/upload_msg.png"
+                                                   : "qrc:/UI/photo/upload_success_image.png"
+            }
+
+            StyledLabel {
+                Layout.minimumWidth: contentWidth
+                Layout.maximumWidth: root.width - 80 * screenScaleFactor
+                Layout.minimumHeight: contentHeight
+                Layout.maximumHeight: Layout.minimumHeight
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignLeft
+                font.pointSize: labelPointSize
+                wrapMode: Text.WordWrap
+                text: msgText
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.bottomMargin: 10 * screenScaleFactor
+            Layout.leftMargin: 10 * screenScaleFactor
+            Layout.rightMargin: 10 * screenScaleFactor
+
+            spacing: 10 * screenScaleFactor
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            BasicButton {
+                Layout.minimumWidth: 125 * screenScaleFactor
+                Layout.maximumWidth: Layout.minimumWidth
+                Layout.minimumHeight: 28 * screenScaleFactor
+                Layout.maximumHeight: Layout.minimumHeight
+                btnRadius: height / 2
+                btnBorderW: 0
+                defaultBtnBgColor: Constants.profileBtnColor
+                hoveredBtnBgColor: Constants.profileBtnHoverColor
+                visible: acceptBtnVisible
+                text: okBtnText
+                onSigButtonClicked: {
+                    sigOkButtonClicked()
+                    root.close()
+                }
+            }
+
+            BasicButton {
+                Layout.minimumWidth: 125 * screenScaleFactor
+                Layout.maximumWidth: Layout.minimumWidth
+                Layout.minimumHeight: 28 * screenScaleFactor
+                Layout.maximumHeight: Layout.minimumHeight
+                btnRadius: height / 2
+                btnBorderW: 0
+                defaultBtnBgColor: Constants.profileBtnColor
+                hoveredBtnBgColor: Constants.profileBtnHoverColor
+                visible: ignoreBtnVisible
+                text: ignoreBtnText
+                onSigButtonClicked: {
+                    sigIgnoreButtonClicked()
+                    root.close()
+                }
+            }
+
+            BasicButton {
+                Layout.minimumWidth: 125 * screenScaleFactor
+                Layout.maximumWidth: Layout.minimumWidth
+                Layout.minimumHeight: 28 * screenScaleFactor
+                Layout.maximumHeight: Layout.minimumHeight
+                btnRadius: height / 2
+                btnBorderW: 0
+                defaultBtnBgColor: Constants.profileBtnColor
+                hoveredBtnBgColor: Constants.profileBtnHoverColor
+                visible: cancelBtnVisible
+                text: cancelBtnText
+                onSigButtonClicked: {
+                    sigCancelButtonClicked()
+                    root.close()
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+        }
+
+        Item {
+            Layout.fillHeight: true
         }
     }
-    Row{
-        x: ignoreBtnVisible ? (idDialog.width - 395*screenScaleFactor)/2 : (cancelBtnVisible ? (idDialog.width - 260*screenScaleFactor)/2 : (idDialog.width - 135*screenScaleFactor)/2)
-        y: 75*screenScaleFactor + idMsgLabel.height 
-        spacing: 10
-        BasicButton{
-            width: 125*screenScaleFactor
-            height: 28*screenScaleFactor
-            btnRadius:3
-            btnBorderW:0
-            defaultBtnBgColor: Constants.profileBtnColor
-        hoveredBtnBgColor: Constants.profileBtnHoverColor
-            text: okBtnText
-            onSigButtonClicked:
-            {
-                sigOkButtonClicked()
-            }
-        }
-
-        BasicButton{
-            width: 125*screenScaleFactor
-            height: 28*screenScaleFactor
-            btnRadius: 3
-            btnBorderW: 0
-            defaultBtnBgColor: Constants.profileBtnColor
-            hoveredBtnBgColor: Constants.profileBtnHoverColor
-	        visible: ignoreBtnVisible
-            text: ignoreBtnText
-            onSigButtonClicked:
-            {
-                sigIgnoreButtonClicked()
-            }
-        }
-
-        BasicButton{
-            width: 125*screenScaleFactor
-            height: 28*screenScaleFactor
-            btnRadius: 3
-            btnBorderW: 0
-            defaultBtnBgColor: Constants.profileBtnColor
-            hoveredBtnBgColor: Constants.profileBtnHoverColor
-	        visible: cancelBtnVisible
-            text: cancelBtnText
-            onSigButtonClicked:
-            {
-                sigCancelButtonClicked()
-                idDialog.close()
-            }
-        }
-    }
-
 }

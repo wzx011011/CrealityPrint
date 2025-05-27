@@ -1,6 +1,6 @@
 #ifndef _NULLSPACE_PICKBOTTOM_1589849922902_H
 #define _NULLSPACE_PICKBOTTOM_1589849922902_H
-#include "creativeinterface.h"
+#include "qtusercore/module/creativeinterface.h"
 
 class PickBottomCommand;
 class PickBottom: public QObject, public CreativeInterface

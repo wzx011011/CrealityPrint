@@ -26,19 +26,19 @@ Rectangle
 
 //    function translateInit()
 //    {
-//        mapTranlate["high"] = qsTr("Dynamic")
-//        mapTranlate["middle"] = qsTr("Balanced")
-//        mapTranlate["low"] = qsTr("Speedy")
+//        mapTranlate["high"] = qsTr("High Quality")
+//        mapTranlate["middle"] = qsTr("Quality")
+//        mapTranlate["low"] = qsTr("Normal")
 //    }
 
     function findTranslate(key)
     {
 
         var tranlateValue = ""
-        if(key === "high")tranlateValue = qsTr("Dynamic")
-        else if(key === "middle") tranlateValue= qsTr("Balanced")
-        else if(key === "low")tranlateValue = qsTr("Speedy")
-        else if(key === "fast")tranlateValue = qsTr("Very Speedy")
+        if(key === "high")tranlateValue = qsTr("High Quality")
+        else if(key === "middle") tranlateValue= qsTr("Quality")
+        else if(key === "low")tranlateValue = qsTr("Normal")
+        else if(key === "fast")tranlateValue = qsTr("Fast")
         else
         {
             tranlateValue = key
@@ -78,8 +78,6 @@ Rectangle
     {
         width: parent.width
         height: parent.height
-        vpolicy: listView.count < 5 ? ScrollBar.AlwaysOff : ScrollBar.AlwaysOn
-        hpolicy: ScrollBar.AlwaysOff
         ListView {
             id: listView
             //property int  itemCount: 0
@@ -135,12 +133,11 @@ Rectangle
                     
                     contentItem: TextArea{
                         id: idTextArea
-                        text: qsTr("The main parameter configuration of this mode: Layer Height(") + SettingJson.layer_height + qsTr("mm),Line Width(") + SettingJson.line_width + qsTr("mm),Wall Line Count(") + SettingJson.wall_line_count + qsTr("mm),Infill Density(") + SettingJson.infill_sparse_density + qsTr("%),Build Plate Adhesion Type(") + qsTr(SettingJson.adhesion_type) + qsTr("),Printing Temperature(") + SettingJson.material_print_temperature + qsTr("℃),Build Plate Temperature(") + SettingJson.material_bed_temperature + qsTr("℃),Print Speed(") + SettingJson.speed_print + qsTr("mm/s)")
                         wrapMode: TextEdit.WordWrap
                         color: Constants.textColor
                         font.family: Constants.labelFontFamily
                         font.weight: Constants.labelFontWeight
-                        font.pixelSize: 14
+                        font.pointSize: Constants.labelFontPointSize_12
                         readOnly: true
                         background: Rectangle
                         {
@@ -173,7 +170,7 @@ Rectangle
                     id: idMaterial
                     width: 50
                     height: 24
-                    font.pixelSize:12 
+                    font.pointSize: Constants.labelFontPointSize_10
                     anchors.left:   btn.right
                     anchors.leftMargin: 0
                     verticalAlignment: Qt.AlignVCenter
@@ -190,7 +187,7 @@ Rectangle
                     anchors.leftMargin: 20
                     //  anchors.horizontalCenter: delegateBtn.horizontalCenter
                     text:findTranslate(modelDataName)
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     font.family: Constants.labelFontFamily
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignRight
@@ -202,7 +199,7 @@ Rectangle
                 StyledLabel{
                     width: 50
                     height: 24
-                    font.pixelSize:12 
+                    font.pointSize: Constants.labelFontPointSize_10
                     anchors.left:  chlidtextId.right
                     anchors.leftMargin: 20
                     verticalAlignment: Qt.AlignVCenter

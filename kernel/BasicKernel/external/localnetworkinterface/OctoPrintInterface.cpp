@@ -6,11 +6,12 @@ namespace creative_kernel
 {
 	OctoPrintInterface::OctoPrintInterface()
 	{
-		//qRegisterMetaType<RemotePrinter>("PrinterStates");
+
 	}
 
 	OctoPrintInterface::~OctoPrintInterface()
 	{
+
 	}
 	
 	void OctoPrintInterface::getDeviceState(const std::string& strServerIp, const std::string& strToken, std::function<void(const std::string&&)> callback)

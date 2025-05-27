@@ -14,14 +14,13 @@ Item {
     property color selectedBtnBgColor: Constants.selectionColor//"transparent"
 
     property color borderColor: Constants.rectBorderColor
-    property color borderHoverColor: hoveredBtnBgColor
+    property color borderHoverColor:  "transparent"// Constants.lpw_BtnBorderHoverColor
     property color btnTextColor: enabled? Constants.textColor : Constants.textColor_disabled//"#E3EBEE"
     property alias btnText: btnTxt
 
     property var btnRadius: 14
     property var btnBorderW: 1
-    property var pixSize: Constants.labelFontPixelSize
-    property var pointSize: Constants.labelFontPointSize
+    property var pointSize: Constants.labelFontPointSize_9
     property var fontFamily: Constants.labelFontFamily
     property var keyStr: ""
     property var textBold: false

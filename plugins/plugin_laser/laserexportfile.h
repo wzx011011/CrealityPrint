@@ -4,11 +4,6 @@
 #include<QObject>
 #include"laserscene.h"
 #include"laserplugin.h"
-class SlicePlugin;
-namespace creative_kernel
-{
-    class AddTableData;
-}
 
 class LaserExportFile : public QObject
 {
@@ -26,20 +21,12 @@ public:
     Q_INVOKABLE void sliceUnPreview();
     int onExportSuccess(QObject* object);
 
-    Q_INVOKABLE QObject* getTableModel();
-
-    Q_INVOKABLE void startSearchWifi();
-    Q_INVOKABLE void sendSliceFile();
-
-    void onSaveSliceSuccess(QString filePath);
-
     bool copyFile(QString srcPath, QString dstPath, bool coverFileIfExist);
 signals:
     void successSliceShow(QObject *repotObject);
 private :
     LaserScene* m_laserScene = nullptr;
 
-    creative_kernel::AddTableData* m_addTable = nullptr;
     QObject* m_footStatus;
 
 

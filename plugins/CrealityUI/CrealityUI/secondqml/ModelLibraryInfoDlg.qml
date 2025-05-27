@@ -1,1036 +1,1179 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0 as QQC2
-import CrealityUI 1.0
+import QtQml 2.15
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
+
 import Qt.labs.platform 1.1
 
-import "qrc:/CrealityUI"
-import ".."
+import "../components"
 import "../qml"
-BasicDialog{
-     property var buttonMap: {0:0}
-     property var modelGroupMap: {0:0}
-     property var modelSearchMap: {0:0}
-     property var imageMap: {0:0}
-     property var modelMap: {0:0}
-     property var currentModelLibraryPage: ""
-     property var nextModelLibraryPage: ""
-     property var currentModelSearchPage: 1
-     property var nextModelSearchPage: 2
-     property var currentBtnType: 0
-     property var modelCurrentGroupId: 0
-     property var modelCurrentGroupCount: 0
-     property var preSearchKey: ""
-     property var currentModelId: 0
-     property var curModelDetailImage: 0
-     property var modelGroupArray:[]
-     property var modelGroupSearchArray: []
-     property var curModelName: ""
 
-     property var deleteModelGroupComponentStatus: false
+DockItem {
+    id: root
 
-     signal getPageModelLibraryList(var typeId, var pageIndex, var pageSize)
-     signal importModelLibraryItem(var modelGroupId, var modelCount)
-     signal getModelGroupDetailInfo(var groupId, var modelCount)
-     signal getSearchModelList(var keyword, var pageIndex, var pageSize)
-     signal importModelDetailItem(var id, var name, var link)
-     signal getModelGroupInfo(var id)
-     signal shareModelGroup(var id)
-     signal collectModelStatus(var id, var status)
-     signal downLoadModelGroup(var type)
-     signal downModelToLocall(var id, var count, var name, var path)
-
-    function openDownFolderDlg(type)
-    {
-        idFolderDownDlg.receiveType = type
-        idFolderDownDlg.open()
-    }
-
-    //model alway show to model library
-    function justShowRecommendModel()
-    { 
-        if(idModelLibraryContent.visible == true)
-        {
-            if(idBtnResultScrollView.visible == true)
-            {
-                idSearch.text = ""
-                idSearchButton.sigButtonClicked()
-            }
-        }
-        if(idModelLibraryDetail.visible == true)
-        {
-            idModelLibraryDetail.visible = false
-            idModelLibraryContent.visible = true
-
-            if(idBtnResultScrollView.visible == true)
-            {
-                idSearch.text = ""
-                idSearchButton.sigButtonClicked()
-            }
-        }
-
-        if(currentBtnType == "recommendmodellist")
-        {
-
-        }
-        else{
-            onClassTypeButtonClicked("recommendmodellist")
-        }
-    }
-    //end
-
-    function setModelTypeListBtn(strjson)
-    {
-        var componentButton = Qt.createComponent("../qml/BasicButton.qml")
-        if (componentButton.status === Component.Ready )
-        {
-            var objectArray = JSON.parse(strjson);
-            if(objectArray.code === 0){
-                deleteButtonComponent()
-
-                //add recommend
-                {
-                    var recommendObj = componentButton.createObject(idModelTypeListBtn,
-                                                                    {"width": 145,
-                                                                    "height" : 36,
-                                                                    "btnRadius": 3,
-                                                                    "btnBorderW": 0,
-                                                                    "pointSize": Constants.labelFontPointSize,
-															        "defaultBtnBgColor": Constants.dialogContentBgColor,
-															        "hoveredBtnBgColor": Constants.typeModelBtnListHoveredColor,
-                                                                    "selectedBtnBgColor": "#1E9BE2",
-                                                                    "keyStr": "recommendmodellist",
-                                                                    "text": qsTr("Recommend")})
-                    recommendObj.sigButtonClickedWithKey.connect(onClassTypeButtonClicked)
-                    buttonMap["recommendmodellist"] = recommendObj
-                }
-
-                var objResult = objectArray.result.list;
-                for( var key in objResult)
-                {
-                    var obj = componentButton.createObject(idModelTypeListBtn, 
-                                                                {"width": 145*screenScaleFactor,
-                                                                "height" : 36*screenScaleFactor,
-                                                                "btnRadius": 3, 
-                                                                "btnBorderW": 0,
-                                                                "pointSize": Constants.labelFontPointSize,
-															    "defaultBtnBgColor": Constants.dialogContentBgColor,
-															    "hoveredBtnBgColor": Constants.typeModelBtnListHoveredColor,
-                                                                "selectedBtnBgColor": "#1E9BE2",
-                                                                "keyStr": objResult[key].id,
-                                                                "text": objResult[key].name})
-                    obj.sigButtonClickedWithKey.connect(onClassTypeButtonClicked)
-                    buttonMap[objResult[key].id] = obj
-                }
-                if(currentBtnType === 0){
-                    //getPageModelLibraryList(objResult[0].id, 1, 16)
-                    //currentBtnType = objResult[0].id
-                    getPageModelLibraryList("recommendmodellist", 1, 16)
-                    currentBtnType = "recommendmodellist"
-                }
-                buttonMap[currentBtnType].btnSelected = true
-            }
-            else{}
-        }
-    }
-
-    function setModelLibraryList(strjson, page)
-    {
-        var componentButton = Qt.createComponent("../secondqml/ModelLibraryItem.qml")
-        if (componentButton.status === Component.Ready )
-        {
-            var objectArray = JSON.parse(strjson);
-            if(objectArray.code === 0)
-            {
-                if(deleteModelGroupComponentStatus)
-                {
-                    deleteModelGroupComponent()
-                    deleteModelGroupComponentStatus = false
-                }
-
-                idModelLibraryList.rows = Math.ceil((page*16)/4)
-                var objResult = objectArray.result.list;
-                currentModelLibraryPage = page
-                nextModelLibraryPage =  objectArray.result.nextCursor
-                for( var key in objResult){
-                    var objCovers = objResult[key].covers
-                    var obj = componentButton.createObject(idModelLibraryList, {"btnNameText": objResult[key].groupName, 
-                                                                        "btnModelImage": objResult[key].covers[0].url, 
-                                                                        "modelGroupId": objResult[key].id,
-                                                                        "btnAuthorText": objResult[key].userInfo.nickName, 
-                                                                        "btnAvtarImage": objResult[key].userInfo.avatar,
-                                                                        "modelCount": objResult[key].modelCount,
-                                                                        "modelTime": objResult[key].createTime})  
-                    obj.sigButtonDownClicked.connect(onSigButtonDownClicked) 
-                    obj.sigButtonClicked.connect(onSigButtonClicked)
-                    obj.crealityModelImage()
-                    modelGroupMap[objResult[key].id] = obj
-                    modelGroupArray.push(objResult[key].id)
-                }
-            }
-            else{}
-            
-        }
-    }
-
-    function setModelRecommendLibraryList(strjson, page)
-    {
-        var componentButton = Qt.createComponent("ModelLibraryItem.qml")
-        if (componentButton.status === Component.Ready )
-        {
-            var objectArray = JSON.parse(strjson);
-            if(objectArray.code === 0)
-            {
-                if(deleteModelGroupComponentStatus)
-                {
-                    deleteModelGroupComponent()
-                    deleteModelGroupComponentStatus = false
-                }
-                idModelLibraryList.rows = Math.ceil(((page/16+1)*16)/4)
-                var objResult = objectArray.result.list;
-                currentModelLibraryPage = page
-                nextModelLibraryPage =  objectArray.result.nextCursor
-                for( var key in objResult){
-                    if(objResult[key].model == null)
-                    {
-                        continue
-                    }
-                    var objCovers = objResult[key].covers
-                    var obj = componentButton.createObject(idModelLibraryList, {"btnNameText": objResult[key].model.groupName,
-                                                                        "btnModelImage": objResult[key].model.covers[0].url,
-                                                                        "modelGroupId": objResult[key].model.id,
-                                                                        "btnAuthorText": objResult[key].model.userInfo.nickName,
-                                                                        "btnAvtarImage": objResult[key].model.userInfo.avatar,
-                                                                        "modelCount": objResult[key].model.modelCount,
-                                                                        "modelTime": objResult[key].model.createTime})
-                    obj.sigButtonDownClicked.connect(onSigButtonDownClicked)
-                    obj.sigButtonClicked.connect(onSigButtonClicked)
-                    obj.crealityModelImage()
-                    modelGroupMap[objResult[key].model.id] = obj
-                    modelGroupArray.push(objResult[key].model.id)
-                }
-            }
-            else{}
-
-        }
-    }
-
-    function setModelSearchList(strjson, page)
-    {
-        var componentButton = Qt.createComponent("../secondqml/ModelLibraryItem.qml")
-        if (componentButton.status === Component.Ready )
-        {
-            var objectArray = JSON.parse(strjson);
-            if(objectArray.code === 0)
-            {
-                idModelSearchList.rows = Math.ceil((page*16)/4)
-                var objResult = objectArray.result.list;
-                currentModelSearchPage = page
-                if(objResult.length === 16)
-                {
-                    nextModelSearchPage = currentModelSearchPage + 1
-                }
-                for( var key in objResult){
-                    var objCovers = objResult[key].covers
-                    var obj = componentButton.createObject(idModelSearchList, {"btnNameText": objResult[key].groupName, 
-                                                                        "btnModelImage": objResult[key].covers[0].url, 
-                                                                        "modelGroupId": objResult[key].id,
-                                                                        "btnAuthorText": objResult[key].userInfo.nickName, 
-                                                                        "btnAvtarImage": objResult[key].userInfo.avatar,
-                                                                        "modelCount": objResult[key].modelCount,
-                                                                        "modelTime": objResult[key].createTime})  
-                    obj.sigButtonDownClicked.connect(onSigButtonDownClicked) 
-                    obj.sigButtonClicked.connect(onSigButtonClicked)
-                    obj.crealityModelImage()
-                    modelSearchMap[objResult[key].id] = obj
-                    modelGroupSearchArray.push(objResult[key].id)
-                }
-            }
-            else{}
-            
-        }
-    }
-
-    function setModelGroupInfo(strjson, strBaseLink)
-    {
-        var objectArray = JSON.parse(strjson);
-        if(objectArray.code === 0)
-        {
-            var objResult = objectArray.result.groupItem
-            
-            idShareModelPopup.modelId = objResult.id
-            idShareLink.text = "  " + strBaseLink + objResult.id
-
-            if(objResult.license == "CC BY")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "CC BY-SA")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by_sa.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "CC BY-NC")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by_nc.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "CC BY-NC-SA")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by_nc_sa.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "'CC BY-ND")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by_nd.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "CC BY-NC-ND")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_by_nc_nd.png"
-                idLcenseIconImg.visible = true
-            }
-            else if(objResult.license == "CC0")
-            {
-
-                idLcenseIconImg.source = "qrc:/UI/photo/license_cc0.png"
-                idLcenseIconImg.visible = true
-            }
-            else{
-                idLcenseIconImg.visible = false
-            }
-
-            if(objResult.isCollection == true){
-                idCollectModelBtn.collectStatus = 1
-                idCollectModelBtn.pressedIconSource = "qrc:/UI/photo/model_library_collect.png"
-            }
-            else{
-                idCollectModelBtn.collectStatus = 0
-                idCollectModelBtn.pressedIconSource = "qrc:/UI/photo/model_library_uncollect.png"
-            }
-        }
-        else{}
-    }
-
-    function setModelDetailInfo(strjson)
-    {
-        var componentButton = Qt.createComponent("../secondqml/BasicImageButton.qml")
-        var componentModelItem = Qt.createComponent("../secondqml/ModelLibraryDetailIem.qml")
-        if (componentButton.status === Component.Ready )
-        {
-            deleteImageMapComponent()
-            deleteModelMapComponent()
-            var objectArray = JSON.parse(strjson);
-            if(objectArray.code === 0)
-            {
-                var objResult = objectArray.result.list;
-                for( var key in objResult){
-                    var value = Number(key) +1
-                    var obj = componentButton.createObject(idModelDetailListImage, {
-                                                                        "visible": false,  
-                                                                        "keystr": value,
-                                                                        "id": objResult[key].id,
-                                                                        "btnImgUrl": objResult[key].coverUrl})  
-                    obj.sigBtnClicked.connect(onSigBtnClicked)
-                    imageMap[value] = obj
-
-                    var obj1 = componentModelItem.createObject(idModelListItem, {"modelname": objResult[key].fileName, 
-                                                                        "modeSize": objResult[key].fileSize, 
-                                                                        "modelid": objResult[key].id,  
-                                                                        "keystr": value})
-                    obj1.sigBtnDetailClicked.connect(onSigBtnDetailItemClicked)
-                    obj1.sigBtnDownLoadDetailModel.connect(onSigBtnDownLoadDetailModel)
-                    modelMap[objResult[key].id] = obj1
-                }
-                modelMap[objResult[0].id].btnIsSelected = true
-            }
-            else{}
-            idDetailImage.source = objResult[0].coverUrl 
-
-            curModelDetailImage = 1
-            letModelDetailImageListShow(curModelDetailImage, modelCurrentGroupCount)
-        }
-    }
-
-    function onSigBtnDownLoadDetailModel(itemid, itemName, itemLink)
-    {
-        currentModelId = itemid
-        curModelName = itemName
-        if(itemLink == "import")
-        {
-            importModelDetailItem(currentModelId, itemName, itemLink)
-        }
-        else if(itemLink == "download")
-        {
-            downLoadModelGroup("downloadModelItem")
-        }
-    }
-
-    function startDownloadDetailModel()
-    {
-        if(modelGroupMap[modelCurrentGroupId] != undefined){
-            modelGroupMap[modelCurrentGroupId].setAnimatedImageStatus(true)
-        }
-        if(modelSearchMap[modelCurrentGroupId] != undefined){
-            modelSearchMap[modelCurrentGroupId].setAnimatedImageStatus(true)
-        }
-        idModelLibraryList.enabled = false
-        idModelSearchList.enabled = false
-        idModelTypeListBtn.enabled = false
-        idModelListItem.enabled = false
-        idSearch.enabled = false
-        modelMap[currentModelId].setAnimatedImageStatus(true)
-        idModelLibraryDetailLoad.enabled = false
-        idDetailDownModelLocatalBtn.enabled = false
-    }
-
-    function onSigBtnDetailItemClicked(keyValue)
-    {
-        for(var key in modelMap)
-		{
-			var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				modelMap[key].btnIsSelected = false
-			}else{}
-		}
-        modelMap[keyValue].btnIsSelected = true
-
-        curModelDetailImage = modelMap[keyValue].keystr
-        letModelDetailImageListShow(curModelDetailImage, modelCurrentGroupCount)
-        idDetailImage.source = imageMap[curModelDetailImage].btnImgUrl
-    }
-
-    function letModelDetailImageListShow(curValue, count)
-    {
-        //cur-3 < 1 ==== 1 
-        //cur+1 < 5 ==== 5
-        var min = (curValue - 3) < 1 ? 1 : (curValue - 3)
-        var max = 0
-        if((curValue + 1) < 5){
-            max = 5
-        }else if((curValue+1) > count)
-        {
-            max = count
-            min = count - 4
-        }
-        else{
-            max = curValue+1
-        }
-        for(var key in imageMap)
-        {
-            var strKey = "-%1-".arg(key)
-            if(strKey != "-0-"){
-                if(imageMap[key].btnSelect = true){
-                    imageMap[key].btnSelect = false
-                }
-
-                if(key >= min && key <= max){
-                    imageMap[key].visible = true
-                }
-                else{
-                    imageMap[key].visible = false
-                }
-            }
-        }
-        imageMap[curValue].btnSelect = true
-
-        if(curValue === 1)
-        {
-            idDetailImageLeft.enabled = false
-        }else{
-            idDetailImageLeft.enabled = true
-        }
-        if(curValue === count)
-        {
-            idDetailImageRight.enabled = false
-        }else{
-            idDetailImageRight.enabled = true
-        }
-    }
-
-    function onSigBtnClicked(key)
-    {
-        curModelDetailImage = key
-        letModelDetailImageListShow(curModelDetailImage, modelCurrentGroupCount)
-        onSigBtnDetailItemClicked(imageMap[curModelDetailImage].id)
-        idDetailImage.source = imageMap[key].btnImgUrl
-    }
-
-    function onSigButtonClicked(id, name, count, author, avtar, ctime)
-    {
-        idModelLibraryContent.visible = false
-        idModelLibraryDetail.visible = true
-        idModelNameLabel.text = name
-        var t = new Date(Number(ctime))
-        //var y = t.getFullYear();
-        var m = t.getMonth()+1;
-        var d = t.getDate();
-        var h = t.getHours();
-        var mm = t.getMinutes();
-        m = m < 10 ? ('0' + m) : m
-        d = d < 10 ? ('0' + d) : d
-        h = h < 10 ? ('0' + h) : h
-        mm = mm < 10 ? ('0' + mm) : mm
-        idModelUploadTimeLabel.text = qsTr("Uploaded ") + m + "-" + d + " "+ h +":"+ mm
-        idAvtarImage.img_src = avtar
-        idAuthorName.text = author
-        modelCurrentGroupId = id
-        modelCurrentGroupCount = count
-        getModelGroupInfo(id)
-        getModelGroupDetailInfo(id, count)
-    }
-
-    function modelLibraryDownLoadSuccess()
-    {
-        idModelLibraryDlg.visible = false
-        idModelLibraryList.enabled = true
-        idModelSearchList.enabled = true
-        idModelTypeListBtn.enabled = true
-        idModelListItem.enabled = true
-        idSearch.enabled = true
-        //modelGroupMap[modelCurrentGroupId].setAnimatedImageStatus(false)
-        if(modelGroupMap[modelCurrentGroupId] != undefined){
-            modelGroupMap[modelCurrentGroupId].setAnimatedImageStatus(false)
-        }
-        if(modelSearchMap[modelCurrentGroupId] != undefined){
-            modelSearchMap[modelCurrentGroupId].setAnimatedImageStatus(false)
-        }
-        idModelLibraryDetailLoad.setAnimatedImageStatus(false)
-        idModelLibraryDetailLoad.enabled = true
-        idDetailDownModelLocatalBtn.setAnimatedImageStatus(false)
-        idDetailDownModelLocatalBtn.enabled = true
-        if(modelMap[currentModelId] != undefined)
-        {
-            if(modelMap[currentModelId] != 0)
-            {
-                modelMap[currentModelId].setAnimatedImageStatus(false)
-            }
-        }
-    }
-
-    function modelLibraryDownLoadFailed()
-    {
-        modelLibraryDownLoadSuccess()
-        idDownModelFailedDlg.visible = true
-    }
-
-    function onSigButtonDownClicked(modelid, count)
-    {
-        modelCurrentGroupId = modelid
-        //modelCurrentGroupCount = count
-        importModelLibraryItem(modelid, count)
-    }
-
-    function startDownLoadModel(type)
-    {
-        if(modelGroupMap[modelCurrentGroupId] != undefined){
-            modelGroupMap[modelCurrentGroupId].setAnimatedImageStatus(true)
-        }
-        if(modelSearchMap[modelCurrentGroupId] != undefined){
-            modelSearchMap[modelCurrentGroupId].setAnimatedImageStatus(true)
-        }
-        if(type == "downimport")
-        {
-            idModelLibraryDetailLoad.setAnimatedImageStatus(true)
-            idDetailDownModelLocatalBtn.enabled = false
-        }
-            
-        if(type == "downlocall")
-        {
-            idDetailDownModelLocatalBtn.setAnimatedImageStatus(true)
-            idModelLibraryDetailLoad.enabled = false
-        }
-
-        idModelLibraryList.enabled = false
-        idModelSearchList.enabled = false
-        idModelTypeListBtn.enabled = false
-        idModelListItem.enabled = false
-        idSearch.enabled = false
-    }
-
-    function onClassTypeButtonClicked(keystr)
-    {
-        for(var key in buttonMap)
-		{
-			if(key != 0)
-			{
-				if(key == keystr)
-                {
-                    buttonMap[key].btnSelected = true
-                    if(currentBtnType != keystr)
-                    {
-                        currentBtnType = keystr
-                        //deleteModelGroupComponent()
-                        deleteModelGroupComponentStatus = true
-                        idModelScrollView.vPosition = 0
-                        currentModelLibraryPage = ""
-                        
-                        getPageModelLibraryList(key, currentModelLibraryPage, 16);
-                     
-                    }
-                    else{}
-                }
-                else
-                {
-                    buttonMap[key].btnSelected = false
-                }
-			}	
-		}
-    }
-
-    function deleteButtonComponent()
-    {
-        for(var key in buttonMap)
-		{
-			var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				buttonMap[key].destroy()
-				delete buttonMap[key]
-			}else{
-                delete buttonMap[key]
-            }
-		}
-    }
-
-    function deleteModelGroupComponent()
-    {
-        for(var key in modelGroupMap)
-		{
-            var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				modelGroupMap[key].destroy()
-				delete modelGroupMap[key]
-			}else{
-                delete modelGroupMap[key]
-            }
-		}
-        modelGroupArray = []
-    }
-
-    function deleteSearchModelComponent()
-    {
-        for(var key in modelSearchMap)
-		{
-            var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				modelSearchMap[key].destroy()
-				delete modelSearchMap[key]
-			}else{
-                delete modelSearchMap[key]
-            }
-		}
-        modelGroupSearchArray = []
-    }
-
-     function deleteModelMapComponent()
-    {
-        for(var key in modelMap)
-		{
-			var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				modelMap[key].destroy()
-				delete modelMap[key]
-			}else{
-                delete modelMap[key]
-            }
-		}
-    }
-
-    function deleteImageMapComponent()
-    {
-        for(var key in imageMap)
-		{
-			var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
-			{
-				imageMap[key].destroy()
-				delete imageMap[key]
-			}else
-            {
-                delete imageMap[key]
-            }
-		}
-    }
-
-    function controlModelImageShow(value, modelCount, type)
-    {
-        var showCount = 12
-        var min = value - showCount
-        if(min < 0)
-        {
-            min = 0
-        }
-        var max = value + showCount
-        if(max > modelCount)
-        {
-            max = modelCount
-        }
-        for(var i = 0; i < modelCount; i++)
-        {
-            if((i < min) || ( i>max ))
-            {
-                if(type == "modelgroup")
-                {
-                    modelGroupMap[modelGroupArray[i]].destroyModelImage()
-                }
-                else if(type == "modelsearchgroup")
-                {
-                    modelSearchMap[modelGroupSearchArray[i]].destroyModelImage()
-                }
-                
-            }
-            else{
-                if(type == "modelgroup")
-                {
-                    modelGroupMap[modelGroupArray[i]].crealityModelImage()
-                }
-                else if(type == "modelsearchgroup")
-                {
-                    modelSearchMap[modelGroupSearchArray[i]].crealityModelImage()
-                }
-                
-            }
-        }
-    }
-
-    id: idModelLibraryDlg
-    width: 1210*screenScaleFactor
-    height: 752*screenScaleFactor
-    titleHeight : 30*screenScaleFactor
+    width: 1282 * screenScaleFactor
+    height: 906 * screenScaleFactor
     title: qsTr("Model Library")
 
-    Column{
-        id: idModelLibraryContent
-        anchors.top: parent.top
-        anchors.topMargin: 35 * screenScaleFactor
-        anchors.left: parent.left
-        anchors.leftMargin: 26 * screenScaleFactor
-        width: parent.width-10 - 21
-        height: parent.height-titleHeight-10
-        Row{
-            width: parent.width
-            height: 68 * screenScaleFactor
-            spacing:10 
-            CusSkinButton_Image
-            {
-                anchors{
-                    verticalCenter: parent.verticalCenter
-                }
-                id: clearSearchBtn
-                width: 12 * screenScaleFactor
-                height: 18 * screenScaleFactor
-                btnImgNormal: "qrc:/UI/photo/model_library_detail_back.png"
-                btnImgHovered: "qrc:/UI/photo/model_library_detail_back_h.png"
-                btnImgPressed: "qrc:/UI/photo/model_library_detail_back_h.png"
-                visible: idSearch.text != ""
-                onPressed:
-                {
-                    idSearch.text = ""
-                    idBtnScrollView.visible = true
-                    idBtnResultScrollView.visible = false
-                    idModelScrollView.visible = true
-                    idModelSearchScrollView.visible = false
+    minimumX: -(width * 5/6)
+    maximumX: Screen.desktopAvailableWidth - (width * 1/6)
+    minimumY: 0
+    maximumY: Screen.desktopAvailableHeight - titleHeight
 
-                }
+    // for library_groups_layout
+    property var idGroupMap: {0:0}
+    property var idGroupSearchMap: {0:0}
+    readonly property bool isSearchMode: model_type_repeater.model === search_result_model
+    property int currentModelLibraryPage: 1
+    property int nextModelLibraryPage: 2
+    property int currentModelSearchPage: 1
+    property int nextModelSearchPage: 2
+    property int currentFilterTypeId: 3
+    property int currentPayTypeId: 0
+
+    // for library_models_layout
+    property string currentGroupId: ""
+    property string currentModelId: ""
+    property var idImageMap: {0:0}
+    property var idModelMap: {0:0}
+
+    property string img_collect_d: Constants.currentTheme ? "qrc:/UI/photo/model_info/collect.svg" : "qrc:/UI/photo/model_info/collect_d.svg"
+    property string img_collect_s: "qrc:/UI/photo/model_info/collect_s.svg"
+    property string img_like_d: Constants.currentTheme ? "qrc:/UI/photo/model_info/like.svg" : "qrc:/UI/photo/model_info/like_d.svg"
+    property string img_like_s: "qrc:/UI/photo/model_info/like_s.svg"
+    property string img_share_s: "qrc:/UI/photo/model_info/share_s.svg"
+    property string img_share_d:  Constants.currentTheme ? "qrc:/UI/photo/model_info/share.svg":"qrc:/UI/photo/model_info/share_d.svg"
+
+    property string img_download_all_d:  Constants.currentTheme ?"qrc:/UI/photo/model_info/download_all.svg" :"qrc:/UI/photo/model_info/download_all_d.svg"
+    property string img_download_one_d:  Constants.currentTheme ? "qrc:/UI/photo/model_info/download_one.svg":"qrc:/UI/photo/model_info/download_one_d.svg"
+    property string img_import_all_d:  Constants.currentTheme ?"qrc:/UI/photo/model_info/import_all.svg": "qrc:/UI/photo/model_info/import_all_d.svg"
+    property string img_import_one_d: Constants.currentTheme ? "qrc:/UI/photo/model_info/import_one.svg":"qrc:/UI/photo/model_info/import_one_d.svg"
+
+
+    // to MainWindow
+    signal requestLogin()
+    signal requestToShowDownloadTip()
+
+    property var authorInfoDialog: null
+    property var tipDialog: null
+    property var shareDialog: null
+
+    // ---------- util ----------
+    function countMapSize(map) {
+        let count = 0
+        for (let _ in map) {
+            count++
+        }
+        return count
+    }
+    function clearMap(map) {
+        for (let key in map) {
+            map[key].destroy()
+            delete map[key]
+        }
+    }
+    function onSigLoginTip() {
+        root.visible = false
+        requestLogin()
+    }
+    function onSigDownloadedTip() {
+        goto_download_center_tip.visible = true
+    }
+    // ---------- invoke by cpp ----------
+    Connections {
+        target: cxkernel_cxcloud.modelLibraryService
+        onSearchModelGroupSuccessed: function(json_string, page_index) {
+            setSearchGroupList(json_string, page_index)
+        }
+        onLoadModelGroupCategoryListSuccessed: function(json_string) {
+            setModelTypeList(json_string)
+        }
+        onLoadRecommendModelGroupListSuccessed: function(json_string, page_index) {
+            setRecommendGroupList(json_string, page_index)
+        }
+        onLoadTypeModelGroupListSuccessed: function(json_string, page_index) {
+            setTypeGroupList(json_string, page_index)
+        }
+        onLoadHistoryModelGroupListSuccessed: function(json_string) {
+            setHistoryGroupList(json_string)
+        }
+        onLoadModelGroupInfoSuccessed: function(json_string) {
+            setGroupInfo(json_string)
+        }
+        onLoadModelGroupFileListInfoSuccessed: function(json_string) {
+            setGroupDetail(json_string)
+        }
+    }
+    function showModelLibraryDialog() {
+        visible = true
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupCategoryList()
+    }
+    function setModelTypeList(strJson) {
+        let json_root = JSON.parse(strJson)
+        if (json_root.code !== 0) {
+            return
+        }
+        model_type_model.reset()
+        let json_object_list = json_root.result.list
+        for (let json_object of json_object_list) {
+            model_type_model.append({
+                                        "modelId"  : json_object.id,
+                                        "modelText": json_object.name
+                                    })
+        }
+    }
+    function setRecommendGroupList(strJson, page) {
+        let componentGroupItem = Qt.createComponent("ModelLibraryItem.qml")
+        if (componentGroupItem.status === Component.Ready) {
+            let json_root = JSON.parse(strJson)
+            if (json_root.code !== 0) {
+                return
             }
 
-            BasicLoginTextEdit
-            {
-                anchors{
-                    verticalCenter: parent.verticalCenter
-                }
-                id: idSearch
-                placeholderText: qsTr("Search")
-                height : 28 * screenScaleFactor
-                width : 300 * screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
-                headImageSrc:hovered ? Constants.sourchBtnImg_d : Constants.sourchBtnImg
-                tailImageSrc: hovered && idSearch.text != "" ? Constants.clearBtnImg : ""
-                hoveredTailImageSrc: Constants.clearBtnImg_d
-                radius : 14
-                text: ""
-                onEditingFinished:
-                {
-                    console.log("model library search onEditingFinished : " + idSearch.text)
-                    idSearchResultBtn.forceActiveFocus();
-                    if(idSearch.text != "")
-                    {
-                        idBtnScrollView.visible = false
-                        idBtnResultScrollView.visible = true
-                        idModelScrollView.visible = false
-                        idModelSearchScrollView.visible = true
-                        
-                        if(idSearch.text != preSearchKey)
-                        {
-                            preSearchKey = idSearch.text
-                            deleteSearchModelComponent()
-                            idModelSearchScrollView.vPosition = 0
-                            currentModelSearchPage = 1
-                            getSearchModelList(idSearch.text, currentModelSearchPage, 16)
-                        }
-                    }
-                    else{
-                        idBtnScrollView.visible = true
-                        idBtnResultScrollView.visible = false
-                        idModelScrollView.visible = true
-                        idModelSearchScrollView.visible = false
-                    }
-                }
-                onTailBtnClicked:
-                {
-                    idSearch.text = ""
-                    idSearchButton.sigButtonClicked()
-                }
-            }
-            BasicButton {
-                id: idSearchButton
-                anchors{
-                    verticalCenter: parent.verticalCenter
-                }
-                width: 70 * screenScaleFactor
-                height: 30 * screenScaleFactor
-                btnRadius:13
-                btnBorderW:enabled ? 0 : 1
-                pointSize: Constants.labelLargeFontPointSize
-                enabled: idSearch.text != "" ? true : false
-                defaultBtnBgColor: enabled ?  Constants.searchBtnHoveredColor : Constants.searchBtnDisableColor
-                hoveredBtnBgColor: Constants.typeBtnHoveredColor
-                text: qsTr("Search")
-                onSigButtonClicked:
-                {
-                    console.log("model library search onSigButtonClicked : " + idSearch.text)
-                    idSearchResultBtn.forceActiveFocus();
-                    if(idSearch.text != "")
-                    {
-                        idBtnScrollView.visible = false
-                        idBtnResultScrollView.visible = true
-                        idModelScrollView.visible = false
-                        idModelSearchScrollView.visible = true
-                        
-                        if(idSearch.text != preSearchKey)
-                        {
-                            preSearchKey = idSearch.text
-                            deleteSearchModelComponent()
-                            idModelSearchScrollView.vPosition = 0
-                            currentModelSearchPage = 1
-                            getSearchModelList(idSearch.text, currentModelSearchPage, 16)
-                        }
-                    }
-                    else{
-                        idBtnScrollView.visible = true
-                        idBtnResultScrollView.visible = false
-                        idModelScrollView.visible = true
-                        idModelSearchScrollView.visible = false
-                    }
-                }
+            currentModelLibraryPage = page
+            nextModelLibraryPage = json_root.result.nextCursor
+            let object_list = json_root.result.list
+            for (let object of object_list) {
+                let model_item = componentGroupItem.createObject(group_list, {
+                                                                     "width"           : group_list.itemWidth,
+                                                                     "height"          : group_list.itemHeight,
+                                                                     "groupId"         : object.model.id,
+                                                                     "groupName"       : object.model.groupName,
+                                                                     "groupImage"      : object.model.covers.length == 0 ? "" : object.model.covers[0].url,
+                                                                     "authorName"      : object.model.userInfo.nickName,
+                                                                     "authorHead"      : object.model.userInfo.avatar,
+                                                                     "authorId"        : object.model.userId,
+                                                                     "modelCount"      : object.model.modelCount,
+                                                                     "totalPrice"      : object.model.totalPrice,
+                                                                     "collected"       : object.model.isCollection,
+                                                                     "restricted"      : object.maturityRating == "restricted",
+                                                                     "createdTimestamp": object.model.createTime,
+                                                                     "tipDialog"       : root.tipDialog,
+                                                                 })
+                model_item.sigButtonDownClicked.connect(onGroupDownloadButtonClicked)
+                model_item.sigButtonClicked.connect(onGroupButtonClicked)
+                model_item.sigDownloadedTip.connect(onSigDownloadedTip)
+                model_item.sigLoginTip.connect(onSigLoginTip)
+                model_item.sigAuthorClicked.connect(onSigAuthorClicked)
+                idGroupMap[object.model.id] = model_item
             }
         }
-        Row{
-            width: parent.width
-            height: parent.height - 68
-            spacing: 5
-            
-            BasicScrollView
-            {
-                id: idBtnScrollView
-                width: 163 * screenScaleFactor
-                height: parent.height - 31
-                visible: true
-                hpolicy: ScrollBar.AlwaysOff
-                vpolicy: ScrollBar.AsNeeded
-                clip : true
-                Column{
-                    id: idModelTypeListBtn
-                    spacing: 1
-                }
-            }
-            BasicScrollView
-            {
-                id: idBtnResultScrollView
-                visible: false
-                width: 163 * screenScaleFactor
-                height: parent.height - 31
-                hpolicy: ScrollBar.AlwaysOff
-                vpolicy: ScrollBar.AsNeeded
-                clip : true
-                Column{
-                    spacing: 5
-                    BasicButton{
-                        id: idSearchResultBtn
-                        width: 140 * screenScaleFactor
-                        height: 36 * screenScaleFactor
-                        btnRadius: 3
-                        btnBorderW: 0
-                        pointSize: Constants.labelFontPointSize
-                        hoveredBtnBgColor: "#1E9BE2"
-                        defaultBtnBgColor: "#1E9BE2"
-                        text: qsTr("Search Result")
-                    }
-                }
-            }
-            // Item {
-            //     width: 1
-            //     height: parent.height - 31
-            //     BasicSeparator
-            //     {
-            //         anchors.fill: parent
-            //     }
-            // }
-            Rectangle{
-                width: 1
-                height: parent.height - 31
-                border.color: Constants.splitLineColor
-                border.width: 1
-                color: "transparent"
-            }
-            Rectangle{
-                width: 5
-                height: parent.height - 31
-                color: "transparent"
-            }
-            BasicScrollView
-            {
-                id: idModelScrollView
-                width: parent.width - 140 - 40 - 3 - 8
-                height: parent.height - 41
-                visible: true
-                hpolicy: ScrollBar.AlwaysOff
-                vpolicy: ScrollBar.AsNeeded
-                clip : true
-                Grid{
-                    id: idModelLibraryList
-                    width: parent.width
-                    height: parent.height
-                    spacing: 10
-                    columns: 4
-                    rows: 2
-                }
-                onVPositionChanged:
-                {
-                    if((vSize + vPosition) === 1){
-                        if(currentModelLibraryPage != nextModelLibraryPage){
-                            if(nextModelLibraryPage != "")
-                                getPageModelLibraryList(currentBtnType, nextModelLibraryPage, 16)
-                        }
-                    }
+    }
 
-                    //
-                    var count = modelGroupArray.length
-                    var value = Math.ceil((vSize + vPosition) * count)
-                    controlModelImageShow(value, count, "modelgroup")
-                }
+    function onSigAuthorClicked(authorId){
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupAuthorInfo(authorId)
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupAuthorModelList(authorId,1, 24, 7,"")
+        authorInfoDialog.visible = true
+    }
 
-                onVSizeChanged:
-                {
-                    var count = modelGroupArray.length
-                    var value = Math.ceil((vSize + vPosition) * count)
-                    controlModelImageShow(value, count, "modelgroup")
-                }
+
+    function setTypeGroupList(strJson, page) {
+        let componentGroupItem = Qt.createComponent("ModelLibraryItem.qml")
+        if (componentGroupItem.status === Component.Ready) {
+            let json_root = JSON.parse(strJson)
+            if (json_root.code !== 0) {
+                return
             }
-            BasicScrollView
-            {
-                id: idModelSearchScrollView
-                width: parent.width - 140 - 40 - 3 - 8
-                height: parent.height - 41
-                visible: false
-                hpolicy: ScrollBar.AlwaysOff
-                vpolicy: ScrollBar.AsNeeded
-                clip : true
-                Grid{
-                    id: idModelSearchList
-                    width: parent.width
-                    height: parent.height
-                    spacing: 10
-                    columns: 4
-                    rows: 2
-                }
-                onVPositionChanged:
-                {
-                    if((vSize + vPosition) === 1){
-                        console.log("getSearchModelList currentModelSearchPage = " + currentModelSearchPage + ", nextModelSearchPage = " +nextModelSearchPage)
-                        if(currentModelSearchPage != nextModelSearchPage){
-                            getSearchModelList(idSearch.text, nextModelSearchPage, 16)
-                        }
-                    }
+            currentModelLibraryPage = page
+            nextModelLibraryPage = json_root.result.nextCursor
+            let object_list = json_root.result.list
+            for (let object of object_list) {
+                let model_item = componentGroupItem.createObject(group_list, {
+                                                                     "width"           : group_list.itemWidth,
+                                                                     "height"          : group_list.itemHeight,
+                                                                     "groupId"         : object.id,
+                                                                     "groupName"       : object.groupName,
+                                                                     "groupImage"      : object.covers.length == 0 ? "" : object.covers[0].url,
+                                                                     "authorName"      : object.userInfo.nickName,
+                                                                     "authorHead"      : object.userInfo.avatar,
+                                                                     "authorId"        : object.userInfo.userId,
+                                                                     "modelCount"      : object.modelCount,
+                                                                     "totalPrice"      : object.totalPrice,
+                                                                     "collected"       : object.isCollection,
+                                                                     "restricted"      : object.maturityRating == "restricted",
+                                                                     "createdTimestamp": object.createTime,
+                                                                     "tipDialog"       : root.tipDialog,
+                                                                 })
+                model_item.sigButtonDownClicked.connect(onGroupDownloadButtonClicked)
+                model_item.sigButtonClicked.connect(onGroupButtonClicked)
+                model_item.sigDownloadedTip.connect(onSigDownloadedTip)
+                model_item.sigLoginTip.connect(onSigLoginTip)
+                model_item.sigAuthorClicked.connect(onSigAuthorClicked)
+                idGroupMap[object.id] = model_item
+            }
+        }
+    }
+    function setSearchGroupList(strjson, page) {
+        let componentGroupItem = Qt.createComponent("ModelLibraryItem.qml")
+        if (componentGroupItem.status !== Component.Ready) {
+            return
+        }
+        let json_root = JSON.parse(strjson)
+        if (json_root.code !== 0) {
+            return
+        }
+        if (page === 1) {
+            clearMap(idGroupSearchMap)
+        }
+        currentModelSearchPage = page
+        let object_list = json_root.result.list
+        if (object_list.length >= 24) {
+            nextModelSearchPage = currentModelSearchPage + 1
+        }
+        for (let object of object_list) {
+            let model_item = componentGroupItem.createObject(group_search_list, {
+                                                                 "width"           : group_search_list.itemWidth,
+                                                                 "height"          : group_search_list.itemHeight,
+                                                                 "groupId"         : object.id,
+                                                                 "groupName"       : object.groupName,
+                                                                 "groupImage"      : object.covers.length == 0 ? "" : object.covers[0].url,
+                                                                 "authorName"      : object.userInfo.nickName,
+                                                                 "authorHead"      : object.userInfo.avatar,
+                                                                 "authorId"        : object.userInfo.userId,
+                                                                 "modelCount"      : object.modelCount,
+                                                                 "totalPrice"      : object.totalPrice,
+                                                                 "collected"       : object.isCollection,
+                                                                 "restricted"      : object.maturityRating == "restricted",
+                                                                 "createdTimestamp": object.createTime,
+                                                                 "tipDialog"       : root.tipDialog,
+                                                             })
+            model_item.sigButtonDownClicked.connect(onGroupDownloadButtonClicked)
+            model_item.sigButtonClicked.connect(onGroupButtonClicked)
+            model_item.sigDownloadedTip.connect(onSigDownloadedTip)
+            model_item.sigLoginTip.connect(onSigLoginTip)
+            model_item.sigAuthorClicked.connect(onSigAuthorClicked)
+            idGroupSearchMap[object.id] = model_item
+        }
+    }
+    function setHistoryGroupList(json_string) {
+        let model_component = Qt.createComponent("ModelLibraryItem.qml")
+        if (model_component.status !== Component.Ready) {
+            return
+        }
+        //    clearMap(idGroupMap)
+        //    if (deleteModelGroupComponentStatus) {
+        //      deleteModelGroupComponentStatus = false
+        //    }
+        currentModelLibraryPage = 1
+        nextModelLibraryPage = 2
+        let json_root = JSON.parse(json_string)
+        for (let group of json_root.group_list) {
+            let model_item = model_component.createObject(group_list, {
+                                                              "width"           : group_list.itemWidth,
+                                                              "height"          : group_list.itemHeight,
+                                                              "groupId"         : group.id,
+                                                              "groupName"       : group.name,
+                                                              "groupImage"      : group.image,
+                                                              "totalPrice"      : group.price,
+                                                              "authorName"      : group.author_name,
+                                                              "authorHead"      : group.author_image,
+                                                              "authorId"        : group.author_id||"",
+                                                              "modelCount"      : group.model_count,
+                                                              "collected"       : group.collected,
+                                                              "restricted"      : group.restricted,
+                                                              "createdTimestamp": group.creation_time
+                                                          });
+            console.log("groupName",group.name,group.author_id)
+            model_item.sigButtonDownClicked.connect(onGroupDownloadButtonClicked)
+            model_item.sigButtonClicked.connect(onGroupButtonClicked)
+            model_item.sigDownloadedTip.connect(onSigDownloadedTip)
+            model_item.sigLoginTip.connect(onSigLoginTip)
+            model_item.sigAuthorClicked.connect(onSigAuthorClicked)
+            idGroupMap[group.id] = model_item
+        }
+    }
+    function setGroupInfo(json_string) {
+        const json_root = JSON.parse(json_string)
+        if (json_root.code !== 0) {
+            return
+        }
 
-                    var count = modelGroupSearchArray.length
-                    var value = Math.ceil((vSize + vPosition) * count)
-                    controlModelImageShow(value, count, "modelsearchgroup")
-                }
+        const group_info = json_root.result.groupItem
+        if (group_info.id !== currentGroupId) {
+            return
+        }
 
-                onVSizeChanged:
-                {
-                    var count = modelGroupSearchArray.length
-                    var value = Math.ceil((vSize + vPosition) * count)
-                    controlModelImageShow(value, count, "modelsearchgroup")
+        switch (group_info.license) {
+            case "CC BY": {
+                license_image.source = "qrc:/UI/photo/license_by.png"
+                break
+            }
+            case "CC BY-SA": {
+                license_image.source = "qrc:/UI/photo/license_by_sa.png"
+                break
+            }
+            case "CC BY-NC": {
+                license_image.source = "qrc:/UI/photo/license_by_nc.png"
+                break
+            }
+            case "CC BY-NC-SA": {
+                license_image.source = "qrc:/UI/photo/license_by_nc_sa.png"
+                break
+            }
+            case "CC BY-ND": {
+                license_image.source = "qrc:/UI/photo/license_by_nd.png"
+                break
+            }
+            case "CC0": {
+                license_image.source = "qrc:/UI/photo/license_cc0.png"
+                break
+            }
+            default: {
+                license_image.source = ""
+                break
+            }
+        }
+
+        license_image.visible = license_image.source !== ""
+
+        group_upload__category.categoryName = group_info.categoryName
+        group_like_btn.isLike = group_info.isLike
+        group_like_btn.likeCount = group_info.likeCount
+
+        group_collect_btn.isCollect = group_info.isCollection
+        group_collect_btn.collectCount = group_info.collectionCount
+
+        group_share_btn.shareCount = group_info.shareCount
+        group_download_btn.downloadCount = group_info.downloadCount
+    }
+    function setGroupDetail(json_string) {
+        let componentImageItem = Qt.createComponent("BasicImageButton.qml")
+        let componentModelItem = Qt.createComponent("ModelLibraryDetailIem.qml")
+        if (componentImageItem.status !== Component.Ready ||
+                componentImageItem.status !== Component.Ready) {
+            return
+        }
+        let json_root = JSON.parse(json_string)
+        if (json_root.code === 0) {
+            let model_info_list = json_root.result.list
+             if (model_info_list.length && (model_info_list[0].modelId).localeCompare(currentGroupId) !== 0) return
+             clearMap(idImageMap)
+             clearMap(idModelMap)
+             currentModelId = ""
+            let is_first_model = true
+            for (let model_info of model_info_list) {
+                let group_id   = model_info.modelId
+                let model_id   = model_info.id
+                let model_name = model_info.fileName
+                let model_size = model_info.fileSize
+                let image_url  = model_info.coverUrl
+                // init image button
+                let image_item = componentImageItem.createObject(image_list, {
+                                                                     "id"       : model_id,
+                                                                     "keystr"   : model_id,
+                                                                     "btnRadius": 10 * screenScaleFactor,
+                                                                     "btnImgUrl": image_url
+                                                                 })
+                image_item.sigBtnClicked.connect(onModelButtonClicked)
+                idImageMap[model_id] = image_item
+                // init model button
+                let model_item = componentModelItem.createObject(model_list, {
+                                                                     "groupId"  : group_id,
+                                                                     "modelName": model_name,
+                                                                     "modelSize": model_size,
+                                                                     "modelId"  : model_id,
+                                                                     "btnImgUrl": image_url
+                                                                 })
+                model_item.sigBtnDetailClicked.connect(onModelButtonClicked)
+                model_item.sigBtnDownLoadDetailModel.connect(onModelDownloadButtonClicked)
+                model_item.sigBtnImportDetailModel.connect(onModelImportButtonClicked)
+                model_item.sigBtnImportDirectModel.connect(onModelImportDirectButtonClicked)
+                model_item.sigDownloadedTip.connect(onSigDownloadedTip)
+                model_item.sigLoginTip.connect(onSigLoginTip)
+                idModelMap[model_id] = model_item
+                if (is_first_model) {
+                    currentModelId = model_id
+                    is_first_model = false
                 }
             }
         }
     }
-    Column{
-        id: idModelLibraryDetail
-        anchors.top: parent.top
-        anchors.topMargin: 30+5
-        anchors.left: parent.left
-        anchors.leftMargin: 5+21
-        width: parent.width-10 - 21
-        height: parent.height-titleHeight-10
-        visible: false
+    // ---------- call by self ----------
+    function getPageModelList(type_id, page_index, page_size, filter_id, pay_type) {
+        if (type_id === -2) {
+            cxkernel_cxcloud.modelLibraryService.loadRecommendModelGroupList(page_index, page_size)
+        } else if (type_id === -1) {
+            cxkernel_cxcloud.modelLibraryService.loadHistoryModelGroupList(page_index, page_size)
+        } else {
+            cxkernel_cxcloud.modelLibraryService.loadTypeModelGroupList(type_id, page_index, page_size, filter_id, pay_type)
+        }
+    }
+    // ---------- receive from sub qml item ----------
+    function onServerChange(){
+        model_type_model.currentTypelIdChanged()
+    }
+    function onModelButtonClicked(model_id) {
+        currentModelId = model_id
+    }
+    function onModelDownloadButtonClicked(model_id) {
+        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+        if (id_group_map[currentGroupId].totalPrice > 0) {
+            Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + currentGroupId)
+            return
+        }
+        currentModelId = model_id
+        cxkernel_cxcloud.downloadService.startModelDownloadTask(currentGroupId, currentModelId)
+        root.requestToShowDownloadTip()
+        root.visible = false
+    }
 
-        Row{
-            width: parent.width
-            height: 58
-            CusSkinButton_Image
-            {
-                anchors{
-                    verticalCenter: parent.verticalCenter
-                }
-                width: 12
-                height: 18
-                btnImgNormal: "qrc:/UI/photo/model_library_detail_back.png"
-                btnImgHovered: "qrc:/UI/photo/model_library_detail_back_h.png"
-                btnImgPressed: "qrc:/UI/photo/model_library_detail_back_h.png"
-                onClicked:
-                {
-                    idModelLibraryDetail.visible = false
-                    idModelLibraryContent.visible = true
+    function onModelImportButtonClicked(model_id) {
+        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+        if (id_group_map[currentGroupId].totalPrice > 0) {
+            Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + currentGroupId)
+            return
+        }
+        currentModelId = model_id
+        cxkernel_cxcloud.downloadService.startModelDownloadTask(currentGroupId, currentModelId, true)
+        //  root.requestToShowDownloadTip()
+        root.visible = false
+    }
+
+    function onModelImportDirectButtonClicked(group_id, model_id) {
+        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+        if (id_group_map[currentGroupId].totalPrice > 0) {
+            Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + currentGroupId)
+            return
+        }
+        cxkernel_cxcloud.downloadService.importModelCache(group_id,model_id)
+        root.visible = false
+    }
+
+
+
+
+    function onGroupButtonClicked(group_id) {
+        if (currentGroupId !== group_id) {
+            currentGroupId = group_id
+        } else {
+            currentGroupIdChanged()
+        }
+    }
+    function onGroupDownloadButtonClicked(group_id) {
+        // currentGroupId = group_id
+        cxkernel_cxcloud.downloadService.startModelGroupDownloadTask(group_id)
+        root.requestToShowDownloadTip()
+        // root.visible = false
+    }
+    onCurrentModelIdChanged: {
+        if (currentModelId === "") {
+            clearMap(idModelMap)
+            clearMap(idImageMap)
+            return
+        }
+        for (let model_key in idModelMap) {
+            let model_item = idModelMap[model_key]
+            let selected = model_key === currentModelId
+            model_item.btnIsSelected = selected
+            if (selected) {
+                let visiableSize = model_list_scroll.vSize
+                let virtualHeight = model_list_scroll.height / visiableSize
+                let itemPosition = model_item.y / virtualHeight
+                let position = model_list_scroll.vPosition
+                /* 当前所选项不在列表的显示范围时，把列表滑动到所选项位置 */
+                if (itemPosition < position || itemPosition > position + visiableSize) {
+                    model_list_scroll.vPosition = Math.min(1 - visiableSize, itemPosition)
                 }
             }
         }
-        Column{
-            width: parent.width
-            height: parent.height
-            spacing: 10
-            Row{
-                spacing: 10
-                width: parent.width
-                height: 500* screenScaleFactor
-                Column{
-                    width: 442 * screenScaleFactor
-                    height: 500 * screenScaleFactor
-                    Rectangle {
-                        width: 442 * screenScaleFactor
-                        height: 399 * screenScaleFactor
-                        opacity: 1
-                        color: "#E9E9E9"
+        current_model_image.source = ""
+        for (let image_key in idImageMap) {
+            let image_item = idImageMap[image_key]
+            let selected = image_key === currentModelId
+            image_item.btnSelect = selected
+            if (selected) {
+                current_model_image.source = image_item.btnImgUrl
+            }
+        }
+    }
+    function refreshData(){
+        let curId = model_type_repeater.model.currentTypelId
+        model_type_repeater.model.currentTypelId = model_type_repeater.model.currentTypeInvalidValue
+        model_type_repeater.model.currentTypelId = curId
+    }
+    onCurrentGroupIdChanged: {
+        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+        if (currentGroupId === "") {
+            clearMap(id_group_map)
+            currentModelId = ""
+            return
+        }
+        let group_item = id_group_map[currentGroupId]
+        if (!group_item) {
+            return
+        }
+        let group_id          = group_item.groupId
+        let group_name        = group_item.groupName
+        let group_image       = group_item.groupImage
+        let model_count       = group_item.modelCount
+        let author_name       = group_item.authorName
+        let author_head       = group_item.authorHead
+        let author_id         = group_item.authorId
+        let total_price       = group_item.totalPrice
+        let collected         = group_item.collected
+        let created_timestamp = group_item.createdTimestamp * 1000
+        group_name_label.text = group_name
+        author_name_label.text = author_name
+        author_head_image.img_src = author_head
+        author_head_image.authorId = author_id
+        console.log("author_id",author_id)
+        group_upload_time_label.text = "%1 : %2".arg(qsTr("UploadedTime"))
+                .arg(Qt.formatDateTime(new Date(Number(created_timestamp)), "yyyy-MM-dd hh:mm"))
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupInfo(group_id)
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupFileListInfo(group_id, model_count)
+        library_groups_layout.visible = false
+        library_models_layout.visible = true
+        // write to history
+        cxkernel_cxcloud.modelLibraryService.pushHistoryModelGroup(String(group_id),
+                                                                   String(group_name),
+                                                                   String(group_image),
+                                                                   Number(total_price),
+                                                                   Number(created_timestamp),
+                                                                   Boolean(collected),
+                                                                   String(author_name),
+                                                                   String(author_head),
+                                                                   String(author_id),
+                                                                   Number(model_count))
 
-                        Image{
-                            id: idDetailImage
-                            width: 442 * screenScaleFactor
-                            height: 399 * screenScaleFactor  
+    }
+    onWidthChanged: {
+        group_list.syncSize()
+        group_search_list.syncSize()
+    }
+    Component.onCompleted: {
+        idGroupMap = {}
+        idGroupSearchMap = {}
+        idImageMap = {}
+        idModelMap = {}
+        cxkernel_cxcloud.modelLibraryService.loadModelGroupCategoryList()
+        model_type_model.currentTypelIdChanged()
+    }
+    ColumnLayout {
+        id: library_groups_layout
+        anchors.fill: parent
+        anchors.bottomMargin: 40 * screenScaleFactor
+        anchors.topMargin: root.currentTitleHeight + 30 * screenScaleFactor
+        anchors.leftMargin: 40 * screenScaleFactor
+        anchors.rightMargin: 40 * screenScaleFactor
+        spacing: 0
+
+        RowLayout {
+            id: model_type_row
+            Layout.fillWidth: true
+            Layout.maximumHeight: more_model_type_button.checked ? model_type_flow.height
+                                                                 : model_type_flow.buttonHeight
+            Layout.minimumHeight: model_type_flow.buttonHeight
+            Behavior on Layout.maximumHeight {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+            clip: true
+            spacing: 10 * screenScaleFactor
+            Flow {
+                id: model_type_flow
+                readonly property int buttonHeight: 36 * screenScaleFactor
+                Layout.fillWidth: true
+                Layout.minimumHeight: buttonHeight
+                spacing: 10 * screenScaleFactor
+                ListModel {
+                    id: model_type_model
+                    property int currentTypelId: -2
+                    property int currentTypeInvalidValue: -10//默认的不合法的值
+                    ListElement {
+                        modelId: -1
+                        modelText: qsTr("History") //"historymodellist"
+                        modelIcon: ""
+                    }
+                    ListElement {
+                        modelId: -2
+                        modelText: qsTr("Recommend") //"recommendmodellist"
+                        modelIcon: ""
+                    }
+                    function reset() {
+                        if (count > 2) {
+                            remove(2, count - 2)
+                        }
+                    }
+                    onCurrentTypelIdChanged: {
+                        if(currentTypelId == currentTypeInvalidValue)
+                            return;
+                        clearMap(idGroupMap)
+                        model_type_repeater.model = model_type_model
+                        group_search_view.visible = false
+                        group_view.visible = true
+                        // group_view.vPosition = 0
+                        currentModelLibraryPage = 1
+                        currentFilterTypeId = 3
+                        currentPayTypeId = 0
+                        getPageModelList(currentTypelId, currentModelLibraryPage, 24, currentFilterTypeId,currentPayTypeId)
+                    }
+                }
+                ListModel {
+                    id: search_result_model
+                    property int currentTypelId: -3
+                    ListElement {
+                        modelId: -3
+                        modelText: qsTr("Search Result")
+                        modelIcon: ""
+                    }
+                }
+                ButtonGroup {
+                    id: model_type_group
+                }
+                Repeater {
+                    id: model_type_repeater
+                    model: model_type_model
+                    delegate: Button {
+                        width: model_type_text.contentWidth + 20 * screenScaleFactor
+                        height: model_type_flow.buttonHeight
+                        checkable: true
+                        background: Rectangle {
+                            anchors.fill: parent
+                            radius: 5 * screenScaleFactor
+                            color: parent.checked || parent.hovered ? Constants.themeGreenColor  // Constants.model_library_type_button_checked_color
+                                                                    : Constants.model_library_type_button_default_color
+                        }
+                        Text {
+                            id: model_type_text
+                            anchors.centerIn: parent
+                            text: modelText
+                            color: parent.checked || parent.hovered ? Constants.model_library_type_button_text_checked_color
+                                                                    : Constants.model_library_type_button_text_default_color
+                            font.pointSize: Constants.labelFontPointSize_10
+                            font.family: Constants.labelFontFamilyBold
+                            font.weight: Font.Black
+                        }
+                        onToggled: {
+                            if (!toggled) {
+                                return
+                            }
+                            model_type_repeater.model.currentTypelId = modelId
+                        }
+                        Component.onCompleted: {
+                            model_type_group.addButton(this)
+                            checked = modelId === model_type_repeater.model.currentTypelId
+                        }
+                    }
+                }
+            }
+            Button {
+                id: more_model_type_button
+                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                Layout.minimumWidth: 36 * screenScaleFactor
+                Layout.minimumHeight: Layout.minimumWidth
+                enabled: model_type_repeater.model === model_type_model
+                checked: true
+                checkable: true
+                background: Rectangle {
+                    anchors.fill: parent
+                    visible: parent.enabled
+                    radius: width / 2
+                    color: parent.hovered ? Constants.model_library_border_color : "transparent"
+                    Image {
+                        anchors.centerIn: parent
+                        source: more_model_type_button.checked ? "qrc:/UI/photo/comboboxDown2_flip.png"
+                                                               : "qrc:/UI/photo/comboboxDown2.png"
+                        width: 12 * screenScaleFactor
+                        height: 6 * screenScaleFactor
+                    }
+                }
+            }
+        }
+
+        RowLayout{
+            ListModel {
+                id: selectType
+                ListElement{ modelText: qsTr("Latest upload"); type: 3 }
+                ListElement{ modelText: qsTr("Most liked"); type: 1 }
+                ListElement{ modelText: qsTr("Best seller"); type: 5 }
+                ListElement{ modelText: qsTr("Downloads"); type: 7 }
+                ListElement{ modelText: qsTr("Most makes"); type: 6 }
+            }
+
+            id : model_type_select_flow
+
+            readonly property int buttonHeight: 36 * screenScaleFactor
+
+            Layout.fillWidth: true
+            Layout.minimumHeight: buttonHeight + 20* screenScaleFactor
+
+            Flow {
+                ButtonGroup {
+                    id: model_type_select_group
+                }
+
+                Layout.fillWidth: true
+                Layout.minimumHeight: 28* screenScaleFactor
+
+                spacing: 10 * screenScaleFactor
+                visible: !isSearchMode &&  model_type_model.currentTypelId !== -2 &&  model_type_model.currentTypelId !== -1
+
+                Repeater{
+                    id:model_type_select_btn
+                    model: selectType
+                    property int defaultSelectedIndex: -1
+                    delegate: Button {
+                        width: model_type_select_text.contentWidth + 20 * screenScaleFactor
+                        height: model_type_select_flow.buttonHeight
+                        checkable: true
+                        checked:  type === currentFilterTypeId || model_type_select_btn.currentIndex === model_type_select_btn.defaultSelectedIndex
+                        background: Rectangle {
+                            anchors.fill: parent
+                            radius: 5 * screenScaleFactor
+                            color: parent.checked || parent.hovered ? Constants.themeGreenColor  //Constants.model_library_type_button_checked_color
+                                                                    : Constants.model_library_type_button_default_color
+                        }
+
+                        Text {
+                            id: model_type_select_text
+                            anchors.centerIn: parent
+                            text: modelText
+                            color: parent.checked || parent.hovered ? Constants.model_library_type_button_text_checked_color
+                                                                    : Constants.model_library_type_button_text_default_color
+                            font.pointSize: Constants.labelFontPointSize_10
+                            font.family: Constants.labelFontFamilyBold
+                            font.weight: Font.Black
+                        }
+
+                        onToggled: {
+                            if (!toggled) return
+                            currentFilterTypeId = type
+                            clearMap(idGroupMap)
+                            model_type_repeater.model = model_type_model
+                            group_search_view.visible = false
+                            group_view.visible = true
+                            // group_view.vPosition = 0
+                            currentModelLibraryPage = 1
+                            currentPayTypeId = 0
+                            getPageModelList(model_type_model.currentTypelId, currentModelLibraryPage, 24, currentFilterTypeId,currentPayTypeId)
+                        }
+                        Component.onCompleted:{
+                            model_type_select_group.addButton(this)
+                            if (type === currentFilterTypeId) {
+                                model_type_select_btn.defaultSelectedIndex = model_type_select_btn.currentIndex;
+                            }
+                        }
+                    }
+
+                }
+
+                Button {
+                    width: model_type_more.contentWidth+ model_select_img.width + 40 * screenScaleFactor
+                    height: model_type_select_flow.buttonHeight
+                    id:model_type_select_more_btn
+                    onClicked: model_cost_dialog.trackTo(this)
+                    enabled: currentFilterTypeId !== 5
+                    background: Rectangle{
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        radius: height/2
+                        border.color:parent.checked || parent.hovered ? "transparent" :"#7A7A7F"
+                        border.width: 0
+                        color:parent.hovered? Qt.lighter(Constants.themeGreenColor,1.1) :Constants.themeGreenColor
+
+                        RowLayout{
+                            anchors.centerIn: parent
+                            spacing: 5 * screenScaleFactor
+                            Image {
+                                id: model_select_img
+                                source: "qrc:/UI/photo/model_filter.svg"
+                                width: 18 * screenScaleFactor
+                                height: width
+                                Layout.alignment:  Qt.AlignVCenter
+                            }
+                            Text {
+                                id: model_type_more
+                                Layout.alignment:  Qt.AlignVCenter
+                                text: qsTr("Sort by")
+                                color: "#ffffff"
+                                font.pointSize: Constants.labelFontPointSize_10
+                                font.family: Constants.labelFontFamilyBold
+                                font.weight: Font.Black
+                            }
+                        }
+                    }
+                }
+
+                Popup{
+                    id:model_cost_dialog
+                    width: 310* screenScaleFactor
+                    height: 112* screenScaleFactor
+                    visible: false
+                    function trackTo(target) {
+                        if (!target)return
+                        let globalPos = target.mapToGlobal(0, 0)
+                        x = target.x
+                        y = target.y + target.height
+                        visible = true
+                    }
+
+                    background:Rectangle{
+                        id:winContainer
+                        anchors.fill: parent
+                        color: Constants.themeColor
+                        radius: 5* screenScaleFactor
+                        border.width: 1* screenScaleFactor
+                        border.color: Constants.dialogBorderColor
+                        Column{
+                            anchors.fill: parent
+                            Image {
+                            width: 10 * screenScaleFactor
+                            height: 10 * screenScaleFactor
+                            source: "qrc:/UI/photo/closeBtn.svg"
+                            anchors.right: parent.right
+                            anchors.rightMargin: 10* screenScaleFactor
+                            anchors.top: parent.top
+                            anchors.topMargin: 10* screenScaleFactor
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: model_cost_dialog.visible = false
+                            }
+                            }
+                            Column{
+                                anchors.fill: parent
+                                anchors.bottomMargin: 30 * screenScaleFactor
+                                anchors.topMargin: 20 * screenScaleFactor
+                                anchors.leftMargin: 30 * screenScaleFactor
+                                anchors.rightMargin: 40 * screenScaleFactor
+                                Text {
+                                    text: qsTr("Price");
+                                    id:priceId
+                                    color: Constants.themeTextColor
+                                    font.family: Constants.labelFontFamilyBold
+                                    font.pointSize: Constants.labelFontPointSize_14
+                                }
+                                Row{
+                                    width: parent.width
+                                    height: 20* screenScaleFactor
+                                    anchors.top: priceId.bottom
+                                    anchors.topMargin: 10* screenScaleFactor
+                                    Repeater {
+                                        id:model_pay_group_btn
+                                        model: [qsTr("All"), qsTr("Paid"),qsTr("Free")]
+                                        property int defaultSelectedIndex: -1
+                                        delegate:RadioDelegate{
+                                            id: materialRadioControl
+                                            text: modelData
+                                            rightPadding: 10*screenScaleFactor
+                                            implicitHeight: 20*screenScaleFactor
+                                            checked: index ===currentPayTypeId|| model_pay_group_btn.currentIndex === model_pay_group_btn.defaultSelectedIndex
+                                            indicator: Rectangle{
+                                                implicitHeight: 10*screenScaleFactor
+                                                implicitWidth: 10*screenScaleFactor
+                                                anchors.verticalCenter: parent.verticalCenter
+                                                radius: 5*screenScaleFactor
+                                                color:materialRadioControl.checked ? Constants.themeGreenColor : "transparent"
+                                                border.color: (materialRadioControl.checked || materialRadioControl.hovered)? Constants.themeGreenColor : "#cbcbcc"
+                                                border.width: 1* screenScaleFactor
+
+                                                Rectangle {
+                                                    width: 4*screenScaleFactor
+                                                    height: 4*screenScaleFactor
+                                                    anchors.centerIn: parent
+                                                    radius: 2*screenScaleFactor
+                                                    color: Constants.themeTextColor
+                                                    visible: materialRadioControl.checked
+                                                }
+
+                                            }
+                                            background: Rectangle {
+                                                color: "transparent"
+                                                Text{
+                                                    id:modelText
+                                                    text: modelData
+                                                    opacity: enabled ? 1.0 : 0.3
+                                                    color:(materialRadioControl.checked || materialRadioControl.hovered)? Constants.themeGreenColor :  Constants.manager_printer_switch_default_color
+                                                    font.family: Constants.labelFontFamilyBold
+                                                    font.pointSize: Constants.labelFontPointSize_10
+                                                    verticalAlignment: Text.AlignVCenter
+                                                    horizontalAlignment: Text.AlignLeft
+                                                    x:18*screenScaleFactor
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+                                            }
+                                            onClicked:
+                                            {
+                                                currentPayTypeId = index
+                                                clearMap(idGroupMap)
+                                                model_type_repeater.model = model_type_model
+                                                group_search_view.visible = false
+                                                group_view.visible = true
+                                                // group_view.vPosition = 0
+                                                currentModelLibraryPage = 1
+                                                getPageModelList(model_type_model.currentTypelId, currentModelLibraryPage, 24, currentFilterTypeId,currentPayTypeId)
+                                            }
+                                            Component.onCompleted: {
+                                                    model_pay_group_btn.defaultSelectedIndex = model_pay_group_btn.currentIndex
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                BasicLoginTextEdit {
+                    id: search_edit
+
+                    Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                    Layout.minimumWidth: 260 * screenScaleFactor
+                    Layout.minimumHeight: 36 * screenScaleFactor
+
+                    radius: Layout.minimumHeight / 2
+
+                    text: ""
+                    property string prevText: ""
+
+                    placeholderText: qsTr("Enter Model Name")
+                    font.family: Constants.labelFontFamily
+                    font.pointSize: Constants.labelFontPointSize_10
+                    imgPadding: 12 * screenScaleFactor
+                    headImageSrc: hovered ? Constants.searchBtnImg_d : Constants.searchBtnImg
+                    tailImageSrc: hovered
+                                  && search_edit.text != "" ? Constants.clearBtnImg : ""
+                    hoveredTailImageSrc: Constants.clearBtnImg_d
+
+                    onEditingFinished: {
+                        if (search_edit.text == "") {
+                            search_edit.text = ""
+                            model_type_repeater.model = model_type_model
+                            group_view.visible = true
+                            group_search_view.visible = false
+                          //  clear_search_button.onPressed()
+                        } else {
+                            search_button.sigButtonClicked()
+                        }
+                    }
+
+                    onTailBtnClicked: {
+                        search_edit.text = ""
+                        search_button.sigButtonClicked()
+                    }
+                }
+
+                BasicButton {
+                    id: search_button
+
+                    Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                    Layout.minimumWidth: 66 * screenScaleFactor
+                    Layout.minimumHeight: 36 * screenScaleFactor
+
+                    enabled: search_edit.text != ""
+
+                    btnRadius: Layout.minimumHeight / 2
+                    btnBorderW: 0
+                 //   borderColor: hovered ? Constants.model_library_type_button_checked_color : Constants.model_library_border_color
+
+                    text: qsTr("Search")
+                    pointSize: Constants.labelFontPointSize_10
+                    btnTextColor: "#FFFFFF"
+
+                    defaultBtnBgColor: Constants.themeGreenColor // Constants.model_library_type_button_default_color
+                    hoveredBtnBgColor: Qt.lighter(defaultBtnBgColor, 1.1)
+
+                    onSigButtonClicked: {
+                        if (search_edit.text == "") {
+                          //  clear_search_button.onPressed()
+                            model_type_repeater.model = model_type_model
+                            group_view.visible = true
+                            group_search_view.visible = false
+                            return
+                        }
+
+                        model_type_repeater.model = search_result_model
+                        group_view.visible = false
+                        group_search_view.visible = true
+
+                        if (search_edit.text == search_edit.prevText) {
+                            return
+                        }
+
+                        search_edit.prevText = search_edit.text
+                        clearMap(idGroupSearchMap)
+                        // group_search_view.vPosition = 0
+                        currentModelSearchPage = 1
+                        cxkernel_cxcloud.modelLibraryService.searchModelGroup(search_edit.text, currentModelSearchPage, 24)
+                    }
+                }
+            }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            property int topPadding: 20 * screenScaleFactor
+            color: root.panelColor
+
+            ScrollView {
+                id: group_view
+
+                visible: true
+
+                anchors.fill: parent
+                anchors.topMargin: parent.topPadding
+                anchors.rightMargin: -library_groups_layout.anchors.rightMargin / 2
+                rightPadding: -anchors.rightMargin
+
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.vertical.policy: (contentHeight > height) ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                ScrollBar.vertical.onPositionChanged: _ => {
+                    const scroll_bar = ScrollBar.vertical
+                    if (scroll_bar.size + scroll_bar.position !== 1) {
+                        return
+                    }
+
+                    if (currentModelLibraryPage != nextModelLibraryPage) {
+                        if (nextModelLibraryPage != "" || nextModelLibraryPage != -1) {
+                            getPageModelList(model_type_model.currentTypelId,
+                                             nextModelLibraryPage,
+                                             24,
+                                             currentFilterTypeId,
+                                             currentPayTypeId)
+                        }
+                    }
+                }
+
+                clip: true
+
+                Grid {
+                    id: group_list
+                    width: group_view.availableWidth
+                    spacing: 4 * screenScaleFactor
+                    columns: 4
+                    property int itemWidth: 300 * screenScaleFactor
+                    property int itemHeight: 380 * screenScaleFactor
+                    function syncSize() {
+                        let total_width = group_view.width + spacing
+                        let item_width = itemWidth + spacing
+                        columns = Math.floor(total_width / item_width)
+                    }
+                }
+            }
+
+            ScrollView {
+                id: group_search_view
+
+                visible: false
+
+                anchors.fill: parent
+                anchors.topMargin: parent.topPadding
+                anchors.rightMargin: -library_groups_layout.anchors.rightMargin / 2
+                rightPadding: -anchors.rightMargin
+
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.vertical.policy: (contentHeight > height) ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                ScrollBar.vertical.onPositionChanged: _ => {
+                    const scroll_bar = ScrollBar.vertical
+                    if (scroll_bar.size + scroll_bar.position !== 1) {
+                        return
+                    }
+
+                    if (currentModelSearchPage != nextModelSearchPage) {
+                        cxkernel_cxcloud.modelLibraryService.searchModelGroup(
+                                search_edit.text, nextModelSearchPage, 24)
+                    }
+                }
+
+                clip: true
+
+                Grid {
+                    id: group_search_list
+                    width: group_search_view.availableWidth
+                    spacing: 10 * screenScaleFactor
+                    columns: 4
+                    property int itemWidth: 300 * screenScaleFactor
+                    property int itemHeight: 380 * screenScaleFactor
+                    function syncSize() {
+                        let total_width = group_search_view.width + spacing
+                        let item_width = itemWidth + spacing
+                        columns = Math.floor(total_width / item_width)
+                    }
+                }
+            }
+        }
+    }
+    ColumnLayout {
+        id: library_models_layout
+        anchors.fill: parent
+        anchors.topMargin: root.currentTitleHeight + 10 * screenScaleFactor
+        anchors.leftMargin: 20 * screenScaleFactor
+        anchors.rightMargin: anchors.leftMargin
+        anchors.bottomMargin: 30 * screenScaleFactor
+        spacing: 10 * screenScaleFactor
+        visible: false
+        Button {
+            id: back_button
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.minimumWidth: 76 * screenScaleFactor
+            Layout.minimumHeight: 28 * screenScaleFactor
+            background: Rectangle {
+                anchors.fill: parent
+                radius: height / 2
+                border.width: 1
+                border.color: back_button.hovered ? Constants.themeGreenColor
+                                                  : Constants.model_library_back_button_border_default_color
+                color: back_button.hovered ?  Constants.themeGreenColor
+                                           : Constants.model_library_back_button_default_color
+                RowLayout {
+                    anchors.fill: parent
+                    spacing: 5 * screenScaleFactor
+                    Image {
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.leftMargin: 20 * screenScaleFactor
+                        sourceSize.width: 6 * screenScaleFactor
+                        sourceSize.height: 10 * screenScaleFactor
+                        source: back_button.hovered ? Constants.model_library_back_button_checked_image
+                                                    : Constants.model_library_back_button_default_image
+                    }
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.rightMargin: 20 * screenScaleFactor
+                        text: qsTr("Back")
+                        font.family: Constants.labelFontFamily
+                        font.pointSize: Constants.labelFontPointSize_9
+                        color: back_button.hovered ? Constants.model_library_back_button_text_checked_color
+                                                   : Constants.model_library_back_button_text_default_color
+                    }
+                }
+            }
+            onClicked: {
+                library_models_layout.visible = false
+                library_groups_layout.visible = true
+            }
+        }
+        RowLayout {
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.minimumHeight: 500 * screenScaleFactor
+            Layout.maximumHeight: Layout.minimumHeight
+            spacing: 10 * screenScaleFactor
+            Rectangle {
+                Layout.minimumWidth: 442 * screenScaleFactor
+                Layout.fillHeight: true
+                border.width: 1
+                border.color: Constants.model_library_border_color
+                radius: 10 * screenScaleFactor
+                color: "#FFFFFF"
+                ColumnLayout {
+                    anchors.fill: parent
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.minimumHeight: 400 * screenScaleFactor
+                        color: "transparent"
+                        Image {
+                            id: current_model_image
+                            anchors.fill: parent
                             mipmap: true
                             smooth: true
                             cache: false
@@ -1039,434 +1182,608 @@ BasicDialog{
                             source: ""
                         }
                     }
-                    Rectangle{
-                        width: 442 * screenScaleFactor
-                        height: 101 * screenScaleFactor
-                        color: "#FFFFFF"
-                        Row{
-                            anchors{
-                                horizontalCenter: parent.horizontalCenter
-                                verticalCenter: parent.verticalCenter
-                            }
-                            spacing: 20
-                            CusSkinButton_Image{
-                                id: idDetailImageLeft
-                                anchors{
-                                    verticalCenter: parent.verticalCenter
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        color: "transparent"
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.topMargin: 20 * screenScaleFactor
+                            anchors.bottomMargin: anchors.topMargin
+                            anchors.leftMargin: 10 * screenScaleFactor
+                            anchors.rightMargin: anchors.leftMargin
+                            spacing: 10 * screenScaleFactor
+                            Button {
+                                id: model_image_left_button
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                Layout.minimumWidth: 30 * screenScaleFactor
+                                Layout.minimumHeight: Layout.minimumWidth
+                                //enabled: image_list_view.hPosition !== 0
+                                background: Rectangle {
+                                    anchors.fill: parent
+                                    radius: width / 2
+                                    color: model_image_left_button.hovered ? "#E2F5FF" : "transparent"
+                                    Image {
+                                        anchors.centerIn: parent
+                                        visible: model_image_left_button.enabled
+                                        width: 6 * screenScaleFactor
+                                        height: 10 * screenScaleFactor
+                                        source: "qrc:/UI/photo/model_library_detail_left.png"
+                                    }
                                 }
-                                width: 11*screenScaleFactor
-                                height: 16*screenScaleFactor
-                                btnImgDisbaled: "qrc:/UI/photo/model_library_detail_left.png"
-                                btnImgNormal: "qrc:/UI/photo/model_library_detail_left.png"
-                                btnImgHovered: "qrc:/UI/photo/model_library_detail_left_h.png"
-                                btnImgPressed: "qrc:/UI/photo/model_library_detail_left_h.png"
-                                onClicked:
-                                {
-                                    curModelDetailImage = curModelDetailImage-1
-                                    letModelDetailImageListShow(curModelDetailImage, modelCurrentGroupCount)
-                                    onSigBtnDetailItemClicked(imageMap[curModelDetailImage].id)
-                                    idDetailImage.source = imageMap[curModelDetailImage].btnImgUrl
+                                onClicked: {
+                                    let new_pos = image_list_view.hPosition - 1 / countMapSize(idImageMap)
+                                    image_list_view.hPosition = Math.max(0, new_pos)
+                                    // 查找上一个modelId
+                                    let currentIndex
+                                    var ids = Object.keys(idModelMap)
+                                    for (var i = ids.length - 1; i >= 0; i--) {
+                                        if (ids[i] === currentModelId)
+                                            currentIndex = i
+                                    }
+                                    // 切换到上一个modelId
+                                    let nextIndex = Math.max(0, currentIndex - 1);
+                                    currentModelId = ids[nextIndex];
                                 }
                             }
-                            Row{
-                                id: idModelDetailListImage
-                                height: 60 * screenScaleFactor
-                                width: 340 * screenScaleFactor
-                                spacing: 10
-                            }
-                            CusSkinButton_Image{
-                                id: idDetailImageRight
-                                anchors{
-                                    verticalCenter: parent.verticalCenter
+                            Rectangle {
+                                id: image_list_rect
+                                Layout.fillWidth: true
+                                Layout.minimumHeight: 60 * screenScaleFactor
+                                BasicScrollView {
+                                    id: image_list_view
+                                    anchors.fill: parent
+                                    anchors.margins: 0
+                                    wheelEnabled: false
+                                    clip: true
+                                    vpolicyVisible: false
+                                    background: Rectangle {
+                                        color: "transparent"
+                                    }
+                                    Row {
+                                        id: image_list
+                                        anchors.top: parent.top
+                                        anchors.bottom: parent.bottom
+                                        anchors.margins: 0
+                                        spacing: 10 * screenScaleFactor
+                                    }
                                 }
-                                width: 11 * screenScaleFactor
-                                height: 16 * screenScaleFactor
-                                btnImgDisbaled: "qrc:/UI/photo/model_library_detail_right.png"
-                                btnImgNormal: "qrc:/UI/photo/model_library_detail_right.png"
-                                btnImgHovered: "qrc:/UI/photo/model_library_detail_right_h.png"
-                                btnImgPressed: "qrc:/UI/photo/model_library_detail_right_h.png"
-                                onClicked:
-                                {
-                                    curModelDetailImage = curModelDetailImage+1
-                                    letModelDetailImageListShow(curModelDetailImage, modelCurrentGroupCount)
-                                    onSigBtnDetailItemClicked(imageMap[curModelDetailImage].id)
-                                    idDetailImage.source = imageMap[curModelDetailImage].btnImgUrl
+                            }
+                            Button {
+                                id: model_image_right_button
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                Layout.minimumWidth: 30 * screenScaleFactor
+                                Layout.minimumHeight: Layout.minimumWidth
+                                //enabled: image_list_view.hPosition !== 1 - image_list_view.hSize
+                                background: Rectangle {
+                                    anchors.fill: parent
+                                    radius: width / 2
+                                    color: model_image_right_button.hovered ? "#E2F5FF" : "transparent"
+                                    Image {
+                                        anchors.centerIn: parent
+                                        visible: true
+                                        width: 6 * screenScaleFactor
+                                        height: 10 * screenScaleFactor
+                                        source: "qrc:/UI/photo/model_library_detail_right.png"
+                                    }
+                                }
+                                onClicked: {
+                                    let new_pos = image_list_view.hPosition + 1 / countMapSize(idImageMap)
+                                    image_list_view.hPosition = Math.min(1 - image_list_view.hSize, new_pos)
+                                    // 查找下一个modelId
+                                    let currentIndex
+                                    var ids = Object.keys(idModelMap)
+                                    for (var i = ids.length - 1; i >= 0; i--) {
+                                        if (ids[i] === currentModelId)
+                                            currentIndex = i
+                                    }
+                                    let nextIndex = Math.min(ids.length - 1, currentIndex + 1);
+                                    currentModelId = ids[nextIndex];
                                 }
                             }
                         }
                     }
                 }
-                Rectangle{
-                    width: 706 * screenScaleFactor
-                    height: 500 * screenScaleFactor
-                    color: "#FFFFFF"
-                    Column{
-                        x: 20 * screenScaleFactor
-                        y: 20 * screenScaleFactor
-                        spacing: 6
-                        width: parent.width-40
-                        height: parent.height-40
-                        StyledLabel{
-                            id: idModelNameLabel
-                            width: parent.width-20
-                            height: 20
-                            //wrapMode: Text.WordWrap
+            }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                border.width: 1
+                border.color: Constants.model_library_border_color
+                radius: 10 * screenScaleFactor
+                color: "transparent"
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.topMargin: 30 * screenScaleFactor
+                    anchors.bottomMargin: anchors.topMargin
+                    anchors.leftMargin: 20 * screenScaleFactor
+                    anchors.rightMargin: anchors.leftMargin
+                    Rectangle{
+                        width: parent.width
+                        height: 30* screenScaleFactor
+                        color:"transparent"
+                        Layout.fillWidth: true
+                        Column{
+                            height: parent.height
+                            anchors.left: parent.left
+                            StyledLabel {
+                                id: group_name_label
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                                Layout.minimumHeight: 20 * screenScaleFactor
+                                width:300 * screenScaleFactor
+                                elide: Text.ElideRight
+                                text: ""
+                                color: Constants.model_library_special_text_color
+                                font.weight: "Bold"
+                                font.pointSize: Constants.labelFontPointSize_12
+                            }
+                            RowLayout{
+
+                                StyledLabel {
+                                    id: group_upload__category
+                                    property string categoryName: ""
+                                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                                    Layout.minimumHeight: 20 * screenScaleFactor
+                                    text:  "%1 : %2".arg(qsTr("Category")).arg(categoryName)
+                                    color: Constants.model_library_general_text_color
+                                    font.pointSize: Constants.labelFontPointSize_9
+                                }
+                                StyledLabel {
+                                    id: group_upload_i
+                                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                                    Layout.minimumHeight: 20 * screenScaleFactor
+                                    text: "/"
+                                    color: Constants.model_library_general_text_color
+                                    font.pointSize: Constants.labelFontPointSize_9
+                                }
+                                StyledLabel {
+                                    id: group_upload_time_label
+                                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                                    Layout.minimumHeight: 20 * screenScaleFactor
+                                    text: ""
+                                    color: Constants.model_library_general_text_color
+                                    font.pointSize: Constants.labelFontPointSize_9
+                                }
+
+                            }
+                        }
+                        Row {
+                             height: parent.height
+                             anchors.right: parent.right
+                            Column{
+                                id:group_like_btn
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: 76* screenScaleFactor
+                                spacing: 8* screenScaleFactor
+                                property bool isLike: false
+                                property int likeCount: 0
+                                Image {
+                                    source: parent.isLike ? img_like_s: img_like_d
+                                    width: 15* screenScaleFactor
+                                    height: 15* screenScaleFactor
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            if (!cxkernel_cxcloud.accountService.logined) {
+                                                onSigLoginTip()
+                                                return
+                                            }
+                                            cxkernel_cxcloud.modelLibraryService.likeModelGroup(currentGroupId, !group_like_btn.isLike)
+                                        }
+                                    }
+                                }
+                                Text {
+                                    text: parent.likeCount
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pointSize: 10* screenScaleFactor
+                                    color: "#BABABA"
+                                }
+
+                            }
+                            Rectangle{
+                                width: 1* screenScaleFactor
+                                height: 20* screenScaleFactor
+                                color: "#55555B"
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                            Column{
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: 76* screenScaleFactor
+                                spacing: 8* screenScaleFactor
+                                id:group_collect_btn
+                                property bool isCollect: false
+                                property int collectCount: 0
+                                Image {
+                                    source: parent.isCollect ? img_collect_s: img_collect_d
+                                    width: 15* screenScaleFactor
+                                    height: 15* screenScaleFactor
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            if (!cxkernel_cxcloud.accountService.logined) {
+                                                onSigLoginTip()
+                                                return
+                                            }
+                                            cxkernel_cxcloud.modelLibraryService.collectModelGroup(currentGroupId, !group_collect_btn.isCollect)
+                                        }
+                                    }
+                                }
+                                Text {
+                                    text: parent.collectCount
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pointSize: 10* screenScaleFactor
+                                    color: "#BABABA"
+                                }
+                            }
+                            Rectangle{
+                                id:line
+                                width: 1* screenScaleFactor
+                                height: 20* screenScaleFactor
+                                color: "#55555B"
+                                anchors.verticalCenter: parent.verticalCenter
+
+                            }
+                            Column{
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: 76* screenScaleFactor
+                                spacing: 8* screenScaleFactor
+                                id:group_share_btn
+                                property int shareCount: 0
+                                Image {
+                                    source: img_share_d
+                                    width: 15* screenScaleFactor
+                                    height: 15* screenScaleFactor
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            if (!cxkernel_cxcloud.accountService.logined) {
+                                                onSigLoginTip()
+                                                return
+                                            }
+                                            root.shareDialog.share(root.currentGroupId, group_share_btn)
+                                        }
+                                    }
+                                }
+                                Text {
+                                    text: parent.shareCount
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pointSize: 10* screenScaleFactor
+                                    color: "#BABABA"
+                                }
+                            }
+                            Rectangle{
+                                width: 1* screenScaleFactor
+                                height: 20* screenScaleFactor
+                                color: "#55555B"
+                                anchors.verticalCenter: parent.verticalCenter
+
+                            }
+                            Column{
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: 76* screenScaleFactor
+                                spacing: 8* screenScaleFactor
+                                id:group_download_btn
+                                property int downloadCount: 0
+                                Image {
+                                    source: img_download_one_d
+                                    width: 14* screenScaleFactor
+                                    height: 14* screenScaleFactor
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            let group_id = currentGroupId
+                                            let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+                                            if (id_group_map[group_id].totalPrice > 0) {
+                                                Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + group_id)
+                                                return
+                                            }
+                                            if (!cxkernel_cxcloud.downloadService.checkModelGroupDownloadable(group_id)) {
+                                                onSigDownloadedTip()
+                                                return
+                                            }
+                                            if (!cxkernel_cxcloud.accountService.logined) {
+                                                cxkernel_cxcloud.downloadService.makeModelGroupDownloadPromise(group_id)
+                                                onSigLoginTip()
+                                                return
+                                            }
+                                            cxkernel_cxcloud.modelLibraryService.downloadModelGroup(group_id)
+                                            group_download_btn.downloadCount +=1
+                                            cxkernel_cxcloud.downloadService.startModelGroupDownloadTask(group_id)
+                                            root.requestToShowDownloadTip()
+                                            root.visible = false
+                                        }
+                                    }
+                                }
+                                Text {
+                                    text: parent.downloadCount
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pointSize: 10* screenScaleFactor
+                                    color: "#BABABA"
+                                }
+                            }
+
+                        }
+                    }
+                    RowLayout {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        Layout.minimumHeight: 85 * screenScaleFactor
+                        spacing: 8 * screenScaleFactor
+                        BaseCircularImage {
+                            id: author_head_image
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            Layout.minimumWidth: 60 * screenScaleFactor
+                            Layout.minimumHeight: Layout.minimumWidth
+                            img_src: ""
+                            property string authorId: ""
+                            MouseArea{
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: onSigAuthorClicked(parent.authorId)
+
+                            }
+                        }
+                        StyledLabel {
+                            id: author_name_label
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            Layout.fillWidth: true
+                            Layout.minimumHeight: author_head_image.Layout.minimumHeight
+                            verticalAlignment: Text.AlignVCenter
                             elide: Text.ElideRight
                             text: ""
-                            font.pointSize:14
-                            font.weight: "Bold"
-                            color: "#333333"
-                            verticalAlignment: Qt.AlignVCenter
+                            color: Constants.model_library_special_text_color
+                            font.pointSize: Constants.labelFontPointSize_12
                         }
-                        StyledLabel{
-                            id: idModelUploadTimeLabel
-                            width: idModelUploadTimeLabel.contentWidth
-                            height: 12
-                            text: ""
-                            font.pointSize:Constants.labelFontPointSize
-                            color: "#666666"
-                        }
-                        Row{
-                            width: parent.width
-                            height: 85 * screenScaleFactor
-                            spacing: 9
-                            BaseCircularImage{
-                                id: idAvtarImage
-                                anchors{
-                                    //horizontalCenter: parent.horizontalCenter
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                width: 60 * screenScaleFactor
-                                height: 60 * screenScaleFactor
-                                img_src: ""
-                            }
-                            StyledLabel{
-                                id: idAuthorName
-                                anchors{
-                                    //horizontalCenter: parent.horizontalCenter
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                width: 203 * screenScaleFactor
-                                height: 60 * screenScaleFactor
-                                elide: Text.ElideRight
-                                font.pointSize:14
-                                color: "#333333"
-                                text: ""
-                                verticalAlignment: Qt.AlignVCenter
-                            }
-                            BasicDialogButton{
-                                id: idCollectModelBtn
-                                property var collectStatus: 0
-                                width: 36 * screenScaleFactor
-                                height: 36 * screenScaleFactor
-                                btnRadius: 3
-                                btnBorderW: 1
-                                borderColor: "#E7E7E7"
-                                pressedIconSource: "qrc:/UI/photo/model_library_uncollect.png"
-                                defaultBtnBgColor: "#FFFFFF"
-                                hoveredBtnBgColor: "#FFFFFF"
-                                strTooptip: {
-                                   if(collectStatus == 1){
-                                       return qsTr("UnCollect")
-                                   }else{
-                                       return qsTr("Collect")
-                                   }
-                                }
-                                anchors{
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                onSigButtonClicked:
-                                {
-                                    if(collectStatus == 1){
-                                        collectModelStatus(modelCurrentGroupId, true)
-                                    }else{
-                                        collectModelStatus(modelCurrentGroupId, false)
+
+                        ColumnLayout{
+                            RowLayout{
+                                spacing: 10* screenScaleFactor
+                                BasicDialogButton {
+                                    id: download_group_button
+                                    Layout.alignment: Qt.AlignCenter
+                                    Layout.minimumWidth: 130 * screenScaleFactor
+                                    Layout.minimumHeight: 36 * screenScaleFactor
+                                    btnBorderW: 0
+                                    btnRadius: Layout.minimumHeight / 2
+                                    borderColor:Constants.model_library_action_button_border_checked_color
+                                    isAnimatedImage: false
+                                    imgWidth: 14 * screenScaleFactor
+                                    imgHeight: 14 * screenScaleFactor
+                                    iconImage.fillMode: Image.PreserveAspectFit
+                                    pressedIconSource:  img_download_all_d
+                                    defaultBtnBgColor: Constants.themeGreenColor
+                                    hoveredBtnBgColor: hovered ? Qt.lighter(defaultBtnBgColor,1.1) :  Constants.themeGreenColor
+                                    text: qsTr("DownLoad All")
+                                    btnTextColor: Constants.model_library_action_button_text_checked_color
+                                    onSigButtonClicked: {
+                                        let group_id = currentGroupId
+                                        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+                                        if (id_group_map[group_id].totalPrice > 0) {
+                                            Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + group_id)
+                                            return
+                                        }
+                                        if (!cxkernel_cxcloud.downloadService.checkModelGroupDownloadable(group_id)) {
+                                            onSigDownloadedTip()
+                                            return
+                                        }
+                                        if (!cxkernel_cxcloud.accountService.logined) {
+                                            cxkernel_cxcloud.downloadService.makeModelGroupDownloadPromise(group_id)
+                                            onSigLoginTip()
+                                            return
+                                        }
+                                        cxkernel_cxcloud.downloadService.startModelGroupDownloadTask(group_id)
+                                        root.requestToShowDownloadTip()
+                                        root.visible = false
                                     }
                                 }
-                            }
-                            BasicDialogButton{
-                                id: idShareModelBtn
-                                width: 36 * screenScaleFactor
-                                height: 36 * screenScaleFactor
-                                btnRadius: 3
-                                btnBorderW: 1
-                                borderColor: "#E7E7E7"
-                                pressedIconSource: idShareModelBtn.hovered ? "qrc:/UI/photo/model_library_share_h.png" : "qrc:/UI/photo/model_library_share.png"
-                                defaultBtnBgColor: "#FFFFFF"
-                                hoveredBtnBgColor: "#FFFFFF"
-                                strTooptip: qsTr("Share")
-                                anchors{
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                onSigButtonClicked:
-                                {
-                                    idShareModelPopup.visible = true
-                                    idShareModelPopup.x = idModelLibraryDlg.x + 970 - 208
-                                    idShareModelPopup.y = idModelLibraryDlg.y + 218
-                                }
-                            }
-                            BasicDialogButton{
-                                id: idModelLibraryDetailLoad
-                                anchors{
-                                    //horizontalCenter: parent.horizontalCenter
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                width: 140 * screenScaleFactor
-                                height: 36 * screenScaleFactor
-                                btnRadius: 3
-                                btnBorderW: 0
-                                pointSize: Constants.labelLargeFontPointSize
-                                isAnimatedImage:false
-                                btnTextColor:{
-                                    if(idModelLibraryDetailLoad.enabled){
-                                        return Constants.textColor
-                                    }else{
-                                        return "#666666"
+
+                                BasicDialogButton {
+                                    id: download_group_button1
+                                    Layout.alignment: Qt.AlignCenter
+                                    Layout.minimumWidth: 130 * screenScaleFactor
+                                    Layout.minimumHeight: 36 * screenScaleFactor
+                                    btnBorderW: 0
+                                    btnRadius: Layout.minimumHeight / 2
+                                    borderColor:Constants.model_library_action_button_border_checked_color
+                                    isAnimatedImage: false
+                                    imgWidth: 14 * screenScaleFactor
+                                    imgHeight: 14 * screenScaleFactor
+                                    iconImage.fillMode: Image.PreserveAspectFit
+                                    pressedIconSource: img_import_all_d
+                                    defaultBtnBgColor: Constants.themeGreenColor
+                                    hoveredBtnBgColor: hovered ? Qt.lighter(defaultBtnBgColor,1.1) :  Constants.themeGreenColor
+                                    text: qsTr("Import all")
+                                    btnTextColor: Constants.model_library_action_button_text_checked_color
+                                    onSigButtonClicked: {
+                                        let group_id = currentGroupId
+                                        let id_group_map = isSearchMode ? idGroupSearchMap : idGroupMap
+                                        if (id_group_map[group_id].totalPrice > 0) {
+                                            Qt.openUrlExternally(cxkernel_cxcloud.modelGroupUrlHead + group_id)
+                                            return
+                                        }
+                                        if (!cxkernel_cxcloud.accountService.logined) {
+                                            cxkernel_cxcloud.downloadService.makeModelGroupDownloadPromise(group_id, true)
+                                            onSigLoginTip()
+                                            return
+                                        }
+                                        if (cxkernel_cxcloud.downloadService.checkModelGroupDownloaded(group_id)) {
+                                            cxkernel_cxcloud.downloadService.importModelGroupCache(group_id)
+                                        } else {
+                                            cxkernel_cxcloud.downloadService.startModelGroupDownloadTask(group_id, true)
+                                        }
+
+
+                                        root.visible = false
                                     }
                                 }
-                                pressedIconSource: "qrc:/UI/photo/model_library_detail_import.png"
-                                defaultBtnBgColor: "#1E9BE2"
-                                hoveredBtnBgColor: "#1EB6E2"
-                                text: qsTr("Import Model")
-                                onSigButtonClicked:
-                                {
-                                    importModelLibraryItem(modelCurrentGroupId, idModelNameLabel.text)
-                                }
+
                             }
 
-                            BasicDialogButton{
-                                id: idDetailDownModelLocatalBtn
-                                anchors{
-                                    //horizontalCenter: parent.horizontalCenter
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                width: 140 * screenScaleFactor
-                                height: 36 * screenScaleFactor
-                                btnRadius: 3
-                                btnBorderW: 1
-                                borderColor: "#E7E7E7"
-                                pointSize: Constants.labelLargeFontPointSize
-                                isAnimatedImage:false
-                                btnTextColor:{
-                                    if(idDetailDownModelLocatalBtn.enabled){
-                                        return btnHovred ? "#FFFFFF" : "#ACACAC"
-                                    }else{
-                                        return "#666666"
-                                    }
-                                }
-                                pressedIconSource: btnHovred ? "qrc:/UI/photo/model_library_detail_download.png":"qrc:/UI/photo/model_library_detail_item_down.png"
-                                defaultBtnBgColor: "#FFFFFF"
-                                hoveredBtnBgColor: "#1E9BE2"
-                                text: qsTr("DownLoad Model")
-                                onSigButtonClicked:
-                                {
-                                    downLoadModelGroup("downloadModelGroup")
-                                }
-                            }
-                        }
-                        StyledLabel{
-                            width: parent.width
-                            height: 16 * screenScaleFactor
-                            font.pointSize:12
-                            color: "#333333"
-                            text: qsTr("Model List")
-                        }
-                        Rectangle{
-                            width: 10
-                            height: 1
-                            color: "transparent"
-                        }
-                        BasicScrollView{
-                            width: parent.width
-                            height: 252 * screenScaleFactor
-                            hpolicy: ScrollBar.AlwaysOff
-                            vpolicy: ScrollBar.AsNeeded
-                            clip : true
-                            Column
-                            {
-                                id: idModelListItem
-                                width: parent.width
-                            }
                         }
                     }
-
-                }
-            }
-            Rectangle{
-                width: 1158 * screenScaleFactor
-                height: 123 * screenScaleFactor
-                color: "#FFFFFF"
-                Row{
-                    x: 20
-                    y: 20
-                    width: parent.width
-                    height: parent.height
-                    Column{
-                        spacing: 10
-                        Row{
-                            spacing: 10
-                            StyledLabel{
-                                id: idLicenseLabel
-                                width: idLicenseLabel.contentWidth
-                                height: 18 * screenScaleFactor
-                                font.pointSize:14 
-                                font.weight: "Bold"
-                                color: "#333333"
-                                text: qsTr("Creative Commons License")
-                            }
-                            CusSkinButton_Image{
-                                anchors{
-                                    verticalCenter: parent.verticalCenter
-                                }
-                                width: 16* screenScaleFactor
-                                height: 16* screenScaleFactor
-                                btnImgNormal: "qrc:/UI/photo/model_library_license.png"
-                                btnImgHovered: "qrc:/UI/photo/model_library_license_h.png"
-                                btnImgPressed: "qrc:/UI/photo/model_library_license_h.png"
-
-                                onClicked:
-                                {	
-                                    idLicenseDesDlg.visible = true
-                                }
-                            }
-                        }
-                        StyledLabel{
-                            id: idLicenseDisLabel
-                            width: idLicenseDisLabel.contentWidth
-                            height: 15* screenScaleFactor
-                            font.pointSize:Constants.labelLargeFontPointSize
-                            color: "#666666"
-                            text: qsTr("Please check the copyright information in the description.")
-                        }
-                    }
-                    Rectangle{
-                        width: 941* screenScaleFactor-idLicenseDisLabel.contentWidth
-                        height: 60* screenScaleFactor
+                    Rectangle {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        height: 20 * screenScaleFactor
                         color: "transparent"
                     }
-                    Image{
-                        id: idLcenseIconImg
-                        width: 172* screenScaleFactor
-                        height: 60 * screenScaleFactor
-                        mipmap: true
-                        smooth: true
-                        cache: false
-                        asynchronous: true
-                        fillMode: Image.PreserveAspectFit
-                        source: "qrc:/UI/photo/license_by_nc.png"
+                    Rectangle {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        height: 1
+                        color: Constants.model_library_border_color
+                    }
+                    Rectangle {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        height: 20 * screenScaleFactor
+                        color: "transparent"
+                    }
+                    StyledLabel {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        Layout.minimumHeight: 20 * screenScaleFactor
+                        color: Constants.model_library_special_text_color
+                        text: qsTr("Model List")
+                        font.family: Constants.labelFontFamily
+                        font.pointSize: Constants.labelFontPointSize_12
+                    }
+                    Rectangle {
+                        id: model_list_rect
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        color: "transparent"
+                        BasicScrollView {
+                            id: model_list_scroll
+                            anchors.fill: parent
+                            anchors.rightMargin: -15 * screenScaleFactor
+                            clip: true
+                            vpolicyVisible: model_list.height > model_list_rect.height
+                            background: Rectangle {
+                                color: "transparent"
+                            }
+                            Column {
+                                id: model_list
+                                width: model_list_rect.width
+                                spacing: 10 * screenScaleFactor
+                            }
+                        }
                     }
                 }
-                
             }
         }
+        Rectangle {
+            id: group_license_rect
+            //      Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.minimumHeight: 100 * screenScaleFactor
+            Layout.fillWidth: true
+            //      Layout.fillHeight: false
+            height: 123*screenScaleFactor
+            //            border.width: 1
+            //            border.color: Constants.model_library_border_color
+            //            radius: 10 * screenScaleFactor
+            color: "transparent"
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: 20 * screenScaleFactor
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    spacing: 15 * screenScaleFactor
+                    RowLayout {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        spacing: 10 * screenScaleFactor
+                        StyledLabel {
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            Layout.minimumHeight: 18 * screenScaleFactor
+                            font.pointSize: Constants.labelFontPointSize_12
+                            color: Constants.model_library_special_text_color
+                            text: qsTr("Creative Commons License")
+                        }
+                        Button {
+                            id: license_button
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            Layout.minimumWidth: 18 * screenScaleFactor
+                            Layout.minimumHeight: Layout.minimumWidth
+                            background: Rectangle {
+                                anchors.fill: parent
+                                radius: license_button.Layout.minimumWidth / 2
+                                color: license_button.hovered ? Qt.lighter(Constants.themeGreenColor,1.1) :Constants.themeGreenColor
+                                Image {
+                                    anchors.fill: parent
+                                    anchors.centerIn: parent
+                                    anchors.margins: 4 * screenScaleFactor
+                                    fillMode: Image.PreserveAspectFit
+                                    source: license_button.hovered ? Constants.model_library_license_checked_image : Constants.model_library_license_default_image
+                                }
+                            }
+                            onClicked: {
+                                license_dialog.visible = true
+                            }
+                        }
+                    }
+                    StyledLabel {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        font.pointSize: Constants.labelFontPointSize_9
+                        color: Constants.model_library_general_text_color
+                        text: qsTr("Please check the copyright information in the description.")
+                    }
+                }
+                Image {
+                    id: license_image
+                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.minimumWidth: 172 * screenScaleFactor
+                    Layout.minimumHeight: 60 * screenScaleFactor
+                    mipmap: true
+                    smooth: true
+                    cache: false
+                    asynchronous: true
+                    fillMode: Image.PreserveAspectFit
+                    source: "qrc:/UI/photo/license_by_nc.png"
+                }
+            }
+        }
+        Item{
+            Layout.fillHeight: true
+        }
     }
-
-    LicenseDescriptionDlg{
-        id:idLicenseDesDlg
-        visible:false
-    }
-
-    ModelLibraryShareDialog{
-        id: idShareModelPopup
+    LicenseDescriptionDlg {
+        id: license_dialog
         visible: false
-        property var modelId: ""
-
-        Column{
-            x: 21 + 10
-            y: 36
-            spacing: 10
-            Row{
-                spacing: 9
-                StyledLabel{
-                    width: 37* screenScaleFactor
-                    height: 30* screenScaleFactor
-                    font.pointSize:Constants.labelFontPointSize
-                    text: qsTr("Link: ")
-                    color: "#333333"
-                    verticalAlignment: Text.AlignVCenter
-                }
-                StyledLabel{
-                    id: idShareLink
-                    width: 304* screenScaleFactor
-                    height: 30* screenScaleFactor
-                    font.pointSize:Constants.labelFontPointSize
-                    text: ""
-                    color: "#333333"
-                    elide: Text.ElideRight
-                    verticalAlignment: Text.AlignVCenter
-                    Rectangle{
-                        anchors.fill: parent
-                        color: "transparent"
-                        border.width: 1
-                        border.color: "#E7E7E7"
-                    }
-                }
-            }
-            Row{
-                x: 45
-                spacing: 24
-                BasicButton{
-                    width: 140* screenScaleFactor
-                    height: 36* screenScaleFactor
-                    text: qsTr("Copy Link")
-                    btnRadius: 3
-                    btnBorderW: 0
-                    pointSize: Constants.labelFontPointSize
-                    // defaultBtnBgColor: "#BBBBBB"
-                    // hoveredBtnBgColor: "#1E9BE2"
-                    btnTextColor: "white"
-                    defaultBtnBgColor : "#1E9BE2"
-                    hoveredBtnBgColor: "#1EB6E2"
-                    onSigButtonClicked:
-                    {
-                        shareModelGroup(idShareModelPopup.modelId)
-                        idShareModelPopup.visible = false
-                    }
-                }
-                BasicButton{
-                    width: 140* screenScaleFactor
-                    height: 36* screenScaleFactor
-                    text: qsTr("Cancel")
-                    btnRadius: 3
-                    btnBorderW: 0
-                    pointSize: Constants.labelFontPointSize
-                    btnTextColor: "white"
-                    defaultBtnBgColor: "#BBBBBB"
-                    hoveredBtnBgColor: "#1E9BE2"
-
-                    onSigButtonClicked:
-                    {
-                        idShareModelPopup.visible = false
-                    }
-                }
-            }
-        }
     }
-
-    FolderDialog{
-        id: idFolderDownDlg
-        property var receiveType: ""
-        onAccepted:
-        {
-            if(receiveType == "downloadModelGroup")
-            {
-                downModelToLocall(modelCurrentGroupId, modelCurrentGroupCount, idModelNameLabel.text, currentFolder)
-            }
-            else if(receiveType == "downloadModelItem")
-            {
-                downModelToLocall(currentModelId, 0, curModelName, currentFolder)
-            }
-        }
-    }
-
-    UploadMessageDlg{
-        id: idDownModelFailedDlg
-        msgText: qsTr("Failed to import or download model!") 
+//    ModelLibraryAuthorInfo{
+//        id: model_author_info
+//        visible: false
+//        authorId:""
+//        context: standaloneWindow.dockContext
+//    }
+    UploadMessageDlg {
+        id: goto_download_center_tip
+        visible: false
+        msgText: qsTr("The Model is in the download task list. Please check the download center.")
         cancelBtnVisible: false
-        visible: false
-        onSigOkButtonClicked:
-        {
-            idDownModelFailedDlg.close()
+        ignoreBtnVisible: false
+        onSigOkButtonClicked: {
+            root.requestToShowDownloadTip()
+            this.visible = false
         }
     }
 }

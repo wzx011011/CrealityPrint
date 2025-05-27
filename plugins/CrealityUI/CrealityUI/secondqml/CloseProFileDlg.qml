@@ -21,7 +21,6 @@ BasicDialog {
         width: parent.width
         Image {
             id: imageRepair
-
             anchors.horizontalCenter: parent.horizontalCenter
             width: 64
             height: 54
@@ -32,15 +31,11 @@ BasicDialog {
            id: panel_name
            x: 65
            y: 100
-
-    //       anchors.top: parent.top
-    //       anchors.topMargin: margin
            verticalAlignment: Label.AlignTop
            horizontalAlignment: Label.AlignHCenter
            text: qsTr("Save Project Before Exiting?")
            anchors.horizontalCenter: parent.horizontalCenter
-    //       color: "black"
-           font.pixelSize:Constants.labelFontPixelSize  // panelFontSize
+           font.pointSize: Constants.labelFontPointSize_6
         }
         Item {
             height: 2

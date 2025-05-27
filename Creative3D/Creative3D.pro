@@ -41,3 +41,8 @@ win32:CONFIG (debug, debug|release){
 
 HEADERS +=
 
+RESOURCES += \
+    ../plugins/CrealityUI/qml.qrc \
+    scence3d.qrc \
+    translations.qrc
+

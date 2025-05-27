@@ -49,9 +49,9 @@ T.TextArea {
                              implicitBackgroundHeight + topInset + bottomInset,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
+    property int borderWidth: 1*screenScaleFactor
     padding: 6
     leftPadding: padding + 4
-
     color: Constants.textColor//control.palette.text
     placeholderTextColor: Color.transparent(control.color, 0.5)
     selectionColor: control.palette.highlight
@@ -74,10 +74,10 @@ T.TextArea {
     }
     background: Rectangle//by TCJ
     {
-        anchors.fill : parent
-        color: Constants.itemBackgroundColor
-
-        border.width:1
+        radius: 5
+        color:  "transparent" //Constants.itemBackgroundColor
+        visible: borderWidth
+        border.width:borderWidth
         border.color:hovered ? Constants.textRectBgHoveredColor : Constants.dialogItemRectBgBorderColor
     }
 }

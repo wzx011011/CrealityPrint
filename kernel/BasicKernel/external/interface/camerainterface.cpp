@@ -1,22 +1,22 @@
 #include "camerainterface.h"
 #include "qtuser3d/camera/screencamera.h"
+#include "qtuser3d/camera/cameracontroller.h"
 #include "external/kernel/kernel.h"
 #include "external/kernel/reuseablecache.h"
 
-using namespace qtuser_3d;
 namespace creative_kernel
 {
-	CameraController* cameraController()
+	qtuser_3d::CameraController* cameraController()
 	{
 		return getKernel()->cameraController();
 	}
 
-	ScreenCamera* visCamera()
+	qtuser_3d::ScreenCamera* visCamera()
 	{
 		return getKernel()->reuseableCache()->mainScreenCamera();
 	}
 
-	Ray visRay(const QPoint& point)
+	qtuser_3d::Ray visRay(const QPoint& point)
 	{
 		return getKernel()->reuseableCache()->mainScreenCamera()->screenRay(point);
 	}
@@ -24,5 +24,10 @@ namespace creative_kernel
 	float cameraScreenSpaceRatio(QVector3D position)
 	{
 		return visCamera()->screenSpaceRatio(position);
+	}
+
+	QVector3D cameraPosition()
+	{
+		return getKernel()->cameraController()->getViewPosition();
 	}
 }

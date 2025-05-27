@@ -1,6 +1,6 @@
 #ifndef _NULLSPACE_Repair_1589849922902_H
 #define _NULLSPACE_Repair_1589849922902_H
-#include "creativeinterface.h"
+#include "qtusercore/module/creativeinterface.h"
 
 class RepairCommand;
 class Repair: public QObject, public CreativeInterface

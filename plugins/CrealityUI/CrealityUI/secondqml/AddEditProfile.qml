@@ -4,51 +4,61 @@ import QtQuick.Layouts 1.0
 //import CrealityUI 1.0
 //import "qrc:/CrealityUI"
 import "../qml"
-BasicDialog
+import "../components"
+DockItem
 {
     id: addEditProfiledlg
 
-    width: 500*screenScaleFactor
-    height: 330*screenScaleFactor
-    titleHeight : 20*screenScaleFactor
+    width: 600*screenScaleFactor
+    height: 270*screenScaleFactor
+    titleHeight : 30*screenScaleFactor
     title: qsTr("New")
+	property var currentMachine
+    signal sigAddProfile(string newProfileName, var templateObject)
 
-    property string profileName:qsTr("new")
-    property string profileMachine: "Ender-3"
-    property alias profileMaterial: editmaterial.currentText//"PLA"
-    property string profileQuality: "PLA"
-
-    property string newProfile: "new"
-    property alias model: editprinter.model
-    property alias modelprofile: editoldprofile.model
-    property alias modelprofileIndex: editoldprofile.currentIndex
-    property alias modelmaterial: editmaterial.model
-    property alias modelmaterialIndex: editmaterial.currentIndex
-    property alias currentIndex: editprinter.currentIndex
-    property alias currentText: editprinter.currentText
-    signal printerchanged(string currenttext)
-    signal saveProfile(string newProfile,string printer,string material,string oldProfile)
-    signal openEditMenu()
-    signal confirmNewName(string newName)
-    signal sigPreCreateFile(string fileName)
-    signal openWarring()
-    function qmlFunction(msg)
-    {
-        console.log("QML get message:",msg);
-        if(msg === "new")
-        {
-            console.log("11111111111")
-            parameterUI.onSaveProfile(newprofile.text,editprinter.textAt(currentIndex),editmaterial.currentText)
-
-            addEditProfiledlg.close();
-            openEditMenu()
+	function showAddProfile(machine){
+		currentMachine = machine
+		if(!currentMachine)
+			return;
+		
+		checkProfileName()
+		
+		idProfileName.text = currentMachine.generateNewProfileName()
+        idProfileList.model = currentMachine.profileNames()
+		idProfileList.currentIndex = currentMachine.curProfileIndex
+		idPrintList.model = kernel_parameter_manager.machinesNames()
+		idPrintList.currentIndex = kernel_parameter_manager.curMachineIndex
+					
+		visible = true
+	}
+	
+	function hideAddProfile(){
+		close()
+	}
+	
+	function tryAddProfile(){
+		hideAddProfile()
+		sigAddProfile(idProfileName.text, currentMachine.profileObject(idProfileList.currentIndex).profileFileName())
+	}
+	
+	function checkProfileName()
+	{
+        var res = currentMachine.checkProfileName(idProfileName.text)
+		errorMsg.fontText = qsTr("Name repeater, please rename!")
+        if(res){
+            basicComButton.enabled = false
+            errorMsg.visible = true
+        }else{
+			if(!idProfileName.text.match("^(?! +$).*$") || idProfileName.text.length ===0){
+                errorMsg.fontText = qsTr("The input can't be empty!!")
+				basicComButton.enabled = false
+				errorMsg.visible = true
+            }else{
+				basicComButton.enabled = true
+				errorMsg.visible = false
+			}
         }
-        else
-        {
-            openWarring()
-        }
-
-    }
+	}
 
     Item //Rectangle
     {
@@ -57,146 +67,92 @@ BasicDialog
         y :10*screenScaleFactor + titleHeight
         width: parent.width
         height: parent.height-titleHeight-20
-        //        rows:3
-        //        spacing : 10
         Grid
         {
             y:40*screenScaleFactor
+            x:40*screenScaleFactor
             width: 350*screenScaleFactor
             height : 120*screenScaleFactor
-            spacing: 10
-            rows: 5
+            rowSpacing: 10
+            rows: 4
             columns: 2
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: -50
-            //            anchors.centerIn: parent
+
             StyledLabel {
                 id: element
-                width: 160*screenScaleFactor
+                width: 120*screenScaleFactor
                 height : 30*screenScaleFactor
                 visible:true
-                text: qsTr("New Profile:")
+                text: qsTr("New Profile") + ":"
                 verticalAlignment: Qt.AlignVCenter
-                horizontalAlignment: Qt.AlignRight
+                horizontalAlignment: Qt.AlignLeft
             }
 
             BasicDialogTextField {
-                id: newprofile
-                width: 180*screenScaleFactor
+                id: idProfileName
+                width: 405*screenScaleFactor
                 height: 30*screenScaleFactor
-                text: addEditProfiledlg.newProfile
                 visible:true
                 cursorVisible: false
-                validator: RegExpValidator { regExp: /^[^\s][\w\s-]+$/ }
+                validator: RegExpValidator { regExp: /^[^\\/:*?<>|]*$/ }
 
                 onTextChanged: {
-                    profileName = newprofile.text
-                    var res = paramSetUI.isRepeatFileName(text)
-                    if(res){
-                        basicComButton.enabled = false
-                        errorMsg.visible = true
-                        console.log("名称重复")
-                    }else{
-                        basicComButton.enabled = true
-                        errorMsg.visible = false
-                    }
-                }
-                //初始化之后增加文件按重复校验
-                Component.onCompleted: {
-                    var res = paramSetUI.isRepeatFileName(addEditProfiledlg.newProfile)
-                    if(res){
-                        basicComButton.enabled = false
-                        errorMsg.visible = true
-                        console.log("名称重复")
-                    }else{
-                        basicComButton.enabled = true
-                        errorMsg.visible = false
-                    }
+					checkProfileName()
                 }
             }
             StyledLabel {
                 id: element2
-                text: qsTr("Printer:")
-                width: 160*screenScaleFactor
+                text: qsTr("Printer") + ":"
+                width: 120*screenScaleFactor
                 height : 30*screenScaleFactor
                 verticalAlignment: Qt.AlignVCenter
-                horizontalAlignment: Qt.AlignRight
+                horizontalAlignment: Qt.AlignLeft
             }
 
-            BasicCombobox {
-                id: editprinter
-                width: 180*screenScaleFactor
+            CXComboBox {
+                id: idPrintList
+                width: 405*screenScaleFactor
                 height: 30*screenScaleFactor
+                enabled:false
                 onCurrentIndexChanged: {
-                    //modelname.get(currentIndex).text
-                    console.log(editprinter.textAt(currentIndex))
-                    printerchanged(editprinter.textAt(currentIndex))
-
-                    profileMachine = currentText
-                }
-            }
-
-            StyledLabel {
-                id: element3
-                text: qsTr("Material:")
-                width: 160*screenScaleFactor
-                height : 30*screenScaleFactor
-                verticalAlignment: Qt.AlignVCenter
-                horizontalAlignment: Qt.AlignRight
-            }
-
-            BasicCombobox {
-                id: editmaterial
-                width: 180*screenScaleFactor
-                height: 30*screenScaleFactor
-                onCurrentIndexChanged: {
-                    //    model.get(currentIndex).text
-                    //                    addEditProfiledlg.profileMaterial = currentText
                 }
             }
 
             StyledLabel {
                 id: element4
-                text: qsTr("Copy Profile From:")
-                width: 160*screenScaleFactor
+                text: qsTr("Copy Profile From") + ":"
+                width: 120*screenScaleFactor
                 height : 30*screenScaleFactor
                 verticalAlignment: Qt.AlignVCenter
-                horizontalAlignment: Qt.AlignRight
+                horizontalAlignment: Qt.AlignLeft
             }
 
-            BasicCombobox {
-                id: editoldprofile
-                width: 180*screenScaleFactor
+            CXComboBox {
+                id: idProfileList
+                width: 405*screenScaleFactor
                 height: 30*screenScaleFactor
                 onCurrentIndexChanged: {
-                    profileQuality = currentText
                 }
             }
-
-            Item{
-                width: 160*screenScaleFactor
-                height: 30*screenScaleFactor
-            }
-
             CusText{
                 id:errorMsg
-                fontWidth: 200*screenScaleFactor
+                fontWidth: 120*screenScaleFactor
                 visible: false
                 fontColor: "red"
                 Layout.columnSpan: 2
                 fontText:qsTr("Name repeater, please rename!")
             }
+
+            StyledLabel {
+                width: 120*screenScaleFactor
+                height : 30*screenScaleFactor
+                verticalAlignment: Qt.AlignVCenter
+                horizontalAlignment: Qt.AlignLeft
+            }
         }
-        BasicSeparator
-        {
-            x: 10*screenScaleFactor
-            y:230*screenScaleFactor
-            height: 2
-            width: parent.width - 20
-        }
+
         Grid
         {
-            y: 250*screenScaleFactor
+            y: 180*screenScaleFactor
             width : 210*screenScaleFactor
             height: 30*screenScaleFactor
             columns: 2
@@ -207,59 +163,29 @@ BasicDialog
                 width: 100*screenScaleFactor
                 height: 30*screenScaleFactor
                 text: qsTr("Next")
-                btnRadius:3
-                btnBorderW:0
-                defaultBtnBgColor: Constants.profileBtnColor
-                hoveredBtnBgColor: Constants.profileBtnHoverColor
+                btnRadius:15*screenScaleFactor
+                btnBorderW:1
+                defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                 onSigButtonClicked:
                 {
-                    if(!newprofile.text.match("^(?! +$).*$") || newprofile.text.length ===0)
-                    {
-                        messageDialog.show()
-                        return;
-                    }
-                    qmlFunction("new")
+                    tryAddProfile()
                 }
             }
 
             BasicDialogButton {
                 id: basicComButton2
                 width: 100*screenScaleFactor
-                height: 32*screenScaleFactor
+                height: 30*screenScaleFactor
                 text: qsTr("Cancel")
-                btnRadius:3
-                btnBorderW:0
-                defaultBtnBgColor: Constants.profileBtnColor
-                hoveredBtnBgColor: Constants.profileBtnHoverColor
+                btnRadius:15*screenScaleFactor
+                btnBorderW:1
+                defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                 onSigButtonClicked:
                 {
-                    addEditProfiledlg.close();
+                    hideAddProfile()
                 }
-            }
-        }
-    }
-
-    BasicDialog
-    {
-        id: messageDialog
-        width: 400*screenScaleFactor
-        height: 200*screenScaleFactor
-        titleHeight : 30*screenScaleFactor
-        title: qsTr("Message")
-
-        Rectangle{
-            anchors.centerIn: parent
-            width: parent.width/2
-            height: parent.height/2
-            color: "transparent"
-            Text {
-                id: name
-                anchors.centerIn: parent
-                font.family: Constants.labelFontFamily
-                font.weight: Constants.labelFontWeight
-                text: qsTr("The input can't be empty!!")
-                font.pixelSize: Constants.labelFontPixelSize
-                color:Constants.textColor
             }
         }
     }

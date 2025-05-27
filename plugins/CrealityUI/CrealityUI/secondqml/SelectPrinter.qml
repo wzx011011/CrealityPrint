@@ -20,7 +20,7 @@ BasicGroupBox {
     {
         id:idCmb
         visible: control.visible
-        font.pixelSize: 14//
+        font.pointSize: Constants.labelFontPointSize_12
         width: control.width - 20
         height: 28
 //        y:-10

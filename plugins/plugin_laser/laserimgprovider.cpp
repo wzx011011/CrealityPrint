@@ -1,9 +1,16 @@
 #include "laserimgprovider.h"
 
-LaserImgProvider::LaserImgProvider() : QQuickImageProvider(QQmlImageProviderBase::Image)
+LaserImgProvider::LaserImgProvider() 
+    :QQuickImageProvider(QQmlImageProviderBase::Image)
 {
 
 }
+
+LaserImgProvider::~LaserImgProvider()
+{
+
+}
+
 QImage LaserImgProvider::requestImage(const QString& id, QSize* size, const QSize& requestedSize)
 {
     if(m_drawobjectlist.contains(id))

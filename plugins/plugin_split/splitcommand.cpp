@@ -7,48 +7,37 @@
 
 #include "kernel/kernel.h"
 #include "kernel/kernelui.h"
-//#include "data/modelspaceundo.h"
-#include "qtuser3d/undo/undoproxy.h"
-#include "kernel/abstractkernel.h"
-#include "interface/gadatainterface.h"
+
+#include "cxkernel/interface/undointerface.h"
+#include "interface/commandinterface.h"
+#include "interface/uiinterface.h"
+
 using namespace creative_kernel;
 SplitCommand::SplitCommand(QObject* parent)
 	:ToolCommand(parent)
 	, m_op(nullptr)
 {
-    m_name = tr("Split");
-//    m_enabledIcon = "qrc:/kernel/images/part.png";
-//    m_pressedIcon = "qrc:/kernel/images/part_d.png";
-    /*m_enabledIcon = "qrc:/UI/photo/split.png";
-    m_pressedIcon = "qrc:/UI/photo/split_d.png";
-    m_disableIcon = "qrc:/UI/photo/split_f.png";*/
-    slotThemeChanged();
+    m_name = tr("Split") + ": C";
+    orderindex = 7;
 	m_source = "qrc:/split/split/split.qml";
-    disconnect(Translator::getInstance(),SIGNAL(languageChanged()),this,SLOT(slotLanguageChanged()));
-    connect(Translator::getInstance(),SIGNAL(languageChanged()),this,SLOT(slotLanguageChanged()));
-
-    disconnect(getKernelUI(), SIGNAL(sigChangeThemeColor()), this, SLOT(slotThemeChanged()));
-    connect(getKernelUI(), SIGNAL(sigChangeThemeColor()), this, SLOT(slotThemeChanged()));
+    addUIVisualTracer(this,this);
 }
 
 SplitCommand::~SplitCommand()
 {
 }
-void SplitCommand::slotLanguageChanged()
+
+void SplitCommand::onThemeChanged(creative_kernel::ThemeCategory category)
 {
-    m_name = tr("Split");
+    setDisabledIcon("qrc:/UI/photo/cToolBar/cut_dark_disable.svg");
+    setEnabledIcon(category == ThemeCategory::tc_dark ? "qrc:/UI/photo/cToolBar/cut_dark_default.svg" : "qrc:/UI/photo/cToolBar/cut_light_default.svg");
+    setHoveredIcon(category == ThemeCategory::tc_dark ? "qrc:/UI/photo/cToolBar/cut_dark_default.svg" : "qrc:/UI/photo/cToolBar/cut_light_default.svg");
+    setPressedIcon("qrc:/UI/photo/cToolBar/cut_dark_press.svg");
 }
 
-void SplitCommand::slotThemeChanged()
+void SplitCommand::onLanguageChanged(creative_kernel::MultiLanguage language)
 {
-    QSettings setting;
-    setting.beginGroup("themecolor_config");
-    int nThemeType = setting.value("themecolor_config", 0).toInt();
-    setting.endGroup();
-
-    setEnabledIcon(nThemeType == 0 ? "qrc:/UI/photo/split.png" : "qrc:/UI/photo/split2.png");
-    m_pressedIcon = nThemeType == 0 ? "qrc:/UI/photo/split_d.png" : "qrc:/UI/photo/split_d.png";
-    m_disableIcon = nThemeType == 0 ? "qrc:/UI/photo/split.png" : "qrc:/UI/photo/split.png";
+    m_name = tr("Split") + ": C";
 }
 
 void SplitCommand::slotMouseLeftClicked()
@@ -60,7 +49,7 @@ bool SplitCommand::message()
 {
     if (m_op->getMessage())
     {
-        getKernelUI()->requestMenuDialog(this, "deleteSupportDlg");
+        requestQmlDialog(this, "deleteSupportDlg");
     }
 
     return true;
@@ -77,6 +66,7 @@ void SplitCommand::execute()
 	{
 		m_op = new SplitOp(this);
        connect(m_op, SIGNAL(posionChanged()), this, SIGNAL(onPositionChanged()));
+       connect(m_op, SIGNAL(offsetChanged()), this, SIGNAL(onOffsetChanged()));
        connect(m_op, SIGNAL(rotateAngleChanged()), this, SLOT(slotRotateAngleChanged()));
        connect(m_op, SIGNAL(mouseLeftClicked()), this, SLOT(slotMouseLeftClicked()));
            //rotateAngleChanged
@@ -100,19 +90,74 @@ void SplitCommand::execute()
     {
         setVisOperationMode(nullptr);
     }
-    creative_kernel::sendDataToGA("Model Editing & Layout", "Cut");
+    sensorAnlyticsTrace("Model Editing & Layout", "Cut");
 }
+
 void SplitCommand::slotRotateAngleChanged()
 {
     qDebug()<<"slotRotateAngleChanged!";
     emit onRotateAngleChanged();
-
 }
+
 void SplitCommand::split()
 {
 	if (m_op) m_op->split();
 }
+void SplitCommand::changeOffset(float off)
+{
+    if (m_op)
+    {
+        m_op->setOffset(m_op->toOffsetInner(off));
+        //emit onOffsetChanged();
+    }
+}
 
+void SplitCommand::changeAxisType(int type)
+{
+    m_op->setAcitiveAxis(type);
+}
+void SplitCommand::indicateEnabled(bool bRet)
+{
+    if (m_op)
+    {
+        m_op->enabledIndicate(bRet);
+    }
+}
+void SplitCommand::setCutToParts(bool bRet)
+{
+    if (m_op)
+    {
+        m_op->setCutToParts(bRet);
+    }
+}
+
+bool SplitCommand::getCutToParts() const
+{
+    if (m_op)
+    {
+        return m_op->getCutToParts();
+    }
+    return false;
+}
+void SplitCommand::modelGap(float gap)
+{
+    if (m_op)
+    {
+        m_op->setModelGap(gap);
+    }
+}
+
+
+float SplitCommand::getOffset()
+{
+    qDebug() << "m_op->plane().center =" << m_op->plane().center;
+    return m_op->getOffset();
+}
+
+float SplitCommand::getGap()
+{
+    return m_op->getGap();
+}
 
 QVector3D SplitCommand::position()
 {
@@ -121,14 +166,17 @@ QVector3D SplitCommand::position()
     else
         return QVector3D(0,0,0);
 }
+
 QVector3D SplitCommand::defauletPos() {
     this->setPositon(m_DefauletPos);
     return m_DefauletPos;
 }
+
 QVector3D SplitCommand::defauletDir() {
     this->setDir(m_DefauletDir);
     return m_DefauletDir;
 }
+
 QVector3D SplitCommand::dir()
 {
     if (m_op)
@@ -141,7 +189,6 @@ QVector3D SplitCommand::dir()
     }
 }
 
-
 void SplitCommand::setPositon(QVector3D pos)
 {
     if (m_op) m_op->setPlanePosition(pos);
@@ -151,14 +198,17 @@ void SplitCommand::setDir(QVector3D d)
 {
     if (m_op) m_op->setPlaneDir(d);
 }
+
 void SplitCommand::setDefauletPos(QVector3D pos)
 {
     m_DefauletPos = pos;
 }
+
 void SplitCommand::setDefauletDir(QVector3D pos)
 {
     m_DefauletDir = pos;
 }
+
 bool SplitCommand::checkSelect()
 {
     QList<ModelN*> selections = selectionms();
@@ -168,6 +218,7 @@ bool SplitCommand::checkSelect()
     }
     return false;
 }
+
 void SplitCommand::blockSignalSplitChanged(bool block)
 {
     if (m_op)
@@ -178,7 +229,7 @@ void SplitCommand::blockSignalSplitChanged(bool block)
 
 void SplitCommand::undo()
 {
-    getKernel()->undoProxy()->undo();
+    cxkernel::undo();
 }
 
 void SplitCommand::accept()
@@ -189,5 +240,52 @@ void SplitCommand::accept()
 void SplitCommand::cancel()
 {
     setMessage(false);
-    AbstractKernelUI::getSelf()->switchPickMode();
+    getKernelUI()->switchPickMode();
 }
+//
+// void SplitCommand::resetCmd()
+//{
+//     m_op->setPlanePosition(m_DefauletPos);
+//     m_op->setPlaneDir(m_DefauletDir);
+//}
+//
+// void SplitCommand::setQmlPosition(float val, int nXYZFlag)
+//{
+//    if (nXYZFlag > 2)return;
+//    QVector3D oldPos = position();
+//    switch (nXYZFlag)
+//    {
+//    case 0:
+//        m_op->setPlanePosition(QVector3D(val, oldPos.y(), oldPos.z()));
+//        break;
+//    case 1:
+//        m_op->setPlanePosition(QVector3D(oldPos.x(), val, oldPos.z()));
+//        break;
+//    case 2:
+//        m_op->setPlanePosition(QVector3D(oldPos.x(), oldPos.y(), val));
+//        break;
+//    default:
+//        break;
+//    }
+//}
+//
+//void SplitCommand::setQmlRotate(float val, int nXYZFlag)
+//{
+//    if (nXYZFlag > 2)return;
+//    QVector3D oldRotate = dir();
+//    switch (nXYZFlag)
+//    {
+//    case 0:
+//        m_op->setPlaneDir(QVector3D(val, oldRotate.y(), oldRotate.z()));
+//        break;
+//    case 1:
+//        m_op->setPlaneDir(QVector3D(oldRotate.x(), val, oldRotate.z()));
+//
+//        break;
+//    case 2:
+//        m_op->setPlaneDir(QVector3D(oldRotate.x(), oldRotate.y(), val));
+//        break;
+//    default:
+//        break;
+//    }
+//}

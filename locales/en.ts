@@ -2,11 +2,140 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>global_const</name>
+    <message>
+        <source>aboutusdialog_webside</source>
+        <translation>Website</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_email</source>
+        <translation>E-mail</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_telephone</source>
+        <translation>Telephone</translation>
+    </message>
+    <message>
+        <source>sofrware_copyright</source>
+        <translation>Copyright©2014 Shenzhen Creality 3D technology company, LTD. All rights reserved.</translation>
+    </message>
+    <message>
+        <source>offical_introduction</source>
+        <translation>Founded in 2014, Shenzhen Creality 3D Technology Co., Ltd. is the first R &amp; D manufacturer in China to enter the 3D printing industry and is committed to building a full range of 3D printing solutions, whose business field mainly focuses on the R &amp; D, manufacturing and sales of 3D printers, extending to 3D printing accessories, 3D printing filament, 3D education curriculum system, 3D printing services, etc.  At present, it has become a leading high-tech enterprise in China&apos;s 3D printing industry, with its R &amp; D strength, production, quality and services all leading the industry.</translation>
+    </message>
+    <message>
+        <source>offical_brief_introduction</source>
+        <translation>Use the power of technology to create a better world and let thousands of households enjoy the fun brought by 3D printing technology.</translation>
+    </message>
+    <message>
+        <source>offical_webside</source>
+        <translation>https://www.creality.com/</translation>
+    </message>
+    <message>
+        <source>offical_email</source>
+        <translation>crealityprint@creality.com</translation>
+    </message>
+    <message>
+        <source>offical_telephone</source>
+        <translation>+86 755-8523 4565</translation>
+    </message>
+	 <message>
+        <source>engine_copyright1</source>
+        <translation>Creality Print V5.1 is based on the slic3r of OrcaSlicer and the CuraEngine of Ultimaker.</translation>
+    </message>
+	 <message>
+        <source>engine_copyright2</source>
+        <translation>OrcaSlicer is based on BambuStudio, PrusaSlicer, and SuperSlicer; </translation>
+    </message>
+	 <message>
+        <source>engine_copyright3</source>
+        <translation>BambuStudio itself is built upon PrusaResearch's PrusaSlicer and Merill's (supermerill) SuperSlicer. </translation>
+    </message>
+	 <message>
+        <source>engine_copyright4</source>
+        <translation>PrusaSlicer was developed based on Slic3r by Alessandro Ranellucci and the RepRap community. </translation>
+    </message>
+	 <message>
+        <source>engine_copyright5</source>
+        <translation>We express our heartfelt gratitude for the contributions of the aforementioned open-source software projects.</translation>
+    </message>
+</context>
+<context>
+    <name>global_const_Piocreat</name>
+    <message>
+        <source>aboutusdialog_webside</source>
+        <translation>Website</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_email</source>
+        <translation>E-mail</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_telephone</source>
+        <translation>Telephone</translation>
+    </message>
+    <message>
+        <source>sofrware_copyright</source>
+        <translation>Copyright©2021 Shenzhen Piocreat 3D technology company, LTD. All rights reserved.</translation>
+    </message>
+    <message>
+        <source>offical_introduction</source>
+        <translation>Shenzhen Piocreat 3D Technology Co., Ltd. is a leading enterprise of industrial-grade 3D printers and materials, Piocreat dedicates to showcasing the outstanding power of Made-in-China</translation>
+    </message>
+    <message>
+        <source>offical_brief_introduction</source>
+        <translation>Shenzhen Piocreat 3D Technology Co., Ltd. is a leading enterprise of industrial-grade 3D printers and materials, Piocreat dedicates to showcasing the outstanding power of Made-in-China.</translation>
+    </message>
+    <message>
+        <source>offical_webside</source>
+        <translation>https://www.piocreat3d.com/</translation>
+    </message>
+    <message>
+        <source>offical_email</source>
+        <translation>after@piocreat3d.com</translation>
+    </message>
+    <message>
+        <source>offical_telephone</source>
+        <translation>+86 755-2103 9743</translation>
+    </message>
+</context>
+<context>
+    <name>StartFirstConfig</name>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+	 <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+	<message>
+        <source>Do you want to save the current settings?</source>
+        <translation>Do you want to save the current settings?</translation>
+    </message>
+</context>
+<context>
     <name>AboutUsCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/aboutuscommand.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/aboutuscommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/aboutuscommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/aboutuscommand.cpp" line="21"/>
         <source>About Us</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OtherOptPanel</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/OtherOptPanel.qml" line="33"/>
+        <source>Others</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CToolBar</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/LeftToolBar.qml" line="229"/>
+        <source>Printer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -54,102 +183,6 @@
     </message>
 </context>
 <context>
-    <name>AddEditMaterial</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="10"/>
-        <source>New Material</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="35"/>
-        <source>New Material:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="53"/>
-        <source>Copy The Selected Slice Parameter Material</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="61"/>
-        <source>Matrerial:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="84"/>
-        <source>Message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="96"/>
-        <source>The input can&apos;t be empty!!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="109"/>
-        <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="128"/>
-        <source>The profile can not empty!!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="136"/>
-        <source>The material already exists! Please enter again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="156"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AddEditPrinter</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="23"/>
-        <source>New/Copy Printer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="35"/>
-        <source>New printer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="54"/>
-        <source>Copy the selected slice parameter profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="62"/>
-        <source>Printer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="84"/>
-        <source>The printer already exists! please enter again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="97"/>
-        <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="133"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="146"/>
-        <source>The profile can not empty!!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AddEditProfile</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="14"/>
@@ -164,7 +197,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="78"/>
         <source>New Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Profile Name:</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="98"/>
@@ -264,49 +297,6 @@
     </message>
 </context>
 <context>
-    <name>AddPrinterDlg</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="10"/>
-        <source>Add Printer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="90"/>
-        <source>Printer Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="116"/>
-        <source>Machine Depth:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="134"/>
-        <source>Machine Height:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="156"/>
-        <source>Machine Width:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="174"/>
-        <source>Nozzle Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="226"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="244"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AddPrinterDlgNew</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="16"/>
@@ -358,35 +348,163 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="195"/>
+        <source>K1 series</source>
+        <translation>Flagship series</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="210"/>
+        <source>Fast series</source>
+        <translation>Sonic Pad</translation>
+    </message>
+    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="216"/>
         <source>Others</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <source>Clear series</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Selected quantity</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
+
+<context>
+    <name>AddPrinterDlgNewStep</name>
+	<message>
+        <source>New model</source>
+        <translation>>New model</translation>
+    </message>
+	<message>
+        <source>Step 1</source>
+        <translation>Step 1</translation>
+    </message>
+	<message>
+        <source>Step 2</source>
+        <translation>Step 2</translation>
+    </message>
+	<message>
+        <source>Step 3</source>
+        <translation>Step 3</translation>
+    </message>
+	<message>
+        <source>Printer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Printer platform shape</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Printer platform size</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Extruder type</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Nozzle diameter</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Compatible filament diameters</source>
+       <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Nozzle offset</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>G-code style</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Starts G-code</source>
+       <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>End G-code</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>printer</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>material type</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Material name</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>all</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>crafts</source>
+       <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Previous</source>
+       <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+
 <context>
     <name>AddPrinterViewItem</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="122"/>
-        <source>Machine Depth:</source>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="87"/>
+        <source>Sonic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="140"/>
-        <source>Machine Width:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="95"/>
+        <source>Print Depth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="158"/>
-        <source>Machine Height:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="96"/>
+        <source>Print Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="176"/>
-        <source>Nozzle Size:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="97"/>
+        <source>Print Height</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="211"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="98"/>
+        <source>Nozzle Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="135"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
@@ -425,6 +543,11 @@
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="91"/>
+        <source>The model is too large, Scale to the fit size?</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="99"/>
         <source>There are exceptions or errors in the model. What should be done?</source>
@@ -443,6 +566,11 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="218"/>
         <source>No model selected to save</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="231"/>
+        <source>Not logged in to Creality Cloud, Unable to current operation, Do you want to log in?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -465,27 +593,8 @@
         <source>Repair model</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>BasicAreaCodeCombobox</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="73"/>
-        <source>Dynamic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="74"/>
-        <source>Balanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="75"/>
-        <source>Speedy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="76"/>
-        <source>Very Speedy</source>
+        <source>Please add at least one printer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -493,17 +602,17 @@
     <name>BasicCombobox</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="71"/>
-        <source>Dynamic</source>
+        <source>High Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="72"/>
-        <source>Balanced</source>
+        <source>Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="73"/>
-        <source>Speedy</source>
+        <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -513,8 +622,55 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="75"/>
-        <source>Very Speedy</source>
+        <source>Fast</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CXComboBox</name>
+    <message>
+        <source>High Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fast</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>China</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Asia-Pacific</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>Others</translation>
     </message>
 </context>
 <context>
@@ -534,21 +690,6 @@
 <context>
     <name>BasicMenuBar</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="430"/>
-        <source>Prepare</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="449"/>
-        <source>Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="473"/>
-        <source>Device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="515"/>
         <source>Login succeeded. Click to view your personal space.</source>
         <translation type="unfinished"></translation>
@@ -558,14 +699,9 @@
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="962"/>
-        <source>Not logged in to Creality Cloud, Unable to current operation, Do you want to log in?</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
-    <name>BasicMenuBarStyle</name>
+    <name>CWinMenu</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="30"/>
         <source>File(&amp;F)</source>
@@ -588,7 +724,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="55"/>
         <source>Recently files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recent Files</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="60"/>
@@ -615,15 +751,15 @@
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="103"/>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+		<message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="112"/>
-        <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <source>Copy</source>
+        <translation>Copy</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="112"/>
+        <source>Paste</source>
+        <translation>Paste</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="123"/>
@@ -633,17 +769,17 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="127"/>
         <source>ShowModelLine</source>
-        <translation type="unfinished"></translation>
+        <translation>Triangle</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="134"/>
         <source>ShowModelFace</source>
-        <translation type="unfinished"></translation>
+        <translation>Shade</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="142"/>
         <source>ShowModelFaceLine</source>
-        <translation type="unfinished"></translation>
+        <translation>Shade/Triangle</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="149"/>
@@ -678,7 +814,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="189"/>
         <source>Merge Model Locations</source>
-        <translation type="unfinished"></translation>
+        <translation>Reset Model Locations</translation>
+    </message>
+
+    <message>
+        <source>Delete Model</source>
+        <translation>Delete selected</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="199"/>
@@ -717,12 +858,28 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="248"/>
-        <source>Models(&amp;M)</source>
+        <source>Creality Cloud(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="251"/>
         <source>Models</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+      <source>Download Manage</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>My Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>My Slice</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>My Devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -765,7 +922,365 @@
         <source>User Feedback</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Calibration(&amp;C)</source>
+        <translation>Calibration(&amp;C)</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Temperature</source>
+        <translation>Temperature</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>PA</source>
+        <translation>Pressure advance</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Flow</source>
+        <translation>Flow rate</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Coarse tune</source>
+        <translation>Pass 1</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Fine tune</source>
+        <translation>Pass 2</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Advanced Calibration</source>
+        <translation>Advanced Calibration</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Maximum volume flow</source>
+        <translation>Max Volume Flow</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>VFA</source>
+        <translation>VFA</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Tutorial</source>
+        <translation>Tutorial</translation>
+    </message>
+	<message>
+        <source>Test Model</source>
+        <translation>Test Model</translation>
+    </message>
+	<message>
+        <source>Import Preset Config</source>
+        <translation>Import Preset Config</translation>
+    </message>
+	<message>
+        <source>Export Preset Config</source>
+        <translation>Export Preset Config</translation>
+    </message>
+	<message>
+        <source>Load 3MF</source>
+        <translation>Load 3MF</translation>
+    </message>
+	<message>
+        <source>Save 3MF</source>
+        <translation>Save 3MF</translation>
+    </message>
+	<message>
+        <source>Preferences</source>
+        <translation>Preferences</translation>
+    </message>
+	<message>
+        <source>Retraction test</source>
+        <translation>Retraction test</translation>
+    </message>
+	<message>
+        <source>Save the project file</source>
+        <translation>Save the project file</translation>
+    </message>
+	<message>
+        <source>File</source>
+        <translation>File</translation>
+    </message>
 </context>
+
+<context>
+ <name>TestModel</name>
+	<message>
+        <source>Block20XY</source>
+        <translation>Block20XY</translation>
+    </message>
+	<message>
+        <source>Boat</source>
+        <translation>3DBenchy</translation>
+    </message>
+	<message>
+        <source>Ksr_fdmtest_w4</source>
+        <translation>Ksr_fdmtest_w4</translation>
+    </message>
+	<message>
+        <source>Overhang</source>
+        <translation>Overhang</translation>
+    </message>
+	<message>
+        <source>Square columns Z axis</source>
+        <translation>Square columns Z axis</translation>
+    </message>
+	<message>
+        <source>Square prism Z axis</source>
+        <translation>Square prism Z axis</translation>
+    </message>
+</context>
+
+<context>
+	<name>TemperatureDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Temperature calibration</source>
+        <translation>Temperature calibration</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Material type</source>
+        <translation>Filament type</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Set up</source>
+        <translation>Setting</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Starting temperature:</source>
+        <translation>Start temp:</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>End temperature:</source>
+        <translation>End temp:</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Temperature step:</source>
+        <translation>Temp step:</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+		<message>
+        <source>Calibration warning</source>
+        <translation  type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The end temperature cannot exceed the start temperature</source>
+        <translation  type="unfinished"></translation>
+    </message>
+</context>
+
+<context>
+	<name>PADlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA calibration</source>
+        <translation>PA calibration</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Extruder type</source>
+        <translation>Extruder type</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Proximity extruder</source>
+        <translation>DDE</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Remote extruder</source>
+        <translation>Bowden</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Test methods</source>
+        <translation>Method</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA tower</source>
+        <translation>PA Tower</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA dash</source>
+        <translation>PA Line</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Set up</source>
+        <translation>Setting</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Initial PA value</source>
+        <translation>Start PA：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>End PA value</source>
+        <translation>End PA：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA step</source>
+        <translation>PA step：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Print numbers</source>
+        <translation>Print numbers</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>The starting PA value cannot exceed the ending PA value</source>
+        <translation>The starting PA value cannot exceed the ending PA value</translation>
+    </message>
+</context>
+
+<context>
+	<name>MaxFlowVolumeDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Maximum Volume Flow Velocity Test</source>
+        <translation>Max volumetric speed test</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Initial Flow</source>
+        <translation>Start volumetric speed：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>End traffic</source>
+        <translation>End volumetric speed：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Flow step</source>
+        <translation>step:</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>The starting flow rate cannot exceed the ending flow rate</source>
+        <translation>The starting flow rate cannot exceed the ending flow rate</translation>
+    </message>
+</context>
+
+
+<context>
+	<name>RetractionDlg</name>
+	<message>
+        <source>Retraction test</source>
+        <translation>Retraction test</translation>
+    </message>
+	<message>
+        <source>Start retraction length</source>
+        <translation>Start retraction length</translation>
+    </message>
+	<message>
+        <source>End retraction length</source>
+        <translation>End retraction length</translation>
+    </message>
+	<message>
+        <source>Retraction step</source>
+        <translation>Retraction step</translation>
+    </message>
+	<message>
+        <source>The initial retraction length cannot exceed the ending retraction length</source>
+        <translation>The initial retraction length cannot exceed the ending retraction length</translation>
+    </message>
+	<message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+</context>
+
+<context>
+	<name>VFADlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>VFA vibration test</source>
+        <translation>VFA test</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>Starting speed</source>
+        <translation>Start speed：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>End speed</source>
+        <translation>End speed：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>Flow step</source>
+        <translation>step:</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>The starting speed cannot exceed the ending speed</source>
+        <translation>The starting speed cannot exceed the ending speed</translation>
+    </message>
+</context>
+
+<context>
+	<name>FlowFineTuningDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Fine tune selection</source>
+        <translation>Flow fine-tuning</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Choose coarse one</source>
+        <translation>Choose the one with the best coarse tuning</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
+
+
 <context>
     <name>BasicMessageDialog</name>
     <message>
@@ -800,41 +1315,34 @@
     </message>
 </context>
 <context>
-    <name>BasicUseInfoItem</name>
+    <name>UserFileItem</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="113"/>
-        <source>Import Gcode</source>
-        <translation type="unfinished"></translation>
+        <source>Print Configuration</source>
+        <translation>Print Configuration</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="113"/>
         <source>Import Model</source>
-        <translation type="unfinished"></translation>
+        <translation>Import Model</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="136"/>
-        <source>Share The Model Group(Copy Link)</source>
-        <translation type="unfinished"></translation>
+        <source>Share Model (Copy Link)</source>
+        <translation>Share Model (Copy Link)</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="151"/>
-        <source>Print Gcode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="167"/>
-        <source>UnCollect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="169"/>
-        <source>Delete Gcode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="169"/>
         <source>Delete Model</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete Model</translation>
+    </message>
+    <message>
+        <source>Import Slice</source>
+        <translation>Import Slice</translation>
+    </message>
+    <message>
+        <source>Print Slice</source>
+        <translation>Print Slice</translation>
+    </message>
+    <message>
+        <source>Delete Slice</source>
+        <translation>Delete Slice</translation>
     </message>
 </context>
 <context>
@@ -875,37 +1383,42 @@
 <context>
     <name>CCommandsData</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="64"/>
         <source>File(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="65"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="65"/>
         <source>Edit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="66"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="66"/>
         <source>View(&amp;V)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="69"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="69"/>
         <source>Tool(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="70"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="70"/>
         <source>Models(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="70"/>
+        <source>Calibration(&amp;C)</source>
+        <translation>Calibration(&amp;C)</translation>
+    </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="71"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="71"/>
         <source>PrinterControl(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="72"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="72"/>
         <source>Help(&amp;H)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -934,25 +1447,24 @@
     </message>
 </context>
 <context>
-    <name>ClearAllAction</name>
+    <name>creative_kernel::ClearAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="36"/>
-        <source>Clear All</source>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="38"/>
+        <source>Clear All models</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="37"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="37"/>
         <source>Do you Want to Clear All Model?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ClearRecentFileCommand</name>
+    <name>creative_kernel::ClearRecentFileCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/clearrecentfilecommand.cpp" line="5"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/clearrecentfilecommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu/clearrecentfilecommand.cpp" line="26"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
@@ -960,25 +1472,25 @@
 <context>
     <name>Clone</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/qml/Clone.qml" line="33"/>
+        <location filename="../kernel/BasicKernel/res/qml/Clone.qml" line="33"/>
         <source>The document has been modified.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>CloneAction</name>
+    <name>creative_kernel::CloneAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/cloneaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/cloneaction.cpp" line="28"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/cloneaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/cloneaction.cpp" line="29"/>
         <source>Clone Model</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>CloneCommand</name>
+    <name>creative_kernel::CloneCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/clonecommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/clonecommand.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/tool/clonecommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/clonecommand.cpp" line="48"/>
         <source>Clone</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1163,12 +1675,22 @@
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CopyRightDlg.qml" line="347"/>
+        <source>library name</source>
+        <translation>library name</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CopyRightDlg.qml" line="347"/>
+        <source>copyright</source>
+        <translation>copyright</translation>
+    </message>
 </context>
 <context>
     <name>CrealityGroupCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_group/crealitygroupcommand.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_group/crealitygroupcommand.cpp" line="22"/>
+        <location filename="../kernel/BasicKernel/internal/menu_group/crealitygroupcommand.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/menu_group/crealitygroupcommand.cpp" line="22"/>
         <source>Models</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1421,7 +1943,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="157"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1448,11 +1970,6 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="321"/>
         <source>Clear All Supports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="340"/>
-        <source>Do you want to clear existing  supports before create new supports?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1520,11 +2037,10 @@
     </message>
 </context>
 <context>
-    <name>Cx3dClearProjectCommand</name>
+    <name>creative_kernel::Cx3dClearProjectCommand</name>
     <message>
-        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="5"/>
-        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="22"/>
-        <source>Clear</source>
+        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="9"/>
+        <source>Clear history</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1547,16 +2063,16 @@
     </message>
 </context>
 <context>
-    <name>DeleteModelAction</name>
+    <name>creative_kernel::DeleteModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="44"/>
         <source>Delete Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="39"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="17"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="39"/>
         <source>Do you Want to Delete SelectModel?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1828,9 +2344,12 @@
     </message>
 </context>
 <context>
-    <name>EditProfile</name>
+    <name>ParameterProfilePanel</name>
+	    <message>
+        <source>Do you want to reset the selected slice configuration parameters?</source>
+        <translation>Do you want to reset the selected slice configuration parameters?</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="17"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1841,17 +2360,17 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="69"/>
-        <source>Dynamic</source>
+        <source>High Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="70"/>
-        <source>Balanced</source>
+        <source>Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="71"/>
-        <source>Speedy</source>
+        <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1861,7 +2380,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="73"/>
-        <source>Very Speedy</source>
+        <source>Fast</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2019,17 +2538,17 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="42"/>
-        <source>Dynamic</source>
+        <source>High Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="43"/>
-        <source>Balanced</source>
-        <translation type="unfinished"></translation>
+        <source>Quality1</source>
+        <translation type="unfinished">Quality</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="44"/>
-        <source>Speedy</source>
+        <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2039,7 +2558,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="46"/>
-        <source>Very Speedy</source>
+        <source>Fast</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2088,13 +2607,15 @@
         <source>Invalid parameter!!</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>ExtendLoaderWrapper</name>
     <message>
-        <location filename="../plugins/plugin_extend_mesh/extendloaderwrapper.cpp" line="193"/>
-        <source>The model is too large, Scale to the fit size?</source>
-        <translation type="unfinished"></translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Bamboo</source>
+        <translation type="unfinished">Two segments</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>RAISE3D</source>
+        <translation type="unfinished">Three segments</translation>
     </message>
 </context>
 <context>
@@ -2111,7 +2632,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="113"/>
-        <source>Printing Speed:</source>
+        <source>Print Speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2125,8 +2646,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="251"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="314"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="370"/>
         <source>Layer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2137,37 +2657,91 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="346"/>
-        <source>Steps Number:</source>
+        <source>Steps Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="404"/>
-        <source>Layers Number:</source>
+        <source>Layers Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>FDMPreviewPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="229"/>
-        <source>Export to Local</source>
-        <translation type="unfinished"></translation>
+    <name>CSliceButton</name>
+		<message>
+        <source>The current printer model doesn't support multi-plate printing and can't export.</source>
+        <translation>The current printer model doesn't support multi-plate printing and can't export</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="243"/>
+		 <message>
+        <source>Print Plate</source>
+        <translation>Print Plate</translation>
+    </message>
+		 <message>
+        <source>Print All</source>
+        <translation>Print All</translation>
+    </message>
+		 <message>
+        <source>Export Plate</source>
+        <translation>Export Plate</translation>
+    </message>
+		 <message>
+        <source>Export Plate Sliced File</source>
+        <translation>Export Plate Sliced File</translation>
+    </message>
+		 <message>
+        <source>Upload</source>
+        <translation>Upload</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="60"/>
         <source>Upload to Crealitycloud</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="292"/>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="102"/>
         <source>LAN Printing</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="311"/>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="146"/>
         <source>USB Printing</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="186"/>
+        <source>Export to Local</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Slice Plate</source>
+        <translation>Slice Plate</translation>
+    </message>
+	 <message>
+        <source>Slice all</source>
+        <translation>Slice all</translation>
+    </message>
+</context>
+<context>
+    <name>CMachineTab</name>
+    <message>
+        <source>Plate Type</source>
+        <translation>Plate Type</translation>
+    </message>
+	 <message>
+        <source>Add</source>
+        <translation>Add</translation>
+    </message>
+	 <message>
+        <source>Delete</source>
+        <translation>Delete</translation>
+    </message>
+	<message>
+        <source>Printer</source>
+        <translation>Printer</translation>
+    </message>
+</context>
+<context>
+    <name>FDMPreviewPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="323"/>
         <source>Failed to upload gcode!</source>
@@ -2178,7 +2752,7 @@
     <name>FDMRightPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="104"/>
-        <source>Print Report</source>
+        <source>G-code Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2194,7 +2768,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="139"/>
         <source>Material Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>Material Wt</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="149"/>
@@ -2212,12 +2786,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="213"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="332"/>
-        <source>Nozzle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="267"/>
         <source>Color Show</source>
         <translation type="unfinished"></translation>
@@ -2225,17 +2793,11 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="279"/>
         <source>G-Code</source>
-        <translation type="unfinished"></translation>
+        <translation>G-code</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="313"/>
-        <source>Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="322"/>
-        <source>Structure</source>
-        <translation type="unfinished"></translation>
+        <source>Nozzle</source>
+        <translation>Nozzle</translation>
     </message>
 </context>
 <context>
@@ -2388,96 +2950,6 @@
     </message>
 </context>
 <context>
-    <name>GroupPrintTaskCreateInfo</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="63"/>
-        <source>Print task created. You can print it on the Task List directly.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="67"/>
-        <source>Failed to create task.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="235"/>
-        <source>Device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="295"/>
-        <source>Device Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="304"/>
-        <source>Device Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="313"/>
-        <source>Working</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="390"/>
-        <source>File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="469"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="639"/>
-        <source>File Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="478"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="662"/>
-        <source>Slice Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="487"/>
-        <source>Print Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="535"/>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="571"/>
-        <source>Print job is being created.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="578"/>
-        <source>The print device is empty, please select again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="583"/>
-        <source>The print file is empty, please select again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="587"/>
-        <source>The print device and file is empty, please select again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="613"/>
-        <source>Redefine Slice Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="690"/>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>GroupPrintTaskFoldingPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskFoldingPanel.qml" line="311"/>
@@ -2573,62 +3045,157 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+
 <context>
-    <name>HalotBoxTotalRightUIPanel</name>
+	<name>SyncMaterial</name>
+	<message>
+        <source>Synchronize material information from printer</source>
+        <translation>Synchronize material information from printer</translation>
+    </message>
+	<message>
+        <source>Synchronize</source>
+        <translation>Synchronize</translation>
+    </message>
+	<message>
+        <source>Resync</source>
+        <translation>Resync</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+
+</context>
+
+<context>
+	<name>FlushVolumeDialog</name>
+	<message>
+        <source>Flushing volumes for filament change</source>
+        <translation>Flushing volumes for filament change</translation>
+    </message>
+	<message>
+        <source>from/to</source>
+        <translation>from/to</translation>
+    </message>
+	<message>
+        <source>multiplier:</source>
+        <translation>multiplier:</translation>
+    </message>
+	<message>
+        <source>multiplier:</source>
+        <translation>multiplier:</translation>
+    </message>
+	<message>
+        <source>Automatic calculation</source>
+        <translation>Auto calc</translation>
+    </message>
+	<message>
+        <source>Ok</source>
+        <translation>OK</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+	<message>
+        <source>Flush volume required to switch between two filaments (mm³)</source>
+        <translation>Flush volume required to switch between two filaments (mm³)</translation>
+    </message>
+	<message>
+        <source>Warm reminder: It is recommended that the flushing volume be set within the range of.</source>
+        <translation>Warm reminder: It is recommended that the flushing volume be set within the range of.</translation>
+    </message>
+</context>
+
+<context>
+    <name>PrintParameterPanel</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="70"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="75"/>
-        <source>Material</source>
-        <translation type="unfinished"></translation>
+        <source>Level</source>
+        <translation>Level</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="107"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="110"/>
+        <source>Basic</source>
+        <translation>Basic</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Custom</translation>
+    </message>
+    <message>
+        <source>Global</source>
+        <translation>Global</translation>
+    </message>
+    <message>
+        <source>Object</source>
+        <translation>Object</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="70"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="75"/>
+        <source>Material</source>
+        <translation>Filament</translation>
+    </message>
+	<message>
+        <source>No CFS material found. Please select the printer on the 'Device' page and the CFS information will be loaded.</source>
+        <translation>No CFS material found. Please select the printer on the "Device" page and the CFS information will be loaded.</translation>
+    </message>
+	<message>
+        <source>Sync material</source>
+        <translation>Sync material</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="107"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="110"/>
         <source>Parameter config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="223"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="201"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="223"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="201"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="229"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="202"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="229"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="202"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="235"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="203"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="235"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="203"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="259"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="220"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="259"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="220"/>
         <source>Slice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="388"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="388"/>
         <source>Model out of range, please put &apos;red&apos; model in the printer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="400"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="400"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="415"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="415"/>
         <source>The profile already exists! please enter again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="38"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="38"/>
         <source>Printer</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="38"/>
+        <source>Manage</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2693,16 +3260,16 @@
 <context>
     <name>ImportMesh</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/qml/ImportMesh.qml" line="22"/>
+        <location filename="../kernel/BasicKernel/res/qml/ImportMesh.qml" line="22"/>
         <source>Import Mesh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ImportModelAction</name>
+    <name>creative_kernel::ImportModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/importmodelaction.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/importmodelaction.cpp" line="39"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/importmodelaction.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/importmodelaction.cpp" line="38"/>
         <source>Import Model</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2729,103 +3296,7 @@
     </message>
 </context>
 <context>
-    <name>InfoPanelMulit</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="20"/>
-        <source>Repair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="57"/>
-        <source>Model(s) Invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="67"/>
-        <source>Total Triangles:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="84"/>
-        <source>Total Vertices:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="101"/>
-        <source>Illegal Edge:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="118"/>
-        <source>Illegal Normal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="135"/>
-        <source>Hole Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="153"/>
-        <source>Self_intersections num:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InfoPanelRepair</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="29"/>
-        <source>Repair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="62"/>
-        <source>Model:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="79"/>
-        <source>Bounding Box:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="95"/>
-        <source>Total Triangles:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="112"/>
-        <source>Total Vertices:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="129"/>
-        <source>Illegal Edge:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="146"/>
-        <source>Illegal Normal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="163"/>
-        <source>Hole Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="181"/>
-        <source>Self_intersections num:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LanPrinterListLocal</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="98"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="120"/>
         <source>Device group</source>
@@ -2856,20 +3327,84 @@
         <source>Printing</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="791"/>
+        <source>Device Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="823"/>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="823"/>
+        <source>Printer</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="484"/>
         <source>Add printer</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="851"/>
+        <source>Creality Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="887"/>
+        <source>Printer(WiFi)</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="923"/>
+        <source>Sonic Pad</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="497"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="530"/>
+        <source>After deleting the current group, the device will move into the default group</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="553"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="589"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="547"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1283"/>
-        <source>Ip address</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1103"/>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1258"/>
+        <source>Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1230"/>
+        <source>How to discover the IP address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="639"/>
         <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="804"/>
+        <source>Searching for devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2893,9 +3428,29 @@
         <source>The printer added successfully</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1500"/>
+        <source>Scan Add</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="839"/>
-        <source>New</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1539"/>
+        <source>Manual Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1953"/>
+        <source>Device list is empty, you can add devices by scanning or manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1800"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2382"/>
+        <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2913,9 +3468,44 @@
         <source>CrealityCloud Printing</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2445"/>
+        <source>Error code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2454"/>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2478"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2443"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2469"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2495"/>
+        <source>Reboot</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="957"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2063"/>
         <source>Move to</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2113"/>
+        <source>Remove device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2924,18 +3514,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="450"/>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1190"/>
         <source>Device Name</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1366"/>
-        <source>G-code</source>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="463"/>
+        <source>Printer Model</source>
         <translation type="unfinished"></translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1392"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="480"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1905"/>
+        <source>Ip address</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2003"/>
         <source>Upload Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2017"/>
+        <source>File:</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2076"/>
+        <source>Retry</source>
+        <translation type="unfinished">Retry</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2981"/>
+        <source>Print calibration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2960,12 +3572,12 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1668"/>
-        <source>Hot bed temperature</source>
+        <source>Hot bed temp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1827"/>
-        <source>Nozzle temperature</source>
+        <source>Nozzle temp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2979,29 +3591,33 @@
         <translation type="unfinished"></translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2085"/>
-        <source>Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2085"/>
-        <source>Preheating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2120"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3508"/>
         <source>Send G-code</source>
         <translation type="unfinished"></translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2151"/>
-        <source>Stop</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>One-click Printing</source>
         <translation type="unfinished"></translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2151"/>
-        <source>Start Printing</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Make sure the print platform is empty before starting to print</source>
         <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Do not prompt for this message again</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Printer Matching</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Copy IP address</source>
+        <translation>Copy IP address</translation>
     </message>
 </context>
 <context>
@@ -3013,164 +3629,380 @@
     </message>
 </context>
 <context>
-    <name>LanPrintingDetail</name>
+    <name>LanPrinterDialog</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="119"/>
-        <source>Printing Infomation</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDialog.qml" line="124"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LanPrinterDetail</name>
+	 <message>
+        <source>All</source>
+        <translation>All</translation>
+    </message>
+	<message>
+        <source>WLAN Printing</source>
+        <translation>WLAN Printing</translation>
+    </message>
+	 <message>
+        <source>WLAN Pausing</source>
+        <translation>WLAN Pausing</translation>
+    </message>
+	 <message>
+        <source>WLAN stopping</source>
+        <translation>WLAN stopping</translation>
+    </message>
+	 <message>
+        <source>WLAN restoring</source>
+        <translation>WLAN restoring</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="110"/>
+        <source>Maximum value</source>
+        <translation>Max </translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="110"/>
+        <source>TF Card Printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="150"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="113"/>
+        <source>WLAN Printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="116"/>
+        <source>CrealityCloud Printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="274"/>
+        <source>Pause printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="275"/>
+        <source>Whether to pause printing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+        <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4641"/>
+        <source>Copy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4665"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4667"/>
+        <source>Copy link successfully!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4666"/>
+        <source>Open Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="278"/>
+        <source>Continue printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="279"/>
+        <source>Whether to continue printing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="282"/>
+        <source>Stop printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="283"/>
+        <source>Whether to stop printing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="398"/>
+        <source>G-code file has been deleted and cannot be printed</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="360"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="388"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="119"/>
+        <source>Printing information</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="586"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="824"/>
+        <source>Idle</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="938"/>
+        <source>Error code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="947"/>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="971"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="605"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="641"/>
+        <source>Reboot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="150"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="150"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="150"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="196"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="196"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="310"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1672"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="310"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1672"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="346"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="346"/>
         <source>Layer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="416"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="416"/>
         <source>Print time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="439"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="439"/>
         <source>Time left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="487"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="487"/>
         <source>Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1031"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1031"/>
         <source>Printing speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1178"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1178"/>
         <source>Hot Bed temp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1335"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1335"/>
         <source>Nozzle temp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1492"/>
-        <source>Fan switch</source>
-        <translation type="unfinished"></translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1492"/>
+        <source>Moder Fan</source>
+        <translation>Model Fan</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1925"/>
+        <source>Back Fan</source>
+        <translation>Back Fan</translation>
+    </message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml"/>
+        <source>fan speed</source>
+        <translation>fan speed</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2000"/>
+        <source>Side fan</source>
+        <translation>Side Fan</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1562"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1562"/>
         <source>Led switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1702"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1702"/>
         <source>Records</source>
         <translation type="unfinished"></translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1727"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1727"/>
         <source>Upload Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1736"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1736"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1750"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1750"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Name</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Size</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>File size</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Layer height</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Start time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Time</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Creation time</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Total duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Material length</source>
+        <translation type="unfinished"></translation>
+	</message>
+		<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Material usage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1907"/>
-        <source>Start Print</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1907"/>
+        <source>Start printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3367"/>
+        <source>Restart printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3135"/>
+        <source>Print with calibration</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3475"/>
+        <source>Reprint with calibration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1946"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1946"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2157"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2157"/>
         <source>Camera</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3044"/>
+        <source>Rejected our connection request.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2245"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2663"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2245"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2663"/>
         <source>Temperature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2292"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2292"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2305"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2305"/>
         <source>Current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2318"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2318"/>
         <source>Target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2355"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2355"/>
         <source>Hot Bed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2512"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2512"/>
         <source>Nozzle</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Object deletion</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Whether to continue deleting the selected object</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LanguageCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/languagecommand.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/languagecommand.cpp" line="14"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3334,7 +4166,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LaserImageSettings.qml" line="340"/>
-        <source>Packing Density</source>
+        <source>Sparse infill density</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3423,7 +4255,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LaserPanel.qml" line="717"/>
         <source>Generate GCode</source>
-        <translation type="unfinished"></translation>
+        <translation>Generate G-code</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LaserPanel.qml" line="746"/>
@@ -3490,7 +4322,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LaserSliceSettings.qml" line="427"/>
         <source>Generate GCode</source>
-        <translation type="unfinished"></translation>
+        <translation>Generate G-code</translation>
     </message>
 </context>
 <context>
@@ -3522,19 +4354,19 @@
     </message>
 </context>
 <context>
-    <name>LayoutCommand</name>
+    <name>creative_kernel::LayoutCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/layoutcommand.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/layoutcommand.cpp" line="37"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/layoutcommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/layoutcommand.cpp" line="42"/>
         <source>Auto arrange</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>LayoutToolCommand</name>
+    <name>creative_kernel::LayoutToolCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/layouttoolcommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/layouttoolcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/tool/layouttoolcommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/layouttoolcommand.cpp" line="41"/>
         <source>Layout</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3625,14 +4457,18 @@
 <context>
     <name>LogView</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/logview.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/logview.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/logview.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/logview.cpp" line="44"/>
         <source>Log View</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>LoginDlg</name>
+    <name>LoginDialog</name>
+    <message>
+        <source>HOST_RESOLUTION_FAILURE</source>
+        <translation>Network error, please check your network status.</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="12"/>
         <source>Login</source>
@@ -3653,6 +4489,26 @@
         <source>International</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <source>Asia-Pascific</source>
+        <translation>Asia-Pascific</translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation>Europe</translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation>North America</translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation>South America</translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>Others </translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="130"/>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="867"/>
@@ -3667,7 +4523,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="237"/>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>User area</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="328"/>
@@ -3686,24 +4542,55 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="547"/>
-        <source>Me section in app &gt; Scan icon on top</source>
+        <source>Me section in app > Scan icon on top</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="990"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1002"/>
+        <source>You are browsing</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="990"/>
+        <source>crealitycloud.cn</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1002"/>
+        <source>crealitycloud.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>Please use the</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+        <source>Creality Cloud App (CN version)</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>Creality Cloud App</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>to scan the QR code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="558"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1065"/>
-        <source>Don&apos;t have an account?</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1011"/>
+        <source>No account yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="558"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1065"/>
-        <source>Sign Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="586"/>
-        <source>Visit website and download APP</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1011"/>
+        <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4713,12 +5600,78 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+
 <context>
-    <name>MainWindow</name>
+    <name>PreferencesDlg</name>
+	<message>
+        <source>China</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Asia-Pascific</source>
+        <translation>Asia-Pacific</translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>Others</translation>
+    </message>
+	 <message>
+        <source>Preferences</source>
+        <translation type="unfinished"> </translation>
+    </message>
+	 <message>
+        <source>Language</source>
+        <translation>Language </translation>
+    </message>
+	<message>
+        <source>Login area</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Synchronize user presets (printer/filament/process)</source>
+        <translation>Sync user presets</translation>
+    </message>
+
+	<message>
+        <source>Push parameters update</source>
+        <translation>Push parameter package updates</translation>
+    </message>
+	<message>
+        <source>Enable dark theme mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Model download</source>
+        <translation type="unfinished"></translation>
+    </message>
+		<message>
+        <source>Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+
+</context>
+<context>
+    <name>MainWindow2</name>
+     <message>
+        <source>Personal Center</source>
+        <translation>Personal Center</translation>
+    </message>
     <message>
         <location filename="../Creative3D/res/MainWindow.qml" line="21"/>
         <source>Creative3D</source>
-        <translation type="unfinished"></translation>
+        <translation>Creality Print</translation>
     </message>
     <message>
         <location filename="../Creative3D/res/MainWindow.qml" line="168"/>
@@ -4728,6 +5681,11 @@
     <message>
         <location filename="../Creative3D/res/MainWindow.qml" line="183"/>
         <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="372"/>
+        <source>Layer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4755,6 +5713,22 @@
         <source>You are currently on the latest version and do not need to update</source>
         <translation type="unfinished"></translation>
     </message>
+	    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1335"/>
+        <source>Are you sure to delete this printer</source>
+        <translation type="unfinished"></translation>
+    </message>
+
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1213"/>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1236"/>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>FDM</source>
         <translation type="unfinished"></translation>
@@ -4766,6 +5740,30 @@
     <message>
         <source>CNC</source>
         <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1733"/>
+        <source>Do you want to clear existing  supports before create new supports?</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1746"/>
+        <source>At least one printer should be added!</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" />
+        <source>Add</source>
+        <translation>Add</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" />
+        <source>Manage</source>
+        <translation>Manage</translation>
+    </message>
+	<message>
+        <source>Height</source>
+        <translation>Height</translation>
     </message>
 </context>
 <context>
@@ -4850,59 +5848,33 @@
 <context>
     <name>ManagePrinter</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/manageprinter.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/manageprinter.cpp" line="32"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/manageprinter.cpp" line="17"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/manageprinter.cpp" line="32"/>
         <source>Manage Printer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ManagerPrinterDlg</name>
+    <name>creative_kernel::MergeModelAction</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="31"/>
-        <source>Manage Printer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="50"/>
-        <source>Printer Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="171"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="192"/>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="208"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="225"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MergeModelAction</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/mergemodelaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/mergemodelaction.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/mergemodelaction.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/mergemodelaction.cpp" line="43"/>
         <source>Merge Model</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
+    <name>creative_kernel::MergeModelLocation</name>
+	<message>
+        <source>Merge Model Location</source>
+        <translation>Merge Model Locations</translation>
+    </message>
+</context>
+<context>
     <name>MergeModelCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mergemodelcommand.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mergemodelcommand.cpp" line="27"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/mergemodelcommand.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/mergemodelcommand.cpp" line="27"/>
         <source>Merge Model Locations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4910,16 +5882,8 @@
 <context>
     <name>MeshImportCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/meshimportcommand.cpp" line="8"/>
+        <location filename="../kernel/BasicKernel/internal/tool/meshimportcommand.cpp" line="8"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MeshLoaderWrapper</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/utils/meshloaderwrapper.cpp" line="174"/>
-        <source>The model is too large, Scale to the fit size?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4944,61 +5908,8 @@
 <context>
     <name>MirrorCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="9"/>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="22"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="70"/>
-        <source>Mirrror X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="73"/>
-        <source>Mirrror Y</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="30"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="76"/>
-        <source>Mirrror Z</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="34"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="79"/>
-        <source>Mirrror ReSet</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MirrorPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="17"/>
-        <source>Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="28"/>
-        <source>X Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="43"/>
-        <source>Y Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="58"/>
-        <source>Z Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="73"/>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Mirror</translation>
     </message>
 </context>
 <context>
@@ -5031,7 +5942,41 @@
     </message>
 </context>
 <context>
+    <name>ModelLibraryShareDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="47"/>
+        <source>Link: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="74"/>
+        <source>Copy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="91"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ModelLibraryInfoDlg</name>
+    <message>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="104"/>
         <source>Recommend</source>
@@ -5039,7 +5984,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="483"/>
-        <source>Uploaded </source>
+        <source>UploadedTime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5052,6 +5997,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="811"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" />
+        <source>Enter Model Name</source>
+        <translation>Enter the model name, category</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="880"/>
@@ -5084,6 +6034,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>DownLoad All</source>
+        <translation>DownLoad All</translation>
+    </message>
+    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1272"/>
         <source>Model List</source>
         <translation type="unfinished"></translation>
@@ -5099,24 +6053,159 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1384"/>
-        <source>Link: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1411"/>
-        <source>Copy Link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1429"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1464"/>
         <source>Failed to import or download model!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Model is in the download task list. Please check the download center.</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Latest upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Most liked</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Best seller</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Most makes</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Paid</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Import all</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Sort by</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+	<name>ModelLibraryAuthorInfo</name>
+	<message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Following</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Followers</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Likes</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Latest upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Most liked</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Best seller</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Most makes</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Enter Model Name</source>
+        <translation>Enter the model name, category</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+		<message>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>total</source>
+        <translation></translation>
+    </message>
+	 <message>
+        <source>Model</source>
+        <translation>models</translation>
+    </message>
+</context>
+<context>
+	<name>ModelLibraryAuthorModelInfo</name>
+	<message>
+        <source>Import all</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>DownLoad All</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Model List</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Creative Commons License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please check the copyright information in the description.</source>
+        <translation type="unfinished"></translation>
+    </message>
+	 <message>
+        <source>Model Library</source>
+        <translation  type="unfinished"></translation>
+    </message>
+		 <message>
+        <source>UploadedTime</source>
+        <translation type="unfinished">Update time</translation>
     </message>
 </context>
 <context>
@@ -5128,41 +6217,18 @@
     </message>
 </context>
 <context>
-    <name>ModelList</name>
+    <name>LaserPlotterModelList</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="74"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>All</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="119"/>
-        <source>You have not imported the model,please click Import</source>
-        <translation type="unfinished"></translation>
+        <source>Delete</source>
+        <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="195"/>
-        <source>Import Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="213"/>
-        <source>Auto arrange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="241"/>
-        <source>Upload platform model to CrealityCloud</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="273"/>
-        <source>Upload local model to CrealityCloud</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="291"/>
-        <source>Delete Model</source>
-        <translation type="unfinished"></translation>
+        <source>Object List</source>
+        <translation>Object List</translation>
     </message>
 </context>
 <context>
@@ -5170,6 +6236,11 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="80"/>
         <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="103"/>
+        <source>Model List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5181,20 +6252,20 @@
 <context>
     <name>ModelShowCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="21"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="41"/>
         <source>ShowModelLine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="25"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="25"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="44"/>
         <source>ShowModelFace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="47"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="47"/>
         <source>ShowModelFaceLine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5381,64 +6452,26 @@
 <context>
     <name>NewProjectCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/newprojectcommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/newprojectcommand.cpp" line="36"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/newprojectcommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/newprojectcommand.cpp" line="36"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NozzleAction</name>
+    <name>creative_kernel::NozzleAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/nozzleaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/nozzleaction.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="50"/>
         <source>Nozzle </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NozzleColorPanel</name>
+    <name>creative_kernel::OneSideAsBottomFace</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="21"/>
-        <source>Nozzle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="89"/>
-        <source>Nozzle 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="90"/>
-        <source>Nozzle 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="91"/>
-        <source>Nozzle 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="92"/>
-        <source>Nozzle 4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="93"/>
-        <source>Nozzle 5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="94"/>
-        <source>Nozzle 6</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>OneSideAsBottomFace</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/onesideasbottomface.cpp" line="25"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/onesideasbottomface.cpp" line="47"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/onesideasbottomface.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/onesideasbottomface.cpp" line="40"/>
         <source>OneSide As Bottomface</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5446,50 +6479,9 @@
 <context>
     <name>OpenFileCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/openfilecommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/openfilecommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu/openfilecommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu/openfilecommand.cpp" line="41"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ParameterFile</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="22"/>
-        <source>high</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="23"/>
-        <source>middle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="24"/>
-        <source>low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="291"/>
-        <source>Dynamic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="27"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="292"/>
-        <source>Balanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="28"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="293"/>
-        <source>Speedy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="294"/>
-        <source>Best quality</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5540,17 +6532,25 @@
 <context>
     <name>PickMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/pickmode.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/pickmode.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/tool/pickmode.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/tool/pickmode.cpp" line="29"/>
         <source>Pick</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>PlaceOnPrinterBed</name>
+    <name>pickBottom</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/placeonprinterbed.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/placeonprinterbed.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/res/plugin/pickbottom.qml" line="25"/>
+        <source>AUTO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::PlaceOnPrinterBed</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/placeonprinterbed.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/placeonprinterbed.cpp" line="39"/>
         <source>Place On PrinterBed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5623,7 +6623,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PlotterPanel.qml" line="490"/>
         <source>Generate GCode</source>
-        <translation type="unfinished"></translation>
+        <translation>Generate G-code</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PlotterPanel.qml" line="519"/>
@@ -6025,14 +7025,14 @@
 <context>
     <name>PrinterConrtolCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="38"/>
         <source>Single Control Printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="41"/>
         <source>Group Control Printing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6041,68 +7041,28 @@
     <name>PrinterModelListView</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="38"/>
-        <source>Dynamic</source>
+        <source>High Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="39"/>
-        <source>Balanced</source>
+        <source>Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="40"/>
-        <source>Speedy</source>
+        <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="41"/>
-        <source>Very Speedy</source>
+        <source>Fast</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>The main parameter configuration of this mode: Layer Height(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Line Width(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Wall Line Count(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Infill Density(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>%),Build Plate Adhesion Type(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>),Printing Temperature(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>℃),Build Plate Temperature(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>℃),Print Speed(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm/s)</source>
-        <translation type="unfinished"></translation>
+        <source>The main parameter configuration of this mode</source>
+        <translation>The main parameter configuration of this mode</translation>
     </message>
 </context>
 <context>
@@ -6169,14 +7129,14 @@
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="478"/>
-        <source>G0 X%1 Y%2 F3500 
+        <source>G0 X%1 Y%2 F3500
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="491"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="527"/>
-        <source>M106 S%1 
+        <source>M106 S%1
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6185,20 +7145,20 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="585"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="656"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="701"/>
-        <source>G1 X%1 Y%2 
+        <source>G1 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="494"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="530"/>
-        <source>G4 P%1 
+        <source>G4 P%1
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="514"/>
-        <source>G0 X%1 Y%2 F6000 
+        <source>G0 X%1 Y%2 F6000
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6212,7 +7172,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="790"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="791"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="808"/>
-        <source>G1 X%1 Y%2  
+        <source>G1 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6236,7 +7196,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="784"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="801"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="843"/>
-        <source>G0 F%1 
+        <source>G0 F%1
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6250,7 +7210,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="785"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="802"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="844"/>
-        <source>G0 X%1 Y%2 
+        <source>G0 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6260,13 +7220,13 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="719"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="787"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="846"/>
-        <source>G1 F%1 
+        <source>G1 F%1
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="852"/>
-        <source>G1 X%1 Y%2 E2 
+        <source>G1 X%1 Y%2 E2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6275,30 +7235,30 @@
     <name>QualityCombox</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="35"/>
-        <source>Dynamic</source>
+        <source>High Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="36"/>
-        <source>Balanced</source>
+        <source>Quality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="37"/>
-        <source>Speedy</source>
+        <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="38"/>
-        <source>Very Speedy</source>
+        <source>Fast</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RedoActionCmd</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/redoactioncmd.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/redoactioncmd.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu/redoactioncmd.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu/redoactioncmd.cpp" line="41"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6312,7 +7272,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/ReleaseNote.qml" line="48"/>
-        <source>Detected a new verion of </source>
+        <source>Detected a new verion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6383,23 +7343,23 @@
 <context>
     <name>ResetActionCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/resetactioncommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/resetactioncommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/resetactioncommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/resetactioncommand.cpp" line="24"/>
         <source>Reset All Model</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ResetAllAction</name>
+    <name>creative_kernel::ResetAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="27"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="35"/>
         <source>Reset All Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="28"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="36"/>
         <source>Do you Want to Reset All Model?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6407,7 +7367,7 @@
 <context>
     <name>ResetCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/resetcommand.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/tool/resetcommand.cpp" line="12"/>
         <source>ResetModel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6451,13 +7411,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="368"/>
-        <source>Manual supports have been added but support option is disabledin the template, 
+        <source>Manual supports have been added but support option is disabledin the template,
  do you want to add support structures?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="409"/>
-        <source>Are you sure to delete this printer?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6470,17 +7425,20 @@
         <source>The profile already exists! please enter again.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="579"/>
+</context>
+<context>
+    <name>BasicRClickMenu</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicRClickMenu.qml" line="101"/>
         <source>Failed to upload model!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>RotateMode</name>
+    <name>creative_kernel::RotateMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/rotatemode.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/rotatemode.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/tool/rotatemode.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/tool/rotatemode.cpp" line="41"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6513,24 +7471,62 @@
     </message>
 </context>
 <context>
+	<name>LayoutPanel</name>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="12"/>
+		<source>Layout</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="20"/>
+		<source>Centered</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="25"/>
+		<source>From Left to Right</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="30"/>
+		<source>From Right to Left</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="35"/>
+		<source>From Top to Bottom</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="40"/>
+		<source>From Bottom to Top</source>
+		<translation type="unfinished"></translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="45"/>
+		<source>Intelligent</source>
+		<translation type="unfinished"></translation>
+	</message>
+</context>
+<context>
     <name>SaveAsCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="64"/>
         <source>Save STL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="55"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="55"/>
         <source>Save Finished, Open Local Folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ScaleMode</name>
+    <name>creative_kernel::ScaleMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/scalemode.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/scalemode.cpp" line="63"/>
+        <location filename="../kernel/BasicKernel/internal/tool/scalemode.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/tool/scalemode.cpp" line="63"/>
         <source>Scale</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6554,19 +7550,11 @@
     </message>
 </context>
 <context>
-    <name>SelectAllAction</name>
+    <name>creative_kernel::SelectAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/selectallaction.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/selectallaction.cpp" line="30"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selectallaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selectallaction.cpp" line="39"/>
         <source>Select All Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SelectModelDlg</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/SelectModelDlg.qml" line="12"/>
-        <source>No model is selected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6593,7 +7581,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SelectPrinterModel.qml" line="56"/>
         <source>New Profile</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Profile Name</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SelectPrinterModel.qml" line="71"/>
@@ -6649,41 +7637,27 @@
     </message>
 </context>
 <context>
-    <name>SetNozzleRange</name>
+    <name>creative_kernel::SetNozzleRange</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/setnozzlerange.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/setnozzlerange.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="21"/>
         <source>Set Nozzle Range</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>SliceUI</name>
+    <name>creative_kernel::SliceFlow</name>
     <message>
-        <location filename="../kernel/CreativeKernel/external/slice/sliceui.cpp" line="171"/>
+        <location filename="../kernel/BasicKernel/external/slice/sliceui.cpp" line="133"/>
         <source>Save Finished, Open Local Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SpeedColorPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/SpeedColorPanel.qml" line="19"/>
-        <source>Speed (mm/s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Splash</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/Splash.qml" line="8"/>
-        <source>Splash Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/Splash.qml" line="41"/>
-        <source>Shenzhen Creality 3D Technology Co., Ltd. is an internationally renowned 3D printer manufacturer, focusing on the R &amp; D and production of 3D printers.</source>
-        <translation type="unfinished"></translation>
+        <source>Version</source>
+        <translation>Version</translation>
     </message>
 </context>
 <context>
@@ -6696,85 +7670,143 @@
     </message>
 </context>
 <context>
-    <name>SplitModelAction</name>
+    <name>creative_kernel::SplitModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/splitmodelaction.cpp" line="22"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/splitmodelaction.cpp" line="56"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/splitmodelaction.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/splitmodelaction.cpp" line="47"/>
         <source>Split Model</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>StructureColorPanel</name>
+    <name>SpeedPanel</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="33"/>
+        <source>Speed</source>
+        <translation>Speed</translation>
+    </message>
+</context>
+<context>
+    <name>StructurePanel</name>
+    <message>
         <source>Structure Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Structure Type</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="45"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>All</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="158"/>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Time</source>
+        <translation>Time</translation>
+    </message>
+    <message>
+        <source>Percent</source>
+        <translation>Percent</translation>
+    </message>
+    <message>
         <source>Outer Perimeter</source>
-        <translation type="unfinished"></translation>
+        <translation>Outer Wall</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="159"/>
         <source>Inner Perimeter</source>
-        <translation type="unfinished"></translation>
+        <translation>Inner Wall</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="160"/>
         <source>Skin</source>
-        <translation type="unfinished"></translation>
+        <translation>Skin</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="161"/>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation>Support</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="162"/>
         <source>SkirtBrim</source>
-        <translation type="unfinished"></translation>
+        <translation>SkirtBrim</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="163"/>
         <source>Infill</source>
-        <translation type="unfinished"></translation>
+        <translation>Infill</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="164"/>
         <source>SupportInfill</source>
-        <translation type="unfinished"></translation>
+        <translation>SupportInfill</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="167"/>
         <source>SupportInterface</source>
-        <translation type="unfinished"></translation>
+        <translation>SupportInterface</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="168"/>
         <source>PrimeTower</source>
-        <translation type="unfinished"></translation>
+        <translation>PrimeTower</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="169"/>
         <source>Travel</source>
-        <translation type="unfinished"></translation>
+        <translation>Travel</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="170"/>
         <source>FlowTravel</source>
-        <translation type="unfinished"></translation>
+        <translation>FlowTravel</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="171"/>
         <source>AdvanceTravel</source>
-        <translation type="unfinished"></translation>
+        <translation>AdvanceTravel</translation>
+    </message>
+		    <message>
+        <source>Ironing</source>
+        <translation>Ironing</translation>
+    </message>
+</context>
+<context>
+    <name>ExtruderPanel</name>
+    <message>
+        <source>Nozzle</source>
+        <translation>Nozzle</translation>
+    </message>
+</context>
+<context>
+    <name>LayerHightPanel</name>
+    <message>
+        <source>Layer Hight</source>
+        <translation>Layer Hight</translation>
+    </message>
+</context>
+<context>
+    <name>LineWidthPanel</name>
+    <message>
+        <source>Line Width</source>
+        <translation>Line Width</translation>
+    </message>
+</context>
+<context>
+    <name>FlowPanel</name>
+    <message>
+        <source>Flow</source>
+        <translation>Flow</translation>
+    </message>
+</context>
+<context>
+    <name>LayerTimePanel</name>
+    <message>
+        <source>Layer Time</source>
+        <translation>Layer Time</translation>
+    </message>
+</context>
+<context>
+    <name>FanSpeedPanel</name>
+    <message>
+        <source>Fan Speed</source>
+        <translation>Fan Speed</translation>
+    </message>
+</context>
+<context>
+    <name>TemperaturePanel</name>
+    <message>
+        <source>Temperature</source>
+        <translation>Temperature</translation>
     </message>
 </context>
 <context>
@@ -6809,8 +7841,8 @@
 <context>
     <name>SubMenuLanguage</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenulanguage.cpp" line="7"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenulanguage.cpp" line="25"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenulanguage.cpp" line="7"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenulanguage.cpp" line="25"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6818,8 +7850,8 @@
 <context>
     <name>SubMenuPrinterControl</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="26"/>
         <source>Creality Cloud Printing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6827,17 +7859,17 @@
 <context>
     <name>SubMenuRecentFiles</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/submenurecentfiles.cpp" line="18"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/submenurecentfiles.cpp" line="46"/>
+        <location filename="../kernel/BasicKernel/internal/menu/submenurecentfiles.cpp" line="18"/>
+        <location filename="../kernel/BasicKernel/internal/menu/submenurecentfiles.cpp" line="46"/>
         <source>Recently files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recent Files</translation>
     </message>
 </context>
 <context>
     <name>SubMenuThemeColor</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenuThemeColor.cpp" line="7"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenuThemeColor.cpp" line="20"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenuThemeColor.cpp" line="7"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenuThemeColor.cpp" line="20"/>
         <source>Theme color change</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6845,17 +7877,17 @@
 <context>
     <name>SubMenuViewShow</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/submenuviewsshow.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/submenuviewsshow.cpp" line="36"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/submenuviewsshow.cpp" line="17"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/submenuviewsshow.cpp" line="36"/>
         <source>View Show</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>SupportCommand</name>
+    <name>creative_kernel::SupportCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/supportcommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/supportcommand.cpp" line="40"/>
+        <location filename="../kernel/BasicKernel/internal/tool/supportcommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/supportcommand.cpp" line="40"/>
         <source>Support</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6899,7 +7931,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/SupportPanel.qml" line="118"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6962,7 +7994,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SupportTabPanel.qml" line="120"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7026,30 +8058,23 @@
     </message>
 </context>
 <context>
-    <name>ThemeColorCommand</name>
+    <name>creative_kernel::GlobalConst</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="10"/>
-        <source>Theme color change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="27"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="79"/>
+        <location filename="../kernel/BasicKernel/external/kernel/globalconst.cpp" line="154"/>
         <source>Dark Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="81"/>
+        <location filename="../kernel/BasicKernel/external/kernel/globalconst.cpp" line="155"/>
         <source>Light Theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>TranslateMode</name>
+    <name>creative_kernel::TranslateMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/translatemode.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/translatemode.cpp" line="61"/>
+        <location filename="../kernel/BasicKernel/internal/tool/translatemode.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/tool/translatemode.cpp" line="61"/>
         <source>Move</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7057,8 +8082,8 @@
 <context>
     <name>UndoActionCmd</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/undoactioncmd.cpp" line="8"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/undoactioncmd.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu/undoactioncmd.cpp" line="8"/>
+        <location filename="../kernel/BasicKernel/internal/menu/undoactioncmd.cpp" line="23"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7066,54 +8091,125 @@
 <context>
     <name>UpdateCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/updatecommand.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/updatecommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/updatecommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/updatecommand.cpp" line="21"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>UploadGCodeDlg</name>
+    <name>UploadGcodeDlg</name>
+	<message>
+        <source>The currently selected printer does not support multi-plate printing</source>
+        <translation>The currently selected printer does not support multi-plate printing</translation>
+    </message>
+	<message>
+        <source>Print</source>
+        <translation>Print</translation>
+    </message>
+		    <message>
+        <source>Upload</source>
+        <translation>Upload</translation>
+    </message>
+	    <message>
+        <source>Send</source>
+        <translation>Send</translation>
+    </message>
+	<message>
+        <source>Printer</source>
+        <translation>Printer</translation>
+    </message>
+	 <message>
+        <source>One-click Printing</source>
+        <translation>One-click Printing</translation>
+    </message>
+	<message>
+        <source>Multi-machine control</source>
+        <translation>Multi-machine</translation>
+    </message>
+	<message>
+        <source>CFS slot selection</source>
+        <translation>CFS slot selection</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="76"/>
-        <source>Upload Gcode</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="38"/>
+        <source>Upload G-code</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="38"/>
+        <source>Send G-code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="105"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="211"/>
         <source>Creality Cloud</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="211"/>
+        <source>Local Area Network</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="136"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="136"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="166"/>
-        <source>Upload</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="166"/>
+        <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="184"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="184"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="258"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="258"/>
         <source>Uploaded Successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="276"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="276"/>
         <source>View My Uploads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="289"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="289"/>
         <source>Cloud Printing</source>
         <translation type="unfinished"></translation>
     </message>
+	<message>
+        <source>Offline</source>
+        <translation>Offline</translation>
+    </message>
+	 <message>
+        <source>Idle</source>
+        <translation>Idle</translation>
+    </message>
+	<message>
+        <source>Printing</source>
+        <translation>Printing</translation>
+    </message>
+	<message>
+        <source>Pause</source>
+        <translation>Pause</translation>
+    </message>
+	<message>
+        <source>Failed</source>
+        <translation>Failed</translation>
+    </message>
+	<message>
+        <source>Completed</source>
+        <translation>Completed</translation>
+    </message>
+	<message>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+
 </context>
 <context>
     <name>UploadMessageDlg</name>
@@ -7139,11 +8235,11 @@
     </message>
 </context>
 <context>
-    <name>UploadModelAction</name>
+    <name>creative_kernel::UploadModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/uploadmodelaction.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/uploadmodelaction.cpp" line="40"/>
-        <source>Upload Model</source>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/uploadmodelaction.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/uploadmodelaction.cpp" line="49"/>
+        <source>Upload Models</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7151,7 +8247,7 @@
     <name>UploadModelDlg</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadModelDlg.qml" line="12"/>
-        <source>Upload Model</source>
+        <source>Upload Models</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7336,277 +8432,234 @@
 <context>
     <name>UseCourseCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/usecoursecommand.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/usecoursecommand.cpp" line="32"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/usecoursecommand.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/usecoursecommand.cpp" line="32"/>
         <source>Use Course</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>UseInfoPrinterItem</name>
+    <name>UserPrinterItem</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="110"/>
-        <source>Device Name:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="87"/>
+        <source>Device Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="133"/>
-        <source>Device ID:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="88"/>
+        <source>Device ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="156"/>
-        <source>Status:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="179"/>
-        <source>TF Card Status:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>TF Card Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="202"/>
-        <source>Printer Status:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Printer Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="225"/>
-        <source>IP:</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="92"/>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>Card Inserted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>No Card Inserted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UserFeedbackCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/userfeedbackcommand.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/userfeedbackcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/userfeedbackcommand.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/userfeedbackcommand.cpp" line="44"/>
         <source>User Feedback</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>UserInfoDlg</name>
+    <name>UserInfoDialog</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="52"/>
-        <source>Online</source>
-        <translation type="unfinished"></translation>
+        <source>When you delete the model, the configuration you uploaded will be deleted simultaneously.</source>
+        <translation>When you delete the model, the configuration you uploaded will be deleted simultaneously.</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="53"/>
-        <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <source>Print Configuration</source>
+        <translation>Print Configuration</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="54"/>
-        <source>Card Inserted</source>
-        <translation type="unfinished"></translation>
+        <source>Print Configuration</source>
+        <translation>Print Configuration</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="55"/>
-        <source>No Card Inserted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="56"/>
-        <source>Connected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="57"/>
-        <source>Disconnected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="111"/>
         <source>Copy link successfully!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="435"/>
         <source>Printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="441"/>
         <source>Printing pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="483"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="497"/>
         <source>The device is offline. Printing Failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="488"/>
         <source>Unable to identify the TF card information. Printing Failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="493"/>
         <source>The device is not connected to the printer. Printing Failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="706"/>
-        <source>Failed to import model or gcode!</source>
+        <source>Failed to import gcode file!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1164"/>
         <source>Personal Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1205"/>
-        <source>ID: </source>
-        <translation type="unfinished"></translation>
+        <source>Used</source>
+        <translation>Used</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1234"/>
-        <source>Remaining Space:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1284"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1331"/>
         <source>My Slices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1361"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1436"/>
         <source>My Uploads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1386"/>
         <source>Cloud Slicing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1408"/>
         <source>My Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1460"/>
         <source>My Favorited</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1484"/>
         <source>My Purchased</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1503"/>
         <source>My Devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1524"/>
         <source>My Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1565"/>
         <source>How to add my devices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1607"/>
         <source>How to add my slices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1686"/>
         <source>How to add my models?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1738"/>
         <source>How to collect models?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>VideoGroupItem</name>
+    <name>creative_kernel::ViewShowCommand</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupItem.qml" line="97"/>
-        <source>Device Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupItem.qml" line="117"/>
-        <source>Printing File:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VideoGroupPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupPanel.qml" line="50"/>
-        <source>Printing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupPanel.qml" line="63"/>
-        <source>Print Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ViewShowCommand</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="55"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="55"/>
         <source>Front View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="58"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="58"/>
         <source>Back View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="61"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="61"/>
         <source>Left View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="32"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="32"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="64"/>
         <source>Right View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="35"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="67"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="35"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="67"/>
         <source>Top View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="38"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="70"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="70"/>
         <source>Bottom View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="41"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="73"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="73"/>
         <source>Perspective View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="44"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="76"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="76"/>
         <source>Orthographic View</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7614,7 +8667,7 @@
 <context>
     <name>WebsiteCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/websitecommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/tool/websitecommand.cpp" line="9"/>
         <source>WebSite</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7622,7 +8675,7 @@
 <context>
     <name>export</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/cx3d_exporter/export.qml" line="24"/>
+        <location filename="../kernel/BasicKernel/res/plugin/cx3d_exporter/export.qml" line="24"/>
         <source>Export 3MF</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7630,7 +8683,7 @@
 <context>
     <name>import</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/cx3d_exporter/import.qml" line="21"/>
+        <location filename="../kernel/BasicKernel/res/plugin/cx3d_exporter/import.qml" line="21"/>
         <source>Open Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7638,105 +8691,228 @@
 <context>
     <name>info</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="45"/>
         <source>Drill</source>
-        <translation type="unfinished"></translation>
+        <translation>Drill</translation>
+    </message>
+	<message>
+        <source>drill invalid</source>
+        <translation>drill invalid</translation>
+    </message>
+	 <message>
+        <source>split invalid</source>
+        <translation>split invalid</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="66"/>
-        <source>Sharp:</source>
-        <translation type="unfinished"></translation>
+        <source>Shape:</source>
+        <translation>Shape:</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="79"/>
         <source>Circle</source>
-        <translation type="unfinished"></translation>
+        <translation>Circle</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="80"/>
         <source>Triangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Triangle</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="81"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Square</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="103"/>
-        <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <source>Radius:</source>
+        <translation>Radius:</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="129"/>
         <source>Depth:</source>
-        <translation type="unfinished"></translation>
+        <translation>Depth:</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="156"/>
-        <source>Cancel Drilling</source>
-        <translation type="unfinished"></translation>
+        <source>Direction:</source>
+        <translation>Direction:</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="156"/>
-        <source>Start Drilling</source>
-        <translation type="unfinished"></translation>
+        <source>Normal Direction</source>
+        <translation>Normal Direction</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="44"/>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="121"/>
+        <source>Parallel to Platform</source>
+        <translation>Parallel to Platform</translation>
+    </message>
+    <message>
+        <source>Perpendicular to Screen</source>
+        <translation>Perpendicular to Screen</translation>
+    </message>
+    <message>
+        <source>Pierce One Layer Only</source>
+        <translation>Pierce One Layer Only</translation>
+    </message>
+    <message>
+        <source>Drill failed</source>
+        <translation>Drill failed</translation>
+    </message>
+    <message>
+        <source>Distance Measure</source>
+        <translation>Distance Measure</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="44"/>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="121"/>
         <source>Hollow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="65"/>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="163"/>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="65"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="163"/>
         <source>Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="56"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="56"/>
         <source>Letter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="75"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="75"/>
         <source>Text:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="100"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="100"/>
         <source>Font:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="136"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="136"/>
         <source>Height:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="193"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="193"/>
         <source>Inside</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="205"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="205"/>
         <source>Outside</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="250"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
+        <source>Letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
         <source>Cancel Lettering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="250"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
         <source>Start Lettering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="273"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="273"/>
         <source>import font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="75"/>
+        <source>Generate Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thickness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill Percentage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill Structure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LetterConfigPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterConfigPanel.qml" line="28"/>
+        <source>Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterConfigPanel.qml" line="61"/>
+        <source>Parameter</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LetterFontConfigs</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="28"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="41"/>
+        <source>Please input text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="53"/>
+        <source>Font Family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="88"/>
+        <source>Font Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LetterShapeConfigs</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="30"/>
+        <source>Move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="126"/>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="224"/>
+        <source>Rotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="272"/>
+        <source>Thickness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="321"/>
+        <source>Letter Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="333"/>
+        <source>Inside</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="343"/>
+        <source>Outside</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7751,27 +8927,27 @@
 <context>
     <name>preventwarpe</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="45"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="45"/>
         <source>PreventWarpe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="66"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="66"/>
         <source>Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="123"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="123"/>
         <source>Layer:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
         <source>Cancel PreventWarpe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
         <source>Start PreventWarpe</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7779,14 +8955,694 @@
 <context>
     <name>slice_preview</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/slice/slice_preview.qml" line="27"/>
+        <location filename="../kernel/BasicKernel/res/slice/slice_preview.qml" line="27"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/slice/slice_preview.qml" line="41"/>
+        <location filename="../kernel/BasicKernel/res/slice/slice_preview.qml" line="41"/>
         <source>UnPreview</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadManage</name>
+    <message>
+        <source>Download Manage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation>Import</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <source>Save Successed</source>
+        <translation>Save Successed</translation>
+    </message>
+    <message>
+        <source>Save Failed</source>
+        <translation>Save Failed</translation>
+    </message>
+    <message>
+        <source>save_successed_tip</source>
+        <translation>Save successed, do you want open the folder now?</translation>
+    </message>
+    <message>
+        <source>save_failed_tip</source>
+        <translation>Save failed, please try again.</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation>Downloading</translation>
+    </message>
+    <message>
+        <source>Finished</source>
+        <translation>Finished</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>Select All</translation>
+    </message>
+    <message>
+        <source>File Size</source>
+        <translation>File Size</translation>
+    </message>
+    <message>
+        <source>Download Speed</source>
+        <translation>Download Speed</translation>
+    </message>
+    <message>
+        <source>Download Time</source>
+        <translation>Download Time</translation>
+    </message>
+    <message>
+        <source>The Download task list is empty</source>
+        <translation>The Download task list is empty</translation>
+    </message>
+    <message>
+        <source>Go to the model library</source>
+        <translation>Go to the model library</translation>
+    </message>
+	<message>
+        <source>Open folder</source>
+        <translation>Open folder</translation>
+    </message>
+</context>
+<context>
+    <name>CusStyledStatusBar</name>
+    <message>
+        <source>The model has not been supported and may fail to print. Do you want to continue adding supports before slicing?</source>
+        <translation>The model has not been supported and may fail to print. Do you want to continue adding supports before slicing?</translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>DumpWindow</name>
+    <message>
+        <source>title</source>
+        <translation>Error Report</translation>
+    </message>
+    <message>
+        <source>dump_tip_format_0</source>
+        <translation>A serious error has occurred in %1. Please send this error report to us to fix the problem.</translation>
+    </message>
+    <message>
+        <source>dump_tip_format_1</source>
+        <translation>Please click the "Send Report" button to automatically publish the error report to our server.</translation>
+    </message>
+    <message>
+        <source>dump_info_format</source>
+        <translation>%1 version: %2
+%3 langauge: %4
+Operating System: %5
+Graphics card: %6
+OpenGL:
+  - OpenGL version: %7
+  - OpenGL vendor: %8
+  - OpenGL renderer: %9</translation>
+    </message>
+    <message>
+        <source>accept</source>
+        <translation>Send Report</translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation>Close</translation>
+    </message>
+</context>
+<context>
+    <name>errorData</name>
+	  <message>
+        <source>20000</source>
+        <translation>The file where the last unexpected stop was detected</translation>
+    </message>
+    <message>
+        <source>20010</source>
+        <translation>Filament ranout, printing paused, please refill.</translation>
+    </message>
+</context>
+<context>
+    <name>Klipper4408_ErrorMsg</name>
+    <message>
+        <source>Continue printing after power failure</source>
+        <translation>Improper operation detected from last attempt</translation>
+    </message>
+    <message>
+        <source>Broken material</source>
+        <translation>Filament ranout, printing paused, please refill.</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileUiParameterDialog</name>
+    <message>
+        <source>title</source>
+        <translation>Select Custom Config</translation>
+    </message>
+    <message>
+        <source>select_all</source>
+        <translation>Select All</translation>
+    </message>
+    <message>
+        <source>confirm</source>
+        <translation>Confirm</translation>
+    </message>
+    <message>
+        <source>reset</source>
+        <translation>Reset</translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ModelSettingAction</name>
+    <message>
+        <source>Model Setting</source>
+        <translation>Model Setting</translation>
+    </message>
+</context>
+<context>
+    <name>ModelSettingTipDialog</name>
+    <message>
+        <source>Edit Process Settings</source>
+        <translation>Edit Process Settings</translation>
+    </message>
+    <message>
+        <source>Switched to object settings mode, where you can edit the parameters of the selected object.</source>
+        <translation>Switched to object settings mode, where you can edit the parameters of the selected object.</translation>
+    </message>
+    <message>
+        <source>Don't ask me again</source>
+        <translation>Don't ask me again</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Confirm</translation>
+    </message>
+</context>
+<context>
+    <name>ParameterExceededMessage</name>
+    <message>
+        <source>The prime tower requires that all objects have the same layer height.</source>
+        <translation>The prime tower requires that all objects have the same layer height.</translation>
+    </message>
+    <message>
+        <source>The layer height of each object is different, so the prime tower cannot be enabled.</source>
+        <translation>The layer height of each object is different, so the prime tower cannot be enabled.</translation>
+    </message>
+    <message>
+        <source>%1 must not be smaller than support material extrusion width.</source>
+        <translation>%1 must not be smaller than support material extrusion width.</translation>
+    </message>
+    <message>
+        <source>%1 must not be smaller than support tree tip diameter.</source>
+        <translation>%1 must not be smaller than support tree tip diameter.</translation>
+    </message>
+    <message>
+        <source>The %1's parameter %2 exceeds the %3 value.</source>
+        <translation>The %1's parameter %2 exceeds the %3 value.</translation>
+    </message>
+    <message>
+        <source>The parameter %1 exceeds the %2 value.</source>
+        <translation>The parameter %1 exceeds the %2 value.</translation>
+    </message>
+    <message>
+        <source>minimum</source>
+        <translation>minimum</translation>
+    </message>
+    <message>
+        <source>maximum</source>
+        <translation>maximum</translation>
+    </message>
+    <message>
+        <source>Jump to %1's %2</source>
+        <translation>Jump to %1's %2</translation>
+    </message>
+    <message>
+        <source>Jump to %1</source>
+        <translation>Jump to %1</translation>
+    </message>
+</context>
+<context>
+    <name>parameter_update</name>
+    <message>
+        <source>A new parameter package update is detected. Would you like to update it?</source>
+        <translation>A new parameter package update is detected. Would you like to update it?</translation>
+    </message>
+    <message>
+        <source>Current version</source>
+        <translation>Current version</translation>
+    </message>
+    <message>
+        <source>Found new version</source>
+        <translation>Found new version</translation>
+    </message>
+    <message>
+        <source>Latest version already</source>
+        <translation>Latest version already</translation>
+    </message>
+    <message>
+        <source>Update Now</source>
+        <translation>Update Now</translation>
+    </message>
+    <message>
+        <source>Updating</source>
+        <translation>Updating</translation>
+    </message>
+    <message>
+        <source>Parameter Package Update</source>
+        <translation>Parameter Package Update</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Confirm</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>ParameterComponent</name>
+    <message>
+        <source>Advanced settings options enabled by default</source>
+        <translation>Advanced settings options enabled by default</translation>
+    </message>
+    <message>
+        <source>Click to disable advanced options by default</source>
+        <translation>Click to disable advanced options by default</translation>
+    </message>
+    <message>
+        <source>Click to enable advanced options by default</source>
+        <translation>Click to enable advanced options by default</translation>
+    </message>
+    <message>
+        <source>Wall and surface</source>
+        <translation>Wall and surface</translation>
+    </message>
+    <message>
+        <source>Bridge</source>
+        <translation>Bridge</translation>
+    </message>
+    <message>
+        <source>Drape</source>
+        <translation>Drape</translation>
+    </message>
+    <message>
+        <source>scarf_joint_speed.label</source>
+        <translation>Scarf joint speed</translation>
+    </message>
+    <message>
+        <source>seam_slope_conditional.label</source>
+        <translation>Conditional scarf joint</translation>
+    </message>
+    <message>
+        <source>seam_slope_entire_loop.label</source>
+        <translation>Scarf around entire wall</translation>
+    </message>
+    <message>
+        <source>seam_slope_inner_walls.label</source>
+        <translation>Scarf joint for inner walls</translation>
+    </message>
+    <message>
+        <source>seam_slope_min_length.label</source>
+        <translation>Scarf length</translation>
+    </message>
+    <message>
+        <source>seam_slope_start_height.label</source>
+        <translation>Scarf start height</translation>
+    </message>
+    <message>
+        <source>seam_slope_steps.label</source>
+        <translation>Scarf steps</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.label</source>
+        <translation>Scarf joint seam</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.none.label</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.external.label</source>
+        <translation>Contour</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.all.label</source>
+        <translation>Contour and hole</translation>
+    </message>
+    <message>
+        <source>print_order.label</source>
+        <translation>Intra-layer order</translation>
+    </message>
+    <message>
+        <source>print_order.options.default.label</source>
+        <translation>Default</translation>
+    </message>
+    <message>
+        <source>print_order.options.as_obj_list.label</source>
+        <translation>As object list</translation>
+    </message>
+    <message>
+        <source>arc_tolerance.label</source>
+        <translation>Arc tolerance</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.label</source>
+        <translation>Ensure vertical shell thickness</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.description</source>
+        <translation>Add solid infill near sloping surfaces to guarantee the vertical shell thickness (top+bottom solid layers)</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.none.label</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_critical_only.label</source>
+        <translation>Critical Only</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_moderate.label</source>
+        <translation>Moderate</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_all.label</source>
+        <translation>All</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.label</source>
+        <translation>Don't filter out small internal bridges (beta)</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.disabled.label</source>
+        <translation>Disabled</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.limited.label</source>
+        <translation>Limited filtering</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.nofilter.label</source>
+        <translation>No filtering</translation>
+    </message>
+    <message>
+        <source>min_length_factor.label</source>
+        <translation>Minimum wall length</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.label</source>
+        <translation>Apply gap fill</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.everywhere.label</source>
+        <translation>Everywhere</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.topbottom1.label</source>
+        <translation>Top and bottom surfaces</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.nowhere.label</source>
+        <translation>Nowhere</translation>
+    </message>
+    <message>
+        <source>wall_direction.label</source>
+        <translation>Wall loop direction</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.auto.label</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.ccw.label</source>
+        <translation>Counter clockwise</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.cw.label</source>
+        <translation>Clockwise</translation>
+    </message>
+    <message>
+        <source>small_area_infill_flow_compensation.label</source>
+        <translation>Small area flow compensation (beta)</translation>
+    </message>
+    <message>
+        <source>small_area_infill_flow_compensation_model.label</source>
+        <translation>Flow Compensation Model</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.label</source>
+        <translation>Bridge counterbore holes</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.none.label</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.partiallybridge.label</source>
+        <translation>Partially bridged</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.sacrificiallayer.label</source>
+        <translation>Sacrificial layer</translation>
+    </message>
+    <message>
+        <source>ai_infill.label</source>
+        <translation>AI Infill</translation>
+    </message>
+    <message>
+        <source>ai_infill.description</source>
+        <translation>Using AI-Infill algorithms to create uneven filling patterns for the selected model, making the filling denser near the walls and sparser in the central areas.</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation>Others</translation>
+    </message>
+    <message>
+        <source>%1 too small. It has been reset to %2.</source>
+        <translation>%1 too small. It has been reset to %2.</translation>
+    </message>
+    <message>
+        <source>travel_speed.label</source>
+        <translation>Travel</translation>
+    </message>
+    <message>
+        <source>activate_chamber_temp_control.description</source>
+        <translation>Enable this option for chamber temperature control. An  M141 command will be added before "machine_start_gcode".
+G-code commands: M141 S(0-255)</translation>
+    </message>
+    <message>
+        <source>bridge_angle.description</source>
+        <translation>Bridging angle override. If left to zero, the bridging angle will be calculated automatically. Otherwise the provided angle will be used for external bridges. Use 180.for zero angle.</translation>
+    </message>
+    <message>
+        <source>wall_sequence.label</source>
+        <translation>Walls printing order</translation>
+    </message>
+    <message>
+        <source>wall_sequence.description</source>
+        <translation>Print sequence of the internal (inner) and external (outer) walls.
+
+Use Inner/Outer for best overhangs. This is because the overhanging walls can adhere to a neighouring perimeter while printing. However, this option results in slightly reduced surface quality as the external perimeter is deformed by being squashed to the internal perimeter.
+
+Use Inner/Outer/Inner for the best external surface finish and dimensional accuracy as the external wall is printed undisturbed from an internal perimeter. However, overhang performance will reduce as there is no internal perimeter to print the external wall against. This option requires a minimum of 3 walls to be effective as it prints the internal walls from the 3rd perimeter onwards first, then the external perimeter and, finally, the first internal perimeter. This option is recomended against the Outer/Inner option in most cases.
+
+Use Outer/Inner for the same external wall quality and dimensional accuracy benefits of Inner/Outer/Inner option. However, the z seams will appear less consistent as the first extrusion of a new layer starts on a visible surface.</translation>
+    </message>
+    <message>
+        <source>wall_sequence.label</source>
+        <translation>Inner/Outer</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.inner wall/outer wall.label</source>
+        <translation>Inner/Outer</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.outer wall/inner wall.label</source>
+        <translation>Outer/Inner</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.inner-outer-inner wall.label</source>
+        <translation>Inner/Outer/Inner</translation>
+    </message>
+    <message>
+        <source>is_infill_first.description</source>
+        <translation>Order of wall/infill. When the tickbox is unchecked the walls are printed first, which works best in most cases.
+
+Printing walls first may help with extreme overhangs as the walls have the neighbouring infill to adhere to. However, the infill will slighly push out the printed walls where it is attached to them, resulting in a worse external surface finish. It can also cause the infill to shine through the external surfaces of the part.</translation>
+    </message>
+    <message>
+        <source>wall_loops.label</source>
+        <translation>Wall loops</translation>
+    </message>
+    <message>
+        <source>retraction_speed.label</source>
+        <translation>Retraction Speed</translation>
+    </message>
+
+    <message>
+        <source>cool_special_cds_fan_speed.label</source>
+        <translation>Special Cds Fan Speed</translation>
+    </message>
+    <message>
+        <source>cool_special_cds_fan_speed.description</source>
+        <translation>The speed at which the cds cooling fans spin on special zones(bridge,overhand,etc.).</translation>
+    </message>
+    <message>
+        <source>Cool Plate</source>
+        <translation>Customized Plate</translation>
+    </message>
+    <message>
+        <source>fork_node_modifyed_tip_format</source>
+        <translation>The parameters in the current classification (%1) have changed, please pay attention to verification!</translation>
+    </message>
+    <message>
+        <source>during_print_exhaust_fan_speed.label</source>
+        <translation>During printing</translation>
+    </message>
+    <message>
+        <source>complete_print_exhaust_fan_speed.label</source>
+        <translation>After printing completes</translation>
+    </message>
+    <message>
+        <source>material_flow_temp_graph.description</source>
+        <translation>Correspondence between flow rate (mm2/s) and printing temperature (°C).</translation>
+    </message>
+    <message>
+        <source>support_air_filtration.label</source>
+        <translation>Support Air Filtration</translation>
+    </message>
+    <message>
+        <source>support_air_filtration.description</source>
+        <translation>Enable this if printer support air filtration\nG-code command: M106 P3 S(0-255)</translation>
+    </message>
+    <message>
+        <source>machine_LED_light_exist.label</source>
+        <translation>Machine LED light exist</translation>
+    </message>
+    <message>
+        <source>machine_LED_light_exist.description</source>
+        <translation>Enable this if printer support LED.</translation>
+    </message>
+    <message>
+        <source>machine_platform_motion_enable.label</source>
+        <translation>Machine platform motion enable</translation>
+    </message>
+    <message>
+        <source>machine_platform_motion_enable.description</source>
+        <translation>Machine platform motion enable</translation>
+    </message>
+    <message>
+        <source>max_volumetric_extrusion_rate_slope.description</source>
+        <translation>This parameter smooths out sudden extrusion rate changes that happen when the printer transitions from printing a high flow (high speed/larger width) extrusion to a lower flow (lower speed/smaller width) extrusion and vice versa.
+It defines the maximum rate by which the extruded volumetric flow in mm3/sec can change over time. Higher values mean higher extrusicon rate changes are allowed, resulting in faster speed transitions.
+A value of 0 disables the feature.
+However it can provide some marginal benefit in certain cases where feature speeds vary greatly.
+For example, when there are aggressive slowdowns due to overhangs. In these cases a high value of around 300-350mm3/s2 is recommended as this allows for just enough smoothing to asssist pressure advance achieve a smoother flow transition.
+For slower printers without pressure advance, the value shouldbe set much lower.
+A value of 10-15mm3/s2 is a good starting point for direct drive extruders and 5-10mm3/s2 for Bowden style.
+This feature is known as Pressure Equalizer in Prusa slicer.
+Note: this parameter disables arc fitting.</translation>
+    </message>
+    <message>
+        <source>%1 infill pattern doesn't support 100% density.
+Switch to rectilinear pattern?
+Yes - switch to rectilinear pattern automaticlly
+No - reset density to default non 100% value automaticlly</source>
+        <translation>%1 infill pattern doesn't support 100% density.
+Switch to rectilinear pattern?
+Yes - switch to rectilinear pattern automaticlly
+No - reset density to default non 100% value automaticlly</translation>
+    </message>
+</context>
+<context>
+    <name>CloudContext</name>
+    <message>
+        <source>restart_appliction_tip</source>
+        <translation>This operation will restart the application immediately. Do you want to proceed?</translation>
+    </message>
+</context>
+<context>
+    <name>UserProjectItem</name>
+    <message>
+        <source>me</source>
+        <translation>me</translation>
+    </message>
+    <message>
+        <source>Printer Type</source>
+        <translation>Printer Type</translation>
+    </message>
+    <message>
+        <source>Plate Count</source>
+        <translation>Plate Count</translation>
+    </message>
+    <message>
+        <source>Print Duraction</source>
+        <translation>Print Duraction</translation>
+    </message>
+    <message>
+        <source>Material Weight</source>
+        <translation>Material Weight</translation>
+    </message>
+    <message>
+        <source>Import Print Configuration</source>
+        <translation>Import Print Configuration</translation>
+    </message>
+    <message>
+        <source>Delete Print Configuration</source>
+        <translation>Delete Print Configuration</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectListDialog</name>
+    <message>
+        <source>Are you sure to delete this configuration?</source>
+        <translation>Are you sure to delete this configuration?</translation>
+    </message>
+</context>
+<context>
+    <name>FileShareDialog</name>
+    <message>
+        <source>Link</source>
+        <translation>Link</translation>
+    </message>
+    <message>
+        <source>Copy Link</source>
+        <translation>Copy Link</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
     </message>
 </context>
 </TS>

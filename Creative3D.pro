@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-    plugins\CrealityUITest \
+#    plugins/CrealityUIComponent \
+#    plugins\CrealityUITest \
    # Creative3D \
         plugins\CrealityUI
 

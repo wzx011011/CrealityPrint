@@ -55,7 +55,7 @@ T.RadioButton {
     property color checkLabelColor: Constants.radioCheckLabelColor
     property color checkRadiusColor: Constants.radioCheckRadiusColor
     font.family: Constants.labelFontFamily
-    font.pointSize:Constants.labelFontPointSize
+    font.pointSize:Constants.labelFontPointSize_9
     // keep in sync with RadioDelegate.qml (shared RadioIndicator.qml was removed for performance reasons)
     indicator: Rectangle {
         implicitWidth: 12*screenScaleFactor
@@ -65,15 +65,15 @@ T.RadioButton {
         y: control.topPadding + (control.availableHeight - height) / 2
 
         radius: width / 2
-        color: Constants.radioInfillBgColor//control.down ? control.palette.light : control.palette.base
+        color: control.checked ? Constants.themeGreenColor : "transparent"
         border.width: control.visualFocus ? 2 : 1
-        border.color: Constants.radioBorderColor//control.visualFocus ? control.palette.highlight : control.palette.mid
+        border.color: control.checked ? Constants.themeGreenColor : Constants.radioBorderColor
 
         Rectangle {
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
-            width: 8*screenScaleFactor
-            height: 8*screenScaleFactor
+            width: parent.width/2
+            height: parent.width/2
             radius: width / 2
             color: checkRadiusColor
             visible: control.checked

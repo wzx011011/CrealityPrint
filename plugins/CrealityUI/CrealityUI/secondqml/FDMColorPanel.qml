@@ -40,12 +40,6 @@ Rectangle
         anchors.topMargin: 20
         visible: colorSelectIndex === 2 ? true : false
         objectName: "NozzleColorPanel"
-        Connections{
-            target: sliceUI
-            onNozzleColorChange:{
-                idNozzlePanel.nozzlenum = count
-            }
-        }
         Component.onCompleted:
         {
         }

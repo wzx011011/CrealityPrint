@@ -13,10 +13,11 @@ if(${WINDOWS_IDENTITIY_PFX_PASSWORD})
     message(WARNING "USE WITH CAUTION: Password for the PFX file has been set!")
 endif()
 
-# Signing Creative3D.exe
+# Signing Creative3D.exe and dumptool.exe
 add_custom_command(
     TARGET signing PRE_BUILD
-    COMMAND C:/Windows/curl.exe http://127.0.0.1:3000/sign?name=${BIN_OUTPUT_DIR}/Release/Creative3D.exe
+    COMMAND C:/Windows/curl.exe http://127.0.0.1:3000/sign?name=${BIN_OUTPUT_DIR}/Release/${PROJECT_NAME}.exe
+    COMMAND C:/Windows/curl.exe http://127.0.0.1:3000/sign?name=${BIN_OUTPUT_DIR}/Release/dumptool.exe
     ## Other optional options:
     # /tr timestampServerUrl 
     WORKING_DIRECTORY ${BIN_OUTPUT_DIR}/Release

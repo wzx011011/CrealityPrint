@@ -50,15 +50,16 @@ TextField{
                              implicitBackgroundHeight + topInset + bottomInset,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    padding: 8
-    leftPadding: padding + 8 + headImage.width
-    rightPadding: padding + 8 + idtailBtn.width
-    property var radius : 0
+    // padding: 8
+    leftPadding: 16* screenScaleFactor + headImage.width
+    rightPadding: 16* screenScaleFactor + idtailBtn.width
+    property var radius : 8* screenScaleFactor
 	property var keyStr: ""
 	property var errorCode: 0x0000
     property var headImageSrc: ""
     property var tailImageSrc: ""
     property var hoveredTailImageSrc: ""
+    property var imgPadding:  8*screenScaleFactor
     signal tailBtnClicked()
 
     placeholderTextColor: Color.transparent(control.color, 0.5)
@@ -79,11 +80,11 @@ TextField{
     Image {
         id : headImage
         y: (control.height - headImage.width)/2
-        x: control.padding
+        x: imgPadding
         height:sourceSize.height
         width: sourceSize.width
         visible: headImageSrc=="" ? false : true
-        source: headImageSrc
+        source: headImageSrc ? headImageSrc : ""
     }
 	
     PlaceholderText {
@@ -128,7 +129,7 @@ TextField{
         anchors.bottom: control.bottom
         anchors.bottomMargin: (control.height - idtailBtn.height)/2
         anchors.right: control.right
-        anchors.rightMargin: 8
+        anchors.rightMargin: imgPadding
         Image{
             id: imgitem
             anchors.centerIn: parent
@@ -160,7 +161,7 @@ TextField{
 			color: Constants.textColor
 			font.family: Constants.labelFontFamily
 			font.weight: Constants.labelFontWeight
-			font.pixelSize: 14
+            font.pointSize: Constants.labelFontPointSize_12
 			readOnly: true
 			background: Rectangle
 			{

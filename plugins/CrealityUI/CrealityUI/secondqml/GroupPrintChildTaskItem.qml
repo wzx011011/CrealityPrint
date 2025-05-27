@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0 as QQC2
 import CrealityUI 1.0
+import QtQml 2.13
 import "qrc:/CrealityUI"
 import ".."
 import "../qml"
@@ -193,7 +194,7 @@ Rectangle{
                             StyledLabel{
                                 width: parent.width
                                 height: 22
-                                font.pixelSize:16
+                                font.pointSize: Constants.labelFontPointSize_14
                                 color: "#333333"
                                 text: deviceName
                                 elide: Text.ElideRight
@@ -203,7 +204,7 @@ Rectangle{
                             StyledLabel{
                                 width: parent.width
                                 height: 21
-                                font.pixelSize:12
+                                font.pointSize: Constants.labelFontPointSize_10
                                 color: "#333333"
                                 text: gcodeName
                                 elide: Text.ElideRight
@@ -225,7 +226,7 @@ Rectangle{
                                     StyledLabel{
                                         width: 100
                                         height: 21
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         color: "#333333"
                                         text: {
                                             if(printStatus === 1)
@@ -257,7 +258,7 @@ Rectangle{
                                     StyledLabel{
                                         width: parent.width - 100
                                         height: 21
-                                        font.pixelSize:12
+                                        font.pointSize: Constants.labelFontPointSize_10
                                         color: {
                                             if(progressBar.value == 0)
                                             {
@@ -330,7 +331,7 @@ Rectangle{
                                             id: idPrintTimeLabel
                                             width: idPrintTimeLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: qsTr("Print Time") + ": "
                                             //elide: Text.ElideRight
@@ -341,7 +342,7 @@ Rectangle{
                                             id: idPrintTimeValueLabel
                                             width: idPrintTimeValueLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: printTimes
                                             //elide: Text.ElideRight
@@ -357,7 +358,7 @@ Rectangle{
                                             id: idRemainTimeLabel
                                             width: idRemainTimeLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: qsTr("Remain Time") + ": "
                                             //elide: Text.ElideRight
@@ -368,7 +369,7 @@ Rectangle{
                                             id: idRemainTimeValueLabel
                                             width: idRemainTimeValueLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: printLeftTimes
                                             //elide: Text.ElideRight
@@ -384,7 +385,7 @@ Rectangle{
                                             id: idTotalTimeLabel
                                             width: idTotalTimeLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: qsTr("Total Print Time") + ": "
                                             //elide: Text.ElideRight
@@ -395,7 +396,7 @@ Rectangle{
                                             id: idTotalTimeValueLabel
                                             width: idTotalTimeValueLabel.contentWidth
                                             height: parent.height
-                                            font.pixelSize:12
+                                            font.pointSize: Constants.labelFontPointSize_10
                                             color: "#333333"
                                             text: printTimes//qsTr("3h35min")
                                             //elide: Text.ElideRight
@@ -491,7 +492,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: (printStatus === 2) ? true : false 
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -508,7 +509,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: ((printStatus === 2)&&(IotData.iotPrintStateMap[dnName] == 1)) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -526,7 +527,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: ((printStatus === 2)&&(IotData.iotPrintStateMap[dnName] == 5)) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -544,7 +545,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: (printStatus === 2) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -562,7 +563,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: (printStatus === 1) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -580,7 +581,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: (printStatus === 5) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -598,7 +599,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: (printStatus === 4) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"
@@ -616,7 +617,7 @@ Rectangle{
                         height: parent.height
                         btnRadius: 3
                         btnBorderW: 0
-                        pixSize: 12
+                        pointSize: Constants.labelFontPointSize_9
                         visible: ((printStatus === 4)) ? true : false
                         defaultBtnBgColor: "#ECECEC"
                         hoveredBtnBgColor: "#1E9BE2"

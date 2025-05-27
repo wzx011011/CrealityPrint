@@ -29,29 +29,29 @@ BasicNoTitleDialog{
         //height: statusBur.height
         color: Constants.itemBackgroundColor
 //        border.color: Constants.rightPanelTabNormalColor
-        border.width: 1
+        border.width: 1*screenScaleFactor
         anchors.fill: parent
         radius : 0
         Rectangle
         {
             id: progressBarInside
-            width: statusBur.width - 170
-            height:40
+            width: statusBur.width - 170*screenScaleFactor
+            height:40*screenScaleFactor
             color: Constants.itemBackgroundColor
             anchors.left: parent.left
-            anchors.leftMargin: 20
+            anchors.leftMargin: 20*screenScaleFactor
             anchors.top: parent.top
             anchors.topMargin: statusBur.height * 0.3
             Rectangle
             {
                 id: idProgressOut
-                height: 2
+                height: 4*screenScaleFactor
                 width: parent.width
                 color: Constants.progressBarBgColor
                 Rectangle
                 {
                     id: idProgress
-                    height: 2
+                    height: 4*screenScaleFactor
                     color:"#1E9BE2"
                     anchors.left: idProgressOut.left
                 }
@@ -62,15 +62,15 @@ BasicNoTitleDialog{
             {
                 id:idSliceMessage
                 x:0
-                y:5
-                width: 176
-                height: 18
+                y:5*screenScaleFactor
+                width: 176*screenScaleFactor
+                height: 18*screenScaleFactor
                 text: qsTr("Processing, Please Wait...")
                 color: Constants.textColor
-                font.pixelSize: 18
+                font.pointSize: Constants.labelFontPointSize_16
                 anchors.horizontalCenter: progressBarInside.horizontalCenter
                 anchors.verticalCenter: progressBarInside.verticalCenter
-                anchors.verticalCenterOffset: 5
+                anchors.verticalCenterOffset: 5*screenScaleFactor
             }
         }
 
@@ -79,11 +79,11 @@ BasicNoTitleDialog{
         {
             id: cancelButton
             text: qsTr("cancel")
-            width: 100
-            height: 40
-            btnRadius: 6
+            width: 120*screenScaleFactor
+            height: 28*screenScaleFactor
+            btnRadius: 14*screenScaleFactor
             anchors.left: progressBarInside.right
-            anchors.leftMargin: 25
+            anchors.leftMargin: 25*screenScaleFactor
             anchors.top: progressBar.top
             anchors.topMargin: statusBur.height * 0.3 - 5
             defaultBtnBgColor : Constants.buttonColor
@@ -93,7 +93,7 @@ BasicNoTitleDialog{
             {
                 if(object) object.stop()
                 cancelJobButton()
-                standaloneWindow.curState = 0
+                //kernel_kernel.setKernelPhase(0)
             }
         }
 
@@ -106,7 +106,7 @@ BasicNoTitleDialog{
         anchors.right: statusBur.right
         anchors.rightMargin: 0
         height: parent.height
-        width: 400
+        width: 400*screenScaleFactor
         color: "transparent"
         visible: false
         StyledLabel
@@ -123,7 +123,7 @@ BasicNoTitleDialog{
         {
             id : idSecondMessage
             anchors.left: idFirstMessage.right
-            anchors.leftMargin: 5
+            anchors.leftMargin: 5*screenScaleFactor
             y:5
             text: qsTr("Open fileDir")
             width: contentWidth
@@ -144,7 +144,7 @@ BasicNoTitleDialog{
         {
             id: cancelButton2
             text: qsTr(" X ")
-            width:40
+            width:40*screenScaleFactor
             height: idSavefinishShow.height
             anchors.right: idSavefinishShow.right
             font.family: Constants.labelFontFamily
@@ -162,7 +162,7 @@ BasicNoTitleDialog{
         anchors.right: statusBur.right
         anchors.rightMargin: 0
         height: parent.height
-        width: idMessage.width + 60
+        width: idMessage.width + 60*screenScaleFactor
 //        color: "transparent"
         visible: false
         property var receiver
@@ -182,7 +182,7 @@ BasicNoTitleDialog{
         {
             id: cancelBtn
             text: qsTr(" X ")
-            width:40
+            width:40*screenScaleFactor
             height: idMessShow.height
             anchors.right: idMessShow.right
             font.family: Constants.labelFontFamily
@@ -235,7 +235,6 @@ BasicNoTitleDialog{
     {
         if(details.get("name")== "LoginJob" || details.get("name")== "AutoSaveJob")
         {
-            console.log("LoginJob no need to show statusBar")
             statusBur.visible = false
             showProcess = false
         }

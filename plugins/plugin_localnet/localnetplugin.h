@@ -1,15 +1,24 @@
 #ifndef _LOCALNETPLUGIN_H
 #define _LOCALNETPLUGIN_H
-#include "creativeinterface.h"
-#include <QtQml/QQmlComponent>
 
-class LocalNetCommand;
-class CusListModel;
+#include "cuslistmodel.h"
+#include "cusscanmodel.h"
+#include "fliterproxymodel.h"
+
+#include "gcodelistmodel.h"
+#include "historylistmodel.h"
+#include "sortproxymodel.h"
+#include "videolistmodel.h"
+#include "localnetworkinterface/materialboxmodellist.h"
+
+#include "qtusercore/module/creativeinterface.h"
+
 class LocalNetPlugin: public QObject, public CreativeInterface
 {
     Q_OBJECT
+	Q_INTERFACES(CreativeInterface)
     Q_PLUGIN_METADATA(IID "creative.InfoPlugin")
-    Q_INTERFACES(CreativeInterface)
+
 public:
     LocalNetPlugin(QObject* parent = nullptr);
     virtual ~LocalNetPlugin();
@@ -19,15 +28,15 @@ public:
 
     void initialize() override;
     void uninitialize() override;
-
+    SortProxyModel*  gcodeSortModel() { return m_gcodeSortModel; }
 protected:
-    QObject* m_root;
-
-    QQmlComponent* m_localnetcomponent;
-
-    QObject* m_localNetUI;
-    LocalNetCommand* m_localNetCmd;
     CusListModel* m_PrinterList = nullptr;
-
+	CusScanModel* m_SearchMacList = nullptr;
+    GcodeListModel* m_GcodeFileList = nullptr;
+	HistoryListModel* m_HistoryFileList = nullptr;
+    VideoListModel* m_videoList = nullptr;
+    MaterialBoxListModel* m_materialBoxList = nullptr;
+    FliterProxyModel* m_fliterModel = nullptr;
+    SortProxyModel* m_gcodeSortModel = nullptr;
 };
-#endif // _LOCALNETPLUGIN_H
+#endif

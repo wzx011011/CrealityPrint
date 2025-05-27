@@ -2,11 +2,10 @@ import QtQuick 2.12
 import QtGraphicalEffects 1.12
 Item{
     property alias radius: canvas.radius
-    property bool clickedable: true
+    property bool clickedable: false
 
     property alias txtColor: txt.fontColor
     property alias txtText: txt.fontText
-    property alias txtPixelSize: txt.fontPixelSize
     property alias txtFamily: txt.fontFamily
     property alias txtWeight: txt.fontWeight
     property alias txtWidth: txt.width
@@ -60,7 +59,7 @@ Item{
         property int rectHeight: height
         property color strokeStyle:  Qt.darker(fillStyle, 1.0)
         property color fillStyle: roundBtn.color
-        property int lineWidth: 1
+        property int lineWidth: 2
         property bool fill: true
         property bool stroke: true
         property real alpha: 1.0
@@ -111,7 +110,7 @@ Item{
     }
 
     MouseArea{
-        visible: clickedable
+        enabled: clickedable
         anchors.fill: parent
         onClicked: {
             roundBtn.clicked()

@@ -2,12 +2,217 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>global_const</name>
+    <message>
+        <source>aboutusdialog_webside</source>
+        <translation>網址</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_email</source>
+        <translation>郵箱</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_telephone</source>
+        <translation>電話</translation>
+    </message>
+    <message>
+        <source>sofrware_copyright</source>
+        <translation>©2014 深圳市創想三維科技股份有限公司版權所有。保留所有權利。</translation>
+    </message>
+    <message>
+        <source>offical_introduction</source>
+        <translation>深圳市創想三維科技股份有限公司成立於2014年，是中國率先進入3D打印行業的研發製造商，致力於建設全方面的3D打印解決方案，業務領域以3D打印機的研發、製造、銷售為主，延伸到3D打印配件、3D打印耗材、3D教育課程體系、3D打印服務等。目前已成為中國3D打印行業銷量領先的高新技術企業，研發實力、生產及品質保證、服務保障等多方面均處於業界領先水平。</translation>
+    </message>
+    <message>
+        <source>offical_brief_introduction</source>
+        <translation>以科技的力量創造更加美好的世界，讓千家萬戶享受3D列印科技帶來的樂趣。</translation>
+    </message>
+    <message>
+        <source>offical_webside</source>
+        <translation>https://www.creality.cn/</translation>
+    </message>
+    <message>
+        <source>offical_email</source>
+        <translation>crealityprint@creality.com</translation>
+    </message>
+    <message>
+        <source>offical_telephone</source>
+        <translation>+86 755-8523 4565</translation>
+    </message>
+	<message>
+        <source>engine_copyright1</source>
+        <translation>Creality Print V5.1 在OrcaSlicer的slic3r和Ultimaker的CuraEngine為基礎進行開發</translation>
+    </message>
+	 <message>
+        <source>engine_copyright2</source>
+        <translation>OrcaSlicer基於BambuStudio，PrusaSlicer和SuperSlicer</translation>
+    </message>
+	 <message>
+        <source>engine_copyright3</source>
+        <translation>BambuStudio是以PrusaResearch的PrusaSlicer和Merill（supermerill）的SuperSlicer為基礎;</translation>
+    </message>
+	<message>
+        <source>engine_copyright4</source>
+        <translation>PrusaSlicer最初是基於Alessandro Ranellu和RepRap社群的Slic3r開發；</translation>
+    </message>
+	 <message>
+        <source>engine_copyright5</source>
+        <translation>感謝以上提及開源軟體專案的貢獻並表達由衷的感謝。</translation>
+    </message>
+</context>
+<context>
+    <name>global_const_Piocreat</name>
+    <message>
+        <source>aboutusdialog_webside</source>
+        <translation>網址</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_email</source>
+        <translation>郵箱</translation>
+    </message>
+    <message>
+        <source>aboutusdialog_telephone</source>
+        <translation>電話</translation>
+    </message>
+    <message>
+        <source>sofrware_copyright</source>
+        <translation>©2021 深圳市創想三帝科技股份有限公司版權所有。保留所有權利。</translation>
+    </message>
+    <message>
+        <source>offical_introduction</source>
+        <translation>深圳創想三帝科技是全球工業級3D打印機和材料領域的領軍企業,致力於展示中國製造的卓越實力。</translation>
+    </message>
+    <message>
+        <source>offical_brief_introduction</source>
+        <translation>深圳創想三帝科技是全球工業級3D打印機和材料領域的領軍企業,致力於展示中國製造的卓越實力。</translation>
+    </message>
+    <message>
+        <source>offical_webside</source>
+        <translation>https://www.szcx3d.com/</translation>
+    </message>
+    <message>
+        <source>offical_email</source>
+        <translation>after@piocreat3d.com</translation>
+    </message>
+    <message>
+        <source>offical_telephone</source>
+        <translation>+86 755-2103 9743</translation>
+    </message>
+</context>
+<context>
     <name>AboutUsCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/aboutuscommand.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/aboutuscommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/aboutuscommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/aboutuscommand.cpp" line="21"/>
         <source>About Us</source>
         <translation>關於我們</translation>
+    </message>
+</context>
+<context>
+    <name>CustomObject</name>
+	<message>
+        <source>Open</source>
+        <translation>打開</translation>
+    </message>
+	<message>
+        <source>Save Project As</source>
+        <translation>項目另存為</translation>
+    </message>
+	<message>
+        <source>A new project is about to be opened. Do you want to save the existing project before opening it?</source>
+        <translation>目前項目包含未儲存的修改，是否先儲存？</translation>
+    </message>
+</context>
+<context>
+    <name>CusPrefernceObj</name>
+    <message>
+        <source>Whether it is necessary to migrate the files in the original folder</source>
+        <translation>是否需要進行原始資料夾內的檔案遷移</translation>
+    </message>
+</context>
+<context>
+    <name>MenuCmdObj</name>
+    <message>
+        <source>Preset Config</source>
+        <translation>預設配置</translation>
+    </message>
+	<message>
+        <source>Project File</source>
+        <translation>項目文件</translation>
+    </message>
+	<message>
+        <source>Open Project</source>
+        <translation>打开項目</translation>
+    </message>
+	<message>
+        <source>New Project</source>
+        <translation>新建項目</translation>
+    </message>
+	<message>
+        <source>Save Project</source>
+        <translation>保存項目</translation>
+    </message>
+	<message>
+        <source>Project</source>
+        <translation>項目</translation>
+    </message>
+	<message>
+        <source>Model File</source>
+        <translation>模型文件</translation>
+    </message>
+	<message>
+        <source>Import</source>
+        <translation>導入</translation>
+    </message>
+	<message>
+        <source>Export</source>
+        <translation>導出</translation>
+    </message>
+</context>
+<context>
+    <name>StartFirstConfig</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+	 <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <source>Do you want to save the current settings?</source>
+        <translation>您要儲存目前設定嗎？</translation>
+    </message>
+</context>
+<context>
+    <name>OtherOptPanel</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/OtherOptPanel.qml" line="33"/>
+        <source>Others</source>
+        <translation>其它</translation>
+    </message>
+</context>
+<context>
+    <name>CToolBar</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/LeftToolBar.qml" line="229"/>
+        <source>Printer</source>
+        <translation>印表機</translation>
+    </message>
+<message>
+        <source>Import Model</source>
+        <translation>導入模型</translation>
+    </message>
+	<message>
+        <source>Add Plate</source>
+        <translation>添加盤</translation>
+    </message>
+</context>
+<context>
+    <name>AutoPickBottomCommand</name>
+	<message>
+        <source>Auto Orient</source>
+        <translation>自動朝向</translation>
     </message>
 </context>
 <context>
@@ -16,31 +221,6 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="12"/>
         <source>About Us</source>
         <translation>關於我們</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="61"/>
-        <source>Founded in 2014, Shenzhen Creality 3D Technology Co., Ltd. is the first R &amp; D manufacturer in China to enter the 3D printing industry and is committed to building a full range of 3D printing solutions, whose business field mainly focuses on the R &amp; D, manufacturing and sales of 3D printers, extending to 3D printing accessories, 3D printing filament, 3D education curriculum system, 3D printing services, etc.  At present, it has become a leading high-tech enterprise in China&apos;s 3D printing industry, with its R &amp; D strength, production, quality and services all leading the industry.</source>
-        <translation>深圳市創想三維科技股份有限公司成立於2014年，是中國率先進入3D打印行業的研發製造商，致力於建設全方面的3D打印解決方案，業務領域以3D打印機的研發、製造、銷售為主，延伸到3D打印配件、3D打印耗材、3D教育課程體系、3D打印服務等。目前已成為中國3D打印行業銷量領先的高新技術企業，研發實力、生產及品質保證、服務保障等多方面均處於業界領先水平。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="92"/>
-        <source>Copyright©2014-2024 Shenzhen Creality 3D technology company, LTD. All rights reserved.</source>
-        <translation>版權©2014-2024歸深圳市創想三維科技股份有限公司，保留所有權利。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="104"/>
-        <source>Website:</source>
-        <translation>網址：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="126"/>
-        <source>Tel:</source>
-        <translation>電話：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="136"/>
-        <source>Email:</source>
-        <translation>郵箱：</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AboutUsDlg.qml" line="177"/>
@@ -54,103 +234,726 @@
     </message>
 </context>
 <context>
-    <name>AddEditMaterial</name>
+    <name>AddEditProfile</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="10"/>
-        <source>New Material</source>
-        <translation>新建材料</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="14"/>
+        <source>New</source>
+        <translation>新建</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="175"/>
+        <source>Name repeater, please rename!</source>
+        <translation>名稱重複，請重命名!</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="35"/>
-        <source>New Material:</source>
-        <translation>新材料：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="16"/>
+        <source>new</source>
+        <translation>新模板</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="53"/>
-        <source>Copy The Selected Slice Parameter Material</source>
-        <translation>複製所選切片參數材質</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="78"/>
+        <source>New Profile</source>
+        <translation>配置名稱</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="61"/>
-        <source>Matrerial:</source>
-        <translation>材料：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="98"/>
+        <source>Printer</source>
+        <translation>打印機型號</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="84"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="119"/>
+        <source>Filament</source>
+        <translation>材料</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="139"/>
+        <source>Copy Profile From</source>
+        <translation>複製的模板名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="174"/>
+        <source>Next</source>
+        <translation>下一步</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="207"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="226"/>
         <source>Message</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="96"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="238"/>
         <source>The input can&apos;t be empty!!</source>
         <translation>輸入不能為空！！</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="109"/>
-        <source>Next</source>
-        <translation>下一步</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="128"/>
-        <source>The profile can not empty!!</source>
-        <translation>輸入不能為空！！</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="136"/>
-        <source>The material already exists! Please enter again.</source>
-        <translation>材料已存在！請再次加入。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditMaterial.qml" line="156"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
 </context>
 <context>
-    <name>AddEditPrinter</name>
+    <name>ParameterComponent</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="23"/>
-        <source>New/Copy Printer</source>
-        <translation>新建/複製打印機</translation>
+        <source>Advanced settings options enabled by default</source>
+        <translation>預設開啟高級參數</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="35"/>
-        <source>New printer:</source>
-        <translation>新建打印機</translation>
+        <source>Click to disable advanced options by default</source>
+        <translation>點擊預設開啟高級</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="54"/>
-        <source>Copy the selected slice parameter profile</source>
-        <translation>複製所選切片參數配置文件</translation>
+        <source>Click to enable advanced options by default</source>
+        <translation>點選預設關閉高級</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="62"/>
-        <source>Printer:</source>
-        <translation>打印機型號：</translation>
+        <source>Wall and surface</source>
+        <translation>牆壁和表面</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="84"/>
-        <source>The printer already exists! please enter again.</source>
-        <translation>打印機已存在！請再次加入。</translation>
+        <source>Bridge</source>
+        <translation>搭橋</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="97"/>
-        <source>Next</source>
-        <translation>下一步</translation>
+        <source>Drape</source>
+        <translation>懸垂</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="133"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
+        <source>scarf_joint_speed.label</source>
+        <translation>斜拼接縫速度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditPrinter.qml" line="146"/>
-        <source>The profile can not empty!!</source>
-        <translation>輸入不能為空！！</translation>
+        <source>seam_slope_conditional.label</source>
+        <translation>選擇性應用斜拼接縫</translation>
     </message>
-</context>
-<context>
-    <name>AddEditProfile</name>
+    <message>
+        <source>seam_slope_entire_loop.label</source>
+        <translation>圍繞整個圍牆</translation>
+    </message>
+    <message>
+        <source>seam_slope_inner_walls.label</source>
+        <translation>應用斜拼於內牆</translation>
+    </message>
+    <message>
+        <source>seam_slope_min_length.label</source>
+        <translation>斜拼接縫長度</translation>
+    </message>
+    <message>
+        <source>seam_slope_start_height.label</source>
+        <translation>斜拼接縫起始高度</translation>
+    </message>
+    <message>
+        <source>seam_slope_steps.label</source>
+        <translation>斜拼段数</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.label</source>
+        <translation>斜拼接縫</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.none.label</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.external.label</source>
+        <translation>輪廓</translation>
+    </message>
+    <message>
+        <source>seam_slope_type.options.all.label</source>
+        <translation>輪廓和孔</translation>
+    </message>
+    <message>
+        <source>print_order.label</source>
+        <translation>層內列印順序</translation>
+    </message>
+    <message>
+        <source>print_order.options.default.label</source>
+        <translation>預設</translation>
+    </message>
+    <message>
+        <source>print_order.options.as_obj_list.label</source>
+        <translation>物件順序</translation>
+    </message>
+    <message>
+        <source>arc_tolerance.label</source>
+        <translation>圓弧擬合公差</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.label</source>
+        <translation>確保垂直外殼厚度</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.description</source>
+        <translation>在斜面表面附近添加實心填充,以確保垂直外殼厚度(頂部+底部實心層)</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.none.label</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_critical_only.label</source>
+        <translation>僅關鍵</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_moderate.label</source>
+        <translation>緩和</translation>
+    </message>
+    <message>
+        <source>ensure_vertical_shell_thickness.options.ensure_all.label</source>
+        <translation>全部</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.label</source>
+        <translation>保留細微內部橋接（試驗）</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.disabled.label</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.limited.label</source>
+        <translation>限量過濾</translation>
+    </message>
+    <message>
+        <source>dont_filter_internal_bridges.options.nofilter.label</source>
+        <translation>無濾鏡</translation>
+    </message>
+    <message>
+        <source>min_length_factor.label</source>
+        <translation>最小允許的牆長度</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.label</source>
+        <translation>啟用間隙填充</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.everywhere.label</source>
+        <translation>所有面</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.topbottom1.label</source>
+        <translation>頂面和底面</translation>
+    </message>
+    <message>
+        <source>gap_fill_target.options.nowhere.label</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>wall_direction.label</source>
+        <translation>圍牆列印方向</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.auto.label</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.ccw.label</source>
+        <translation>逆時針</translation>
+    </message>
+    <message>
+        <source>wall_direction.options.cw.label</source>
+        <translation>順時針</translation>
+    </message>
+    <message>
+        <source>small_area_infill_flow_compensation.label</source>
+        <translation>小區域填充流量補償（試驗）</translation>
+    </message>
+    <message>
+        <source>small_area_infill_flow_compensation_model.label</source>
+        <translation>流量補償模型</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.label</source>
+        <translation>沉孔搭橋</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.none.label</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.partiallybridge.label</source>
+        <translation>部分橋接</translation>
+    </message>
+    <message>
+        <source>counterbore_hole_bridging.options.sacrificiallayer.label</source>
+        <translation>犧牲層</translation>
+    </message>
+    <message>
+        <source>ai_infill.label</source>
+        <translation>智慧填充</translation>
+    </message>
+    <message>
+        <source>ai_infill.description</source>
+        <translation>採用智慧填充演算法，使得選取模型的填滿圖案呈現出不均勻的特徵，讓靠近牆壁的區域填充更為密集，而模型中心區域的填充則變得稀疏。</translation>
+    </message>
+    <message>
+        <source>%1 too small. It has been reset to %2.</source>
+        <translation>%1 過小。將重置為 %2。</translation>
+    </message>
+    <message>
+        <source>travel_speed.label</source>
+        <translation>空駛</translation>
+    </message>
+    <message>
+        <source>activate_chamber_temp_control.description</source>
+        <translation>啟用此選項以控制列印倉溫度。 M141指令將會加入在「machine_start_gcode」之前。
+G-code指令：M141 S(0-255)</translation>
+    </message>
+    <message>
+        <source>bridge_angle.description</source>
+        <translation>搭橋角度覆蓋。如果設定為零,該角度將自動計算。否則外部的橋接將用提供的值。 180°表示0度。</translation>
+    </message>
+    <message>
+        <source>wall_sequence.label</source>
+        <translation>牆順序</translation>
+    </message>
+    <message>
+        <source>wall_sequence.description</source>
+        <translation>內牆和外牆的列印順序。
+
+使用內牆/外牆以獲得最佳懸垂效果。這是因為在印刷時,懸垂的牆可以黏附到相鄰的圍牆上。但是,這個選項會導致外牆的表面品質稍微降低,因為外牆被內牆擠壓。
+
+使用內牆/外牆/內牆以獲得最佳的外部表面品質和尺寸精度,因為外牆不會受內牆的影響但是,懸垂性能會降低,因為沒有內牆來支撐打印外牆。此選項要求至少3層牆壁才能生效,因為它首先從第3個牆壁開始打印內牆,然後是外牆,最後是第一個內牆。在大多數情況下,此選項建議使用用而不是外/內選項。
+
+使用外/內以獲得與內/外/內選項相同的外部牆品質和尺寸精度優勢。但是由於新層的第一次擠出是在可見表面上開始的,因此z縫隙看起來不那麼一致。</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.inner wall/outer wall.label</source>
+        <translation>內牆/外牆</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.outer wall/inner wall.label</source>
+        <translation>外牆/內牆</translation>
+    </message>
+    <message>
+        <source>wall_sequence.options.inner-outer-inner wall.label</source>
+        <translation>內牆/外牆/內牆</translation>
+    </message>
+    <message>
+        <source>is_infill_first.label</source>
+        <translation>首先列印填充</translation>
+    </message>
+    <message>
+        <source>is_infill_first.description</source>
+        <translation>牆/填充的順序。當未啟用時,首先打印牆壁,這在大多數情況下都是最好的。
+
+首先印製牆壁可能有助於極端縣垂,因為牆壁有相鄰的填充物可以粘附。但是,填充物會在附著在牆壁上的地方輕微地擠出打印的牆壁,導致外部表面質量更差。它還會導致填充物透過零件的外部表面。</translation>
+    </message>
+    <message>
+        <source>wall_loops.label</source>
+        <translation>每一層的牆層數</translation>
+    </message>
+    <message>
+        <source>retraction_speed.label</source>
+        <translation>回抽速度</translation>
+    </message>
+    <message>
+        <source>cool_special_cds_fan_speed.label</source>
+        <translation>特殊區域輔助風扇速度</translation>
+    </message>
+    <message>
+        <source>cool_special_cds_fan_speed.description</source>
+        <translation>特殊區域輔助風扇速度(橋、懸垂等)。</translation>
+    </message>
+    <message>
+        <source>Cool Plate</source>
+        <translation>客制化面板</translation>
+    </message>
+    <message>
+        <source>fork_node_modifyed_tip_format</source>
+        <translation>目前分類中(%1)參數發生變動，請注意校驗核對!</translation>
+    </message>
+    <message>
+        <source>during_print_exhaust_fan_speed.label</source>
+        <translation>列印中</translation>
+    </message>
+    <message>
+        <source>complete_print_exhaust_fan_speed.label</source>
+        <translation>完成列印</translation>
+    </message>
+    <message>
+        <source>material_flow_temp_graph.description</source>
+        <translation>流量(mm2/s)與列印溫度(°c)的對應關係。</translation>
+    </message>
+    <message>
+        <source>Tree Support</source>
+        <translation>樹形支撐</translation>
+    </message>
+    <message>
+        <source>support_air_filtration.label</source>
+        <translation>腔體風扇</translation>
+    </message>
+    <message>
+        <source>support_air_filtration.description</source>
+        <translation>如果印表機有腔體風扇,可以開啟此選項。 G-code指令:M106 P3 S(0-255)。</translation>
+    </message>
+    <message>
+        <source>machine_LED_light_exist.label</source>
+        <translation>Led燈</translation>
+    </message>
+    <message>
+        <source>machine_LED_light_exist.description</source>
+        <translation>如果印表機有led燈，可以開啟此選項。</translation>
+    </message>
+    <message>
+        <source>machine_platform_motion_enable.label</source>
+        <translation>平台移動</translation>
+    </message>
+    <message>
+        <source>machine_platform_motion_enable.description</source>
+        <translation>啟用/停用 平台移動功能。</translation>
+    </message>
+    <message>
+        <source>%1 infill pattern doesn't support 100% density.
+Switch to rectilinear pattern?
+Yes - switch to rectilinear pattern automaticlly
+No - reset density to default non 100% value automaticlly</source>
+        <translation>%1填充圖案不支援100%密度。
+是否切換到直線圖案?
+是 - 自動切換到直線圖案
+否 - 自動將密度重設為預設的非 100% 值</translation>
+    </message>
+    <message>
+        <source>infill_anchor.options.0.label</source>
+        <translation>0 (無錨線)</translation>
+    </message>
+    <message>
+        <source>infill_anchor.options.1000.label</source>
+        <translation>1000 (無限制)</translation>
+    </message>
+    <message>
+        <source>infill_anchor_max.options.0.label</source>
+        <translation>0 (簡單連接)</translation>
+    </message>
+    <message>
+        <source>infill_anchor_max.options.1000.label</source>
+        <translation>1000 (無限制)</translation>
+    </message>
+    <message>
+        <source>max_volumetric_extrusion_rate_slope.description</source>
+        <translation>此參數是印表機從列印高流量擠出(高速/較大寬度)向低流量擠出(低速/較小寬度)時用於突然變化擠出速率的平滑,反之亦然。
+它定義了擠出體積流量(mm3/s)隨時間變化的最大速率。更高的值意味著允許更高的擠出速率變化,從而產生更快速的過渡。
+值為0將停用該功能。
+對於高速、高流量的近程擠出機通常不需要此值。
+但是,在特徵速度變化很大的某些情況下,它可以提供一些邊際收益。例如,當因懸垂而出現嚴重的減速時。在這些情況下,建議使用一個大的值大約300 350m3/s2的,因為這剛好允許足夠的平滑,以幫助壓力提前實現更平滑的流量過渡。
+對於沒有壓力提前的較慢印表機,該值應該設定得非常低。對於近程擠出機來說10 15mm3/s2是一個很好值的起點,而對於遠程擠出機來說5 10mm3/s2。
+注意:此參數停用圓弧擬合。</translation>
+    </message>
+    <message>
+        <source>Cross</source>
+        <translation>交叉</translation>
+    </message>
+    <message>
+        <source>Cross 3D</source>
+        <translation>交叉3D</translation>
+    </message>
+    <message>
+        <source>Quarter Cubic</source>
+        <translation>四面體</translation>
+    </message>
+    <message>
+        <source>Octet</source>
+        <translation>八角形</translation>
+    </message>
+    <message>
+        <source>Gyroid</source>
+        <translation>螺旋體</translation>
+    </message>
+    <message>
+        <source>Triangles</source>
+        <translation>三角形</translation>
+    </message>
+    <message>
+        <source>Zig Zag</source>
+        <translation>鋸齒狀</translation>
+    </message>
+    <message>
+        <source>Vendor</source>
+        <translation>品牌</translation>
+    </message>
+    <message>
+        <source>Vendor of filament. For show only</source>
+        <translation>列印線材的品牌。僅用於展示。</translation>
+    </message>
+	<message>
+        <source>Basic information</source>
+        <translation>基本信息</translation>
+    </message>
+	<message>
+        <source>G-code</source>
+        <translation>G-code</translation>
+    </message>
+	<message>
+        <source>Motion ability</source>
+        <translation>移動能力</translation>
+	</message>
+	<message>
+        <source>Information</source>
+        <translation>信息</translation>
+    </message>
+	<message>
+        <source>Printable space</source>
+        <translation>可打印空間</translation>
+    </message>
+	<message>
+        <source>Speed limitation</source>
+        <translation>速度限制</translation>
+    </message>
+	<message>
+        <source>Acceleration limitation</source>
+        <translation>加速度限制</translation>
+    </message>
+	<message>
+        <source>Jerk limitation</source>
+        <translation>抖動限制</translation>
+    </message>
+	<message>
+        <source>Retraction</source>
+        <translation>回抽</translation>
+    </message>
+	<message>
+        <source>Filament</source>
+        <translation>耗材</translation>
+    </message>
+		<message>
+        <source>Base information</source>
+        <translation>基本信息</translation>
+    </message>
+		<message>
+        <source>Print temperature</source>
+        <translation>打印溫度</translation>
+    </message>
+		<message>
+        <source>Volumetric speed limitation</source>
+        <translation>體積速度限制</translation>
+    </message>
+		<message>
+        <source>Cools</source>
+        <translation>冷卻</translation>
+    </message>
+		<message>
+        <source>Overrides</source>
+        <translation>覆蓋</translation>
+    </message>
+	<message>
+        <source>Please enter a parameter name</source>
+        <translation>請輸入參數名稱</translation>
+    </message>
+	<message>
+        <source>Seam</source>
+        <translation>接縫</translation>
+    </message>
+		<message>
+        <source>Precision</source>
+        <translation>精度</translation>
+    </message>
+		<message>
+        <source>Ironing</source>
+        <translation>熨平</translation>
+    </message>
+		<message>
+        <source>Wall</source>
+        <translation>壁</translation>
+    </message>
+		<message>
+        <source>Top/bottom shells</source>
+        <translation>頂部/底部</translation>
+    </message>
+		<message>
+        <source>First layer speed</source>
+        <translation>起始層速度</translation>
+    </message>
+		<message>
+        <source>Other layer speed</source>
+        <translation>其他層速度</translation>
+    </message>
+		<message>
+        <source>Travel speed</source>
+        <translation>行駛速度</translation>
+    </message>
+		<message>
+        <source>Acceleration</source>
+        <translation>加速度</translation>
+    </message>
+		<message>
+        <source>Jerk</source>
+        <translation>抖動</translation>
+    </message>
+		<message>
+        <source>Support roof</source>
+        <translation>支撐頂板</translation>
+    </message>
+		<message>
+        <source>Support bottom</source>
+        <translation>支撐底部</translation>
+    </message>
+		<message>
+        <source>Tower</source>
+        <translation>塔</translation>
+    </message>
+		<message>
+        <source>Special Mode</source>
+        <translation>特殊模式</translation>
+    </message>
+	<message>
+        <source>Density</source>
+        <translation>密度</translation>
+    </message>
+	<message>
+        <source>Diameter</source>
+        <translation>直徑</translation>
+    </message>
+	<message>
+        <source>Max volumetric sppeed</source>
+        <translation>最大體積速度</translation>
+    </message>
+	    <message>
+        <source>Max volumetric speed</source>
+        <translation>最大體積速度</translation>
+    </message>
+	<message>
+        <source>Enable pressure advance</source>
+        <translation>啟動壓力提前</translation>
+    </message>
+	<message>
+        <source>Material pressure advance length</source>
+        <translation>壓力提前距離</translation>
+    </message>
+	<message>
+        <source>This setting is the volume of filament that can be melted andextruded per second. Printing speed is limited by max volumetric speed.</source>
+        <translation>此參數是指每秒可以熔化和擠出的耗材體積。 列印速度受最大體積速度的限制。</translation>
+    </message>
+   <message>
+        <source>Enable pressure advance,auto calibration result will be overwriten once enabled</source>
+        <translation>啟用壓力提前,一旦啟用會覆蓋機器自動測量結果</translation>
+    </message>
+	<message>
+        <source>Filament Cost</source>
+        <translation>耗材成本</translation>
+    </message>
+	<message>
+        <source>Filament Weight</source>
+        <translation>耗材重量</translation>
+    </message>
+	<message>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <source>Narrow Area Concentric Infill</source>
+        <translation type="unfinished">狹窄區域同心圓填充</translation>
+    </message>
+	<message>
+		<source>Support Structure</source>
+		<translation type="unfinished">支撐結構</translation>
+	</message>
+	<message>
+		<source>Extruder</source>
+		<translation type="unfinished">擠出機</translation>
+	</message>
+	    <message>
+        <source>Minimum Wall Line Width</source>
+        <translation type="unfinished">最小壁走線寬度</translation>
+    </message>
+		<message>
+        <source>Minimum Even Wall Line Width</source>
+        <translation>最小偶數壁走線寬度</translation>
+    </message>
+	<message>
+        <source>Monotonic Ironing Order</source>
+        <translation type="unfinished">單調熨平順序</translation>
+    </message>
+		<message>
+        <source>For thin structures around once or twice the nozzle size, the line widths need to be altered to adhere to the thickness of the model. This setting controls the minimum line width allowed for the walls. The minimum line widths inherently also determine the maximum line widths, since we transition from N to N+1 walls at some geometry thickness where the N walls are wide and the N+1 walls are narrow. The widest possible wall line is twice the Minimum Wall Line Width.</source>
+        <translation>對於一倍或兩倍於噴嘴孔徑的薄結構，需要更改走線寬度以遵循模型的厚度。此設置控制壁允許的最小走線寬度。同樣，最小走線寬度內在地決定了最大走線寬度，因為我們在某些幾何厚度中從 N 壁過渡到 N+1 壁時，N 壁寬而 N+1 壁窄。允許的最大壁走線寬度是最小壁走線寬度的兩倍。</translation>
+    </message>
+	<message>
+        <source>The minimum line width for normal polygonal walls. This setting determines at which model thickness we switch from printing a single thin wall line, to printing two wall lines. A higher Minimum Even Wall Line Width leads to a higher maximum odd wall line width. The maximum even wall line width is calculated as Outer Wall Line Width + 0.5 * Minimum Odd Wall Line Width.</source>
+        <translation>普通多邊形牆的最小走線寬度。此設置確定我們從打印單根薄壁走線切換到打印兩根壁走線時的模型厚度。更高的最小偶數壁走線寬度會帶來更高的最大奇數壁走線寬度。最大偶數壁走線寬度計算方法是：外壁走線寬度 + 0.5 * 最小奇數壁走線寬度。</translation>
+    </message>
+	<message>
+        <source>The minimum line width for middle line gap filler polyline walls. This setting determines at which model thickness we switch from printing two wall lines, to printing two outer walls and a single central wall in the middle. A higher Minimum Odd Wall Line Width leads to a higher maximum even wall line width. The maximum odd wall line width is calculated as 2 * Minimum Even Wall Line Width.</source>
+        <translation>中間走線空隙填料多線壁的最小走線寬度。此設置確定在什麼模型厚度下，我們從打印兩根壁走線切換到打印兩個外壁並在中間打印一個中心壁。更高的最小奇數壁走線寬度會帶來更高的最大偶數壁走線寬度。最大奇數壁走線寬度計算方法是：2 * 最小偶數壁走線寬度。</translation>
+    </message>
+		<message>
+        <source>Chooses between the techniques available to generate support. "Normal" support creates a support structure directly below the overhanging parts and drops those areas straight down. "Tree" support creates branches towards the overhanging areas that support the model on the tips of those branches, and allows the branches to crawl around the model to support it from the build plate as much as possible.</source>
+        <translation>在可用於產生支撐的方法之間進行選擇。 “普通”支撐在懸垂部分正下方形成一個支撐結構，並直接垂下這些區域。 “樹形”支撐形成一些分支，它們朝向在這些分支的尖端上支撐模型的懸垂區域，並使這些分支可纏繞在模型周圍以盡可能多地從構建板上支撐它。</translation>
+    </message>
+	<message>
+		<source>Printer chamber temperature.</source>
+        <translation>打印机腔体温度。</translation>
+    </message>
+    <message>
+        <source>Print ironing lines in an ordering that causes them to always overlap with adjacent lines in a single direction. This takes slightly more time to print, but makes flat surfaces look more consistent.</source>
+        <translation type="unfinished">按照一定的順序打印熨平走線，使它始終在一個方向上與相鄰走線重疊。這需要更長一些的打印時間，但會使平面看起來更一致。</translation>
+    </message>
+	<message>
+        <source>Narrow Area Concentric Infill</source>
+        <translation type="unfinished">狹窄區域同心圓填充</translation>
+    </message>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Exclude Objects</source>
+    <translation type="unfinished">啟用對象排除</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Exclude individual objects while a print is in progress</source>
+    <translation type="unfinished">打印過程中排除單個對象</translation>
+</message>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Sudden flow speed gradient</source>
+    <translation type="unfinished">啟用流量突變過度</translation>
+</message>
+<message>
+<location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+<source>control the next path speed for sudden flow</source>
+<translation type="unfinished">啟用這個功能會增加速度漸變路徑，會增加打印時間，但是會降低堵頭概率</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Sudden flow gradient distance</source>
+    <translation type="unfinished">速度漸變距離</translation>
+</message>
+<message>
+<location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+<source>gradient distance for sudden flow</source>
+<translation type="unfinished">流量突變漸變路徑長度，越長打印時間會增加，但是效果越好</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Sudden flow boost speed factor</source>
+    <translation type="unfinished">流量突變過度速度</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>boost speed factor for sudden flow</source>
+    <translation type="unfinished">流量突變過度速度是正常速度的百分比</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>Sudden flow acceleration</source>
+    <translation type="unfinished">過度速度的加速度</translation>
+</message>
+<message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+    <source>acceleration for sudden flow</source>
+    <translation type="unfinished">過度速度的加速度</translation>
+</message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+        <source>High-precision Estimate Time Enable</source>
+        <translation type="unfinished">啟用高精度打印時間預估</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+        <source>High-precision estimate time enable</source>
+        <translation type="unfinished">提升高速機型打印時間預估的準確性</translation>
+    </message>
+	<message>
+        <source>Minimum Odd Wall Line Width</source>
+        <translation>最小奇數壁走線寬度</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="14"/>
         <source>New</source>
@@ -164,7 +967,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="78"/>
         <source>New Profile:</source>
-        <translation>新建配置：</translation>
+        <translation>配置名稱：</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="98"/>
@@ -173,7 +976,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddEditProfile.qml" line="119"/>
-        <source>Material:</source>
+        <source>Filament:</source>
         <translation>材料:</translation>
     </message>
     <message>
@@ -245,12 +1048,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddNewProjectDlg.qml" line="12"/>
         <source>New Project</source>
-        <translation>新建工程</translation>
+        <translation>新建項目</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddNewProjectDlg.qml" line="21"/>
         <source>Project Name:</source>
-        <translation>工程名：</translation>
+        <translation>項目名：</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddNewProjectDlg.qml" line="59"/>
@@ -264,50 +1067,11 @@
     </message>
 </context>
 <context>
-    <name>AddPrinterDlg</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="10"/>
-        <source>Add Printer</source>
-        <translation>添加打印機</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="90"/>
-        <source>Printer Name:</source>
-        <translation>機型名稱：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="116"/>
-        <source>Machine Depth:</source>
-        <translation>平台深度：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="134"/>
-        <source>Machine Height:</source>
-        <translation>平台高度：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="156"/>
-        <source>Machine Width:</source>
-        <translation>平台寬度：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="174"/>
-        <source>Nozzle Size:</source>
-        <translation>噴嘴直徑：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="226"/>
-        <source>Add</source>
-        <translation>添加打印機</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlg.qml" line="244"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
-</context>
-<context>
     <name>AddPrinterDlgNew</name>
+	<message>
+        <source>This model is not available yet</source>
+        <translation>暫無該機型</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="16"/>
         <source>Add Printer</source>
@@ -358,45 +1122,201 @@
         <translation>Sermoon 系列</translation>
     </message>
     <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="195"/>
+        <source>K1 series</source>
+        <translation>旗艦系列</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="210"/>
+        <source>Fast series</source>
+        <translation>音速屏</translation>
+    </message>
+    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterDlgNew.qml" line="216"/>
         <source>Others</source>
         <translation>其他</translation>
     </message>
+	<message>
+        <source>Clear series</source>
+        <translation>清空刪除</translation>
+    </message>
+	<message>
+        <source>Selected quantity</source>
+        <translation>已選配置數量</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation>搜尋</translation>
+    </message>
+	<message>
+        <source>New</source>
+        <translation>新建</translation>
+    </message>
 </context>
+
+<context>
+    <name>AddPrinterDlgNewStep</name>
+	<message>
+        <source>New model</source>
+        <translation>新建機型</translation>
+    </message>
+	<message>
+        <source>Step 1</source>
+        <translation>第一步</translation>
+    </message>
+	<message>
+        <source>Step 2</source>
+        <translation>第二步</translation>
+    </message>
+	<message>
+        <source>Step 3</source>
+        <translation>第三步</translation>
+    </message>
+	<message>
+        <source>Printer name</source>
+        <translation>印表機名稱</translation>
+    </message>
+	<message>
+        <source>Printer platform shape</source>
+        <translation>印表機平台形狀</translation>
+    </message>
+	<message>
+        <source>Printer platform size</source>
+        <translation>印表機平台尺寸</translation>
+    </message>
+	<message>
+        <source>Extruder type</source>
+        <translation>擠出機型</translation>
+    </message>
+	<message>
+        <source>Nozzle diameter</source>
+        <translation>噴嘴直徑</translation>
+    </message>
+	<message>
+        <source>Compatible filament diameters</source>
+        <translation>相容的耗材直徑</translation>
+    </message>
+	<message>
+        <source>Nozzle offset</source>
+        <translation>噴嘴偏移</translation>
+    </message>
+	<message>
+        <source>G-code style</source>
+        <translation>G-code風格</translation>
+    </message>
+	<message>
+        <source>Starts G-code</source>
+        <translation>列印開始G-code</translation>
+    </message>
+	<message>
+        <source>End G-code</source>
+        <translation>列印結束G-code</translation>
+    </message>
+	<message>
+        <source>printer</source>
+        <translation>印表機</translation>
+    </message>
+	<message>
+        <source>material type</source>
+        <translation>材料類型</translation>
+    </message>
+	<message>
+        <source>Filament name</source>
+        <translation>材料名稱</translation>
+    </message>
+	<message>
+        <source>all</source>
+        <translation>全選</translation>
+    </message>
+	<message>
+        <source>crafts</source>
+        <translation>工藝</translation>
+    </message>
+	<message>
+        <source>Previous</source>
+        <translation>上一步</translation>
+    </message>
+	<message>
+        <source>Next</source>
+        <translation>下一步</translation>
+    </message>
+	<message>
+        <source>Finish</source>
+        <translation>完成</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <source>Printer model</source>
+        <translation>印表機機型</translation>
+    </message>
+	<message>
+        <source>Profile</source>
+        <translation>工藝</translation>
+    </message>
+</context>
+
 <context>
     <name>AddPrinterViewItem</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="122"/>
-        <source>Machine Depth:</source>
-        <translation>平台深度：</translation>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="87"/>
+        <source>Sonic</source>
+        <translation>音速屏</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="140"/>
-        <source>Machine Width:</source>
-        <translation>平台寬度：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="95"/>
+        <source>Print Depth</source>
+        <translation>平台深度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="158"/>
-        <source>Machine Height:</source>
-        <translation>平台高度：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="96"/>
+        <source>Print Width</source>
+        <translation>平台寬度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="176"/>
-        <source>Nozzle Size:</source>
-        <translation>噴嘴直徑：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="97"/>
+        <source>Print Height</source>
+        <translation>平台高度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="211"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="98"/>
+        <source>Nozzle Size</source>
+        <translation>噴嘴直徑</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AddPrinterViewItem.qml" line="135"/>
         <source>Add</source>
         <translation>添加打印機</translation>
     </message>
 </context>
 <context>
     <name>AllMenuDialog</name>
+	<message>
+        <source>Failed to upload model!</source>
+        <translation>上傳模型失敗！</translation>
+    </message>
+	<message>
+        <source>Path modification and model migration successful</source>
+        <translation>路徑修改並遷移模型成功</translation>
+    </message>
+	<message>
+        <source>Path modified successfully</source>
+        <translation>路径修改成功</translation>
+    </message>
+    <message>
+        <source>Reminder: The currently opened 3mf project file has unofficial parameter presets. Please check before slicing!</source>
+        <translation>溫馨提示:當前打開的3mf項目檔案,非官方參數預設,請核對後再進行切片!</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="45"/>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+		<message>
+        <source>No</source>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="46"/>
@@ -411,7 +1331,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="86"/>
         <source>Yes</source>
-        <translation>確認</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="87"/>
@@ -424,6 +1344,15 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="404"/>
         <source>Ignore</source>
         <translation>忽略</translation>
+    </message>
+		<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="91"/>
+        <source>Model's size exceeds the printer's maximum build volume,apply auto-scale?</source>
+        <translation>模型超過了打印機支持的最大尺寸，是否縮小模型尺寸？</translation>
+    </message>
+	<message>
+        <source>Model's size too small and mabye in inches or meters measurement, do you want to scale to millimeters?</source>
+        <translation>模型尺寸太小，可能以英寸或米為單位，是否要轉換成毫米？</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="99"/>
@@ -445,10 +1374,15 @@
         <source>No model selected to save</source>
         <translation>未選擇要保存的模型</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="231"/>
+        <source>Not logged in to Creality Cloud, Unable to current operation, Do you want to log in?</source>
+        <translation>未登錄創想雲，無法進行當前操作，是否要前往登錄？</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="248"/>
         <source>Save Project Before Exiting?</source>
-        <translation>退出前保存工程？</translation>
+        <translation>退出前保存項目？</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="289"/>
@@ -458,53 +1392,42 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="305"/>
         <source>The file does not exist or the path has changed, the file cannot be accessed!</source>
-        <translation>文件不存在或路徑發生變化，無法訪問該文件！</translation>
+        <translation> 文件不存在或路徑發生變化，無法訪問該文件！</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/AllMenuDialog.qml" line="402"/>
         <source>Repair model</source>
         <translation>修復模型</translation>
     </message>
-</context>
-<context>
-    <name>BasicAreaCodeCombobox</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="73"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>Please add at least one printer</source>
+        <translation>請至少添加一臺打印機</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="74"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>The currently selected model cannot be split.</source>
+        <translation>當前選中模型無法拆分。</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="75"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicAreaCodeCombobox.qml" line="76"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>The object only contains one part and cannot be split.</source>
+        <translation>目標對象僅包含一個零件，無法被拆分。</translation>
     </message>
 </context>
 <context>
     <name>BasicCombobox</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="71"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="72"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>Quality</source>
+        <translation>細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="73"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
+        <source>Normal</source>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="74"/>
@@ -513,8 +1436,55 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicCombobox.qml" line="75"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>Fast</source>
+        <translation>快速</translation>
+    </message>
+</context>
+<context>
+    <name>CXComboBox</name>
+    <message>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation>細節</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>正常</translation>
+    </message>
+    <message>
+        <source>Best quality</source>
+        <translation>工業級打印</translation>
+    </message>
+    <message>
+        <source>Fast</source>
+        <translation>快速</translation>
+    </message>
+		<message>
+        <source>China</source>
+        <translation>中國</translation>
+    </message>
+	<message>
+        <source>Asia-Pascific</source>
+        <translation>亞太</translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation>歐洲</translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation>北美</translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation>南美</translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>其他 </translation>
     </message>
 </context>
 <context>
@@ -532,22 +1502,14 @@
     </message>
 </context>
 <context>
+    <name>PrintMachine</name>
+    <message>
+        <source>Generic</source>
+        <translation>通用</translation>
+    </message>
+</context>
+<context>
     <name>BasicMenuBar</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="430"/>
-        <source>Prepare</source>
-        <translation>準備</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="449"/>
-        <source>Preview</source>
-        <translation>預覽</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="473"/>
-        <source>Device</source>
-        <translation>設備</translation>
-    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="515"/>
         <source>Login succeeded. Click to view your personal space.</source>
@@ -558,14 +1520,65 @@
         <source>Login</source>
         <translation>登錄</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBar.qml" line="962"/>
-        <source>Not logged in to Creality Cloud, Unable to current operation, Do you want to log in?</source>
-        <translation>未登錄創想雲，無法進行當前操作，是否要前往登錄？</translation>
-    </message>
 </context>
 <context>
-    <name>BasicMenuBarStyle</name>
+    <name>CWinMenu</name>
+    <message>
+        <source>Retraction</source>
+        <translation>回抽</translation>
+    </message>
+    <message>
+        <source>Retraction Distance</source>
+        <translation>回抽距離</translation>
+    </message>
+    <message>
+        <source>Retraction Speed</source>
+        <translation>回抽速度</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>速度</translation>
+    </message>
+    <message>
+        <source>Max Speed</source>
+        <translation>最高速度</translation>
+    </message>
+    <message>
+        <source>Speed Tower</source>
+        <translation>速度塔</translation>
+    </message>
+    <message>
+        <source>Jitter Speed</source>
+        <translation>抖動速度</translation>
+    </message>
+    <message>
+        <source>Fan Speed</source>
+        <translation>風扇速度</translation>
+    </message>
+    <message>
+        <source>Acceleration</source>
+        <translation>加速度</translation>
+    </message>
+    <message>
+        <source>Max Acceleration</source>
+        <translation>最高加速度</translation>
+    </message>
+    <message>
+        <source>Acceleration Tower</source>
+        <translation>加速度塔</translation>
+    </message>
+    <message>
+        <source>Slow Acceleration</source>
+        <translation>减速加速度</translation>
+    </message>
+    <message>
+        <source>Arc Fitting</source>
+        <translation>圓弧擬合</translation>
+    </message>
+	<message>
+        <source>Mouse Operation Function</source>
+        <translation>鼠标操作功能</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="30"/>
         <source>File(&amp;F)</source>
@@ -580,6 +1593,14 @@
         <source>Other(&amp;O)</source>
         <translation>其他(&amp;O)</translation>
     </message>
+		<message>
+        <source>Standard Model</source>
+        <translation>標準模型</translation>
+    </message>
+	<message>
+        <source>Test Model</source>
+        <translation>測試模型</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="34"/>
         <source>Open File</source>
@@ -588,7 +1609,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="44"/>
         <source>Open Project</source>
-        <translation>打開工程</translation>
+        <translation>打開項目</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="55"/>
@@ -598,17 +1619,17 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="60"/>
         <source>Recently Opened Project</source>
-        <translation>最近打開工程</translation>
+        <translation>最近打開項目</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="66"/>
         <source>Save STL</source>
-        <translation>保存STL文件</translation>
+        <translation>模型另存為</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="76"/>
         <source>Save As Project</source>
-        <translation>工程另存為</translation>
+        <translation>項目另存為</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="88"/>
@@ -620,6 +1641,48 @@
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
+		<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="112"/>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="112"/>
+        <source>Paste</source>
+        <translation>粘貼</translation>
+    </message>
+	<message>
+        <source>Clear All</source>
+        <translation>刪除全部</translation>
+    </message>
+	<message>
+        <source>Fill bed with copies</source>
+        <translation>鋪滿列印板</translation>
+    </message>
+		<message>
+        <source>Delete Model</source>
+        <translation>刪除所選</translation>
+    </message>
+	<message>
+        <source>Clone</source>
+        <translation>克隆</translation>
+    </message>
+	<message>
+        <source>Split Model</source>
+        <translation>拆分模型</translation>
+    </message>
+	<message>
+        <source>Assemble</source>
+        <translation>组合</translation>
+    </message>
+		<message>
+        <source>Select All Model</source>
+        <translation>全選模型</translation>
+    </message>
+	<message>
+        <source>Reset All Model</source>
+        <translation>重置所有模型</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="103"/>
         <source>Undo</source>
@@ -628,7 +1691,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="112"/>
         <source>Redo</source>
-        <translation>恢復</translation>
+        <translation>重做</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="123"/>
@@ -638,17 +1701,17 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="127"/>
         <source>ShowModelLine</source>
-        <translation>按線顯示</translation>
+        <translation>三角面片</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="134"/>
         <source>ShowModelFace</source>
-        <translation>按面顯示</translation>
+        <translation>渲染</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="142"/>
         <source>ShowModelFaceLine</source>
-        <translation>按線面顯示</translation>
+        <translation>渲染/三角面片</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="149"/>
@@ -683,7 +1746,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="189"/>
         <source>Merge Model Locations</source>
-        <translation>合並模型位置</translation>
+        <translation>重置模型位置</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="199"/>
@@ -702,8 +1765,13 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="216"/>
-        <source>Manage Materials</source>
+        <source>Manage Filaments</source>
         <translation>材料管理</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="216"/>
+        <source>Preferences</source>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="224"/>
@@ -723,12 +1791,32 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="248"/>
         <source>Models(&amp;M)</source>
-        <translation>模型庫(&amp;M)</translation>
+        <translation>創想雲(&amp;M)</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="251"/>
         <source>Models</source>
         <translation>模型庫</translation>
+    </message>
+	<message>
+        <source>Upload Project</source>
+        <translation>上傳項目</translation>
+    </message>
+	<message>
+        <source>Download Manage</source>
+        <translation>下載管理</translation>
+    </message>
+	<message>
+        <source>My Model</source>
+        <translation>我的模型</translation>
+    </message>
+	<message>
+        <source>My Slice</source>
+        <translation>我的切片</translation>
+    </message>
+	<message>
+        <source>My Devices</source>
+        <translation>我的設備</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml" line="261"/>
@@ -770,7 +1858,364 @@
         <source>User Feedback</source>
         <translation>用戶反饋</translation>
     </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Calibration(&amp;C)</source>
+        <translation>校準(&amp;C)</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Temperature</source>
+        <translation>溫度</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>PA</source>
+        <translation>壓力提前</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Flow</source>
+        <translation>流量</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Coarse tune</source>
+        <translation>流量粗調</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Fine tune</source>
+        <translation>流量細調</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Advanced Calibration</source>
+        <translation>進階校準</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Maximum volume flow</source>
+        <translation>最大體積流量</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>VFA</source>
+        <translation>震紋測試</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/BasicMenuBarStyle.qml"/>
+        <source>Tutorial</source>
+        <translation>教程</translation>
+    </message>
+		<message>
+        <source>Test Model</source>
+        <translation>測試模型</translation>
+    </message>
+	<message>
+        <source>Import Preset Config</source>
+        <translation>導入預設配置</translation>
+    </message>
+	<message>
+        <source>Export Preset Config</source>
+        <translation>匯出預設配置</translation>
+    </message>
+		<message>
+        <source>Load 3MF</source>
+        <translation>載入 3MF</translation>
+    </message>
+	<message>
+        <source>Save 3MF</source>
+        <translation>儲存 3MF</translation>
+    </message>
+		<message>
+        <source>Preferences</source>
+        <translation>Preferences</translation>
+    </message>
+	<message>
+        <source>Retraction test</source>
+        <translation>回抽測試</translation>
+    </message>
+	<message>
+        <source>Prepare</source>
+        <translation>準備</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation>預覽</translation>
+    </message>
+    <message>
+        <source>Device</source>
+        <translation>設備</translation>
+    </message>
+	<message>
+        <source>Download Manager</source>
+        <translation>下載管理</translation>
+    </message>
+		 <message>
+        <source>Login</source>
+        <translation>登錄</translation>
+    </message>
+    <message>
+        <source>Personal Center</source>
+        <translation>個人中心</translation>
+    </message>
+		 <message>
+        <source>Save the project file</source>
+        <translation>儲存專案文件</translation>
+    </message>
+    <message>
+       <source>Open Projects</source>
+        <translation>開啟專案文件</translation>
+    </message>
+	<message>
+        <source>File</source>
+        <translation>文件</translation>
+    </message>
+
 </context>
+
+<context>
+	<name>TemperatureDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Temperature calibration</source>
+        <translation>溫度校準</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Material type</source>
+        <translation>耗材類型</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Set up</source>
+        <translation>設置</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Starting temperature:</source>
+        <translation>起始溫度：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>End temperature:</source>
+        <translation>結束溫度：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>Temperature step:</source>
+        <translation>溫度步距：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/TemperatureDlg.qml"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <source>Calibration warning</source>
+        <translation>校準提示</translation>
+    </message>
+    <message>
+        <source>The end temperature cannot exceed the start temperature</source>
+        <translation>結束溫度不能超過起始溫度</translation>
+    </message>
+</context>
+
+<context>
+	<name>PADlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA calibration</source>
+        <translation>PA校準</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Extruder type</source>
+        <translation>擠出機類型</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Proximity extruder</source>
+        <translation>近程擠出機</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Remote extruder</source>
+        <translation>遠程擠出機</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Test methods</source>
+        <translation>測試方法</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA tower</source>
+        <translation>PA塔</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA dash</source>
+        <translation>PA劃線</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Set up</source>
+        <translation>設置</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Initial PA value</source>
+        <translation>起始PA值：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>End PA value</source>
+        <translation>起始PA值：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>PA step</source>
+        <translation>PA步距：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>Print numbers</source>
+        <translation>打印數字</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PADlg.qml"/>
+        <source>The starting PA value cannot exceed the ending PA value</source>
+        <translation>起始PA值不能超過結束PA值</translation>
+    </message>
+</context>
+
+<context>
+	<name>MaxFlowVolumeDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Maximum Volume Flow Velocity Test</source>
+        <translation>最大體積流量速度測試</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Initial Flow</source>
+        <translation>起始流量：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>End traffic</source>
+        <translation>結束流量：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>Flow step</source>
+        <translation>步距：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MaxFlowVolumeDlg.qml"/>
+        <source>The starting flow rate cannot exceed the ending flow rate</source>
+        <translation>起步流量不能超過結束流量</translation>
+    </message>
+</context>
+
+<context>
+	<name>RetractionDlg</name>
+	<message>
+        <source>Retraction test</source>
+        <translation>回抽測試</translation>
+    </message>
+	<message>
+        <source>Start retraction length</source>
+        <translation>起始回抽長度</translation>
+    </message>
+	<message>
+        <source>End retraction length</source>
+        <translation>结束回抽長度</translation>
+    </message>
+	<message>
+        <source>Retraction step</source>
+        <translation>步距</translation>
+    </message>
+	<message>
+        <source>The initial retraction length cannot exceed the ending retraction length</source>
+        <translation>起始回抽長度不能超過結束回抽長度</translation>
+    </message>
+	<message>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+</context>
+
+<context>
+	<name>VFADlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>VFA vibration test</source>
+        <translation>VFA震紋測試</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>Starting speed</source>
+        <translation>起始速度：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>End speed</source>
+        <translation>結束速度：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>Flow step</source>
+        <translation>步距：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VFADlg.qml"/>
+        <source>The starting speed cannot exceed the ending speed</source>
+        <translation>起步速度不能超過結束速度</translation>
+    </message>
+</context>
+
+<context>
+	<name>FlowFineTuningDlg</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Fine tune selection</source>
+        <translation>流量細調</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Choose coarse one</source>
+        <translation>選擇粗調效果最好的一個</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FlowFineTuningDlg.qml"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+
 <context>
     <name>BasicMessageDialog</name>
     <message>
@@ -805,41 +2250,34 @@
     </message>
 </context>
 <context>
-    <name>BasicUseInfoItem</name>
+    <name>UserFileItem</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="113"/>
-        <source>Import Gcode</source>
-        <translation>導入Gcode</translation>
+        <source>Print Configuration</source>
+        <translation>列印配置</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="113"/>
         <source>Import Model</source>
         <translation>導入模型</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="136"/>
-        <source>Share The Model Group(Copy Link)</source>
-        <translation>分享模型組（拷貝鏈接）</translation>
+        <source>Share Model (Copy Link)</source>
+        <translation>分享模型 (複製連結)</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="151"/>
-        <source>Print Gcode</source>
-        <translation>打印Gcode</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="167"/>
-        <source>UnCollect</source>
-        <translation>取消收藏</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="169"/>
-        <source>Delete Gcode</source>
-        <translation>刪除Gcode</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicUseInfoItem.qml" line="169"/>
         <source>Delete Model</source>
         <translation>刪除模型</translation>
+    </message>
+    <message>
+        <source>Import Slice</source>
+        <translation>導入切片</translation>
+    </message>
+    <message>
+        <source>Print Slice</source>
+        <translation>列印切片</translation>
+    </message>
+    <message>
+        <source>Delete Slice</source>
+        <translation>刪除切片</translation>
     </message>
 </context>
 <context>
@@ -880,48 +2318,53 @@
 <context>
     <name>CCommandsData</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="64"/>
         <source>File(&amp;F)</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="65"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="65"/>
         <source>Edit(&amp;E)</source>
         <translation>編輯(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="66"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="66"/>
         <source>View(&amp;V)</source>
         <translation>視圖(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="69"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="69"/>
         <source>Tool(&amp;T)</source>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="70"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="70"/>
         <source>Models(&amp;M)</source>
         <translation>模型庫(&amp;M)</translation>
     </message>
+	<message>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="70"/>
+        <source>Calibration(&amp;C)</source>
+        <translation>校準(&amp;C)</translation>
+    </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="71"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="71"/>
         <source>PrinterControl(&amp;C)</source>
         <translation>打印機控制(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/ccommandsdata.cpp" line="72"/>
+        <location filename="../kernel/BasicKernel/internal/menu/ccommandsdata.cpp" line="72"/>
         <source>Help(&amp;H)</source>
         <translation>幫助(&amp;H)</translation>
     </message>
 </context>
 <context>
-    <name>CX3DExporterCommand</name>
+    <name>creative_kernel::CX3DExporterCommand</name>
     <message>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dexportercommand.cpp" line="18"/>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dexportercommand.cpp" line="62"/>
         <source>Save As Project</source>
-        <translation>工程另存為</translation>
+        <translation>項目另存為</translation>
     </message>
     <message>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dexportercommand.cpp" line="53"/>
@@ -930,34 +2373,72 @@
     </message>
 </context>
 <context>
+    <name>creative_kernel::Save3MFCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/project_3mf/save3mf.cpp" line="18"/>
+        <location filename="../kernel/BasicKernel/internal/project_3mf/save3mf.cpp" line="62"/>
+        <source>Save 3MF</source>
+        <translation>導出3mf</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/project_3mf/save3mf.cpp" line="53"/>
+        <source>Save %1 file Finished</source>
+        <translation>保存 %1 文件完成</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::Load3MFCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/project_3mf/load3mf.cpp" line="18"/>
+        <location filename="../kernel/BasicKernel/internal/project_3mf/load3mf.cpp" line="62"/>
+        <source>Load 3MF</source>
+        <translation>導入3mf</translation>
+    </message>
+</context>
+<context>
+    <name>Cx3dExportJob</name>
+    <message>
+        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dexportjob.cpp" line="36"/>
+        <source>Cannot import project file</source>
+        <translation>無法導入項目文件</translation>
+    </message>
+</context>
+<context>
     <name>CX3DImporterCommand</name>
     <message>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dimportercommand.cpp" line="19"/>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dimportercommand.cpp" line="99"/>
         <source>Open Project</source>
-        <translation>打開工程</translation>
+        <translation>打開項目</translation>
     </message>
 </context>
 <context>
-    <name>ClearAllAction</name>
+    <name>creative_kernel::ClearAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="36"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="38"/>
         <source>Clear All</source>
-        <translation>清空打印平台</translation>
+        <translation>刪除所有模型</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/clearallaction.cpp" line="37"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearallaction.cpp" line="37"/>
         <source>Do you Want to Clear All Model?</source>
         <translation>是否確定清空所有模型？</translation>
     </message>
 </context>
 <context>
-    <name>ClearRecentFileCommand</name>
+    <name>creative_kernel::ClearPrinterAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/clearrecentfilecommand.cpp" line="5"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/clearrecentfilecommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/clearprinteraction.cpp" line="38"/>
+        <source>Clear All</source>
+        <translation>刪除所有模型</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ClearRecentFileCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/clearrecentfilecommand.cpp" line="26"/>
         <source>Clear</source>
         <translation>清除歷史記錄</translation>
     </message>
@@ -965,25 +2446,25 @@
 <context>
     <name>Clone</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/qml/Clone.qml" line="33"/>
+        <location filename="../kernel/BasicKernel/res/qml/Clone.qml" line="33"/>
         <source>The document has been modified.</source>
         <translation>此文檔已經被修改。</translation>
     </message>
 </context>
 <context>
-    <name>CloneAction</name>
+    <name>creative_kernel::CloneAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/cloneaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/cloneaction.cpp" line="28"/>
-        <source>Clone Model</source>
-        <translation>克隆模型</translation>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/cloneaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/cloneaction.cpp" line="29"/>
+        <source>Clone</source>
+        <translation>克隆</translation>
     </message>
 </context>
 <context>
-    <name>CloneCommand</name>
+    <name>creative_kernel::CloneCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/clonecommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/clonecommand.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/tool/clonecommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/clonecommand.cpp" line="48"/>
         <source>Clone</source>
         <translation>克隆</translation>
     </message>
@@ -1009,6 +2490,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CloneNumDlg.qml" line="76"/>
         <source>Yes</source>
         <translation>確認</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CloneNumDlg.qml" line="76"/>
+        <source>The number cannot be empty</source>
+        <translation>克隆數量不能為空</translation>
     </message>
 </context>
 <context>
@@ -1044,7 +2530,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CloseProFileDlg.qml" line="40"/>
         <source>Save Project Before Exiting?</source>
-        <translation>退出前保存工程？</translation>
+        <translation>退出前保存項目？</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CloseProFileDlg.qml" line="65"/>
@@ -1168,12 +2654,22 @@
         <source>Close</source>
         <translation>關閉</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CopyRightDlg.qml" line="347"/>
+        <source>library name</source>
+        <translation>庫名</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CopyRightDlg.qml" line="347"/>
+        <source>copyright</source>
+        <translation>版權</translation>
+    </message>
 </context>
 <context>
     <name>CrealityGroupCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_group/crealitygroupcommand.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_group/crealitygroupcommand.cpp" line="22"/>
+        <location filename="../kernel/BasicKernel/internal/menu_group/crealitygroupcommand.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/menu_group/crealitygroupcommand.cpp" line="22"/>
         <source>Models</source>
         <translation>模型庫</translation>
     </message>
@@ -1394,6 +2890,11 @@
 </context>
 <context>
     <name>CusSupportPanel</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="1733"/>
+        <source>Do you want to clear existing  supports before create new supports?</source>
+        <translation>在生成新的支撐之前，是否清除已存在的支撐？</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="45"/>
         <source>Support Parameter</source>
@@ -1426,7 +2927,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="157"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation>僅添加接觸底板的支撐</translation>
     </message>
     <message>
@@ -1454,11 +2955,6 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="321"/>
         <source>Clear All Supports</source>
         <translation>清除所有支撐</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/CusSupportPanel.qml" line="340"/>
-        <source>Do you want to clear existing  supports before create new supports?</source>
-        <translation>在生成新的支撐之前，是否清除已存在的支撐？</translation>
     </message>
 </context>
 <context>
@@ -1525,11 +3021,10 @@
     </message>
 </context>
 <context>
-    <name>Cx3dClearProjectCommand</name>
+    <name>creative_kernel::Cx3dClearProjectCommand</name>
     <message>
-        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="5"/>
-        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="22"/>
-        <source>Clear</source>
+        <location filename="../plugins/plugin_cx3d_exporter/src/cx3dclearprojectcommand.cpp" line="9"/>
+        <source>Clear history</source>
         <translation>清除歷史記錄</translation>
     </message>
 </context>
@@ -1548,20 +3043,20 @@
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dsubmenurecentproject.cpp" line="16"/>
         <location filename="../plugins/plugin_cx3d_exporter/src/cx3dsubmenurecentproject.cpp" line="44"/>
         <source>Recently Opened Project</source>
-        <translation>最近打開工程</translation>
+        <translation>最近打開項目</translation>
     </message>
 </context>
 <context>
-    <name>DeleteModelAction</name>
+    <name>creative_kernel::DeleteModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="44"/>
         <source>Delete Model</source>
         <translation>刪除模型</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/deletemodelaction.cpp" line="39"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="17"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deletemodelaction.cpp" line="39"/>
         <source>Do you Want to Delete SelectModel?</source>
         <translation>是否刪除選中的模型？</translation>
     </message>
@@ -1833,7 +3328,19 @@
     </message>
 </context>
 <context>
-    <name>EditProfile</name>
+    <name>ParameterProfilePanel</name>
+	<message>
+        <source>Do you want to reset the selected slice configuration parameters?</source>
+        <translation>是否要重置選取的配置參數？</translation>
+    </message>
+	<message>
+        <source>Advanced</source>
+        <translation>高級</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="17"/>
         <source>Edit</source>
@@ -1846,18 +3353,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="69"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="70"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>Quality</source>
+        <translation>細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="71"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
+        <source>Normal</source>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="72"/>
@@ -1866,8 +3373,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="73"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>Fast</source>
+        <translation>快速</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="260"/>
@@ -1876,7 +3383,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="276"/>
-        <source>Material:</source>
+        <source>Filament:</source>
         <translation>材料:</translation>
     </message>
     <message>
@@ -1937,7 +3444,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="736"/>
         <source>Print Speed:</source>
-        <translation>打印速度：</translation>
+        <translation>播放速度：</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="771"/>
@@ -2011,7 +3518,11 @@
     </message>
 </context>
 <context>
-    <name>EditProfileByFilter</name>
+    <name>ParameterComponent</name>
+	<message>
+        <source>Other</source>
+        <translation>其他</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="15"/>
         <source>Edit</source>
@@ -2024,18 +3535,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="42"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="43"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>Quality1</source>
+        <translation>細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="44"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
+        <source>Normal</source>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="45"/>
@@ -2044,8 +3555,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="46"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>Fast</source>
+        <translation>快速</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="761"/>
@@ -2095,14 +3606,6 @@
     </message>
 </context>
 <context>
-    <name>ExtendLoaderWrapper</name>
-    <message>
-        <location filename="../plugins/plugin_extend_mesh/extendloaderwrapper.cpp" line="193"/>
-        <source>The model is too large, Scale to the fit size?</source>
-        <translation>模型過大，是否縮放到適應尺寸？</translation>
-    </message>
-</context>
-<context>
     <name>FDMFooterPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="79"/>
@@ -2116,8 +3619,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="113"/>
-        <source>Printing Speed:</source>
-        <translation>打印速度：</translation>
+        <source>Print Speed</source>
+        <translation>打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="211"/>
@@ -2135,7 +3638,7 @@
         <translation>每一層</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="314"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="370"/>
         <source>Layer</source>
         <translation>層</translation>
     </message>
@@ -2146,37 +3649,95 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="346"/>
-        <source>Steps Number:</source>
-        <translation>步數：</translation>
+        <source>Steps Number</source>
+        <translation>步數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMFooterPanel.qml" line="404"/>
-        <source>Layers Number:</source>
-        <translation>層數：</translation>
+        <source>Layers Number</source>
+        <translation>層數</translation>
+    </message>
+	<message>
+        <source>Click to toggle showing only the current layer</source>
+        <translation>點擊可切換僅顯示目前圖層</translation>
+    </message>
+</context>
+<context>
+    <name>CSliceButton</name>
+	<message>
+        <source>The current printer model doesn't support multi-plate printing and can't export.</source>
+        <translation>当前打印机机型暂不支持多盘打印，无法导出</translation>
+    </message>
+	<message>
+        <source>Print Plate</source>
+        <translation>列印單盤</translation>
+    </message>
+		 <message>
+        <source>Print All</source>
+        <translation>列印已切片盤</translation>
+    </message>
+		 <message>
+        <source>Export Plate</source>
+        <translation>匯出單盤</translation>
+    </message>
+		 <message>
+        <source>Export Plate Sliced File</source>
+        <translation>匯出已切片盤</translation>
+    </message>
+		 <message>
+        <source>Upload</source>
+        <translation>上傳</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="60"/>
+        <source>Upload to Crealitycloud</source>
+        <translation>上傳到創想雲</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="102"/>
+        <source>LAN Printing</source>
+        <translation>局域網打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="146"/>
+        <source>USB Printing</source>
+        <translation>USB聯機打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="186"/>
+        <source>Export to Local</source>
+        <translation>導出到本地</translation>
+    </message>
+	<message>
+        <source>Slice Plate</source>
+        <translation>單盤切片</translation>
+    </message>
+	 <message>
+        <source>Slice all</source>
+        <translation>所有盤切片</translation>
+    </message>
+</context>
+<context>
+    <name>CMachineTab</name>
+    <message>
+        <source>Plate Type</source>
+        <translation>熱床類型</translation>
+    </message>
+	 <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+	 <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+	<message>
+        <source>Printer</source>
+        <translation>印表機</translation>
     </message>
 </context>
 <context>
     <name>FDMPreviewPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="229"/>
-        <source>Export to Local</source>
-        <translation>導出到本地</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="243"/>
-        <source>Upload to Crealitycloud</source>
-        <translation>上傳到創想雲</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="292"/>
-        <source>LAN Printing</source>
-        <translation>局域網打印</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="311"/>
-        <source>USB Printing</source>
-        <translation>USB聯機打印</translation>
-    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="323"/>
         <source>Failed to upload gcode!</source>
@@ -2185,10 +3746,20 @@
 </context>
 <context>
     <name>FDMRightPanel</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="104"/>
+        <source>Expand</source>
+        <translation>展開</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="104"/>
+        <source>Collapse</source>
+        <translation>收起</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="104"/>
-        <source>Print Report</source>
-        <translation>打印報表</translation>
+        <source>G-code Preview</source>
+        <translation>G-code 預覽</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="119"/>
@@ -2221,12 +3792,6 @@
         <translation>打印平台</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="213"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="332"/>
-        <source>Nozzle</source>
-        <translation>噴頭</translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="267"/>
         <source>Color Show</source>
         <translation>顏色顯示</translation>
@@ -2234,17 +3799,11 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="279"/>
         <source>G-Code</source>
-        <translation></translation>
+        <translation>G-code</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="313"/>
-        <source>Speed</source>
-        <translation>速度</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMRightPanel.qml" line="322"/>
-        <source>Structure</source>
-        <translation>結構</translation>
+        <source>Nozzle</source>
+        <translation>噴頭</translation>
     </message>
 </context>
 <context>
@@ -2397,96 +3956,6 @@
     </message>
 </context>
 <context>
-    <name>GroupPrintTaskCreateInfo</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="63"/>
-        <source>Print task created. You can print it on the Task List directly.</source>
-        <translation>任務創建成功，可前往任務列表進行打印。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="67"/>
-        <source>Failed to create task.</source>
-        <translation>創建任務失敗。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="235"/>
-        <source>Device</source>
-        <translation>設備名稱</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="295"/>
-        <source>Device Name</source>
-        <translation>設備名稱</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="304"/>
-        <source>Device Count</source>
-        <translation>設備總數</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="313"/>
-        <source>Working</source>
-        <translation>工作中</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="390"/>
-        <source>File</source>
-        <translation>文件</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="469"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="639"/>
-        <source>File Name</source>
-        <translation>文件名稱</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="478"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="662"/>
-        <source>Slice Type</source>
-        <translation>切片類型</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="487"/>
-        <source>Print Count</source>
-        <translation>打印分數</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="535"/>
-        <source>Create</source>
-        <translation>創建</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="571"/>
-        <source>Print job is being created.</source>
-        <translation>正在創建打印任務。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="578"/>
-        <source>The print device is empty, please select again.</source>
-        <translation>打印設備為空，請重新選擇。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="583"/>
-        <source>The print file is empty, please select again.</source>
-        <translation>打印文件為空，請重新選擇。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="587"/>
-        <source>The print device and file is empty, please select again.</source>
-        <translation>打印設備和文件為空，請重新選擇。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="613"/>
-        <source>Redefine Slice Type</source>
-        <translation>重定義切片類型</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskCreateInfo.qml" line="690"/>
-        <source>OK</source>
-        <translation>確定</translation>
-    </message>
-</context>
-<context>
     <name>GroupPrintTaskFoldingPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/GroupPrintTaskFoldingPanel.qml" line="311"/>
@@ -2582,63 +4051,499 @@
         <translation>排序和過濾</translation>
     </message>
 </context>
+
 <context>
-    <name>HalotBoxTotalRightUIPanel</name>
+	<name>SyncMaterial</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="70"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="75"/>
-        <source>Material</source>
+        <source>Empty slot</source>
+        <translation>空插槽</translation>
+    </message>
+	<message>
+        <source>The slot has consumables but is not edited.</source>
+        <translation>槽位存在耗材，但未编辑</translation>
+    </message>
+	<message>
+        <source>Synchronize material information from printer</source>
+        <translation>從印表機同步材料訊息</translation>
+    </message>
+	<message>
+        <source>Synchronize</source>
+        <translation>同步</translation>
+    </message>
+	<message>
+        <source>Resync</source>
+        <translation>重新同步</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+
+</context>
+
+<context>
+	<name>FlushVolumeDialog</name>
+	<message>
+        <source>Flushing volumes for filament change</source>
+        <translation>耗材絲更換時的沖刷體積</translation>
+    </message>
+	<message>
+        <source>from/to</source>
+        <translation>從/到</translation>
+    </message>
+	<message>
+        <source>multiplier:</source>
+        <translation>乘數:</translation>
+    </message>
+	<message>
+        <source>Automatic calculation</source>
+        <translation>自動計算</translation>
+    </message>
+	<message>
+        <source>Ok</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+		<message>
+        <source>Flush volume required to switch between two filaments (mm³)</source>
+        <translation>在兩個耗材絲間切換所需的沖刷量(mm³)</translation>
+    </message>
+	<message>
+        <source>Warm reminder: It is recommended that the flushing volume be set within the range of.</source>
+        <translation>溫馨提示：建議設定的沖刷量範圍:。</translation>
+    </message>
+    <message>
+			<source>Warm reminder: When it is flushing between different filaments,It is recommended that the flushing volume</source>
+			<translation>温馨提示: 建議不同類型的耗材間的沖刷</translation>
+	</message>
+</context>
+
+<context>
+	<name>AddPrinterDlgChoseNuzzle</name>
+	 <message>
+        <source>Device Type</source>
+        <translation>設備類型</translation>
+    </message>
+	 <message>
+        <source>Ok</source>
+        <translation>確定</translation>
+    </message>
+	 <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	 <message>
+        <source>Nozzle Diameter</source>
+        <translation>噴嘴直徑</translation>
+    </message>
+	 <message>
+        <source>Nozzle 1 Diameter</source>
+        <translation>噴嘴1直徑</translation>
+    </message>
+	 <message>
+        <source>Nozzle 2 Diameter</source>
+        <translation>噴嘴2直徑</translation>
+    </message>
+</context>
+<context>
+	<name>SearchComboBox</name>
+	<message>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+</context>
+<context>
+	<name>ExpertParamPanel</name>
+		<message>
+        <source>Import</source>
+        <translation>導入</translation>
+    </message>
+		<message>
+        <source>Export</source>
+        <translation>導出</translation>
+    </message>
+	<message>
+        <source>Advanced</source>
+        <translation>高級</translation>
+    </message>
+	<message>
+        <source>Expert Setting</source>
+        <translation>專家設定</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+	<message>
+        <source>Save As</source>
+        <translation>另存为</translation>
+    </message>
+	<message>
+        <source>Reset</source>
+        <translation>重置</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>PaintOperateMode</name>
+    <message>
+        <source>click to gap fill</source>
+        <translation>點擊以填充縫隙</translation>
+    </message>
+</context>
+<context>
+    <name>SaveParameterSecond</name>
+	    <message>
+        <source>Name cannot be empty!</source>
+        <translation>名稱不允許為空!</translation>
+    </message>
+    <message>
+        <source>Do not allow overwriting of system defaults</source>
+        <translation>不允许覆盖系统预设</translation>
+    </message>
+    <message>
+        <source>Preset already exists.</source>
+        <translation>不允許覆蓋系統預設</translation>
+    </message>
+    <message>
+        <source>Please note that this preset will be replaced during the save process.</source>
+        <translation>確認是否要覆蓋此預設</translation>
+    </message>
+    <message>
+        <source>Save preset</source>
+        <translation>儲存預設</translation>
+    </message>
+    <message>
+        <source>Save Printer as</source>
+        <translation>另存印表機為</translation>
+    </message>
+    <message>
+        <source>Save Material as</source>
+        <translation>另存耗材為</translation>
+    </message>
+    <message>
+        <source>Save Process as</source>
+        <translation>另存製程為</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+</context>
+<context>
+    <name>SaveParameterFirst</name>
+    <message>
+        <source>You have changed some preset settings. Would you like to keep these changed settings (new value) after switching presets?</source>
+        <translation>您已經更改了預設參數,是否在切換後要保留這些更改的預設參數?</translation>
+    </message>
+    <message>
+        <source>Remember my choice</source>
+        <translation>記住我的選擇</translation>
+    </message>
+	<message>
+        <source>Transfer</source>
+        <translation>遷移</translation>
+    </message>
+    <message>
+        <source>Discard</source>
+        <translation>忽略</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>儲存</translation>
+    </message>
+</context>
+<context>
+    <name>CusTreeView</name>
+		<message>
+        <source>Repair</source>
+        <translation>修復</translation>
+    </message>
+	<message>
+        <source>For multi-selection, object/part types must match.</source>
+        <translation>多選時，物件/零件的類型需保持一致。</translation>
+    </message>
+	<message>
+        <source>If the first selection is a part, the second selection must also be a part in the same object.</source>
+        <translation>如果第一個選擇的是零件，那麼第二個選擇的也必須是同一個物件中的零件。</translation>
+    </message>
+</context>
+<context>
+    <name>PrintParameterPanel</name>
+		<message>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <source>Rename</source>
+        <translation>重新命名</translation>
+    </message>
+    <message>
+        <source>Click to open advanced parameters</source>
+        <translation>點選開啟進階參數</translation>
+    </message>
+    <message>
+        <source>Click to close advanced parameters</source>
+        <translation>點選關閉進階參數</translation>
+    </message>
+    <message>
+        <source>Do you want to delete the process?</source>
+        <translation>是否要刪除配置</translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>級別</translation>
+    </message>
+    <message>
+        <source>Basic</source>
+        <translation>基礎</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>自定義</translation>
+    </message>
+	 <message>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>Material %1 is referenced by models. Deleting it will discard corresponding paint data on the models. Are you sure you want to discard?</source>
+        <translation>模型引用了耗材%1。刪除它將丟棄模型上相應的塗抹數據。你確定要丟棄嗎？</translation>
+    </message>
+    <message>
+        <source>Discard</source>
+        <translation>丟棄</translation>
+    </message>
+    <message>
+        <source>Inspect</source>
+        <translation>查看</translation>
+    </message>
+    <message>
+        <source>Global</source>
+        <translation>全局</translation>
+    </message>
+    <message>
+        <source>Object</source>
+        <translation>對象</translation>
+    </message>
+	<message>
+        <source>Flushing volumes</source>
+        <translation>沖刷體積</translation>
+    </message>
+	<message>
+        <source>No CFS material found. Please select the printer on the 'Device' page and the CFS information will be loaded.</source>
+        <translation>沒有發現CFS材料。 請在"設備"頁面選擇印表機,將載入CFS信息</translation>
+    </message>
+		<message>
+        <source>Sync Filament</source>
+        <translation>同步耗材</translation>
+    </message>
+	<message>
+        <source>The current model does not support filament synchronization</source>
+        <translation>目前機型不支援耗材同步</translation>
+    </message>
+		<message>
+        <source>Advanced</source>
+        <translation>高級</translation>
+    </message>
+	<message>
+        <source>Remove</source>
+        <translation type="unfinished">移除</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+		<message>
+        <source>Process</source>
+        <translation type="unfinished">工藝</translation>
+    </message>
+	<message>
+        <source>Synchronized material list</source>
+        <translation type="unfinished">同步材料列表</translation>
+    </message>
+	<message>
+        <source>Edit Materials</source>
+        <translation type="unfinished">配置材料</translation>
+    </message>
+	<message>
+        <source>Expert</source>
+        <translation type="unfinished">專家</translation>
+    </message>
+	<message>
+        <source>Reset</source>
+        <translation type="unfinished">重置</translation>
+    </message>
+	<message>
+        <source>Save as</source>
+        <translation type="unfinished">另存為</translation>
+    </message>
+	<message>
+        <source>Compare Presets</source>
+        <translation type="unfinished">比較預設</translation>
+    </message>
+	<message>
+        <source>Sync CrealityCloud</source>
+        <translation type="unfinished">同步創想雲</translation>
+    </message>
+	<message>
+        <source>You have redefine some directives.</source>
+        <translation type="unfinished">您已經重新定義了部分配置參數。</translation>
+    </message>
+	<message>
+        <source>Do you want to keep these changed settings after switching materials?</source>
+        <translation type="unfinished">是否要在切換耗材后保留這些更改的設置？</translation>
+    </message>
+	<message>
+        <source>Or you can discard it for changes and use the default parameter configuration.</source>
+        <translation type="unfinished">或者也可以捨棄更改，使用默認的配置參數。</translation>
+    </message>
+	<message>
+        <source>Tips</source>
+        <translation type="unfinished">提示</translation>
+    </message>
+	 <message>
+        <source>Parameter setting items</source>
+        <translation type="unfinished">參數設置項</translation>
+    </message>
+	 <message>
+        <source>Default parameter value</source>
+        <translation type="unfinished">默认参数值</translation>
+    </message>
+	 <message>
+        <source>Current parameter value</source>
+        <translation type="unfinished">默認參數值</translation>
+    </message>
+		 <message>
+        <source>Keep Changes</source>
+        <translation type="unfinished">保留更改</translation>
+    </message>
+		 <message>
+        <source>Discard changes</source>
+        <translation type="unfinished">保留更改</translation>
+    </message>
+	<message>
+        <source>Do you want to delete the selected slice configuration parameters?</source>
+        <translation type="unfinished"> 是否要刪除選中的切片配置？</translation>
+    </message>
+	<message>
+        <source>skirt</source>
+        <translation type="unfinished">裙擺</translation>
+    </message>
+    <message>
+        <source>lace</source>
+        <translation type="unfinished">花邊</translation>
+    </message>
+    <message>
+        <source>brim</source>
+        <translation type="unfinished">邊緣</translation>
+    </message>
+    <message>
+        <source>autobrim</source>
+        <translation type="unfinished">自動生成邊緣</translation>
+    </message>
+    <message>
+        <source>raft</source>
+        <translation type="unfinished">底座</translation>
+    </message>
+    <message>
+        <source>simpleraft</source>
+        <translation type="unfinished">簡單底座</translation>
+    </message>
+	<message>
+        <source>none</source>
+        <translation type="unfinished">無</translation>
+    </message>
+	<message>
+        <source>Export</source>
+        <translation>導出</translation>
+    </message>
+	<message>
+        <source>Import</source>
+        <translation>導入</translation>
+    </message>
+	    <message>
+        <source>Extruder</source>
+        <translation>擠出機</translation>
+    </message>
+	<message>
+        <source>Extruder 1</source>
+        <translation>擠出機1</translation>
+    </message>
+	<message>
+        <source>Extruder 2</source>
+        <translation>擠出機2</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="70"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="75"/>
+        <source>Filament</source>
         <translation>耗材</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="107"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="110"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="107"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="110"/>
         <source>Parameter config</source>
         <translation>參數配置</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="223"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="201"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="223"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="201"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="229"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="202"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="229"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="202"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="235"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="203"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="235"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="203"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="259"/>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="220"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="259"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="220"/>
         <source>Slice</source>
         <translation>開始切片</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="388"/>
-        <source>Model out of range, please put &apos;red&apos; model in the printer!</source>
-        <translation>模型超出打印機邊界，請調整【紅色】模型的位置！</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="388"/>
+        <source>The model has exceeded the printing range, do you want to continue slicing?</source>
+        <translation>模型已超出打印範圍，是否繼續進行切片？</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="400"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="400"/>
         <source>Message</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/HalotBoxTotalRightUIPanel.qml" line="415"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrintParameterPanel.qml" line="415"/>
         <source>The profile already exists! please enter again.</source>
         <translation>配置文件已經存在！請重試其他名字。</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUITest/HalotBoxTotalRightUIPanel.qml" line="38"/>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="38"/>
         <source>Printer</source>
         <translation>打印機</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUITest/PrintParameterPanel.qml" line="38"/>
+        <source>Manage</source>
+        <translation>管理</translation>
     </message>
 </context>
 <context>
@@ -2702,18 +4607,9 @@
 <context>
     <name>ImportMesh</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/qml/ImportMesh.qml" line="22"/>
+        <location filename="../kernel/BasicKernel/res/qml/ImportMesh.qml" line="22"/>
         <source>Import Mesh</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ImportModelAction</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/importmodelaction.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/importmodelaction.cpp" line="39"/>
-        <source>Import Model</source>
-        <translation>導入模型</translation>
     </message>
 </context>
 <context>
@@ -2738,102 +4634,405 @@
     </message>
 </context>
 <context>
-    <name>InfoPanelMulit</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="20"/>
-        <source>Repair</source>
-        <translation>修復</translation>
+    <name>errorData</name>
+	<message>
+        <source>20000</source>
+        <translation>偵測到上次意外停止的文件</translation>
+    </message>
+	<message>
+        <source>20010</source>
+        <translation>目前耗材用盡，列印已暫停，請更換耗材</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="57"/>
-        <source>Model(s) Invalid</source>
-        <translation>個模型存在錯誤</translation>
-    </message>
+    <source>Filament depleted, printing paused. Please replace filament.</source>
+    <translation>目前耗材用盡，列印已暫停，請更換耗材</translation>
+</message>
+<message>
+    <source>The file where the last unexpected stop was detected</source>
+    <translation>偵測到上次意外停止的文件</translation>
+</message>
+<message>
+    <source>Machine preparation</source>
+    <translation>機器準備中</translation>
+</message>
+<message>
+    <source>Axis movement error</source>
+    <translation>軸移動錯誤</translation>
+</message>
+<message>
+    <source>Unknown exception</source>
+    <translation>未知異常</translation>
+</message>
+<message>
+    <source>File anomaly</source>
+    <translation>文件異常</translation>
+</message>
+<message>
+    <source>z-Touch abnormality</source>
+    <translation>z-Touch異常</translation>
+</message>
+<message>
+    <source>AI detected print quality issues</source>
+    <translation>AI偵測到列印品質問題</translation>
+</message>
+<message>
+    <source>network anomaly</source>
+    <translation>網路例外</translation>
+</message>
+<message>
+    <source>Fan abnormality</source>
+    <translation>風扇異常</translation>
+</message>
+<message>
+    <source>Chatter optimization sensor abnormality</source>
+    <translation>振紋優化感測器異常</translation>
+</message>
+<message>
+    <source>Abnormal temperature of the temperature chamber</source>
+    <translation>溫腔溫度異常</translation>
+</message>
+<message>
+    <source>An unknown error was detected in printing</source>
+    <translation>偵測到列印發生未知錯誤</translation>
+</message>
+<message>
+    <source>A print quality problem has been detected and printing is paused</source>
+    <translation>偵測到列印品質問題並暫停列印</translation>
+</message>
+<message>
+    <source>Print file coordinates are abnormal</source>
+    <translation>列印文件座標異常</translation>
+</message>
+<message>
+    <source>Extruder abnormality</source>
+    <translation>擠出機異常</translation>
+</message>
+<message>
+    <source>Abnormal hot bed temperature</source>
+    <translation>熱床溫度異常</translation>
+</message>
+<message>
+    <source>Not heating as expected</source>
+    <translation>未如預期加熱</translation>
+</message>
+<message>
+    <source>Communication abnormality</source>
+    <translation>通訊異常</translation>
+</message>
+<message>
+    <source>internal error</source>
+    <translation>內部錯誤</translation>
+</message>
+<message>
+    <source>Motor drive abnormality</source>
+    <translation>馬達驅動異常</translation>
+</message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="67"/>
-        <source>Total Triangles:</source>
-        <translation>三角面：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="84"/>
-        <source>Total Vertices:</source>
-        <translation>邊：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="101"/>
-        <source>Illegal Edge:</source>
-        <translation>非法的邊：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="118"/>
-        <source>Illegal Normal:</source>
-        <translation>錯誤的法線方向：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="135"/>
-        <source>Hole Number:</source>
-        <translation>孔洞個數：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelMulit.qml" line="153"/>
-        <source>Self_intersections num:</source>
-        <translation>自交面個數：</translation>
-    </message>
-</context>
-<context>
-    <name>InfoPanelRepair</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="29"/>
-        <source>Repair</source>
-        <translation>修復</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="62"/>
-        <source>Model:</source>
-        <translation>模型：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="79"/>
-        <source>Bounding Box:</source>
-        <translation>大小：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="95"/>
-        <source>Total Triangles:</source>
-        <translation>三角面：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="112"/>
-        <source>Total Vertices:</source>
-        <translation>邊：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="129"/>
-        <source>Illegal Edge:</source>
-        <translation>非法的邊：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="146"/>
-        <source>Illegal Normal:</source>
-        <translation>錯誤的法線方向：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="163"/>
-        <source>Hole Number:</source>
-        <translation>孔洞個數：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/InfoPanelRepair.qml" line="181"/>
-        <source>Self_intersections num:</source>
-        <translation>自交面個數：</translation>
-    </message>
+<source>A print quality issue has been detected and printing has been paused</source>
+<translation>偵測到列印品質問題，已暫停列印</translation>
+</message>
+<message>
+<source>Detected a issue with the print quality of the first layer,printing has been paused</source>
+<translation>偵測到首層列印品質問題，已暫停列印</translation>
+</message>
+<message>
+<source>Foreign object detected on the printing platform, printing paused</source>
+<translation>偵測到列印平台板異物，已暫停列印</translation>
+</message>
+<message>
+<source>A model warping issue has been detected，printing has been paused</source>
+<translation>偵測到列印過程中有翹曲現象，已暫停列印</translation>
+</message>
+<message>
+<source>Printing quality issues detected by AI</source>
+<translation>偵測到列印品質問題</translation>
+</message>
+<message>
+<source>Detected a issue with the print quality of the first layer</source>
+<translation>偵測到首層列印品質問題</translation>
+</message>
+<message>
+<source>Chamber temp too high, camera off. It'll auto-on when temp normalizes</source>
+<translation>腔體溫度過高，相機已關閉，溫度恢復正常後自動開啟</translation>
+</message>
+<message>
+<source>Camera failed to start, try restarting</source>
+<translation>攝影機開啟失敗，可嘗試重啟</translation>
+</message>
+<message>
+<source>A model warping issue has been detected.</source>
+<translation>偵測到列印過程中有翹曲現象</translation>
+</message>
+<message>
+<source>Current file does not support flow detection</source>
+<translation>目前文件不支援流量校準</translation>
+</message>
+<message>
+<source>AI LiDAR anomaly</source>
+<translation>AI光達異常</translation>
+</message>
+<message>
+<source>AI LiDAR calibration failure</source>
+<translation>AI光達標定失敗</translation>
+</message>
+<message>
+<source>AI LiDAR alignment failure</source>
+<translation>AI光達校準失敗</translation>
+</message>
+<message>
+<source>Motherboard Connection Failure</source>
+<translation>主機板連接異常</translation>
+</message>
+<message>
+<source>Nozzle connection abnormal</source>
+<translation>噴頭連接異常</translation>
+</message>
+<message>
+<source>Hotbed Connection Abnormal</source>
+<translation>熱床連接異常</translation>
+</message>
+<message>
+<source>The motherboard temperature is abnormal</source>
+<translation>主機板溫度異常</translation>
+</message>
+<message>
+<source>Current storage space usage has reached %s, please clean up in time</source>
+<translation>目前儲存空間佔用已達 %s,請及時清理</translation>
+</message>
+<message>
+<source>Auto belt tension failure</source>
+<translation>自動皮帶張緊失敗</translation>
+</message>
+<message>
+<source>Hotbed thermistor open circuit</source>
+<translation>熱床熱敏開路</translation>
+</message>
+<message>
+<source>Hotbed thermistor short circuit</source>
+<translation>熱床熱敏短路</translation>
+</message>
+<message>
+<source>The heat bed is not heating as expected</source>
+<translation>熱床未如預期加熱</translation>
+</message>
+<message>
+<source>Mainboard fan exception</source>
+<translation>主機板風扇異常</translation>
+</message>
+<message>
+<source>The leveling sensor may encounter hardware failure</source>
+<translation>調平感測器可能出現硬體故障</translation>
+</message>
+<message>
+<source>The leveling sensor may have an external disturbance, please try again after resolving</source>
+<translation>調平感測器可能有外部幹擾，請排除故障後重試</translation>
+</message>
+<message>
+<source>Detected unfinished task, do you wish to continue printing</source>
+<translation>偵測到未完成的任務，是否繼續列印</translation>
+</message>
+<message>
+<source>[X/Y/E] step-servo speed issue,  please try again after resolving[Z1/Z2] step-servo speed issue, print plate will be released, please try again after resolving</source>
+<translation>[x或y或e]軸伺服電機速度異常，請排除故障後重試/[z1或z2]軸伺服電機速度異常，將釋放電機，請排除故障後重試</translation>
+</message>
+<message>
+<source>[X/Y/E] step-servo issue[Z1/Z2] step-servo issue, print plate will be released.</source>
+<translation>[x或y或e]軸伺服馬達硬體異常/[z1或z2]軸伺服馬達硬體異常，平台板將下降</translation>
+</message>
+<message>
+<source>[X/Y/E/Z1/Z2] step-servo current issue, please try again after resolving</source>
+<translation>[x或y或z1或z2或e]軸伺服馬達電流異常，請排除故障後重試</translation>
+</message>
+<message>
+<source>[X/Y/E/Z1/Z2] step-servo position issue, please try again after resolving</source>
+<translation>[x或y或z1或z2或e]軸伺服馬達位置異常，請排除故障後重試</translation>
+</message>
+<message>
+<source>[X/Y/E] step-servo connect issue, please turn off the power and res</source>
+<translation>[x或y或e]軸伺服電機識別異常，請斷電檢查後重啟/[z1或z2]軸電機識別異常，將釋放電機，請斷電檢查後重啟</translation>
+</message>
+<message>
+<source>The chamber thermistor may be open circuit</source>
+<translation>腔體熱敏可能開路</translation>
+</message>
+<message>
+<source>The chamber thermistor may be short circuit</source>
+<translation>腔體熱敏可能短路</translation>
+</message>
+<message>
+<source>X-axis motor drive abnormality</source>
+<translation>X軸馬達驅動異常</translation>
+</message>
+<message>
+<source>X-axis homing abnormality</source>
+<translation>X軸回零異常</translation>
+</message>
+<message>
+<source>X-axis print coordinates out of range</source>
+<translation>X軸列印座標超出範圍</translation>
+</message>
+<message>
+<source>Y-axis motor drive abnormality</source>
+<translation>Y軸馬達驅動異常</translation>
+</message>
+<message>
+<source>Y-axis homing abnormality</source>
+<translation>Y軸回零異常</translation>
+</message>
+<message>
+<source>Y-axis print coordinates out of range</source>
+<translation>Y軸列印座標超出範圍</translation>
+</message>
+<message>
+<source>Z-axis motor drive abnormality</source>
+<translation>Z軸馬達驅動異常</translation>
+</message>
+<message>
+<source>Z-axis homing abnormality</source>
+<translation>Z軸回零異常</translation>
+</message>
+<message>
+<source>Z-axis print coordinates out of range</source>
+<translation>Z軸列印座標超出範圍</translation>
+</message>
+<message>
+<source>Z Offset Exceeds Limit</source>
+<translation>Z_offset偏移值超限</translation>
+</message>
+<message>
+<source>PTFE tube may have detached from the pneumatic fitting, Printing paused, please try again after resolving</source>
+<translation>偵測到鐵氟龍管可能從氣動接頭脫落，列印已暫停，請排除故障後重試</translation>
+</message>
+<message>
+<source>Air print detected, please try again after resolving</source>
+<translation>偵測到送料通道可能斷開，請及時處理</translation>
+</message>
+<message>
+<source>Filament may tangled, please try again after resolving</source>
+<translation>檢測到可能纏料，請及時處理</translation>
+</message>
+<message>
+<source>Extruder may be clogged. Click "Retry" after resolving.</source>
+<translation>偵測到擠出機可能堵頭，請排除故障後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Feed issue , filament may be jammed between the extruder sensor and the extruder gear. Please resolve the issue and click the "Retry" button.</source>
+<translation>進料異常，耗材可能堵在擠出機斷料偵測器到擠出齒輪位置，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Feed issue , filament may be stuck between the CFS hub sensor and the gear. Please resolve the issue and click the "Retry" button.</source>
+<translation>進料異常，耗材可能堵在五通耗材偵測器到五通齒輪位置，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Retract issue, check for filament or spool jams.  Click "Retry" after resolving.</source>
+<translation>退料異常，請檢查是否發生堵頭或耗材及料盤卡住，排除異常後點擊“重試”按鈕”</translation>
+</message>
+<message>
+<source>Feed issue, check for filament or spool jams. Click "Retry" after resolving.</source>
+<translation>進料異常，請檢查是否發生堵頭或耗材及料盤卡住，排除異常後點擊“重試”按鈕”</translation>
+</message>
+<message>
+<source>Feed issue , filament may be stuck from loader to CFS hub. Please resolve the issue and click the "Retry" button.</source>
+<translation>進料異常，耗材可能堵在上料器到五通位置，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Feed issue , filament may be blocked between the CFS hub and extruder filament detector. Please resolve the issue and click "Retry" button.</source>
+<translation>進料異常，耗材可能堵在五通到擠出機斷料偵測器位置，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>No.1 CFS slot D filament runs out, please refill.n</source>
+<translation>目前列印槽位 1號 CFS D料槽耗材用盡，請盡快插入料線</translation>
+</message>
+<message>
+<source>No.1 CFS slot D filament may be broken in CFS.</source>
+<translation>1號CFS D料槽耗材可能斷在五通內部，請查詢故障後重試</translation>
+</message>
+<message>
+<source>Retract issue, filament cannot be returned to CFS hub. Please resolve the issue and click the "Retry" button.</source>
+<translation>退料異常，耗材無法退回五通，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Retract issue, other filaments may be inserted into the CFS hub. Remove appropriately and click the "Retry" button.</source>
+<translation>退料異常，可能有其他耗材插入五通處，可適當拔出後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>Retract issue, Filament Buffer failure. Please resolve and click "Retry" button.</source>
+<translation>退料異常，緩衝器故障，請排除異常後點選「重試」按鈕</translation>
+</message>
+<message>
+<source>No.1 communication issue, please try again after resolving.</source>
+<translation>1號CFS通訊異常，請排除故障後重試</translation>
+</message>
+<message>
+<source>System error.</source>
+<translation>系統出現異常錯誤</translation>
+</message>
+<message>
+<source>Command failed, current scenario does not support this command.</source>
+<translation>指令發送失敗，當前場景不支援該指令</translation>
+</message>
+<message>
+<source>RFID cannot be read, please manually edit filament</source>
+<translation>RFID讀取異常，可手動編輯耗材</translation>
+</message>
+<message>
+<source>Cutter issue, cutter might be jammed, please try again after resolving</source>
+<translation>切刀異常，切刀可能卡住，請排除故障後重試</translation>
+</message>
+<message>
+<source>The nozzle temperature is below the minimum extrusion temperature</source>
+<translation>噴嘴溫度低於擠出溫度</translation>
+</message>
+<message>
+<source>Unable to obtain nozzle temperature, the thermistor may be disconnected</source>
+<translation>噴嘴熱敏可能開路</translation>
+</message>
+<message>
+<source>Nozzle temperature exceeds limit, thermistor may be short-circuited</source>
+<translation>噴嘴溫度超限，熱敏可能短路</translation>
+</message>
+<message>
+<source>The nozzle is not heating as expected</source>
+<translation>噴嘴未如預期加熱</translation>
+</message>
+<message>
+<source>Heat break fan issue</source>
+<translation>喉管風扇異常</translation>
+</message>
+<message>
+<source>Filament runout, printing paused, please refill</source>
+<translation>目前耗材用盡，列印已暫停，請更換耗材</translation>
+</message>
+<message>
+<source>Print file is corrupted</source>
+<translation>目前列印文件損壞</translation>
+</message>
+<message>
+<source>System error, try restarting</source>
+<translation>系統錯誤，可嘗試重啟</translation>
+</message>
 </context>
 <context>
     <name>LanPrinterListLocal</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="98"/>
-        <source>Refresh</source>
-        <translation>刷新</translation>
+    <source>Unknown exception</source>
+    <translation>未知異常</translation>
+</message>
+    <message>
+    <source>Cancel print</source>
+    <translation>取消列印</translation>
+</message>
+    <message>
+        <source>Printing will stop shortly.</source>
+        <translation>即將停止列印。</translation>
+    </message>
+ <message>
+        <source>Click to jump to Wiki</source>
+        <translation>點擊跳轉Wiki</translation>
+    </message>
+    <message>
+        <source>Enter the device name/IP address</source>
+        <translation>輸入設備名稱/IP位址</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="120"/>
@@ -2865,21 +5064,85 @@
         <source>Printing</source>
         <translation>打印中</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="791"/>
+        <source>Device Type</source>
+        <translation>設備類型</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="823"/>
+        <source>All</source>
+        <translation>全部</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="823"/>
+        <source>Printer</source>
+        <translation>打印機</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="484"/>
         <source>Add printer</source>
         <translation>添加打印機</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="851"/>
+        <source>Creality Box</source>
+        <translation>創想盒子</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="887"/>
+        <source>Printer(WiFi)</source>
+        <translation>打印機(WIFI)</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="923"/>
+        <source>Sonic Pad</source>
+        <translation>音速屏</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="497"/>
+        <source>Warning</source>
+        <translation>提示</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="530"/>
+        <source>After deleting the current group, the device will move into the default group</source>
+        <translation>刪除當前分組後，設備會移入默認分組</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="553"/>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="589"/>
+        <source>No</source>
+        <translation>否</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="547"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1283"/>
-        <source>Ip address</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1103"/>
+        <source>IP</source>
         <translation>IP地址</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1258"/>
+        <source>Paste</source>
+        <translation>粘貼</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1230"/>
+        <source>How to discover the IP address</source>
+        <translation>如何查找IP地址</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="639"/>
         <source>Add</source>
         <translation>添加</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="804"/>
+        <source>Searching for devices</source>
+        <translation>設備搜索中</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="689"/>
@@ -2902,10 +5165,30 @@
         <source>The printer added successfully</source>
         <translation>打印機添加成功</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1500"/>
+        <source>Scan Add</source>
+        <translation>掃描添加</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="839"/>
-        <source>New</source>
-        <translation>新增</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1539"/>
+        <source>Manual Add</source>
+        <translation>手動添加</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1953"/>
+        <source>Device list is empty, you can add devices by scanning or manually.</source>
+        <translation>您的設備列表為空，可通過掃描添加或手動添加的方式進行設備的添加。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1800"/>
+        <source>Offline</source>
+        <translation>離線</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2382"/>
+        <source>Idle</source>
+        <translation>空閑中</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="904"/>
@@ -2915,17 +5198,52 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="907"/>
         <source>WLAN Printing</source>
-        <translation>局域網打印中</translation>
+        <translation>打印中</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="910"/>
         <source>CrealityCloud Printing</source>
         <translation>創想雲打印中</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2445"/>
+        <source>Error code:</source>
+        <translation>錯誤代碼：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2454"/>
+        <source>Description:</source>
+        <translation>描述：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2478"/>
+        <source>Ignore</source>
+        <translation>忽略</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2443"/>
+        <source>Continue</source>
+        <translation>繼續</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2469"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2495"/>
+        <source>Reboot</source>
+        <translation>重啟設備</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="957"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2063"/>
         <source>Move to</source>
         <translation>移動到</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2113"/>
+        <source>Remove device</source>
+        <translation>移除設備</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1136"/>
@@ -2933,19 +5251,41 @@
         <translation>已連接攝像頭</translation>
     </message>
     <message>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="450"/>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1190"/>
         <source>Device Name</source>
         <translation>設備名稱</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1366"/>
-        <source>G-code</source>
-        <translation></translation>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="463"/>
+        <source>Printer Model</source>
+        <translation>打印機型號</translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1392"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="480"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1905"/>
+        <source>Ip address</source>
+        <translation>IP地址</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2003"/>
         <source>Upload Failed</source>
         <translation>上傳失敗</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2017"/>
+        <source>File:</source>
+        <translation>文件：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2076"/>
+        <source>Retry</source>
+        <translation>重試</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2981"/>
+        <source>Print calibration</source>
+        <translation>打印校準</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1395"/>
@@ -2969,12 +5309,12 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1668"/>
-        <source>Hot bed temperature</source>
+        <source>Hot bed temp</source>
         <translation>熱床溫度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="1827"/>
-        <source>Nozzle temperature</source>
+        <source>Nozzle temp</source>
         <translation>噴嘴溫度</translation>
     </message>
     <message>
@@ -2987,30 +5327,39 @@
         <source>You cannot choose or view the printers which are printing with a TF card or the Creality Cloud app</source>
         <translation>無法選中和查看正在使用TF打印和創想雲打印的打印機</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2085"/>
-        <source>Pause</source>
-        <translation>暫停</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2085"/>
-        <source>Preheating</source>
-        <translation>一鍵預熱</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2120"/>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3508"/>
         <source>Send G-code</source>
         <translation>發送文件</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2151"/>
-        <source>Stop</source>
-        <translation>終止</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>One-click Printing</source>
+        <translation>一鍵打印</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="2151"/>
-        <source>Start Printing</source>
-        <translation>開始打印</translation>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Make sure the print platform is empty before starting to print</source>
+        <translation>開始打印前，請確保打印平台已清空</translation>
+    </message>
+	 <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Do not prompt for this message again</source>
+        <translation>不再提示此信息</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterListLocal.qml" line="3540"/>
+        <source>Printer Matching</source>
+        <translation>機型匹配</translation>
+    </message>
+	<message>
+        <source>Copy IP address</source>
+        <translation>複製IP位址</translation>
+    </message>
+	  <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDialog.qml" line="124"/>
+        <source>Refresh</source>
+        <translation>刷新</translation>
     </message>
 </context>
 <context>
@@ -3022,164 +5371,640 @@
     </message>
 </context>
 <context>
-    <name>LanPrintingDetail</name>
+    <name>LanPrinterDialog</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="119"/>
-        <source>Printing Infomation</source>
-        <translation>打印訊息</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDialog.qml" line="124"/>
+        <source>Refresh</source>
+        <translation>刷新</translation>
+    </message>
+</context>
+<context>
+    <name>LanPrinterDetail</name>
+	<message>
+        <source>All</source>
+        <translation>全選</translation>
+    </message>
+		 <message>
+        <source>WLAN Printing</source>
+        <translation>列印中</translation>
+    </message>
+	 <message>
+        <source>WLAN Pausing</source>
+        <translation>暫停中</translation>
+    </message>
+	 <message>
+        <source>WLAN stopping</source>
+        <translation>停止中</translation>
+    </message>
+	 <message>
+        <source>WLAN restoring</source>
+        <translation>復原中</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="150"/>
+    <source>It does not support setting consumables information during printing.</source>
+    <translation>不支援在列印過程中設定耗材訊息</translation>
+</message>
+    <message>
+    <source>Unknown exception</source>
+    <translation>未知异常</translation>
+</message>
+    <message>
+        <source>Filament</source>
+        <translation>耗材</translation>
+    </message>
+    <message>
+        <source>Spool Holder</source>
+        <translation>料架</translation>
+    </message>
+    <message>
+        <source>The Creative Consumables System (CFS) allows you to easily manage consumables and perform functions such as automatic refilling, multi-color printing, and support printing.</source>
+        <translation>使用創想耗材系統（CFS）可輕鬆管理耗材，進行自動續料、多色列印和支撐列印等功能。</translation>
+    </message>
+    <message>
+        <source>Guide</source>
+        <translation>指南</translation>
+    </message>
+    <message>
+        <source>Feed</source>
+        <translation>進料</translation>
+    </message>
+    <message>
+        <source>Retract</source>
+        <translation>退料</translation>
+    </message>
+    <message>
+        <source>brand</source>
+        <translation>品牌</translation>
+    </message>
+    <message>
+        <source>type</source>
+        <translation>類型</translation>
+    </message>
+    <message>
+        <source>name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>color</source>
+        <translation>顏色</translation>
+    </message>
+    <message>
+        <source>Nozzle temperature</source>
+        <translation>噴嘴溫度</translation>
+    </message>
+    <message>
+        <source>PA distance</source>
+        <translation>壓力提前距離</translation>
+    </message>
+    <message>
+        <source>RFID consumables information does not support modification</source>
+        <translation>RFID耗材資訊不支援修改</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>重置</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+    <message>
+        <source>Material box setting</source>
+        <translation>料盒設定</translation>
+    </message>
+    <message>
+        <source>Detection on insertion</source>
+        <translation>插入時檢測</translation>
+    </message>
+    <message>
+        <source>When a new material line is inserted, the system automatically reads the material line information, which takes about 20 seconds.</source>
+        <translation>當插入新的料線時，系統會自動讀取料線訊息，大約需要20秒。</translation>
+    </message>
+    <message>
+        <source>Detection at startup</source>
+        <translation>開機時檢測</translation>
+    </message>
+    <message>
+        <source>Each time the machine is turned on, the system automatically reads the material line information, which takes about 1 minute.</source>
+        <translation>每次開機時，系統自動讀取料線訊息，約需1分鐘。</translation>
+    </message>
+    <message>
+        <source>Automatic feeding system</source>
+        <translation>系統自動續料</translation>
+    </message>
+    <message>
+        <source>When the material line is exhausted, it will automatically switch to a consumable with exactly the same properties.</source>
+        <translation>料線用盡後將自動切換到屬性完全相同的耗材。</translation>
+    </message>
+    <message>
+        <source>CFS Humidity</source>
+        <translation>CFS濕度</translation>
+    </message>
+    <message>
+        <source>Scope</source>
+        <translation>範圍說明</translation>
+    </message>
+    <message>
+        <source>unit</source>
+        <translation>單位</translation>
+    </message>
+    <message>
+        <source>current</source>
+        <translation>当前</translation>
+    </message>
+     <message>
+        <source>normal</source>
+        <translation>正常</translation>
+    </message>
+    <message>
+        <source>high</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <source>Too high</source>
+        <translation>過高</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <source>Automatic feeding</source>
+        <translation>自動續料</translation>
+    </message>
+    <message>
+        <source>There is no matching automatic refill consumables.</source>
+        <translation>無匹配的自動續料的耗材。</translation>
+    </message>
+    <message>
+        <source>CFS is busy, please try again later.</source>
+        <translation>CFS正忙,請稍後再試。</translation>
+    </message>
+    <message>
+        <source>Select a slot and click the "Feed"/"Retract" button</source>
+        <translation>選擇一個插槽，然後點擊"進料"/"退料"按鈕</translation>
+    </message>
+    <message>
+        <source>Feed nozzle heating (220℃) 220℃ is an example, the actual operating temperature is based on the maximum temperature of the consumables</source>
+        <translation>進料噴嘴加熱(220℃)220℃為範例,實際運轉溫度以耗材最大溫度為準</translation>
+    </message>
+    <message>
+        <source>Feeding inspection line position</source>
+        <translation>進料檢查料線位置</translation>
+    </message>
+    <message>
+        <source>Feeding and cutting line</source>
+        <translation>進料切斷料線</translation>
+    </message>
+    <message>
+        <source>Feed back to the current material line</source>
+        <translation>進料抽回目前料線</translation>
+    </message>
+    <message>
+        <source>Feeding and delivering new material line</source>
+        <translation>進料送出新料線</translation>
+    </message>
+    <message>
+        <source>Feeding and biting line</source>
+        <translation>進料咬入料線</translation>
+    </message>
+    <message>
+        <source>Feed flushing old material line</source>
+        <translation>進料沖刷舊料線</translation>
+    </message>
+    <message>
+        <source>Check the feed line position</source>
+        <translation>檢查料線位置</translation>
+    </message>
+    <message>
+        <source>Cutting line</source>
+        <translation>切斷料線</translation>
+    </message>
+    <message>
+        <source>Retract the current material line</source>
+        <translation>抽回當前料線</translation>
+    </message>
+    <message>
+        <source>Flushing old material line</source>
+        <translation>沖刷舊料線</translation>
+    </message>
+    <message>
+    <source>Cancel print</source>
+    <translation>取消列印</translation>
+</message>
+    <message>
+        <source>Printing will stop shortly.</source>
+        <translation>即將停止列印。</translation>
+    </message>
+<message>
+        <source>Blanking</source>
+        <translation>斷料</translation>
+    </message>
+<message>
+        <source>Click to jump to Wiki</source>
+        <translation>點擊跳轉Wiki</translation>
+    </message>
+	<message>
+        <source>Selected files</source>
+        <translation>已選文件</translation>
+	</message>
+	<message>
+        <source>Multicolor</source>
+        <translation>是否多色</translation>
+	</message>
+	<message>
+        <source>Yes</source>
+        <translation>是</translation>
+	</message>
+	<message>
+        <source>No</source>
+        <translation>否</translation>
+	</message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="110"/>
+        <source>Maximum value</source>
+        <translation>最大值</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="110"/>
+        <source>TF Card Printing</source>
+        <translation>TF卡打印中</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="113"/>
+        <source>WLAN Printing</source>
+        <translation>打印中</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="116"/>
+        <source>CrealityCloud Printing</source>
+        <translation>創想雲打印中</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="274"/>
+        <source>Pause printing</source>
+        <translation>暫停打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="275"/>
+        <source>Whether to pause printing?</source>
+        <translation>是否暫停打印？</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="278"/>
+        <source>Continue printing</source>
+        <translation>繼續打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="279"/>
+        <source>Whether to continue printing?</source>
+        <translation>是否繼續打印？</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="282"/>
+        <source>Stop printing</source>
+        <translation>停止打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="283"/>
+        <source>Whether to stop printing?</source>
+        <translation>是否停止打印？</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="398"/>
+        <source>G-code file has been deleted and cannot be printed</source>
+        <translation>切片文件已刪除，無法進行打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="360"/>
+        <source>Confirm</source>
+        <translation>確認</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="388"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="119"/>
+        <source>Printing information</source>
+        <translation>打印訊息</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="586"/>
+        <source>Offline</source>
+        <translation>離線</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="824"/>
+        <source>Idle</source>
+        <translation>空閑中</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="938"/>
+        <source>Error code:</source>
+        <translation>錯誤代碼：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="947"/>
+        <source>Description:</source>
+        <translation>描述：</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="971"/>
+        <source>Ignore</source>
+        <translation>忽略</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="605"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="641"/>
+        <source>Reboot</source>
+        <translation>重啟設備</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="150"/>
         <source>Continue</source>
         <translation>繼續</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="150"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="150"/>
         <source>Pause</source>
         <translation>暫停</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="196"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="196"/>
         <source>Stop</source>
         <translation>終止</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="310"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1672"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="310"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1672"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="346"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="346"/>
         <source>Layer</source>
         <translation>層</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="416"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="416"/>
         <source>Print time</source>
         <translation>打印時間</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="439"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="439"/>
         <source>Time left</source>
         <translation>剩餘時間</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="487"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="487"/>
         <source>Control</source>
         <translation>控制</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1031"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1031"/>
         <source>Printing speed</source>
         <translation>打印速度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1178"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1178"/>
         <source>Hot Bed temp</source>
         <translation>熱床溫度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1335"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1335"/>
         <source>Nozzle temp</source>
         <translation>噴嘴溫度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1492"/>
-        <source>Fan switch</source>
-        <translation>風扇開關</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1492"/>
+        <source>Moder Fan</source>
+        <translation>模型風扇</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1925"/>
+        <source>Back Fan</source>
+        <translation>腔體風扇</translation>
+    </message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml"/>
+        <source>fan speed</source>
+        <translation>風速</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2000"/>
+        <source>Side fan</source>
+        <translation>輔助風扇</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1562"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1562"/>
         <source>Led switch</source>
         <translation>LED開關</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1702"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1702"/>
         <source>Records</source>
         <translation>歷史記錄</translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1727"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1727"/>
         <source>Upload Failed</source>
         <translation>上傳失敗</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1736"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1736"/>
         <source>Import</source>
         <translation>導入</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1750"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1750"/>
         <source>Open File</source>
         <translation>打開文件</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Name</source>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>File name</source>
         <translation>文件名稱</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Size</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>File size</source>
         <translation>文件大小</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Layer height</source>
+        <translation>層高</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Start time</source>
+        <translation>開始時間</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1813"/>
-        <source>File Time</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Timelapse Video</source>
+        <translation>延時攝影</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Gcode name</source>
+        <translation>Gcode文件名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Video size</source>
+        <translation>視頻大小</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Video name</source>
+        <translation>視頻文件名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Export</source>
+        <translation>導出</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Rename</source>
+        <translation>重命名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4641"/>
+        <source>Copy Link</source>
+        <translation>分享(拷貝鏈接)</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4665"/>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4667"/>
+        <source>Copy link successfully!</source>
+        <translation>複製鏈接成功！</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="4666"/>
+        <source>Open Browser</source>
+        <translation>用瀏覽器打開</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Creation time</source>
         <translation>創建時間</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1907"/>
-        <source>Start Print</source>
-        <translation>開始打印</translation>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Total duration</source>
+        <translation>實際用時</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1917"/>
+        <source>Material length</source>
+        <translation>耗材長度</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1918"/>
+        <source>Material usage</source>
+        <translation>耗材用量</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="1946"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1907"/>
+        <source>Start printing</source>
+        <translation>打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3367"/>
+        <source>Restart printing</source>
+        <translation>重新打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3135"/>
+        <source>Print with calibration</source>
+        <translation>先校準後打印</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="3475"/>
+        <source>Reprint with calibration</source>
+        <translation>先校準後重新打印</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="1946"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2157"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2157"/>
         <source>Camera</source>
         <translation>攝像頭</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2827"/>
+        <source>Rejected our connection request.</source>
+        <translation>拒絕了我們的連接請求。</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2245"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2663"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2245"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2663"/>
         <source>Temperature</source>
         <translation>溫度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2292"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2292"/>
         <source>Project</source>
         <translation>項目</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2305"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2305"/>
         <source>Current</source>
         <translation>當前</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2318"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2318"/>
         <source>Target</source>
         <translation>目標</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2355"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2355"/>
         <source>Hot Bed</source>
         <translation>熱床</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrintingDetail.qml" line="2512"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2512"/>
         <source>Nozzle</source>
         <translation>噴嘴</translation>
     </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/lanprinterqml/LanPrinterDetail.qml" line="2512"/>
+        <source>Chamber</source>
+        <translation>腔體</translation>
+    </message>
+		<message>
+        <source>Object deletion</source>
+        <translation>對象刪除</translation>
+    </message>
+	<message>
+        <source>Whether to continue deleting the selected object</source>
+        <translation>是否繼續刪除選中對象</translation>
+    </message>
+<message>
+        <source>Exclusion is not supported when only a single model is left</source>
+        <translation>僅剩單一模型不支援排除</translation>
+    </message>
+
 </context>
 <context>
     <name>LanguageCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/languagecommand.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/languagecommand.cpp" line="14"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
@@ -3210,12 +6035,12 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LanguagePreferDlg.qml" line="157"/>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LanguagePreferDlg.qml" line="206"/>
         <source>Save Project Time Interval can not be empty</source>
-        <translation>保存工程時間間隔不能為空</translation>
+        <translation>保存項目時間間隔不能為空</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LanguagePreferDlg.qml" line="163"/>
         <source>Save Project Time Interval can not be 0</source>
-        <translation>保存工程時間間隔不能為0</translation>
+        <translation>保存項目時間間隔不能為0</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LanguagePreferDlg.qml" line="176"/>
@@ -3343,7 +6168,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LaserImageSettings.qml" line="340"/>
-        <source>Packing Density</source>
+        <source>Sparse infill density</source>
         <translation>填充密度</translation>
     </message>
     <message>
@@ -3531,19 +6356,223 @@
     </message>
 </context>
 <context>
-    <name>LayoutCommand</name>
+    <name>FlushSubMenu</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/layoutcommand.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/layoutcommand.cpp" line="37"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/FlushSubMenu.qml" line="12"/>
+        <source>Flush Options</source>
+        <translation>換料冲刷選項</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/FlushSubMenu.qml" line="12"/>
+        <source>Flush into objects&apos; infill</source>
+        <translation>冲刷到選中模型的填充</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/FlushSubMenu.qml" line="12"/>
+        <source>Flush into this object</source>
+        <translation>冲刷到選中模型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/FlushSubMenu.qml" line="12"/>
+        <source>Flush into objects&apos; support</source>
+        <translation>冲刷到選中模型的支撐</translation>
+    </message>
+</context>
+<context>
+    <name>SingleModelMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/SingleModelMenu.qml" line="8"/>
+        <source>Split</source>
+        <translation>拆分</translation>
+    </message>
+</context>
+<context>
+    <name>SingleReliefMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/SingleReliefMenu.qml" line="8"/>
+        <source>Split</source>
+        <translation>拆分</translation>
+    </message>
+</context>
+<context>
+    <name>ModelTypeSubMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Change Type</source>
+        <translation>更改類型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Part</source>
+        <translation>零件</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Negative Part</source>
+        <translation>負零件</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Modifier</source>
+        <translation>修改器</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Support Defender</source>
+        <translation>支撐屏蔽器</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/menu/ModelTypeSubMenu.qml" line="8"/>
+        <source>Support Generator</source>
+        <translation>支撐添加器</translation>
+    </message>
+</context>
+<context>
+    <name>FilamentSubMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FilamentSubMenu.qml" line="12"/>
+        <source>Change Filament</source>
+        <translation>設置對象耗材絲</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FilamentSubMenu.qml" line="12"/>
+        <source>Filament</source>
+        <translation>耗材</translation>
+    </message>
+</context>
+<context>
+	<name>creative_kernel::SubMenuRecentFiles</name>
+	<message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenurecentfiles.cpp" line="64"/>
+        <source>Recently files</source>
+        <translation>歷史模型</translation>
+    </message>
+</context>
+<context>
+	<name>creative_kernel::SubMenuTestModel</name>
+	<message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenutestmodel.cpp" line="64"/>
+        <source>Test Model</source>
+        <translation>測試模型</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ImportModelAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/importmodelaction.cpp" line="38"/>
+        <source>Import Model</source>
+        <translation>導入模型</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::SelectToolAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selecttoolaction.cpp" line="91"/>
+        <source>Move</source>
+        <translation>移動</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selecttoolaction.cpp" line="91"/>
+        <source>Rotate</source>
+        <translation>旋轉</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selecttoolaction.cpp" line="91"/>
+        <source>Scale</source>
+        <translation>縮放</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selecttoolaction.cpp" line="91"/>
+        <source>Clone</source>
+        <translation>克隆</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selecttoolaction.cpp" line="91"/>
+        <source>Edit Text</source>
+        <translation>編輯文字</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::PickBottomAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/pickbottomaction.cpp" line="91"/>
+        <source>Pick Bottom</source>
+        <translation>自動朝向</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::DeletePlateAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/deleteplateaction.cpp" line="91"/>
+        <source>Delete Plate</source>
+        <translation>刪除盤</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::LockPlateAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/lockplateaction.cpp" line="91"/>
+        <source>Lock Plate / Unlock Plate</source>
+        <translation>鎖定盤/解鎖盤</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::CoverModelAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/coverdModelAction.cpp" line="12"/>
+        <source>Fill bed with copies</source>
+        <translation>鋪滿打印板</translation>
+    </message>
+</context>
+
+<context>
+    <name>ZSliderRange</name>
+    <message>
+        <source>Fill bed with copies</source>
+        <translation>新增自訂G-code</translation>
+    </message>
+	<message>
+        <source>Add pause printing</source>
+        <translation>新增暫停列印</translation>
+    </message>
+	<message>
+        <source>Confirm</source>
+        <translation>確定</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <source>Enter the custom G-code used on the current layer</source>
+        <translation>輸入目前層上使用的自訂G-code</translation>
+    </message>
+	<message>
+        <source>Custom G-code</source>
+        <translation>自訂G-code</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::LayoutCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/layoutcommand.cpp" line="13"/>
         <source>Auto arrange</source>
         <translation>自動布局</translation>
     </message>
 </context>
 <context>
-    <name>LayoutToolCommand</name>
+    <name>creative_kernel::LayoutPlateAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/layouttoolcommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/layouttoolcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/layoutplateaction.cpp" line="42"/>
+        <source>Auto arrange</source>
+        <translation>自動布局</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::LayoutToolCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/tool/layouttoolcommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/layouttoolcommand.cpp" line="41"/>
         <source>Layout</source>
         <translation>佈局</translation>
     </message>
@@ -3563,6 +6592,14 @@
         <location filename="../plugins/plugin_letter/letterplugin.cpp" line="56"/>
         <source>Letter</source>
         <translation>刻字</translation>
+    </message>
+</context>
+<context>
+    <name>LetterCommand</name>
+    <message>
+        <location filename="../plugins/plugin_letter/lettercommand.cpp" line="56"/>
+        <source>Please select the model first.</source>
+        <translation>請先選中模型。</translation>
     </message>
 </context>
 <context>
@@ -3634,14 +6671,18 @@
 <context>
     <name>LogView</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/logview.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/logview.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/logview.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/logview.cpp" line="44"/>
         <source>Log View</source>
         <translation>日誌查看</translation>
     </message>
 </context>
 <context>
-    <name>LoginDlg</name>
+    <name>LoginDialog</name>
+    <message>
+        <source>HOST_RESOLUTION_FAILURE</source>
+        <translation>網路異常, 請檢查您的網絡狀態.</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="12"/>
         <source>Login</source>
@@ -3653,7 +6694,7 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="261"/>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1130"/>
         <source>China</source>
-        <translation>中國大陸</translation>
+        <translation>中國</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="56"/>
@@ -3661,6 +6702,26 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="265"/>
         <source>International</source>
         <translation>國際</translation>
+    </message>
+	<message>
+        <source>Asia-Pascific</source>
+        <translation>亞太</translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation>歐洲</translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation>北美</translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation>南美</translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>其他 </translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="130"/>
@@ -3675,8 +6736,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="237"/>
-        <source>Server</source>
-        <translation>服務器</translation>
+        <source>Region</source>
+        <translation>用戶區域</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="328"/>
@@ -3695,25 +6756,56 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="547"/>
-        <source>Me section in app &gt; Scan icon on top</source>
+        <source>Me section in app > Scan icon on top</source>
         <translation>打開創想雲App-個人中心掃一掃</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="558"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1065"/>
-        <source>Don&apos;t have an account?</source>
-        <translation>還沒有賬號？</translation>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="990"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1002"/>
+        <source>You are browsing</source>
+        <translation>您當前處於</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="990"/>
+        <source>crealitycloud.cn</source>
+        <translation>中國站(+86)</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1002"/>
+        <source>crealitycloud.com</source>
+        <translation>國際站</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>Please use the</source>
+        <translation>請用</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+        <source>Creality Cloud App (CN version)</source>
+        <translation>中國版App</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>Creality Cloud App</source>
+        <translation>國際版App</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="991"/>
+		<location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1003"/>
+        <source>to scan the QR code</source>
+        <translation>掃碼登錄</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="558"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1065"/>
-        <source>Sign Up</source>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1011"/>
+        <source>No account yet</source>
+        <translation>還沒有賬號</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="1011"/>
+        <source>Register</source>
         <translation>立即註冊</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="586"/>
-        <source>Visit website and download APP</source>
-        <translation>進入官網下載APP</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/LoginDlg.qml" line="621"/>
@@ -4723,7 +7815,152 @@
     </message>
 </context>
 <context>
-    <name>MainWindow</name>
+    <name>RightBtns</name>
+	<message>
+        <source>Angle reset</source>
+        <translation>視角復位</translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesDlg</name>
+	<message>
+        <source>Engine Type</source>
+        <translation>切片引擎</translation>
+    </message>
+	<message>
+        <source>China</source>
+        <translation>中國</translation>
+    </message>
+	<message>
+        <source>Asia-Pascific</source>
+        <translation>亞太</translation>
+    </message>
+	 <message>
+        <source>Europe</source>
+        <translation>歐洲</translation>
+    </message>
+	 <message>
+        <source>North America</source>
+        <translation>北美</translation>
+    </message>
+	 <message>
+        <source>South America</source>
+        <translation>南美</translation>
+    </message>
+	 <message>
+        <source>Others</source>
+        <translation>其他 </translation>
+    </message>
+	 <message>
+        <source>Preferences</source>
+        <translation>偏好設定 </translation>
+    </message>
+	 <message>
+        <source>Language</source>
+        <translation>語言 </translation>
+    </message>
+	<message>
+        <source>Login area</source>
+        <translation>登入區域 </translation>
+    </message>
+	<message>
+        <source>Synchronize user presets (printer/filament/process)</source>
+        <translation>同步用戶預設（印表機/耗材絲/製程）</translation>
+    </message>
+
+	<message>
+        <source>Push parameters update</source>
+        <translation>推送參數包更新 </translation>
+    </message>
+	<message>
+        <source>Enable dark theme mode</source>
+        <translation>啟用深色主題模式 </translation>
+    </message>
+	<message>
+        <source>Model download</source>
+        <translation>模型下載 </translation>
+    </message>
+		<message>
+        <source>Open folder</source>
+        <translation>打開資料夾 </translation>
+    </message>
+
+</context>
+<context>
+    <name>MainWindow2</name>
+    <message>
+    <source>Layer Height:</source>
+    <translation>層高:</translation>
+</message>
+<message>
+    <source>Speed:</source>
+    <translation>速度:</translation>
+</message>
+  <message>
+        <source>Fan Speed:</source>
+        <translation>風扇速度:</translation>
+    </message>
+<message>
+    <source>Line Width:</source>
+    <translation>線寬:</translation>
+</message>
+<message>
+    <source>Flow:</source>
+    <translation>流量:</translation>
+</message>
+<message>
+    <source>LayerTime:</source>
+    <translation>層時間:</translation>
+</message>
+<message>
+    <source>Temperature:</source>
+    <translation>溫度:</translation>
+</message>
+<message>
+    <source>Acceleration:</source>
+    <translation>加速加速度:</translation>
+</message>
+		<message>
+        <source>Sync CrealityCloud</source>
+        <translation type="unfinished">同步創想雲</translation>
+    </message>
+		<message>
+        <source>Delete</source>
+        <translation type="unfinished">刪除</translation>
+    </message>
+		<message>
+        <source>Process</source>
+        <translation type="unfinished">工藝</translation>
+    </message>
+	<message>
+        <source>Import</source>
+        <translation type="unfinished">導入</translation>
+    </message>
+		<message>
+        <source>Export</source>
+        <translation type="unfinished">匯出</translation>
+    </message>
+	<message>
+        <source>When performing an undo operation, the added support will be deleted. Do you want to continue?</source>
+        <translation>進行撤銷操作時，會刪除已添加的支撐，是否要繼續？</translation>
+    </message>
+
+	<message>
+        <source>The OpenGL version is too low to start Creality Print, please upgrade the graphics card driver!</source>
+        <translation> OpenGL版本过低，无法启动Creality Print，请升级显卡驱动！</translation>
+    </message>
+	<message>
+        <source>The OpenGL version is too low and may not func properly. Please upgrade the graphics card driver!</source>
+        <translation> OpenGL 版本過低，可能無法正常工作，請升級顯卡驅動！</translation>
+    </message>
+    <message>
+        <source>Creality Print only partially supports OpenGL ES.</source>
+        <translation> Creality Print 僅部分支持 OpenGL ES。</translation>
+    </message>
+    <message>
+       <source>Generate GCode</source>
+       <translation>生成Gcode文件</translation>
+   </message>
     <message>
         <location filename="../Creative3D/res/MainWindow.qml" line="21"/>
         <source>Creative3D</source>
@@ -4738,6 +7975,11 @@
         <location filename="../Creative3D/res/MainWindow.qml" line="183"/>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="372"/>
+        <source>Layer</source>
+        <translation>層</translation>
     </message>
     <message>
         <location filename="../Creative3D/res/MainWindow.qml" line="814"/>
@@ -4764,6 +8006,27 @@
         <source>You are currently on the latest version and do not need to update</source>
         <translation>您當前已是最新版本，無需更新</translation>
     </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="409"/>
+        <source>Are you sure to delete this printer</source>
+        <translation>是否刪除該打印機</translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1335"/>
+        <source>Slice</source>
+        <translation>切片</translation>
+    </message>
+
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1213"/>
+        <source>Undo</source>
+        <translation>撤銷</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1236"/>
+        <source>Redo</source>
+        <translation>恢復</translation>
+    </message>
     <message>
         <source>FDM</source>
         <translation type="unfinished"></translation>
@@ -4776,12 +8039,345 @@
         <source>CNC</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="1746"/>
+        <source>At least one printer should be added!</source>
+        <translation>請至少選擇一個打印機</translation>
+    </message>
+	<message>
+        <location filename="../Creative3D/res/MainWindow.qml" />
+        <source>Add</source>
+        <translation>新增</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" />
+        <source>Manage</source>
+        <translation>管理</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Close</source>
+        <translation>關閉當前盤</translation>
+    </message>
+    <message>
+    <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Auto Layout</source>
+        <translation>當前盤自動佈局</translation>
+    </message>
+    <message>
+    <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Pick Bottom</source>
+        <translation>當前盤自動朝向</translation>
+    </message>
+    <message>
+    <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Lock</source>
+        <translation>鎖定當前盤</translation>
+    </message>
+    <message>
+    <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Settings</source>
+        <translation>設置當前盤</translation>
+    </message>
+    <message>
+    <location filename="../Creative3D/res/MainWindow.qml" line="13"/>
+        <source>Edit Name</source>
+        <translation>編輯名稱</translation>
+    </message>
+
+	<message>
+        <source>Height</source>
+        <translation>高</translation>
+    </message>
 </context>
 <context>
+    <name>creative_kernel::ModelRepairWinJob</name>
+	<message>
+        <source>Model is being repaired...</source>
+        <translation>模型正在修復...</translation>
+    </message>
+</context>
+<context>
+    <name>InfosPanel</name>
+	<message>
+        <source>has integrity error</source>
+        <translation>存在完整性錯誤</translation>
+    </message>
+	<message>
+        <source>Repair</source>
+        <translation>修復</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Printer</source>
+        <translation>打印機</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Total Floors</source>
+        <translation>縂層數</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Model</source>
+        <translation>模型</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Size</source>
+        <translation>尺寸</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Version</source>
+        <translation>版本</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>Update Date</source>
+        <translation>更新日期</translation>
+    </message>
+    <message>
+        <location filename="../Creative3D/res/InfosPanel.qml" line="13"/>
+        <source>The current number of selected models:</source>
+        <translation>當前選擇的模型數量:</translation>
+    </message>
+</context>
+<context>
+    <name>SliceSeletorPanel</name>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SliceSeletorPanel.qml" line="13"/>
+        <source>Click Slice</source>
+        <translation>點擊切片</translation>
+    </message>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SliceSeletorPanel.qml" line="13"/>
+        <source>All Slice</source>
+        <translation>所有盤切片</translation>
+    </message>
+</context>
+<context>
+    <name>StandardModel</name>
+	<message>
+        <source>Cuboid</source>
+        <translation>長方體</translation>
+    </message>
+	<message>
+        <source>Spherical</source>
+        <translation>球形</translation>
+    </message>
+	<message>
+        <source>Cylinder</source>
+        <translation>圆柱体</translation>
+    </message>
+	<message>
+        <source>Spherical Shell</source>
+        <translation>圓柱體</translation>
+    </message>
+	<message>
+        <source>Cone</source>
+        <translation>圓錐體</translation>
+    </message>
+	<message>
+        <source>Truncated Cone</source>
+        <translation>截圓錐</translation>
+    </message>
+	<message>
+        <source>Ring</source>
+        <translation>圓環</translation>
+    </message>
+	<message>
+        <source>Pyramid</source>
+        <translation>棱錐</translation>
+    </message>
+	<message>
+        <source>Prism</source>
+        <translation>棱柱</translation>
+    </message>
+	<message>
+        <source>Disc</source>
+        <translation>小圓片</translation>
+    </message>
+</context>
+<context>
+    <name>MachineManagerPanel_New</name>
+	<message>
+        <source>Do you want to reset the selected printer parameters?</source>
+		<translation>是否要重置選中的打印機參數？</translation>
+    </message>
+	<message>
+        <source>Manage Printer</source>
+        <translation>管理打印機</translation>
+    </message>
+	<message>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+	<message>
+        <source>Create</source>
+        <translation>创建</translation>
+    </message>
+	<message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+</context>
+<context>
+    <name>MaterialManagerPanel_New</name>
+	<message>
+        <source>Do you want to reset the selected filament parameters?</source>
+        <translation>是否要重置選中的耗材參數？</translation>
+    </message>
+	<message>
+         <source>Manage Filaments</source>
+        <translation>耗材管理</translation>
+    </message>
+</context>
+<context>
+ <name>TestModel</name>
+	<message>
+        <source>Block20XY</source>
+        <translation>方塊20XY</translation>
+    </message>
+	<message>
+        <source>Boat</source>
+        <translation>船綜合測試</translation>
+    </message>
+	<message>
+        <source>Ksr_fdmtest_w4</source>
+        <translation>綜合性能模型</translation>
+    </message>
+	<message>
+        <source>Overhang</source>
+        <translation>懸垂測試模型</translation>
+    </message>
+	<message>
+        <source>Square columns Z axis</source>
+        <translation>Z軸測試模型（方柱）</translation>
+    </message>
+	<message>
+        <source>Square prism Z axis</source>
+        <translation>Z軸測試模型（四角錐）</translation>
+    </message>
+</context>
+
+<context>
     <name>ManageMaterialDlg</name>
+		<message>
+        <source>Do you want to delete the selected filament?</source>
+        <translation>是否要删除选中的耗材？</translation>
+    </message>
+	<message>
+        <source>Do you want to reset the selected filament parameters?</source>
+        <translation>是否要重置选中的耗材参数？</translation>
+    </message>
+	<message>
+        <source>Duplicate name</source>
+        <translation>名称重复</translation>
+    </message>
+	<message>
+        <source>Import Material</source>
+        <translation>導入耗材</translation>
+    </message>
+	<message>
+        <source>Please choose a file</source>
+        <translation>請選擇一個文件</translation>
+    </message>
+	<message>
+        <source>Export</source>
+        <translation>導出</translation>
+    </message>
+	<message>
+        <source>Import</source>
+        <translation>導入</translation>
+    </message>
+	<message>
+        <source>Custom Material</source>
+        <translation>用戶自定義耗材</translation>
+    </message>
+	<message>
+        <source>Material Diameter</source>
+        <translation>耗材直徑</translation>
+    </message>
+	<message>
+        <source>Chose Model</source>
+        <translation>選擇模板</translation>
+    </message>
+	<message>
+        <source>Create</source>
+        <translation>新建</translation>
+    </message>
+	<message>
+        <source>Save as</source>
+        <translation>另存為</translation>
+    </message>
+	<message>
+        <source>Reset</source>
+        <translation>重置</translation>
+    </message>
+	<message>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+	<message>
+        <source>Manage Material</source>
+        <translation>管理耗材</translation>
+    </message>
+	 <message>
+        <source>Filament Name</source>
+        <translation>材料名稱</translation>
+    </message>
+	 <message>
+        <source>Brand</source>
+        <translation>品牌</translation>
+    </message>
+	 <message>
+        <source>Material Type</source>
+        <translation>材料類型</translation>
+    </message>
+	 <message>
+        <source>Color</source>
+        <translation>顏色</translation>
+    </message>
+	<message>
+        <source>Properties</source>
+        <translation>属性</translation>
+    </message>
+	<message>
+        <source>Temperature</source>
+        <translation>溫度</translation>
+    </message>
+	<message>
+        <source>Flow</source>
+        <translation>流量</translation>
+    </message>
+	<message>
+        <source>Cooling</source>
+        <translation>冷卻</translation>
+    </message>
+	<message>
+        <source>Retract</source>
+        <translation>回抽</translation>
+    </message>
+	<message>
+        <source>G-Code</source>
+        <translation>G-code</translation>
+    </message>
+	<message>
+        <source>Create</source>
+        <translation>新建</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <source>Override</source>
+        <translation>覆盖</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="15"/>
-        <source>Manage Materials</source>
+        <source>Manage Filaments</source>
         <translation>材料管理</translation>
     </message>
     <message>
@@ -4795,35 +8391,9 @@
         <translation>基本參數</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="184"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="314"/>
-        <source>Material Type:</source>
-        <translation>耗材類型</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="208"/>
-        <source>Brand:</source>
-        <translation>品牌</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="230"/>
-        <source>Diameter:</source>
-        <translation>直徑</translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="252"/>
         <source>Printing Temperature:</source>
         <translation>打印溫度</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="277"/>
-        <source>Filament Cost:</source>
-        <translation>耗材成本</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="336"/>
-        <source>Sensitivity:</source>
-        <translation>敏感度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManageMaterialDlg.qml" line="377"/>
@@ -4857,79 +8427,112 @@
     </message>
 </context>
 <context>
-    <name>ManagePrinter</name>
+    <name>AddMaterialDlg</name>
+	  <message>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/manageprinter.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/manageprinter.cpp" line="32"/>
-        <source>Manage Printer</source>
-        <translation>管理打印機</translation>
+        <source>Add Filemant</source>
+        <translation>添加材料</translation>
+    </message>
+	  <message>
+        <source>Printer</source>
+        <translation>打印機</translation>
+    </message>
+	  <message>
+        <source>MaterialType</source>
+        <translation>材料類型</translation>
+    </message>
+	  <message>
+        <source>Check All</source>
+        <translation>選中全部</translation>
     </message>
 </context>
 <context>
-    <name>ManagerPrinterDlg</name>
+    <name>creative_kernel::MergeModelAction</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="31"/>
-        <source>Manage Printer</source>
-        <translation>管理打印機</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="50"/>
-        <source>Printer Type:</source>
-        <translation>打印機類型：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="171"/>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="192"/>
-        <source>Reset</source>
-        <translation>重置</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="208"/>
-        <source>Delete</source>
-        <translation>刪除</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerPrinterDlg.qml" line="225"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
-</context>
-<context>
-    <name>MergeModelAction</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/mergemodelaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/mergemodelaction.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/mergemodelaction.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/mergemodelaction.cpp" line="43"/>
         <source>Merge Model</source>
         <translation>合併模型</translation>
+    </message>
+
+</context>
+<context>
+    <name>creative_kernel::MergeModelLocation</name>
+	<message>
+        <source>Merge Model Location</source>
+        <translation>合併模型位置</translation>
     </message>
 </context>
 <context>
     <name>MergeModelCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mergemodelcommand.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mergemodelcommand.cpp" line="27"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/mergemodelcommand.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/mergemodelcommand.cpp" line="27"/>
         <source>Merge Model Locations</source>
         <translation>合並模型位置</translation>
     </message>
 </context>
 <context>
-    <name>MeshImportCommand</name>
+    <name>creative_kernel::AssembleAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/meshimportcommand.cpp" line="8"/>
-        <source>Open</source>
-        <translation>打開</translation>
+        <location filename="../kernel/BasicKernel/internal/menu_view/assembleaction.cpp" line="16"/>
+        <source>Assemble</source>
+        <translation>組合</translation>
     </message>
 </context>
 <context>
-    <name>MeshLoaderWrapper</name>
+    <name>creative_kernel::SplitObjectsAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/external/utils/meshloaderwrapper.cpp" line="174"/>
-        <source>The model is too large, Scale to the fit size?</source>
-        <translation>模型過大，是否縮放到適應尺寸？</translation>
+        <location filename="../kernel/BasicKernel/internal/menu_view/splitobjectsaction.cpp" line="16"/>
+        <source>Split To Objects</source>
+        <translation>拆分到對象</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::SplitPartsAction</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu_view/splitpartsaction.cpp" line="16"/>
+        <source>Split To Parts</source>
+        <translation>拆分到零件</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::SubMenuStandardPart</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenustandardpart.cpp" line="16"/>
+        <source>Add Part</source>
+        <translation>添加零件</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenustandardpart.cpp" line="16"/>
+        <source>Add Negative Part</source>
+        <translation>添加負零件</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenustandardpart.cpp" line="16"/>
+        <source>Add Modifier</source>
+        <translation>添加修改器</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenustandardpart.cpp" line="16"/>
+        <source>Add Support Blocker</source>
+        <translation>添加支撐屏蔽器</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/menu/submenustandardpart.cpp" line="16"/>
+        <source>Add Support Enforcer</source>
+        <translation>添加支撐添加器</translation>
+    </message>
+</context>
+<context>
+    <name>MeshImportCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/tool/meshimportcommand.cpp" line="8"/>
+        <source>Open</source>
+        <translation>打開</translation>
     </message>
 </context>
 <context>
@@ -4953,61 +8556,8 @@
 <context>
     <name>MirrorCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="9"/>
         <source>Mirror</source>
         <translation>鏡像</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="22"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="70"/>
-        <source>Mirrror X</source>
-        <translation>X 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="73"/>
-        <source>Mirrror Y</source>
-        <translation>Y 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="30"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="76"/>
-        <source>Mirrror Z</source>
-        <translation>Z 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="34"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/mirroractioncommand.cpp" line="79"/>
-        <source>Mirrror ReSet</source>
-        <translation>鏡像重置</translation>
-    </message>
-</context>
-<context>
-    <name>MirrorPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="17"/>
-        <source>Mirror</source>
-        <translation>鏡像</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="28"/>
-        <source>X Mirror</source>
-        <translation>X 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="43"/>
-        <source>Y Mirror</source>
-        <translation>Y 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="58"/>
-        <source>Z Mirror</source>
-        <translation>Z 鏡像</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/MirrorPanel.qml" line="73"/>
-        <source>Reset</source>
-        <translation>重置</translation>
     </message>
 </context>
 <context>
@@ -5040,7 +8590,41 @@
     </message>
 </context>
 <context>
+    <name>ModelLibraryShareDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="47"/>
+        <source>Link: </source>
+        <translation>鏈接：</translation>
+    </message>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="74"/>
+        <source>Copy Link</source>
+        <translation>複製鏈接</translation>
+    </message>
+    <message>
+    <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryShareDialog.qml" line="91"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>ModelLibraryInfoDlg</name>
+    <message>
+        <source>History</source>
+        <translation>歷史記錄</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>收藏</translation>
+    </message>
+    <message>
+        <source>Share</source>
+        <translation>分享</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="104"/>
         <source>Recommend</source>
@@ -5048,8 +8632,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="483"/>
-        <source>Uploaded </source>
-        <translation type="unfinished"></translation>
+        <source>UploadedTime</source>
+        <translation>上傳時間</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="713"/>
@@ -5061,6 +8645,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="811"/>
         <source>Search</source>
         <translation>搜索</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" />
+        <source>Enter Model Name</source>
+        <translation>輸入模型名稱、分類</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="880"/>
@@ -5093,6 +8682,10 @@
         <translation>下載模型</translation>
     </message>
     <message>
+        <source>DownLoad All</source>
+        <translation>全部下載</translation>
+    </message>
+    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1272"/>
         <source>Model List</source>
         <translation>模型列表</translation>
@@ -5108,24 +8701,159 @@
         <translation>此模型來源於用戶分享，版權相關協議請參考描述。</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1384"/>
-        <source>Link: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1411"/>
-        <source>Copy Link</source>
-        <translation>複製鏈接</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1429"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelLibraryInfoDlg.qml" line="1464"/>
         <source>Failed to import or download model!</source>
         <translation>導入或下載模型失敗！</translation>
+    </message>
+    <message>
+        <source>The Model is in the download task list. Please check the download center.</source>
+        <translation>模型已在下載列表中，請前往下載中心查看。</translation>
+    </message>
+		<message>
+        <source>Latest upload</source>
+        <translation>最新上傳</translation>
+    </message>
+	<message>
+        <source>Most liked</source>
+        <translation>最多點贊</translation>
+    </message>
+	<message>
+        <source>Best seller</source>
+        <translation>最多購買</translation>
+    </message>
+	<message>
+        <source>Downloads</source>
+        <translation>最多下載</translation>
+    </message>
+	<message>
+        <source>Most makes</source>
+        <translation>最多打印</translation>
+    </message>
+	<message>
+        <source>Price</source>
+        <translation>價格</translation>
+    </message>
+	<message>
+        <source>All</source>
+        <translation>全部</translation>
+    </message>
+	<message>
+        <source>Paid</source>
+        <translation>收費模型</translation>
+    </message>
+	<message>
+        <source>Free</source>
+        <translation>免費模型</translation>
+    </message>
+	<message>
+        <source>Import all</source>
+        <translation>全部導入</translation>
+    </message>
+	<message>
+        <source>Category</source>
+        <translation>所屬分類</translation>
+    </message>
+	<message>
+        <source>Sort by</source>
+        <translation>更多篩選</translation>
+    </message>
+</context>
+<context>
+	<name>ModelLibraryAuthorInfo</name>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+	<message>
+        <source>Following</source>
+        <translation>關注</translation>
+    </message>
+	<message>
+        <source>Followers</source>
+        <translation>粉絲</translation>
+    </message>
+	<message>
+        <source>Likes</source>
+        <translation>獲贊</translation>
+    </message>
+	<message>
+        <source>Favorite</source>
+        <translation>收藏</translation>
+    </message>
+	<message>
+        <source>Latest upload</source>
+        <translation>最新上傳</translation>
+    </message>
+	<message>
+        <source>Most liked</source>
+        <translation>最多點贊</translation>
+    </message>
+	<message>
+        <source>Best seller</source>
+        <translation>最多購買</translation>
+    </message>
+	<message>
+        <source>Downloads</source>
+        <translation>最多下載</translation>
+    </message>
+	<message>
+        <source>Most makes</source>
+        <translation>最多打印</translation>
+    </message>
+	<message>
+        <source>Enter Model Name</source>
+        <translation>輸入模型名稱、分類</translation>
+    </message>
+	<message>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+		<message>
+        <source>Author</source>
+        <translation>作者</translation>
+    </message>
+	<message>
+        <source>total</source>
+        <translation>共</translation>
+    </message>
+    <message>
+        <source>Model</source>
+        <translation>個模型</translation>
+    </message>
+</context>
+<context>
+	<name>ModelLibraryAuthorModelInfo</name>
+	<message>
+        <source>Import all</source>
+        <translation>全部導入</translation>
+    </message>
+	<message>
+        <source>Category</source>
+        <translation>所屬分類</translation>
+    </message>
+	 <message>
+        <source>DownLoad All</source>
+        <translation>全部下載</translation>
+    </message>
+	<message>
+        <source>Model List</source>
+        <translation>模型列表</translation>
+    </message>
+	 <message>
+        <source>Creative Commons License</source>
+        <translation>版權保護協議</translation>
+    </message>
+    <message>
+        <source>Please check the copyright information in the description.</source>
+        <translation>此模型來源於用戶分享，版權相關協議請參考描述。</translation>
+    </message>
+	 <message>
+        <source>Model Library</source>
+        <translation>模型庫</translation>
+    </message>
+	 <message>
+        <source>UploadedTime</source>
+        <translation>更新時間</translation>
     </message>
 </context>
 <context>
@@ -5137,54 +8865,47 @@
     </message>
 </context>
 <context>
-    <name>ModelList</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="74"/>
-        <source>All</source>
+    <name>ModelListPop</name>
+	<message>
+        <source>Model List</source>
         <translation>全選</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="119"/>
-        <source>You have not imported the model,please click Import</source>
-        <translation>您還未導入模型，請點擊導入</translation>
+		<message>
+        <source>Name</source>
+        <translation>名稱</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="195"/>
-        <source>Import Model</source>
-        <translation>導入模型</translation>
+		<message>
+        <source>Filament</source>
+        <translation>耗材</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="213"/>
-        <source>Auto arrange</source>
-        <translation>自動布局</translation>
+		<message>
+        <source>Plate</source>
+        <translation>盤</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="241"/>
-        <source>Upload platform model to CrealityCloud</source>
-        <translation>上傳平台模型到創想雲</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="273"/>
-        <source>Upload local model to CrealityCloud</source>
-        <translation>上傳本地模型到創想雲</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelList.qml" line="291"/>
-        <source>Delete Model</source>
-        <translation>刪除模型</translation>
+	<message>
+        <source>Outside Plate</source>
+        <translation>盤外</translation>
     </message>
 </context>
 <context>
     <name>ModelListCombo</name>
-	 <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="33"/>
-        <source>List</source>
-        <translation type="unfinished">列表</translation>
-    </message>
+		<message>
+			<source>Add Model</source>
+			<translation>添加模型</translation>
+		</message>
+		 <message>
+			<source>Delete Model</source>
+			<translation>刪除模型</translation>
+		</message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="80"/>
         <source>All</source>
         <translation>全選</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="103"/>
+        <source>Model List</source>
+        <translation>模型列表</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ModelListCombo.qml" line="199"/>
@@ -5195,45 +8916,60 @@
 <context>
     <name>ModelShowCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="21"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="41"/>
         <source>ShowModelLine</source>
         <translation>按線顯示</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="25"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="25"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="44"/>
         <source>ShowModelFace</source>
         <translation>按面顯示</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/modelshowcommand.cpp" line="47"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/modelshowcommand.cpp" line="47"/>
         <source>ShowModelFaceLine</source>
         <translation>按線面顯示</translation>
     </message>
 </context>
 <context>
-    <name>MouseCombo</name>
+    <name>MouseInfo</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="64"/>
-        <source>Rotate View : Press and Hold Right Button</source>
-        <translation>按住鼠標右鍵，旋轉平台</translation>
+        <source>Rotate operation: Press and hold the right mouse button</source>
+        <translation>旋轉操作：按住鼠標右鍵</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="65"/>
-        <source>Pan View : Press and Hold Wheel</source>
-        <translation>按住鼠標滾輪，平移平台</translation>
+        <source>Move  operation: press and hold the middle mouse button</source>
+        <translation>移動操作：按住鼠標中鍵</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="66"/>
-        <source>Quick Popup ： Right Click</source>
-        <translation>單擊鼠標右鍵，快捷彈窗</translation>
+        <source>Zoom operation: Slide the mouse wheel</source>
+        <translation>縮放操作：滑動鼠標滾輪</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="67"/>
-        <source>Zoom View : Scroll Wheel</source>
-        <translation>鼠標滾輪：放大縮小平台</translation>
+        <source>Model radio selection operation: Click the left mouse button</source>
+        <translation>模型單選操作：單擊鼠標左鍵</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="67"/>
+        <source>Model multiple selection operation: Ctrl+Click the left mouse button</source>
+        <translation>模型多選操作：Ctrl+單擊鼠標左鍵</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="67"/>
+        <source>Model box selection operation: Press and hold the left mouse button</source>
+        <translation>模型框選操作：按住鼠標左鍵</translation>
+    </message>
+	    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/MouseCombo.qml" line="67"/>
+        <source>Right-click menu operation: Click the right mouse button</source>
+        <translation>右鍵菜單操作：單擊鼠標右鍵</translation>
     </message>
 </context>
 <context>
@@ -5395,64 +9131,39 @@
 <context>
     <name>NewProjectCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/newprojectcommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/newprojectcommand.cpp" line="36"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/newprojectcommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/newprojectcommand.cpp" line="36"/>
         <source>New Project</source>
-        <translation>新建工程</translation>
+        <translation>新建項目</translation>
     </message>
 </context>
 <context>
-    <name>NozzleAction</name>
+    <name>creative_kernel::NozzleAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/nozzleaction.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/nozzleaction.cpp" line="48"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="50"/>
         <source>Nozzle </source>
-        <translation type="unfinished"></translation>
+        <translation>噴嘴 </translation>
+    </message>
+	<message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/nozzleaction.cpp" line="50"/>
+        <source>Filament </source>
+        <translation>耗材 </translation>
     </message>
 </context>
 <context>
-    <name>NozzleColorPanel</name>
+    <name>creative_kernel::SimplifiedModelAction</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="21"/>
-        <source>Nozzle</source>
-        <translation>噴頭</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="89"/>
-        <source>Nozzle 1</source>
-        <translation>噴嘴 1</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="90"/>
-        <source>Nozzle 2</source>
-        <translation>噴嘴 2</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="91"/>
-        <source>Nozzle 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="92"/>
-        <source>Nozzle 4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="93"/>
-        <source>Nozzle 5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/NozzleColorPanel.qml" line="94"/>
-        <source>Nozzle 6</source>
-        <translation type="unfinished"></translation>
+        <source>Simplified Model</source>
+        <translation>簡化模型</translation>
     </message>
 </context>
 <context>
-    <name>OneSideAsBottomFace</name>
+    <name>creative_kernel::OneSideAsBottomFace</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/onesideasbottomface.cpp" line="25"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/onesideasbottomface.cpp" line="47"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/onesideasbottomface.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/onesideasbottomface.cpp" line="40"/>
         <source>OneSide As Bottomface</source>
         <translation>按面放平</translation>
     </message>
@@ -5460,51 +9171,10 @@
 <context>
     <name>OpenFileCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/openfilecommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/openfilecommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu/openfilecommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu/openfilecommand.cpp" line="41"/>
         <source>Open File</source>
         <translation>打開文件</translation>
-    </message>
-</context>
-<context>
-    <name>ParameterFile</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="22"/>
-        <source>high</source>
-        <translation>高</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="23"/>
-        <source>middle</source>
-        <translation>中</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="24"/>
-        <source>low</source>
-        <translation>低</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="291"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="27"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="292"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="28"/>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="293"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/external/slice/parameterfile.cpp" line="294"/>
-        <source>Best quality</source>
-        <translation>工業級打印</translation>
     </message>
 </context>
 <context>
@@ -5524,12 +9194,17 @@
         <source>Rotate:</source>
         <translation>旋轉：</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="330"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="368"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="406"/>
-        <source>(°)</source>
-        <translation type="unfinished"></translation>
+ 	 <message>
+        <source>Indicate</source>
+        <translation>指定</translation>
+    </message>
+	<message>
+        <source>Gap</source>
+        <translation>间距</translation>
+    </message>
+	<message>
+        <source>Cut to parts</source>
+        <translation>切割為零件</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="456"/>
@@ -5540,6 +9215,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="473"/>
         <source>Start Split</source>
         <translation>開始切割</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/qml/PartPanel.qml" line="473"/>
+        <source>Offset</source>
+        <translation>偏移</translation>
     </message>
 </context>
 <context>
@@ -5554,19 +9234,27 @@
 <context>
     <name>PickMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/pickmode.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/pickmode.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/tool/pickmode.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/tool/pickmode.cpp" line="29"/>
         <source>Pick</source>
         <translation>選取</translation>
     </message>
 </context>
 <context>
-    <name>PlaceOnPrinterBed</name>
+    <name>pickBottom</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/placeonprinterbed.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/placeonprinterbed.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/res/plugin/pickbottom.qml" line="25"/>
+        <source>AUTO</source>
+        <translation>自動</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::PlaceOnPrinterBed</name>
+    <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/placeonprinterbed.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/placeonprinterbed.cpp" line="39"/>
         <source>Place On PrinterBed</source>
-        <translation>將模型放在打印平台上</translation>
+        <translation>模型置底</translation>
     </message>
 </context>
 <context>
@@ -5610,6 +9298,130 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PlotterImageSettings.qml" line="100"/>
         <source>Threshold</source>
         <translation>二值化</translation>
+    </message>
+</context>
+<context>
+    <name>PreviewLayerSlider</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewLayerSlider.qml" line="193"/>
+        <source>Height</source>
+        <translation>高度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewLayerSlider.qml" line="193"/>
+        <source>Layer</source>
+        <translation>層</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewLayerSlider.qml" line="193"/>
+        <source>Custom G-code</source>
+        <translation>自定義G-code</translation>
+    </message>
+</context>
+<context>
+    <name>PreviewSliderMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewSliderMenu.qml" line="193"/>
+        <source>Add Pause</source>
+        <translation>添加暫停打印</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewSliderMenu.qml" line="193"/>
+        <source>Add Custom G-code</source>
+        <translation>添加自定義G-code</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewSliderMenu.qml" line="193"/>
+        <source>Jump To Layer</source>
+        <translation>跳轉到層</translation>
+    </message>
+</context>
+<context>
+    <name>EditCustomGCodeMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/EditCustomGCodeMenu.qml" line="193"/>
+        <source>Delete Custom G-code</source>
+        <translation>刪除自定義G-code</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/PreviewSliderMenu.qml" line="193"/>
+        <source>Edit Custom G-code</source>
+        <translation>編輯自定義G-code</translation>
+    </message>
+</context>
+<context>
+    <name>CancelPauseMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CancelPauseMenu.qml" line="193"/>
+        <source>Delete Pause</source>
+        <translation>刪除暫停</translation>
+    </message>
+</context>
+<context>
+    <name>ChangeLayerFilamentMenu</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/ChangeLayerFilamentMenu.qml" line="193"/>
+        <source>Delete Filament Change</source>
+        <translation>刪除耗材更換</translation>
+    </message>
+</context>
+<context>
+    <name>CustomGCodeDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>Custom G-code</source>
+        <translation>自定義G-code</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>Enter Custom G-code used on current layer</source>
+        <translation>請輸入當前層上使用的自定義G-code</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>JumpLayerDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/JumpLayerDialog.qml" line="193"/>
+        <source>Jump To Layer</source>
+        <translation>跳轉到層</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/JumpLayerDialog.qml" line="193"/>
+        <source>Enter layer number</source>
+        <translation>請輸入層數</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/CustomGCodeDialog.qml" line="193"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigTag</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/ConfigTag.qml" line="193"/>
+        <source>Pause</source>
+        <translation>暫停</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/layersConfig/ConfigTag.qml" line="193"/>
+        <source>Change Filament</source>
+        <translation>更改耗材絲</translation>
     </message>
 </context>
 <context>
@@ -6039,84 +9851,44 @@
 <context>
     <name>PrinterConrtolCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="38"/>
         <source>Single Control Printing</source>
         <translation>單機打印</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/printercontrolcommand.cpp" line="41"/>
         <source>Group Control Printing</source>
         <translation>集群打印</translation>
     </message>
 </context>
 <context>
-    <name>PrinterModelListView</name>
+    <name>PrintParameterPanel</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="38"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="39"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>Quality</source>
+        <translation>細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="40"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
+        <source>Normal</source>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="41"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>Fast</source>
+        <translation>快速</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>The main parameter configuration of this mode: Layer Height(</source>
-        <translation>本模式的主要參數配置為：層高（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Line Width(</source>
-        <translation>mm），走線寬度（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Wall Line Count(</source>
-        <translation>mm），壁走線次數（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm),Infill Density(</source>
-        <translation>），填充密度（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>%),Build Plate Adhesion Type(</source>
-        <translation>%），平臺附著類型（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>),Printing Temperature(</source>
-        <translation>），打印溫度（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>℃),Build Plate Temperature(</source>
-        <translation>℃），打印平臺溫度（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>℃),Print Speed(</source>
-        <translation>℃），打印速度（</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/PrinterModelListView.qml" line="138"/>
-        <source>mm/s)</source>
-        <translation>mm/s）</translation>
+        <source>The main parameter configuration of this mode</source>
+        <translation>本模式的主要參數配置為</translation>
     </message>
 </context>
 <context>
@@ -6156,12 +9928,12 @@
     </message>
 </context>
 <context>
-    <name>ProjectInfoUI</name>
+    <name>creative_kernel::ProjectInfoUI</name>
     <message>
         <location filename="../kernel/BasicKernel/external/kernel/projectinfoui.cpp" line="28"/>
         <location filename="../kernel/BasicKernel/external/kernel/projectinfoui.cpp" line="117"/>
         <source>Do you Want to Save LastProject?</source>
-        <translation>是否保存上一個工程？</translation>
+        <translation>是否保存上一個項目？</translation>
     </message>
 </context>
 <context>
@@ -6183,14 +9955,14 @@
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="478"/>
-        <source>G0 X%1 Y%2 F3500 
+        <source>G0 X%1 Y%2 F3500
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="491"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="527"/>
-        <source>M106 S%1 
+        <source>M106 S%1
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6199,20 +9971,20 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="585"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="656"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="701"/>
-        <source>G1 X%1 Y%2 
+        <source>G1 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="494"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="530"/>
-        <source>G4 P%1 
+        <source>G4 P%1
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="514"/>
-        <source>G0 X%1 Y%2 F6000 
+        <source>G0 X%1 Y%2 F6000
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6226,7 +9998,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="790"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="791"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="808"/>
-        <source>G1 X%1 Y%2  
+        <source>G1 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6250,7 +10022,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="784"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="801"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="843"/>
-        <source>G0 F%1 
+        <source>G0 F%1
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6264,7 +10036,7 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="785"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="802"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="844"/>
-        <source>G0 X%1 Y%2 
+        <source>G0 X%1 Y%2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6274,13 +10046,13 @@
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="719"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="787"/>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="846"/>
-        <source>G1 F%1 
+        <source>G1 F%1
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/plugin_laser/c2dlib.cpp" line="852"/>
-        <source>G1 X%1 Y%2 E2 
+        <source>G1 X%1 Y%2 E2
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6289,36 +10061,40 @@
     <name>QualityCombox</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="35"/>
-        <source>Dynamic</source>
-        <translation>高質量</translation>
+        <source>High Quality</source>
+        <translation>極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="36"/>
-        <source>Balanced</source>
-        <translation>中質量</translation>
+        <source>Quality</source>
+        <translation>細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="37"/>
-        <source>Speedy</source>
-        <translation>低質量</translation>
+        <source>Normal</source>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/QualityCombox.qml" line="38"/>
-        <source>Very Speedy</source>
-        <translation>超快速</translation>
+        <source>Fast</source>
+        <translation>快速</translation>
     </message>
 </context>
 <context>
     <name>RedoActionCmd</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/redoactioncmd.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/redoactioncmd.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu/redoactioncmd.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu/redoactioncmd.cpp" line="41"/>
         <source>Redo</source>
         <translation>恢復</translation>
     </message>
 </context>
 <context>
     <name>ReleaseNote</name>
+		   <message>
+        <source>Check out the changelog</source>
+        <translation>查看更新日誌</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/ReleaseNote.qml" line="12"/>
         <source>Check For Updates</source>
@@ -6326,8 +10102,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/ReleaseNote.qml" line="48"/>
-        <source>Detected a new verion of </source>
-        <translation type="unfinished"></translation>
+        <source>Detected a new verion</source>
+        <translation type="unfinished">檢測到新版本</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/ReleaseNote.qml" line="48"/>
@@ -6397,23 +10173,23 @@
 <context>
     <name>ResetActionCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/resetactioncommand.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/resetactioncommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/resetactioncommand.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/resetactioncommand.cpp" line="24"/>
         <source>Reset All Model</source>
         <translation>重置所有模型</translation>
     </message>
 </context>
 <context>
-    <name>ResetAllAction</name>
+    <name>creative_kernel::ResetAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="27"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="13"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="35"/>
         <source>Reset All Model</source>
         <translation>重置所有模型</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="13"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/resetallaction.cpp" line="28"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/resetallaction.cpp" line="36"/>
         <source>Do you Want to Reset All Model?</source>
         <translation>是否重置所有模型？</translation>
     </message>
@@ -6421,7 +10197,7 @@
 <context>
     <name>ResetCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/resetcommand.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/tool/resetcommand.cpp" line="12"/>
         <source>ResetModel</source>
         <translation>重置模型</translation>
     </message>
@@ -6465,14 +10241,9 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="368"/>
-        <source>Manual supports have been added but support option is disabledin the template, 
+        <source>Manual supports have been added but support option is disabledin the template,
  do you want to add support structures?</source>
         <translation>模型已經添加手動支撐，但打印模板中已經關閉了支撐選項，是否要啟用支撐？</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="409"/>
-        <source>Are you sure to delete this printer?</source>
-        <translation>是否刪除該打印機？</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="496"/>
@@ -6484,17 +10255,20 @@
         <source>The profile already exists! please enter again.</source>
         <translation>配置文件已經存在！請重試其他名字。</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RightInfoPanel.qml" line="579"/>
+</context>
+<context>
+    <name>BasicRClickMenu</name>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicRClickMenu.qml" line="101"/>
         <source>Failed to upload model!</source>
         <translation>上傳模型失敗！</translation>
     </message>
 </context>
 <context>
-    <name>RotateMode</name>
+    <name>creative_kernel::RotateMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/rotatemode.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/rotatemode.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/tool/rotatemode.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/tool/rotatemode.cpp" line="41"/>
         <source>Rotate</source>
         <translation>旋轉</translation>
     </message>
@@ -6527,30 +10301,112 @@
     </message>
 </context>
 <context>
-    <name>SaveAsCommand</name>
+	<name>LayoutPanel</name>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="12"/>
+		<source>Layout</source>
+		<translation>佈局方式</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="20"/>
+		<source>Centered</source>
+		<translation>居中</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="25"/>
+		<source>From Left to Right</source>
+		<translation>從左到右</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="30"/>
+		<source>From Right to Left</source>
+		<translation>從右到左</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="35"/>
+		<source>From Top to Bottom</source>
+		<translation>從上到下</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="40"/>
+		<source>From Bottom to Top</source>
+		<translation>從下到上</translation>
+	</message>
+	<message>
+		<location filename="../plugins/CrealityUI/CrealityUI/qml/LayoutPanel.qml" line="45"/>
+		<source>Intelligent</source>
+		<translation>智能</translation>
+	</message>
+	 <message>
+        <source>All models</source>
+        <translation>所有模型</translation>
+    </message>
+	 <message>
+        <source>Selected models</source>
+        <translation>選取模型</translation>
+    </message>
+	 <message>
+        <source>Model interval</source>
+        <translation>模型間距</translation>
+    </message>
+	 <message>
+        <source>Plate Margin</source>
+        <translation>平台間距</translation>
+    </message>
+	 <message>
+        <source>Allow rotation for Auto-Layout</source>
+        <translation>許旋轉優化佈局效果</translation>
+    </message>
+	 <message>
+        <source>Comply</source>
+        <translation>執行</translation>
+    </message>
+	 <message>
+        <source>Dense</source>
+        <translation>密集</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::SaveAsCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="64"/>
         <source>Save STL</source>
         <translation>保存STL文件</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_file/saveascommand.cpp" line="55"/>
+        <location filename="../kernel/BasicKernel/internal/menu_file/saveascommand.cpp" line="55"/>
         <source>Save Finished, Open Local Folder</source>
         <translation>保存完成，打開本地目錄</translation>
     </message>
 </context>
 <context>
-    <name>ScaleMode</name>
+    <name>creative_kernel::ScaleMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/scalemode.cpp" line="15"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/scalemode.cpp" line="63"/>
+        <location filename="../kernel/BasicKernel/internal/tool/scalemode.cpp" line="15"/>
+        <location filename="../kernel/BasicKernel/internal/tool/scalemode.cpp" line="63"/>
         <source>Scale</source>
         <translation>縮放</translation>
     </message>
 </context>
 <context>
     <name>ScalePanel</name>
+	<message>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+	<message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+	<message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+	<message>
+        <source>You are unlocking the uniform ratio, which means the model will not return to its original size. Do you want to proceed?</source>
+        <translation>取消鎖定比例後，模型將無法重置到原始大小，是否要繼續？</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/ScalePanel.qml" line="98"/>
         <source>Scale</source>
@@ -6568,20 +10424,19 @@
     </message>
 </context>
 <context>
-    <name>SelectAllAction</name>
+    <name>creative_kernel::SelectAllAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/selectallaction.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/selectallaction.cpp" line="30"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selectallaction.cpp" line="39"/>
         <source>Select All Model</source>
-        <translation>選擇全部模型</translation>
+        <translation>模型全選</translation>
     </message>
 </context>
 <context>
-    <name>SelectModelDlg</name>
+    <name>creative_kernel::SelectPrinterAllAction</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/SelectModelDlg.qml" line="12"/>
-        <source>No model is selected</source>
-        <translation>未選擇操作模型</translation>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/selectprinterallaction.cpp" line="39"/>
+        <source>Select All Model</source>
+        <translation>模型全選</translation>
     </message>
 </context>
 <context>
@@ -6663,41 +10518,33 @@
     </message>
 </context>
 <context>
-    <name>SetNozzleRange</name>
+    <name>creative_kernel::SetNozzleRange</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/setnozzlerange.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/setnozzlerange.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="21"/>
         <source>Set Nozzle Range</source>
-        <translation>設置噴嘴範圍</translation>
+        <translation>設置噴嘴對象</translation>
+    </message>
+	   <message>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/setnozzlerange.cpp" line="21"/>
+        <source>Set Material</source>
+        <translation>設置耗材對象</translation>
     </message>
 </context>
 <context>
-    <name>SliceUI</name>
+    <name>creative_kernel::SliceFlow</name>
     <message>
-        <location filename="../kernel/CreativeKernel/external/slice/sliceui.cpp" line="171"/>
+        <location filename="../kernel/BasicKernel/external/slice/sliceui.cpp" line="133"/>
         <source>Save Finished, Open Local Folder</source>
         <translation>保存完成，打開本地目錄</translation>
     </message>
 </context>
 <context>
-    <name>SpeedColorPanel</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/SpeedColorPanel.qml" line="19"/>
-        <source>Speed (mm/s)</source>
-        <translation>速度(毫米/秒)</translation>
-    </message>
-</context>
-<context>
     <name>Splash</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/Splash.qml" line="8"/>
-        <source>Splash Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/Splash.qml" line="41"/>
-        <source>Shenzhen Creality 3D Technology Co., Ltd. is an internationally renowned 3D printer manufacturer, focusing on the R &amp; D and production of 3D printers.</source>
-        <translation>深圳市創想三維科技股份有限公司是全球消費級3D打印行業領導品牌，專注於3D打印機的研發和生產。</translation>
+        <source>Version</source>
+        <translation>版本號</translation>
     </message>
 </context>
 <context>
@@ -6710,89 +10557,197 @@
     </message>
 </context>
 <context>
-    <name>SplitModelAction</name>
+    <name>creative_kernel::SplitModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/splitmodelaction.cpp" line="22"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/splitmodelaction.cpp" line="56"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/splitmodelaction.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/splitmodelaction.cpp" line="47"/>
         <source>Split Model</source>
         <translation>拆分模型</translation>
     </message>
 </context>
 <context>
-    <name>StructureColorPanel</name>
+    <name>SpeedPanel</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="33"/>
+        <source>Speed (mm/s)</source>
+        <translation>速度(毫米/秒)</translation>
+    </message>
+	 <message>
+        <source>Speed</source>
+        <translation>速度</translation>
+    </message>
+</context>
+<context>
+    <name>AccelerationPanel</name>
+	   <message>
+        <source>Acceleration of acceleration</source>
+        <translation>加速加速度</translation>
+    </message>
+</context>
+<context>
+    <name>StructurePanel</name>
+    <message>
         <source>Structure Type</source>
         <translation>結構類型</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="45"/>
         <source>All</source>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="158"/>
+        <source>Type</source>
+        <translation>類型</translation>
+    </message>
+    <message>
+        <source>Time</source>
+        <translation>時間</translation>
+    </message>
+    <message>
+        <source>Percent</source>
+        <translation>百分比</translation>
+    </message>
+    <message>
         <source>Outer Perimeter</source>
         <translation>外壁</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="159"/>
         <source>Inner Perimeter</source>
         <translation>內壁</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="160"/>
         <source>Skin</source>
         <translation>皮膚</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="161"/>
         <source>Support</source>
         <translation>支撐</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="162"/>
         <source>SkirtBrim</source>
         <translation>裙擺/邊緣</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="163"/>
         <source>Infill</source>
         <translation>填充</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="164"/>
         <source>SupportInfill</source>
         <translation>支撐填充</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="167"/>
         <source>SupportInterface</source>
         <translation>支撐面</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="168"/>
         <source>PrimeTower</source>
         <translation>裝填塔</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="169"/>
         <source>Travel</source>
         <translation>空走</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="170"/>
         <source>FlowTravel</source>
         <translation>短空走直接出料</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/qml/StructureColorPanel.qml" line="171"/>
         <source>AdvanceTravel</source>
         <translation>長空走提前出料</translation>
     </message>
+    <message>
+        <source>Zseam</source>
+        <translation>Z縫</translation>
+    </message>
+    <message>
+        <source>Retraction</source>
+        <translation>回抽</translation>
+    </message>
+	<message>
+        <source>Ironing</source>
+        <translation>熨烫</translation>
+    </message>
 </context>
 <context>
-    <name>StyledStatusBar</name>
+    <name>ExtruderMutilColor</name>
+	<message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+	<message>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+</context>
+<context>
+    <name>ExtruderPanel</name>
+		    <message>
+        <source>Model</source>
+        <translation>模型</translation>
+    </message>
+	    <message>
+        <source>Flush</source>
+        <translation>沖刷</translation>
+    </message>
+    <message>
+        <source>Prime Tower</source>
+        <translation>擦料塔</translation>
+    </message>
+		   <message>
+        <source>Total</source>
+        <translation>總共</translation>
+    </message>
+    <message>
+        <source>Nozzle</source>
+        <translation>噴嘴</translation>
+    </message>
+	 <message>
+        <source>Filament</source>
+        <translation>耗材</translation>
+    </message>
+</context>
+<context>
+    <name>LayerHightPanel</name>
+    <message>
+        <source>Layer Hight</source>
+        <translation>層高</translation>
+    </message>
+</context>
+<context>
+    <name>LineWidthPanel</name>
+    <message>
+        <source>Line Width</source>
+        <translation>綫寬</translation>
+    </message>
+</context>
+<context>
+    <name>FlowPanel</name>
+    <message>
+        <source>Flow</source>
+        <translation>流量</translation>
+    </message>
+</context>
+<context>
+    <name>LayerTimePanel</name>
+    <message>
+        <source>Layer Time</source>
+        <translation>層時間</translation>
+    </message>
+</context>
+<context>
+    <name>FanSpeedPanel</name>
+    <message>
+        <source>Fan Speed</source>
+        <translation>風扇速度</translation>
+    </message>
+</context>
+<context>
+    <name>TemperaturePanel</name>
+    <message>
+        <source>Temperature</source>
+        <translation>溫度</translation>
+    </message>
+</context>
+<context>
+    <name>CusStyledStatusBar</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/StyledStatusBar.qml" line="61"/>
         <source>Processing, Please Wait...</source>
@@ -6821,10 +10776,111 @@
     </message>
 </context>
 <context>
+    <name>ReliefPlugin</name>
+    <message>
+        <location filename="../plugins/plugin_relief/reliefplugin.cpp" line="13"/>
+        <source>Emboss</source>
+        <translation>浮雕</translation>
+    </message>
+</context>
+<context>
+    <name>ReliefCommand</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="13"/>
+        <source>Relief Type</source>
+        <translation>浮雕類型</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Text</source>
+        <translation>文本内容</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Font</source>
+        <translation>字體</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Word Space</source>
+        <translation>字間距</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Line Space</source>
+        <translation>行間距</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Font Size</source>
+        <translation>字號</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Thickness</source>
+        <translation>厚度</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Embeded Depth</source>
+        <translation>距表面</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Emboss</source>
+        <translation>浮雕效果</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Horizontal</source>
+        <translation>水平</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Surface</source>
+        <translation>表面圍繞</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Relief Attribute</source>
+        <translation>浮雕屬性</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Part</source>
+        <translation>零件</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Negative Part</source>
+        <translation>負零件</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Modifier</source>
+        <translation>修改器</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Bold</source>
+        <translation>加粗</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>Italic</source>
+        <translation>斜體</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/relief/info.qml" line="46"/>
+        <source>The content cannot be empty</source>
+        <translation>文本内容不能為空</translation>
+    </message>
+</context>
+<context>
     <name>SubMenuLanguage</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenulanguage.cpp" line="7"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenulanguage.cpp" line="25"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenulanguage.cpp" line="7"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenulanguage.cpp" line="25"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
@@ -6832,8 +10888,8 @@
 <context>
     <name>SubMenuPrinterControl</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="12"/>
+        <location filename="../kernel/BasicKernel/internal/menu_printer_control/submenuprintercontrol.cpp" line="26"/>
         <source>Creality Cloud Printing</source>
         <translation>創想雲打印</translation>
     </message>
@@ -6841,8 +10897,8 @@
 <context>
     <name>SubMenuRecentFiles</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/submenurecentfiles.cpp" line="18"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/submenurecentfiles.cpp" line="46"/>
+        <location filename="../kernel/BasicKernel/internal/menu/submenurecentfiles.cpp" line="18"/>
+        <location filename="../kernel/BasicKernel/internal/menu/submenurecentfiles.cpp" line="46"/>
         <source>Recently files</source>
         <translation>最近訪問文件</translation>
     </message>
@@ -6850,8 +10906,8 @@
 <context>
     <name>SubMenuThemeColor</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenuThemeColor.cpp" line="7"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/submenuThemeColor.cpp" line="20"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenuThemeColor.cpp" line="7"/>
+        <location filename="../kernel/BasicKernel/internal/menu_tool/submenuThemeColor.cpp" line="20"/>
         <source>Theme color change</source>
         <translation>主題換色</translation>
     </message>
@@ -6859,17 +10915,17 @@
 <context>
     <name>SubMenuViewShow</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/submenuviewsshow.cpp" line="17"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/submenuviewsshow.cpp" line="36"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/submenuviewsshow.cpp" line="17"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/submenuviewsshow.cpp" line="36"/>
         <source>View Show</source>
         <translation>模型顯示</translation>
     </message>
 </context>
 <context>
-    <name>SupportCommand</name>
+    <name>creative_kernel::SupportCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/supportcommand.cpp" line="24"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/supportcommand.cpp" line="40"/>
+        <location filename="../kernel/BasicKernel/internal/tool/supportcommand.cpp" line="24"/>
+        <location filename="../kernel/BasicKernel/internal/tool/supportcommand.cpp" line="40"/>
         <source>Support</source>
         <translation>支撐</translation>
     </message>
@@ -6913,7 +10969,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/qml/SupportPanel.qml" line="118"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation>僅添加接觸底板的支撐</translation>
     </message>
     <message>
@@ -6976,7 +11032,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SupportTabPanel.qml" line="120"/>
-        <source>Only add support to the hot bed</source>
+        <source>Only add support to the plate</source>
         <translation>僅添加接觸底板的支撐</translation>
     </message>
     <message>
@@ -7015,7 +11071,7 @@
         <source>Start Slice</source>
         <translation>開始切片</translation>
     </message>
-    <message>
+	<message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/SupportTabPanel.qml" line="371"/>
         <source>Do you want to clear existing  supports before create new supports?</source>
         <translation>在生成新的支撐之前，是否清除已存在的支撐？</translation>
@@ -7040,30 +11096,23 @@
     </message>
 </context>
 <context>
-    <name>ThemeColorCommand</name>
+    <name>creative_kernel::GlobalConst</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="10"/>
-        <source>Theme color change</source>
-        <translation>主題換色</translation>
-    </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="27"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="79"/>
+        <location filename="../kernel/BasicKernel/external/kernel/globalconst.cpp" line="154"/>
         <source>Dark Theme</source>
         <translation>深色主題</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_tool/themecolorcommand.cpp" line="81"/>
+        <location filename="../kernel/BasicKernel/external/kernel/globalconst.cpp" line="155"/>
         <source>Light Theme</source>
         <translation>淺色主題</translation>
     </message>
 </context>
 <context>
-    <name>TranslateMode</name>
+    <name>creative_kernel::TranslateMode</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/translatemode.cpp" line="16"/>
-        <location filename="../kernel/CreativeKernel/internal/tool/translatemode.cpp" line="61"/>
+        <location filename="../kernel/BasicKernel/internal/tool/translatemode.cpp" line="16"/>
+        <location filename="../kernel/BasicKernel/internal/tool/translatemode.cpp" line="61"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
@@ -7071,8 +11120,8 @@
 <context>
     <name>UndoActionCmd</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu/undoactioncmd.cpp" line="8"/>
-        <location filename="../kernel/CreativeKernel/internal/menu/undoactioncmd.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu/undoactioncmd.cpp" line="8"/>
+        <location filename="../kernel/BasicKernel/internal/menu/undoactioncmd.cpp" line="23"/>
         <source>Undo</source>
         <translation>撤銷</translation>
     </message>
@@ -7080,53 +11129,226 @@
 <context>
     <name>UpdateCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/updatecommand.cpp" line="9"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/updatecommand.cpp" line="21"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/updatecommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/updatecommand.cpp" line="21"/>
         <source>Update</source>
         <translation>軟件更新</translation>
     </message>
 </context>
+
 <context>
-    <name>UploadGCodeDlg</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="76"/>
-        <source>Upload Gcode</source>
-        <translation>上傳Gcode</translation>
+    <name>MaterialComboBox</name>
+  <message>
+        <source>CFS slot selection</source>
+        <translation>CFS插槽選擇</translation>
+    </message>
+</context>
+<context>
+
+    <name>UploadGcodeDlg</name>
+		<message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+	<message>
+        <source>The currently selected printer does not support multi-plate printing</source>
+        <translation>目前所選的印表機暫不支援多盤列印</translation>
+    </message>
+		<message>
+        <source>Print</source>
+        <translation>列印</translation>
+    </message>
+		    <message>
+        <source>Upload</source>
+        <translation>上傳</translation>
+    </message>
+	    <message>
+        <source>Send</source>
+        <translation>傳送</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="105"/>
+    <source>Enable CFS</source>
+    <translation>啟用CFS</translation>
+</message>
+<message>
+    <source>Supplies used in this print job</source>
+    <translation>此列印任務中使用的耗材</translation>
+</message>
+<message>
+    <source>CFS slot for this consumable</source>
+    <translation>用於此耗材的CFS槽位</translation>
+</message>
+<message>
+    <source>Need to click manually to specify the CFS slot</source>
+    <translation>需手動點擊，指定CFS槽位</translation>
+</message>
+<message>
+    <source>Material Selection Instructions</source>
+    <translation>材料選擇說明</translation>
+</message>
+<message>
+    <source>The slot has consumables but is not edited.</source>
+    <translation>插槽存在耗材，但未編輯</translation>
+</message>
+<message>
+    <source>Empty slot</source>
+    <translation>空插槽</translation>
+</message>
+<message>
+    <source>Printing with consumables from CFS</source>
+    <translation>使用CFS中的耗材列印</translation>
+</message>
+<message>
+    <source>Disable CFS</source>
+    <translation>不啟用CFS</translation>
+</message>
+<message>
+    <source>Printing using consumables plugged into the back of the machine</source>
+    <translation>使用機器背後外掛的耗材列印</translation>
+</message>
+
+<message>
+        <source>Tip</source>
+        <translation>提示</translation>
+    </message>
+<message>
+        <source>The printer is sending the file...</source>
+        <translation>印表機正在傳送文件中...</translation>
+    </message>
+<message>
+        <source>The printer is printing...</source>
+        <translation>印表機正在列印中...</translation>
+    </message>
+<message>
+        <source>The current printer is offline, please connect it before printing</source>
+        <translation>目前印表機已離線，請連接後再列印</translation>
+    </message>
+ <message>
+        <source>The current printer is printing and only supports sending Gcode</source>
+        <translation>當前印表機正在列印,僅支援發送Gcode</translation>
+    </message>
+ <message>
+        <source>The slicing machine model is inconsistent with the printer model. Inconsistency will cause deviations in the printing effect. Do you want to continue printing?</source>
+        <translation>切片機型與印表機型不一致，機型不一致會導致列印效果偏差，是否繼續列印？</translation>
+    </message>
+ <message>
+        <source>Print calibration</source>
+        <translation>列印校準</translation>
+    </message>
+	<message>
+        <source>Printer</source>
+        <translation>印表機</translation>
+    </message>
+	 <message>
+        <source>One-click Printing</source>
+        <translation>一鍵列印</translation>
+    </message>
+	<message>
+        <source>Multi-machine control</source>
+        <translation>多機控制</translation>
+    </message>
+	<message>
+        <source>CFS slot selection</source>
+        <translation>CFS插槽選擇</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="38"/>
+        <source>Upload G-code</source>
+        <translation>上傳G-code</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="38"/>
+        <source>Send G-code</source>
+        <translation>發送G-code</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="211"/>
         <source>Creality Cloud</source>
         <translation>創想雲</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="211"/>
+        <source>Local Area Network</source>
+        <translation>局域網</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="136"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="136"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="166"/>
-        <source>Upload</source>
-        <translation>上傳</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="166"/>
+        <source>Confirm</source>
+        <translation>確定</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="184"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="184"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="258"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="258"/>
         <source>Uploaded Successfully</source>
         <translation>上傳成功</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="276"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="276"/>
         <source>View My Uploads</source>
         <translation>查看我上傳的</translation>
     </message>
+	  <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/FDMPreviewPanel.qml" line="323"/>
+        <source>Failed to upload gcode!</source>
+        <translation>上傳Gcode失敗！</translation>
+    </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGCodeDlg.qml" line="289"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadGcodeDlg.qml" line="289"/>
         <source>Cloud Printing</source>
         <translation>雲打印</translation>
+    </message>
+		 <message>
+        <source>Offline</source>
+        <translation>離線</translation>
+    </message>
+	 <message>
+        <source>Idle</source>
+        <translation>空閒</translation>
+    </message>
+	<message>
+        <source>Printing</source>
+        <translation>列印中</translation>
+    </message>
+	<message>
+        <source>Pause</source>
+        <translation>暫停</translation>
+    </message>
+	<message>
+        <source>Failed</source>
+        <translation>列印失敗</translation>
+    </message>
+	<message>
+        <source>Completed</source>
+        <translation>列印完成</translation>
+    </message>
+	<message>
+        <source>Stop</source>
+        <translation>停止列印</translation>
+    </message>
+	<message>
+        <source>Ignore</source>
+        <translation>忽略</translation>
+    </message>
+	<message>
+        <source>Continue</source>
+        <translation>繼續</translation>
+    </message>
+	<message>
+        <source>Reboot</source>
+        <translation>重啟</translation>
+    </message>
+	<message>
+        <source>Error code:</source>
+        <translation>錯誤碼:</translation>
     </message>
 </context>
 <context>
@@ -7153,19 +11375,27 @@
     </message>
 </context>
 <context>
-    <name>UploadModelAction</name>
+    <name>creative_kernel::UploadModelAction</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/uploadmodelaction.cpp" line="12"/>
-        <location filename="../kernel/CreativeKernel/internal/rclick_menu/uploadmodelaction.cpp" line="40"/>
-        <source>Upload Model</source>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/uploadmodelaction.cpp" line="14"/>
+        <location filename="../kernel/BasicKernel/internal/rclick_menu/uploadmodelaction.cpp" line="49"/>
+        <source>Upload Models</source>
         <translation>上傳模型</translation>
+    </message>
+		<message>
+        <source>Upload Selected Model</source>
+        <translation>上傳選中模型</translation>
+    </message>
+	<message>
+        <source>Upload Local Model</source>
+        <translation>上傳本地模型</translation>
     </message>
 </context>
 <context>
     <name>UploadModelDlg</name>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UploadModelDlg.qml" line="12"/>
-        <source>Upload Model</source>
+        <source>Upload Models</source>
         <translation>上傳模型</translation>
     </message>
     <message>
@@ -7337,7 +11567,20 @@
         <source>Stop</source>
         <translation>終止</translation>
     </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/usbControlQml/UsbControlDlg.qml" line="375"/>
+        <source>Complete</source>
+        <translation>完成</translation>
+    </message>
 </context>
+<context>
+    <name>creative_kernel::PreviewEmptyMessage</name>
+    <message>
+        <location filename="../kernel/BasicKernel/external/message/previewemptymessage.cpp" line="43"/>
+        <source>There is no model object in the current printing plate, please add at least one model before performing the slice preview operation.</source>
+        <translation>當前打印板内無模型對象，請至少先添加一個模型對象后再進行切片預覽操作。</translation>
+    </message>
+ </context>
 <context>
     <name>UsbPrintCommand</name>
     <message>
@@ -7350,85 +11593,93 @@
 <context>
     <name>UseCourseCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/usecoursecommand.cpp" line="10"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/usecoursecommand.cpp" line="32"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/usecoursecommand.cpp" line="10"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/usecoursecommand.cpp" line="32"/>
         <source>Use Course</source>
         <translation>使用教程</translation>
     </message>
 </context>
 <context>
-    <name>UseInfoPrinterItem</name>
+    <name>UserPrinterItem</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="110"/>
-        <source>Device Name:</source>
-        <translation>設備名稱：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="87"/>
+        <source>Device Name</source>
+        <translation>設備名稱</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="133"/>
-        <source>Device ID:</source>
-        <translation>设备ID：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="88"/>
+        <source>Device ID</source>
+        <translation>设备ID</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="156"/>
-        <source>Status:</source>
-        <translation>设备状态：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Status</source>
+        <translation>设备状态</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="179"/>
-        <source>TF Card Status:</source>
-        <translation>TF卡状态：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>TF Card Status</source>
+        <translation>TF卡状态</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="202"/>
-        <source>Printer Status:</source>
-        <translation>打印机状态：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Printer Status</source>
+        <translation>打印机状态</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UseInfoPrinterItem.qml" line="225"/>
-        <source>IP:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="92"/>
+        <source>IP</source>
+        <translation>IP</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Online</source>
+        <translation>工作中</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="89"/>
+        <source>Offline</source>
+        <translation>離線</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>Card Inserted</source>
+        <translation>有</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="90"/>
+        <source>No Card Inserted</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Connected</source>
+        <translation>已連接</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/BasicPrinterItem.qml" line="91"/>
+        <source>Disconnected</source>
+        <translation>未連接</translation>
     </message>
 </context>
 <context>
     <name>UserFeedbackCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/userfeedbackcommand.cpp" line="11"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_help/userfeedbackcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/userfeedbackcommand.cpp" line="11"/>
+        <location filename="../kernel/BasicKernel/internal/menu_help/userfeedbackcommand.cpp" line="44"/>
         <source>User Feedback</source>
         <translation>用戶反饋</translation>
     </message>
 </context>
 <context>
-    <name>UserInfoDlg</name>
+    <name>UserInfoDialog</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="52"/>
-        <source>Online</source>
-        <translation>工作中</translation>
+        <source>When you delete the model, the configuration you uploaded will be deleted simultaneously.</source>
+        <translation>刪除模型時, 會同步刪除你上傳的列印設定檔.</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="53"/>
-        <source>Offline</source>
-        <translation>离线</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="54"/>
-        <source>Card Inserted</source>
-        <translation>有</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="55"/>
-        <source>No Card Inserted</source>
-        <translation>无</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="56"/>
-        <source>Connected</source>
-        <translation>已连接</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="57"/>
-        <source>Disconnected</source>
-        <translation>未连接</translation>
+        <source>Print Configuration</source>
+        <translation>列印配置</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="111"/>
@@ -7463,8 +11714,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="706"/>
-        <source>Failed to import model or gcode!</source>
-        <translation>导入模型或gcode失败！</translation>
+        <source>Failed to import gcode file!</source>
+        <translation>導入gcode文件失敗！</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1164"/>
@@ -7477,9 +11728,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1234"/>
-        <source>Remaining Space:</source>
-        <translation>剩餘空間：</translation>
+        <source>Used</source>
+        <translation>已使用</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1284"/>
@@ -7547,80 +11797,59 @@
         <source>How to collect models?</source>
         <translation>如何收藏模型？</translation>
     </message>
-</context>
-<context>
-    <name>VideoGroupItem</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupItem.qml" line="97"/>
-        <source>Device Name:</source>
-        <translation>設備名稱：</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupItem.qml" line="117"/>
-        <source>Printing File:</source>
-        <translation>打印文件：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/UserInfoDlg.qml" line="1028"/>
+        <source>Are you sure to delete this profile?</source>
+        <translation>是否確認刪除此配置?</translation>
     </message>
 </context>
 <context>
-    <name>VideoGroupPanel</name>
+    <name>creative_kernel::ViewShowCommand</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupPanel.qml" line="50"/>
-        <source>Printing</source>
-        <translation>打印中</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/VideoGroupPanel.qml" line="63"/>
-        <source>Print Pause</source>
-        <translation>打印暫停</translation>
-    </message>
-</context>
-<context>
-    <name>ViewShowCommand</name>
-    <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="23"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="55"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="23"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="55"/>
         <source>Front View</source>
         <translation>前視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="26"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="58"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="26"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="58"/>
         <source>Back View</source>
         <translation>後視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="29"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="61"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="29"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="61"/>
         <source>Left View</source>
         <translation>左視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="32"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="64"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="32"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="64"/>
         <source>Right View</source>
         <translation>右視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="35"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="67"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="35"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="67"/>
         <source>Top View</source>
         <translation>俯視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="38"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="70"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="38"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="70"/>
         <source>Bottom View</source>
         <translation>底視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="41"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="73"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="41"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="73"/>
         <source>Perspective View</source>
         <translation>透視視圖</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="44"/>
-        <location filename="../kernel/CreativeKernel/internal/menu_view/viewshowcommand.cpp" line="76"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="44"/>
+        <location filename="../kernel/BasicKernel/internal/menu_view/viewshowcommand.cpp" line="76"/>
         <source>Orthographic View</source>
         <translation>正交視圖</translation>
     </message>
@@ -7628,7 +11857,7 @@
 <context>
     <name>WebsiteCommand</name>
     <message>
-        <location filename="../kernel/CreativeKernel/internal/tool/websitecommand.cpp" line="9"/>
+        <location filename="../kernel/BasicKernel/internal/tool/websitecommand.cpp" line="9"/>
         <source>WebSite</source>
         <translation>網站</translation>
     </message>
@@ -7636,7 +11865,7 @@
 <context>
     <name>export</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/cx3d_exporter/export.qml" line="24"/>
+        <location filename="../kernel/BasicKernel/res/plugin/cx3d_exporter/export.qml" line="24"/>
         <source>Export 3MF</source>
         <translation>導出 3MF</translation>
     </message>
@@ -7644,114 +11873,561 @@
 <context>
     <name>import</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/cx3d_exporter/import.qml" line="21"/>
+        <location filename="../kernel/BasicKernel/res/plugin/cx3d_exporter/import.qml" line="21"/>
         <source>Open Projects</source>
-        <translation>打開工程文件</translation>
+        <translation>打開項目文件</translation>
     </message>
 </context>
 <context>
     <name>info</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="45"/>
         <source>Drill</source>
         <translation>打洞</translation>
     </message>
-    <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="66"/>
-        <source>Sharp:</source>
-        <translation>尖端：</translation>
+	<message>
+        <source>drill invalid</source>
+        <translation>打洞失敗</translation>
+    </message>
+   <message>
+        <source>split invalid</source>
+        <translation>切割失敗</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="79"/>
+        <source>Shape:</source>
+        <translation>形狀：</translation>
+    </message>
+    <message>
         <source>Circle</source>
-        <translation>圓</translation>
+        <translation>圓形</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="80"/>
         <source>Triangle</source>
         <translation>三角形</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="81"/>
         <source>Square</source>
         <translation>正方形</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="103"/>
-        <source>Size:</source>
-        <translation>大小：</translation>
+        <source>Radius:</source>
+        <translation>半徑：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="129"/>
         <source>Depth:</source>
         <translation>深度：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="156"/>
-        <source>Cancel Drilling</source>
-        <translation>取消打洞</translation>
+        <source>Direction:</source>
+        <translation>方向：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/drill/info.qml" line="156"/>
-        <source>Start Drilling</source>
-        <translation>開始打洞</translation>
+        <source>Normal Direction</source>
+        <translation>法線方向</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="44"/>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="121"/>
+        <source>Parallel to Platform</source>
+        <translation>平行於平台</translation>
+    </message>
+    <message>
+        <source>Perpendicular to Screen</source>
+        <translation>垂直於屏幕</translation>
+    </message>
+    <message>
+        <source>Pierce One Layer Only</source>
+        <translation>僅打穿一層</translation>
+    </message>
+    <message>
+        <source>Drill failed</source>
+        <translation>鑽孔失敗</translation>
+    </message>
+    <message>
+        <source>Distance Measure</source>
+        <translation>測距</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="44"/>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="121"/>
         <source>Hollow</source>
         <translation>抽殼</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/hollow/info.qml" line="65"/>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="163"/>
+        <location filename="../kernel/BasicKernel/res/plugin/hollow/info.qml" line="65"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="163"/>
         <source>Thickness:</source>
         <translation>厚度：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="56"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="56"/>
         <source>Letter</source>
         <translation>刻字</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="75"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="75"/>
         <source>Text:</source>
         <translation>文字：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="100"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="100"/>
         <source>Font:</source>
         <translation>字體：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="136"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="136"/>
         <source>Height:</source>
         <translation>字高：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="193"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="193"/>
         <source>Inside</source>
         <translation>內側</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="205"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="205"/>
         <source>Outside</source>
         <translation>外側</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="250"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
         <source>Cancel Lettering</source>
         <translation>取消刻字</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="250"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
+        <source>Letter</source>
+        <translation>刻字</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="250"/>
         <source>Start Lettering</source>
         <translation>開始刻字</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/letter/info.qml" line="273"/>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="273"/>
         <source>import font</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/info.qml" line="75"/>
+        <source>Generate Word</source>
+        <translation>生成文字</translation>
+    </message>
+    <message>
+        <source>Thickness</source>
+        <translation>厚度</translation>
+    </message>
+    <message>
+        <source>Fill Percentage</source>
+        <translation>填充百分比</translation>
+    </message>
+    <message>
+        <source>Fill Structure</source>
+        <translation>填充结构</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <source>Grid</source>
+        <translation>网格</translation>
+    </message>
+</context>
+<context>
+    <name>LetterConfigPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterConfigPanel.qml" line="28"/>
+        <source>Word</source>
+        <translation>文字</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterConfigPanel.qml" line="61"/>
+        <source>Parameter</source>
+        <translation>參數</translation>
+    </message>
+</context>
+<context>
+    <name>LetterFontConfigs</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="28"/>
+        <source>Text</source>
+        <translation>文字</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="41"/>
+        <source>Please input text</source>
+        <translation>請輸入文字</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="53"/>
+        <source>Font Family</source>
+        <translation>字體</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterFontConfigs.qml" line="88"/>
+        <source>Font Size</source>
+        <translation>字號</translation>
+    </message>
+</context>
+<context>
+    <name>LetterShapeConfigs</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="30"/>
+        <source>Move</source>
+        <translation>移動</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="126"/>
+        <source>Size</source>
+        <translation>尺寸</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="224"/>
+        <source>Rotate</source>
+        <translation>旋轉</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="272"/>
+        <source>Thickness</source>
+        <translation>厚度</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="321"/>
+        <source>Letter Mode</source>
+        <translation>刻字方式</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="333"/>
+        <source>Inside</source>
+        <translation>内刻</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/letter/LetterShapeConfigs.qml" line="343"/>
+        <source>Outside</source>
+        <translation>外刻</translation>
+    </message>
+</context>
+<context>
+    <name>ColorPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="13"/>
+        <source>Color</source>
+        <translation>塗色</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="46"/>
+        <source>Pen Size</source>
+        <translation>畫筆尺寸</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="46"/>
+        <source>Smart Fill Angle</source>
+        <translation>智能填充角度</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="46"/>
+        <source>Height Range</source>
+        <translation>高度範圍</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="46"/>
+        <source>Gap Area</source>
+        <translation>間隙面積</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="55"/>
+        <source>Section</source>
+        <translation>剖面視圖</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="92"/>
+        <source>Reset Direction</source>
+        <translation>重置方向</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanel.qml" line="46"/>
+        <source>Fill gap</source>
+        <translation>填充間隙</translation>
+    </message>
+</context>
+<context>
+    <name>SeamPaintingPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="13"/>
+        <source>Seam Painting</source>
+        <translation>Z縫繪製</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="46"/>
+        <source>Pen Size</source>
+        <translation>畫筆大小</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="55"/>
+        <source>Section</source>
+        <translation>剖面視圖</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="92"/>
+        <source>Reset Direction</source>
+        <translation>重置方向</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="49"/>
+        <source>Left mouse button</source>
+        <translation>鼠標左鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="50"/>
+        <source>Enforce seam</source>
+        <translation>添加Z縫</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="49"/>
+        <source>Right mouse button</source>
+        <translation>鼠標右鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="50"/>
+        <source>Block seam</source>
+        <translation>屏蔽Z縫</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="51"/>
+        <source>Shift + Left mouse button</source>
+        <translation>Shift+鼠標左鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="52"/>
+        <source>Erase</source>
+        <translation>擦除</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="53"/>
+        <source>Ctrl + Wheel</source>
+        <translation>Ctrl+鼠標滾輪</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="54"/>
+        <source>Pen size</source>
+        <translation>畫筆大小</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="55"/>
+        <source>Alt + Wheel</source>
+        <translation>Shift+鼠標滾輪</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SeamPaintingPanel.qml" line="56"/>
+        <source>Section view</source>
+        <translation>剖面視圖</translation>
+    </message>
+</context>
+<context>
+    <name>SupportPaintingPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>Enable Support</source>
+        <translation>啓用支撐</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>Support Type</source>
+        <translation>支撐類型</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>normal(auto)</source>
+        <translation>普通(自動)</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>tree(auto)</source>
+        <translation>樹狀(自動)</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>normal(manual)</source>
+        <translation>普通(手動)</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>tree(manual)</source>
+        <translation>樹狀(手動)</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="46"/>
+        <source>Smart Fill Angle</source>
+        <translation>智能填充角度</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="46"/>
+        <source>Erase</source>
+        <translation>擦除</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="46"/>
+        <source>Gap Area</source>
+        <translation>間隙面積</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="13"/>
+        <source>Support Painting</source>
+        <translation>塗抹支撐</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="46"/>
+        <source>Pen Size</source>
+        <translation>畫筆大小</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="55"/>
+        <source>Section</source>
+        <translation>剖面視圖</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="55"/>
+        <source>On overhangs only</source>
+        <translation>僅對懸空區生效</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="55"/>
+        <source>Allows painting only on facets selected by:'Highlight overhang areas'</source>
+        <translation>繪製僅對由高亮懸空區域選中的片面生效</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="55"/>
+        <source>Highlight overhangs</source>
+        <translation>懸空區對比度</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="92"/>
+        <source>Reset Direction</source>
+        <translation>重置方向</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="49"/>
+        <source>Left mouse button</source>
+        <translation>鼠標左鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="50"/>
+        <source>Enforce supports</source>
+        <translation>繪製支撐</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="49"/>
+        <source>Right mouse button</source>
+        <translation>鼠標右鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="50"/>
+        <source>Block supports</source>
+        <translation>屏蔽支撐</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="51"/>
+        <source>Shift + Left mouse button</source>
+        <translation>Shift+鼠標左鍵</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="52"/>
+        <source>erase</source>
+        <translation>擦除</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="53"/>
+        <source>Ctrl + Wheel</source>
+        <translation>Ctrl+鼠標滾輪</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="54"/>
+        <source>Pen size</source>
+        <translation>畫筆大小</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="55"/>
+        <source>Alt + Wheel</source>
+        <translation>Shift+鼠標滾輪</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/SupportPaintingPanel.qml" line="56"/>
+        <source>Section view</source>
+        <translation>剖面視圖</translation>
+    </message>
+</context>
+<context>
+    <name>ColorPanelBottom</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorPanelBottom.qml" line="93"/>
+        <source>Erase All Paintings</source>
+        <translation>擦除所有繪製</translation>
+    </message>
+</context>
+<context>
+    <name>ColorSeletor</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ColorSeletor.qml" line="17"/>
+        <source>Choose Filament</source>
+        <translation>選擇顔色耗材</translation>
+    </message>
+</context>
+<context>
+    <name>ToolSeletor</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="13"/>
+        <source>Select Tools</source>
+        <translation>選擇工具</translation>
+    </message>
+    <name>ToolSeletor</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="40"/>
+        <source>Triangle</source>
+        <translation>三角面</translation>
+    </message>
+    <name>ToolSeletor</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="46"/>
+        <source>Circle</source>
+        <translation>圓形</translation>
+    </message>
+    <name>ToolSeletor</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="52"/>
+        <source>Fill</source>
+        <translation>填充</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="52"/>
+        <source>Gap Fill</source>
+        <translation>縫隙填充</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="52"/>
+        <source>Sphere</source>
+        <translation>球</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolSeletor.qml" line="52"/>
+        <source>Height Range</source>
+        <translation>高度範圍</translation>
+    </message>
+</context>
+<context>
+    <name>ToolConfigPanel</name>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolConfigPanel.qml" line="13"/>
+        <source>Pen Size</source>
+        <translation>畫筆半徑</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolConfigPanel.qml" line="13"/>
+        <source>Height Range</source>
+        <translation>高度範圍</translation>
+    </message>
+    <message>
+        <location filename="../kernel/BasicKernel/res/plugin/paint/ToolConfigPanel.qml" line="13"/>
+        <source>Gap Area</source>
+        <translation>間隙面積</translation>
     </message>
 </context>
 <context>
@@ -7763,29 +12439,145 @@
     </message>
 </context>
 <context>
+    <name>PrinterNameEditorDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterNameEditorDialog.qml.qml" line="13"/>
+        <source>Edit Plate Name</source>
+        <translation>編輯盤名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterNameEditorDialog.qml.qml" line="13"/>
+        <source>Plate name</source>
+        <translation>盤名稱</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterNameEditorDialog.qml.qml" line="13"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterNameEditorDialog.qml.qml" line="13"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>PrinterSettingsDialog</name>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>None</source>
+        <translation>未命名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Plate Settings</source>
+        <translation>盤參數設置</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Plate name</source>
+        <translation>盤名稱</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Plate type</source>
+        <translation>熱床類型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Same as Global Plate Type</source>
+        <translation>跟隨全局打印板類型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Cool Plate</source>
+        <translation>低溫打印板</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Engineering Plate</source>
+        <translation>工程材料打印板</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Smooth PEI Plate &#47; High Temp Plate</source>
+        <translation>光滑構建板/高溫構建板</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Textured PEI Plate</source>
+        <translation>紋理PEI打印板</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Print sequence</source>
+        <translation>打印順序</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Same as Global Print Sequence</source>
+        <translation>跟隨全局打印順序</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>By Layer</source>
+        <translation>逐層</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>By Object</source>
+        <translation>逐件</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>First layer filament sequence</source>
+        <translation>首層耗材打印順序</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Customize</source>
+        <translation>自定義</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/printer/PrinterSettingsDialog.qml" line="13"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>preventwarpe</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="45"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="45"/>
         <source>PreventWarpe</source>
         <translation>防翹邊</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="66"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="66"/>
         <source>Size:</source>
         <translation>大小：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="123"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="123"/>
         <source>Layer:</source>
         <translation>層高：</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
         <source>Cancel PreventWarpe</source>
         <translation>取消防翹邊</translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
+        <location filename="../kernel/BasicKernel/res/plugin/preventwarpe/preventwarpe.qml" line="151"/>
         <source>Start PreventWarpe</source>
         <translation>開始防翹邊</translation>
     </message>
@@ -7793,19 +12585,23 @@
 <context>
     <name>slice_preview</name>
     <message>
-        <location filename="../kernel/CreativeKernel/res/slice/slice_preview.qml" line="27"/>
+        <location filename="../kernel/BasicKernel/res/slice/slice_preview.qml" line="27"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../kernel/CreativeKernel/res/slice/slice_preview.qml" line="41"/>
+        <location filename="../kernel/BasicKernel/res/slice/slice_preview.qml" line="41"/>
         <source>UnPreview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 
 <context>
-    <name>EditProfile</name>
+    <name>ParameterComponent</name>
+    <message>
+        <source>Filament for Supports</source>
+        <translation>支撐耗材</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="15"/>
         <source>Loading</source>
@@ -7828,18 +12624,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="36"/>
-        <source>Dynamic</source>
-        <translation type="unfinished">高精度打印</translation>
+        <source>High Quality</source>
+        <translation type="unfinished">極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="37"/>
-        <source>Balanced</source>
-        <translation type="unfinished">正常打印</translation>
+        <source>Quality</source>
+        <translation type="unfinished">細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="38"/>
-        <source>Speedy</source>
-        <translation type="unfinished">快速打印</translation>
+        <source>Normal</source>
+        <translation type="unfinished">正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="130"/>
@@ -7848,7 +12644,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="130"/>
-        <source>Material:</source>
+        <source>Filament:</source>
         <translation type="unfinished">材料:</translation>
     </message>
     <message>
@@ -7918,6 +12714,12 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="374"/>
         <source>brim</source>
         <translation type="unfinished">邊緣</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="70"/>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="374"/>
+        <source>autobrim</source>
+        <translation type="unfinished">自動生成邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfile.qml" line="71"/>
@@ -8188,21 +12990,22 @@
     </message>
 </context>
 <context>
-    <name>EditProfileByFilter</name>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="11"/>
-        <source>Outward Expand Vertical</source>
-        <translation type="unfinished">垂直擴展</translation>
+    <name>ParameterComponent</name>
+		<message>
+        <source>Filament Name</source>
+        <translation>耗材名稱</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="11"/>
-        <source>Outward Expand Horizontal</source>
-        <translation type="unfinished">水平擴展</translation>
+		 <message>
+        <source>Nozzle X Offset</source>
+        <translation>噴嘴偏移 X</translation>
     </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="11"/>
-        <source>Outward Expand Initlayer</source>
-        <translation type="unfinished">起始層擴展</translation>
+	 <message>
+        <source>Nozzle Y Offset</source>
+        <translation>噴嘴偏移 Y</translation>
+    </message>
+	 <message>
+        <source>Extruder Print Cooling Fan</source>
+        <translation>冷卻風扇數量</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="11"/>
@@ -8679,6 +13482,18 @@
         <source>The inner diameter of the nozzle. Change this setting when using a non-standard nozzle size.</source>
         <translation type="unfinished">噴嘴內徑，在使用非標準噴嘴尺寸時需更改此設置。</translation>
     </message>
+	<message>
+        <source>The x-coordinate of the offset of the nozzle.</source>
+        <translation type="unfinished">噴嘴x坐標偏移.</translation>
+    </message>
+	<message>
+        <source>The y-coordinate of the offset of the nozzle.</source>
+        <translation type="unfinished">噴嘴y坐標偏移.</translation>
+    </message>
+		<message>
+        <source>The number of the print cooling fan associated with this extruder. Only change this from the default value of 0 when you have a different print cooling fan for each extruder.</source>
+        <translation type="unfinished">打印冷卻風扇的數量與該擠出機有關。僅在每個擠出機都對應不同的打印冷卻風扇時，對默認值 0 進行更改。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Offset with Extruder</source>
@@ -8742,7 +13557,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Maximum Feedrate</source>
-        <translation type="unfinished">最大進料速率</translation>
+        <translation type="unfinished">E 最大進料速率</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -8762,7 +13577,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Maximum Acceleration Y</source>
-        <translation type="unfinished">軸最大加速度</translation>
+        <translation type="unfinished">Y 軸最大加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -8782,7 +13597,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Maximum Filament Acceleration</source>
-        <translation type="unfinished">擠出電機最大加速度</translation>
+        <translation type="unfinished">E 擠出電機最大加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -8822,7 +13637,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Default Filament Jerk</source>
-        <translation type="unfinished">默認擠出電機 Jerk</translation>
+        <translation type="unfinished">默認擠出電機速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -9012,7 +13827,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt/Brim Line Width</source>
-        <translation type="unfinished">走線寬度（Skirt / Brim）</translation>
+        <translation type="unfinished">走線寬度（裙擺 / 邊緣）</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -9076,8 +13891,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Multiplier of the line width on the first layer. Increasing this could improve bed adhesion.</source>
-        <translation type="unfinished">第一層走線寬度乘數。 增大此乘數可改善熱床粘著。</translation>
+        <source>Arc Configure Enable</source>
+        <translation type="unfinished">圓弧擬合</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Arc Tolerance</source>
+        <translation type="unfinished">擬合公差</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The line width on the first layer. Increasing this could improve bed adhesion.</source>
+        <translation type="unfinished">第一層走線寬度。 增大寬度可改善熱床粘著。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -9131,18 +13956,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Hole Wall Line Count</source>
-        <translation type="unfinished">孔洞壁數量</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>The number of Hole walls.</source>
-        <translation type="unfinished">孔洞壁的數量</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The number of walls. When calculated by the wall thickness, this value is rounded to a whole number.</source>
         <translation type="unfinished">壁數量。 在按壁厚計算時，該值舍入為整數。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Only One Wall for Roofing</source>
+        <translation type="unfinished">頂部表面單層牆</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Only a single wall is used for the top surface, so that more space can be used for the roofing pattern.</source>
+        <translation type="unfinished">頂面只使用單層牆，從而有更多的空間能够使用頂部填充圖案。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -9316,6 +14141,16 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Wall Ordering</source>
+        <translation type="unfinished">壁順序</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Determines the order in which walls are printed. Printing outer walls earlier helps with dimensional accuracy, as faults from inner walls cannot propagate to the outside. However printing them later allows them to stack better when overhangs are printed. When there is an uneven amount of total innner walls, the 'center last line' is always printed last.</source>
+        <translation type="unfinished">確定打印墻壁的順序。先打印外墻有助於尺寸精度，因為內壁的誤差不會傳播到外壁。不過，在打印懸垂時後打印外壁可以實現更好地堆疊。當總內壁數量不均勻時，「中心最後一行」總是最後打印。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Prints walls in order of outside to inside when enabled. This can help improve the dimensional accuracy of X and Y when using a high viscosity plastic like ABS; however it may reduce outer surface print quality, especially on overhangs.</source>
         <translation type="unfinished">啟用時以從外向內的順序打印壁。 當使用高粘度塑料如 ABS 時，這有助於提高 X 和 Y 的尺寸精度；但是，它可能會降低外表面打印質量，特別是在懸垂部分。</translation>
     </message>
@@ -9328,6 +14163,16 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Print an extra wall every other layer. In this way, the filler will get stuck between these extra walls, resulting in stronger print quality.</source>
         <translation type="unfinished">每隔一層打印一個額外的壁。 通過這種方法，填充物會卡在這些額外的壁之間，從而產生更強韌的打印質量。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Unify Walls Print Drection</source>
+        <translation type="unfinished">統一壁列印方向</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>the walls of the outside shape and the holes will be printed in the same direction.</source>
+        <translation type="unfinished">外輪廓壁和孔壁以相同方向列印。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -9483,6 +14328,46 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Initial Layer Horizontal Expansion</source>
         <translation type="unfinished">起始層水平擴展</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Route Planning</source>
+        <translation type="unfinished">路徑規劃</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Planning the print path.</source>
+        <translation type="unfinished">規劃打印路徑</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>layer initial deceleration</source>
+        <translation type="unfinished">層起始位置降速</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The start of each layer path is decelerated.</source>
+        <translation type="unfinished">每層路徑的起始位置降速打印</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>layer deceleration length</source>
+        <translation type="unfinished">層起始位置降速長度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The starting segment of each layer path decelerates the length of the print.</source>
+        <translation type="unfinished">每層路徑的起始位置降速打印的長度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>layer deceleration speed</source>
+        <translation type="unfinished">層起始位置打印速度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The start of each layer path slows down the printing speed.</source>
+        <translation type="unfinished">每層路徑的起始位置降速後的打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10019,6 +14904,16 @@
         <source>Distance of a travel move inserted after every infill line, to make the infill stick to the walls better. This option is similar to infill overlap, but without extrusion and only on one end of the infill line.</source>
         <translation type="unfinished">每條填充走線後插入的空駛距離，讓填充物更好地粘著到壁上。 此選項與填充重疊類似，但沒有擠出，且僅位於填充走線的一端。</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Infill Layers Combination</source>
+        <translation type="unfinished">合併填充層</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Automatically combine several layers of sparse fill to print together, which can shorten the time. The inner and outer walls still maintain the original layer height printing.</source>
+        <translation type="unfinished">自動合併若干層稀疏填充一起列印，可以縮短時間。 內外牆依然保持原始層高列印。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Infill Layer Thickness</source>
@@ -10171,7 +15066,7 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Material</source>
+        <source>Filament</source>
         <translation type="unfinished">材料</translation>
     </message>
     <message>
@@ -10187,7 +15082,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Build Volume Temperature</source>
-        <translation type="unfinished">打印體積溫度</translation>
+        <translation type="unfinished">腔體溫度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10303,6 +15198,46 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Surface energy.</source>
         <translation type="unfinished">表面能。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Scaling Factor Shrinkage Compensation</source>
+        <translation type="unfinished">縮放因子收縮補償</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Horizontal Scaling Factor X Shrinkage Compensation</source>
+        <translation type="unfinished">水平縮放因子X軸收縮補償</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Horizontal Scaling Factor Y Shrinkage Compensation</source>
+        <translation type="unfinished">水平縮放因子Y軸收縮補償</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Vertical Scaling Factor Shrinkage Compensation</source>
+        <translation type="unfinished">垂直縮放因子收縮補償</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>To compensate for the shrinkage of the material as it cools down, the model will be scaled with this factor.</source>
+        <translation type="unfinished">為了補償材料在冷卻時的收縮，將用此因子縮放模型。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>To compensate for the shrinkage of the material as it cools down, the model will be scaled with this factor in the X-direction (horizontally).</source>
+        <translation type="unfinished">為了補償材料在冷卻時的收縮，將用此因子在 X 方向（水平）上縮放模型。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>To compensate for the shrinkage of the material as it cools down, the model will be scaled with this factor in the Y-direction (horizontally).</source>
+        <translation type="unfinished">為了補償材料在冷卻時的收縮，將用此因子在 Y 方向（水平）上縮放模型。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>To compensate for the shrinkage of the material as it cools down, the model will be scaled with this factor in the Z-direction (vertically).</source>
+        <translation type="unfinished">為了補償材料在冷卻時的收縮，將用此因子在 Z 方向（垂直）上縮放模型。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10534,6 +15469,16 @@
         <source>Flow compensation for the first layer: the amount of material extruded on the initial layer is multiplied by this value.</source>
         <translation type="unfinished">第一層的流量補償：起始層擠出的材料量乘以此值。</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Material Flow Ratio</source>
+        <translation type="unfinished">流量比例</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Volume differences may occur as the material is melted and then solidified. This setting changes all of the flow compensations proportionally.</source>
+        <translation type="unfinished">耗材經過融化後凝固可能會產生體積差异。 這個設定會等比例改變所有流量補償。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Enable Retraction</source>
@@ -10541,8 +15486,88 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Retraction Wipe</source>
+        <translation type="unfinished">回抽時擦拭</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Wipe the nozzle when retraction. </source>
+        <translation type="unfinished">回抽时擦拭喷嘴</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Wipe the length of the nozzle when retraction.</source>
+        <translation type="unfinished">回抽时擦拭喷嘴的長度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>before wipe retraction amount percent.</source>
+        <translation type="unfinished">擦拭前的回抽量</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Wipe length</source>
+        <translation type="unfinished">擦拭長度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Before Wipe Retraction Amount Percent</source>
+        <translation type="unfinished">擦拭前的回抽量</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Retraction Z Hop Type</source>
+        <translation type="unfinished">Z擡升方式</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Z Hop Type when retraction </source>
+        <translation type="unfinished">Z擡升方式</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>DirectLift</source>
+        <translation type="unfinished">Z直接擡升</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>SpiralLift</source>
+        <translation type="unfinished">Z螺旋擡升</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>TrapezoidalLeft</source>
+        <translation type="unfinished">Z梯形擡升</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Retract the filament when the nozzle is moving over a non-printed area. </source>
         <translation type="unfinished">當噴嘴移動到非打印區域上方時回抽耗材。 </translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Retraction Type</source>
+        <translation type="unfinished">回抽類型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Default</source>
+        <translation type="unfinished">默認</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Bamboo</source>
+        <translation type="unfinished">二段回抽</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>RAISE3D</source>
+        <translation type="unfinished">三段回抽</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>none</source>
+        <translation type="unfinished">無</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10762,7 +15787,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Top Surface Skin Speed</source>
-        <translation type="unfinished">頂部表面皮膚速度</translation>
+        <translation type="unfinished">頂部皮膚的表面速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10772,12 +15797,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Top/Bottom Speed</source>
-        <translation type="unfinished">速度（頂部 / 底部）</translation>
+        <translation type="unfinished">速度（頂/底 皮膚）</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which top/bottom layers are printed.</source>
-        <translation type="unfinished">打印頂部/底部層的速度。</translation>
+        <translation type="unfinished">打印頂/底 皮膚層的速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10882,12 +15907,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt/Brim Speed</source>
-        <translation type="unfinished">Skirt/Brim 速度</translation>
+        <translation type="unfinished">裙擺/邊緣 速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which the skirt and brim are printed. Normally this is done at the initial layer speed, but sometimes you might want to print the skirt or brim at a different speed.</source>
-        <translation type="unfinished">打印 skirt 和 brim 的速度。 一般情況是以起始層速度打印這些部分，但有時候您可能想要以不同速度來打印 skirt 或 brim。</translation>
+        <translation type="unfinished">打印 裙擺 和 邊緣 的速度。 一般情況是以起始層速度打印這些部分，但有時候您可能想要以不同速度來打印 裙擺 或 邊緣。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -10906,28 +15931,23 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Number of Tower Slower Layers</source>
+        <translation type="unfinished">裝填塔較慢層的數量</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The first few layers are printed slower than the rest of the model, to get better adhesion to the build plate and improve the overall success rate of prints. The speed is gradually increased over these layers.</source>
         <translation type="unfinished">前幾層的打印速度比模型的其他層慢，以便實現與打印平臺的更好粘著，並改善整體的打印成功率。 該速度在這些層中會逐漸增加。</translation>
     </message>
-    <message>
+	<message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Equalize Filament Flow</source>
-        <translation type="unfinished">均衡耗材流量</translation>
+        <source>Min Path Length at Travel Speed</source>
+        <translation type="unfinished">最小空走速度路径长度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Print thinner than normal lines faster so that the amount of material extruded per second remains the same. Thin pieces in your model might require lines printed with smaller line width than provided in the settings. This setting controls the speed changes for such lines.</source>
-        <translation type="unfinished">以較快的速度打印比正常走線更細的走線，使每秒擠出的材料量保持相同。 模型中較薄的部分可能需要以低於設置中所提供寬度的走線寬度來打印走線。 該設置控製這些走線的速度變化。</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Maximum Speed for Flow Equalization</source>
-        <translation type="unfinished">均流最大速度</translation>
-    </message>
-    <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Maximum print speed when adjusting the print speed in order to equalize flow.</source>
-        <translation type="unfinished">調整打印速度以便均衡流量時的最大打印速度。</translation>
+        <source>When the length of the travel path between two print paths is less than this value, the travel path will run at the Print Speed.</source>
+        <translation type="unfinished">两段打印路径间的空走路径长度小于此值时，该空走路径将以打印速度行驶。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11086,6 +16106,16 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Acceleration Breaking Enable</source>
+        <translation type="unfinished">启动制动加速度控制</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>break Acceleration</source>
+        <translation type="unfinished">制动加速度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which travel moves are made.</source>
         <translation type="unfinished">進行空駛的加速度。</translation>
     </message>
@@ -11122,12 +16152,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt/Brim Acceleration</source>
-        <translation type="unfinished">Skirt/Brim 加速度</translation>
+        <translation type="unfinished">裙擺/邊緣 加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which the skirt and brim are printed. Normally this is done with the initial layer acceleration, but sometimes you might want to print the skirt or brim at a different acceleration.</source>
-        <translation type="unfinished">打印 skirt 和 brim 的加速度。 一般情況是以起始層加速度打印這些部分，但有時候您可能想要以不同加速度來打印 skirt 或 brim。</translation>
+        <translation type="unfinished">打印 裙擺 和 邊緣 的加速度。 一般情況是以起始層加速度打印這些部分，但有時候您可能想要以不同加速度來打印 裙擺 或 邊緣。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11307,12 +16337,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt/Brim Jerk</source>
-        <translation type="unfinished">Skirt/Brim 抖動速度</translation>
+        <translation type="unfinished">裙擺/邊緣 抖動速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The maximum instantaneous velocity change with which the skirt and brim are printed.</source>
-        <translation type="unfinished">打印 skirt 和 brim 時的最大瞬時速度變化。</translation>
+        <translation type="unfinished">打印 裙擺  和 邊緣 時的最大瞬時速度變化。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11357,12 +16387,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Max Comb Distance With No Retract</source>
-        <translation type="unfinished">最大梳距，無收縮</translation>
+        <translation type="unfinished">最大梳距，無回抽</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>When non-zero, combing travel moves that are longer than this distance will use retraction.</source>
-        <translation type="unfinished">當非零的時候，梳理比這段距離更長的旅行移動將會使用撤回。</translation>
+        <translation type="unfinished">當非零的時候，梳理比這段距離更長的旅行移動將會使用回抽。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11397,12 +16427,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Avoid Supports When Traveling</source>
-        <translation type="unfinished">避免移動時支撐</translation>
+        <translation type="unfinished">移動時避開支撐</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The nozzle avoids already printed supports when traveling. This option is only available when combing is enabled.</source>
-        <translation type="unfinished">在空走時，噴嘴避免了已打印的支撐。只有在啟用了梳理時才可以使用此選項。</translation>
+        <translation type="unfinished">在空走時，噴嘴避開了已打印的支撐。只有在啟用了梳理時才可以使用此選項。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11534,6 +16564,36 @@
         <source>Regular/Maximum Fan Speed Threshold</source>
         <translation type="unfinished">正常/最大風扇速度閾值</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Force Cooling for Onerhangs and Bridges</source>
+        <translation type="unfinished">懸垂/橋樑強制冷卻</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Automatically optimize fan speed for overhangs/bridges for better cooling.</source>
+        <translation type="unfinished">自動優化懸垂和橋樑的風扇速度以達到更好的列印效果。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Force Cooling Overhang Threshold</source>
+        <translation type="unfinished">強制冷卻懸垂閾值</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>When the degree of overhang exceeds this value, the cooling fan is forced to a certain speed. 0% means that cooling is forced on all outer walls regardless of the degree of overhang.</source>
+        <translation type="unfinished">當列印件的懸空程度超過此值時，強制冷卻風扇達到特定速度。 0%意味著無論懸垂程度如何都要對所有外壁強制冷卻。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Fan Speed for overhangs/bridges</source>
+        <translation type="unfinished">懸垂/橋樑風扇速度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>When printing overhangs that exceed the threshold, the fan speed will increase to this value.</source>
+        <translation type="unfinished">列印超過閾值的懸垂時，風扇速度將提升至此值。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The layer time which sets the threshold between regular fan speed and maximum fan speed. Layers that print slower than this time use regular fan speed. For faster layers the fan speed gradually increases towards the maximum fan speed.</source>
@@ -11574,7 +16634,12 @@
         <source>Minimum Layer Time</source>
         <translation type="unfinished">最短單層冷卻時間</translation>
     </message>
-		<message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Infill Speed Slowdown First</source>
+        <translation type="unfinished">優先降低填充速度</translation>
+    </message>
+	<message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Minimum Layer Time 1</source>
         <translation type="unfinished">最短單層冷卻時間 1</translation>
@@ -11601,8 +16666,8 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Minimum Speed</source>
-        <translation type="unfinished">最小風扇速度</translation>
+        <source>Min-Speed</source>
+        <translation type="unfinished">最小打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11613,6 +16678,106 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Lift Head</source>
         <translation type="unfinished">打印頭提升</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Enable Cds Cooling Fan</source>
+        <translation type="unfinished">開啟輔助風扇</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Enables the cds cooling fans while printing.</source>
+        <translation type="unfinished">列印過程中開啟輔助風扇。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Enable Chamber Cooling Fan</source>
+        <translation type="unfinished">開啟機箱風扇</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Enables the chamber cooling fans while printing.</source>
+        <translation type="unfinished">列印過程中開啟機箱風扇。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Cds Fan Speed</source>
+        <translation type="unfinished">輔助風扇速度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The speed at which the cds cooling fans spin.</source>
+        <translation type="unfinished">輔助風扇速度</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Special Cds Fan Speed</source>
+        <translation type="unfinished">特殊區域輔助風扇速度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The speed at which the cds cooling fans spin on special zones(bridge,overhand,etc.).</source>
+        <translation type="unfinished">特殊區域輔助風扇速度（橋、懸垂等）。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Regular Cds Fan Speed at Height</source>
+        <translation type="unfinished">輔助風扇開啟高度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>The height at which the Cds fans spin on regular fan speed. </source>
+        <translation type="unfinished">輔助風扇以正常速度旋轉的高度。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Regular Fan Speed Up Time</source>
+        <translation type="unfinished">風扇響應時間</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Advance the fan start command by the specified time to compensate for the fan speed up time. </source>
+        <translation type="unfinished">把風扇啟動指令提前指定時間以補償風扇啟動時間</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Regular Cds Fan Speed Up Time</source>
+        <translation type="unfinished">輔助風扇響應時間</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Advance the fan start command by the specified time to compensate for the cds fan speed up time. </source>
+        <translation type="unfinished">把風扇啟動指令提前指定時間以補償輔助風扇啟動時間。</translation>
+    </message>
+		<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Chamber Fan Exist</source>
+        <translation type="unfinished">是否有腔體風扇</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Whether Chamber Fan Exist in the machine.</source>
+        <translation type="unfinished">機器是否存在腔體風扇。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Cds Fan Exist</source>
+        <translation type="unfinished">是否有輔助風扇</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Whether Cds Fan Exist in the machine.</source>
+        <translation type="unfinished">機器是否存在輔助風扇。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>LED Light Exist</source>
+        <translation type="unfinished">是否有LED燈</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Whether LED Light Exist in the machine.</source>
+        <translation type="unfinished">機器是否存在LED燈。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -11807,32 +16972,32 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Enable Support Brim</source>
-        <translation type="unfinished">啟用支撐 Brim</translation>
+        <translation type="unfinished">啟用支撐 邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Generate a brim within the support infill regions of the first layer. This brim is printed underneath the support, not around it. Enabling this setting increases the adhesion of support to the build plate.</source>
-        <translation type="unfinished">在第一層的支撐填充區域內生成一個 Brim。此 Brim 在支撐下方打印，而非周圍。啟用此設置會增強支撐與打印平臺的附著。</translation>
+        <translation type="unfinished">在第一層的支撐填充區域內生成一個 邊緣。此 邊緣 在支撐下方打印，而非周圍。啟用此設置會增強支撐與打印平臺的附著。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Support Brim Width</source>
-        <translation type="unfinished">支撐 Brim 寬度</translation>
+        <translation type="unfinished">支撐 邊緣 寬度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The width of the brim to print underneath the support. A larger brim enhances adhesion to the build plate, at the cost of some extra material.</source>
-        <translation type="unfinished">在支撐下方要打印的 Brim 的寬度。較大的 Brim 可增強與打印平臺的附著，但也會增加一些額外材料成本。</translation>
+        <translation type="unfinished">在支撐下方要打印的 邊緣 的寬度。較大的 邊緣 可增強與打印平臺的附著，但也會增加一些額外材料成本。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Support Brim Line Count</source>
-        <translation type="unfinished">支撐 Brim 走線次數</translation>
+        <translation type="unfinished">支撐 邊緣 走線次數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The number of lines used for the support brim. More brim lines enhance adhesion to the build plate, at the cost of some extra material.</source>
-        <translation type="unfinished">用於支撐 Brim 的走線數量。更多 Brim 走線可增強與打印平臺的附著，但也會增加一些額外材料成本。</translation>
+        <translation type="unfinished">用於支撐 邊緣 的走線數量。更多 邊緣 走線可增強與打印平臺的附著，但也會增加一些額外材料成本。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12302,7 +17467,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Whether to prime the filament with a blob before printing. Turning this setting on will ensure that the extruder will have material ready at the nozzle before printing. Printing Brim or Skirt can act like priming too, in which case turning this setting off saves some time.</source>
-        <translation type="unfinished">打印前是否裝填有光點的耗材。 開啟此設置將確保打印前擠出機的噴嘴處已準備好材料。 打印 Brim 或 Skirt 也可作為裝填用途，這種情況下關閉此設置可以節省時間。</translation>
+        <translation type="unfinished">打印前是否裝填有光點的耗材。 開啟此設置將確保打印前擠出機的噴嘴處已準備好材料。 打印 邊緣 或 裙擺 也可作為裝填用途，這種情況下關閉此設置可以節省時間。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12332,22 +17497,22 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Different options that help to improve both priming your extrusion and adhesion to the build plate. Brim adds a single layer flat area around the base of your model to prevent warping. Raft adds a thick grid with a roof below the model. Skirt is a line printed around the model, but not connected to the model.</source>
-        <translation type="unfinished">幫助改善擠出裝填以及與打印平臺附著的不同選項。 Brim 會在模型基座周圍添加單層平面區域，以防止卷翹。 Raft 會在模型下添加一個有頂板的厚網格。 Skirt 是在模型四周打印的一條線，但並不與模型連接。</translation>
+        <translation type="unfinished">幫助改善擠出裝填以及與打印平臺附著的不同選項。 邊緣 會在模型基座周圍添加單層平面區域，以防止卷翹。 底座 會在模型下添加一個有頂板的厚網格。 裙擺 是在模型四周打印的一條線，但並不與模型連接。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt</source>
-        <translation type="unfinished">Skirt</translation>
+        <translation type="unfinished">裙擺</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Brim</source>
-        <translation type="unfinished">Brim</translation>
+        <translation type="unfinished">邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft</source>
-        <translation type="unfinished">Raft</translation>
+        <translation type="unfinished">底座</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12357,82 +17522,82 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The extruder train to use for printing the skirt/brim/raft. This is used in multi-extrusion.</source>
-        <translation type="unfinished">用於打印 skirt/brim/raft 的擠出機組。 用於多重擠出。</translation>
+        <translation type="unfinished">用於打印 裙擺/邊緣/底座 的擠出機組。 用於多重擠出。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt Line Count</source>
-        <translation type="unfinished">Skirt 走線計數</translation>
+        <translation type="unfinished">裙擺 走線計數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Multiple skirt lines help to prime your extrusion better for small models. Setting this to 0 will disable the skirt.</source>
-        <translation type="unfinished">多個 Skirt 走線幫助為小型模型更好地裝填您的擠出部分。 將其設為 0 將禁用 skirt。</translation>
+        <translation type="unfinished">多個 裙擺 走線幫助為小型模型更好地裝填您的擠出部分。 將其設為 0 將禁用 裙擺。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt Distance</source>
-        <translation type="unfinished">Skirt 距離</translation>
+        <translation type="unfinished">裙擺 距離</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Skirt/Brim Minimum Length</source>
-        <translation type="unfinished">Skirt/Brim 最小長度</translation>
+        <translation type="unfinished">裙擺/邊緣 最小長度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The minimum length of the skirt or brim. If this length is not reached by all skirt or brim lines together, more skirt or brim lines will be added until the minimum length is reached. Note: If the line count is set to 0 this is ignored.</source>
-        <translation type="unfinished">skirt 或 brim 的最小長度。 如果所有 skirt 或 brim 走線之和都沒有達到此長度，則將添加更多 skirt 或 brim 走線直至達到最小長度。 註意： 如果走線計數設為 0，則將忽略此選項。</translation>
+        <translation type="unfinished">裙擺 或 邊緣 的最小長度。 如果所有 裙擺 或 邊緣 走線之和都沒有達到此長度，則將添加更多 裙擺 或 邊緣 走線直至達到最小長度。 註意： 如果走線計數設為 0，則將忽略此選項。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Brim Width</source>
-        <translation type="unfinished">Brim 寬度</translation>
+        <translation type="unfinished">邊緣 寬度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The distance from the model to the outermost brim line. A larger brim enhances adhesion to the build plate, but also reduces the effective print area.</source>
-        <translation type="unfinished">模型到最外側 brim 線的距離。 較大的 brim 可增強與打印平臺的附著，但也會減少有效打印區域。</translation>
+        <translation type="unfinished">模型到最外側 邊緣 線的距離。 較大的 邊緣 可增強與打印平臺的附著，但也會減少有效打印區域。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Brim Line Count</source>
-        <translation type="unfinished">Brim 走線計數</translation>
+        <translation type="unfinished">邊緣 走線計數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The number of lines used for a brim. More brim lines enhance adhesion to the build plate, but also reduces the effective print area.</source>
-        <translation type="unfinished">brim 所用走線數量。 更多 brim 走線可增強與打印平臺的附著，但也會減少有效打印區域。</translation>
+        <translation type="unfinished">邊緣 所用走線數量。 更多 邊緣 走線可增強與打印平臺的附著，但也會減少有效打印區域。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Brim Replaces Support</source>
-        <translation type="unfinished">Brim 替換支撐</translation>
+        <translation type="unfinished">邊緣 替換支撐</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Enforce brim to be printed around the model even if that space would otherwise be occupied by support. This replaces some regions of the first layer of support by brim regions.</source>
-        <translation type="unfinished">強製圍繞模型打印 Brim，即使該空間本該由支撐占據。此操作會將第一層的某些支撐區域替換為 Brim 區域。</translation>
+        <translation type="unfinished">強製圍繞模型打印 邊緣，即使該空間本該由支撐占據。此操作會將第一層的某些支撐區域替換為 邊緣 區域。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Brim Only on Outside</source>
-        <translation type="unfinished">僅在外部打印 Brim</translation>
+        <translation type="unfinished">僅在外部打印 邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Only print the brim on the outside of the model. This reduces the amount of brim you need to remove afterwards, while it doesn&apos;t reduce the bed adhesion unduly.</source>
-        <translation type="unfinished">僅在模型外部打印 brim。 這會減少您之後需要移除的 brim 量，而不會過度影響熱床附著。</translation>
+        <translation type="unfinished">僅在模型外部打印 邊緣。 這會減少您之後需要移除的 邊緣 量，而不會過度影響熱床附著。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Extra Margin</source>
-        <translation type="unfinished">Raft 留白</translation>
+        <translation type="unfinished">底座 留白</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>If the raft is enabled, this is the extra raft area around the model which is also given a raft. Increasing this margin will create a stronger raft while using more material and leaving less area for your print.</source>
-        <translation type="unfinished">如果啟用了 raft，則這是指也被提供了 raft 的模型周圍的額外 raft 區域。 增加此留白將創建強度更大的 raft，但會使用更多材料，為打印品留下的空間更少。</translation>
+        <translation type="unfinished">如果啟用了 底座，則這是指也被提供了 底座 的模型周圍的額外 底座 區域。 增加此留白將創建強度更大的 底座，但會使用更多材料，為打印品留下的空間更少。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12442,17 +17607,17 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>This setting controls how much inner corners in the raft outline are rounded. Inward corners are rounded to a semi circle with a radius equal to the value given here. This setting also removes holes in the raft outline which are smaller than such a circle.</source>
-        <translation type="unfinished">該設置控製 Raft 輪廓中的內角呈圓形的程度。內向角被設置為半圓形，半徑等於此處的值。此設置還會移除 raft 輪廓中小於此半圓形的孔。</translation>
+        <translation type="unfinished">該設置控製 底座 輪廓中的內角呈圓形的程度。內向角被設置為半圓形，半徑等於此處的值。此設置還會移除 底座 輪廓中小於此半圓形的孔。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Air Gap</source>
-        <translation type="unfinished">Raft 空隙</translation>
+        <translation type="unfinished">底座 空隙</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The gap between the final raft layer and the first layer of the model. Only the first layer is raised by this amount to lower the bonding between the raft layer and the model. Makes it easier to peel off the raft.</source>
-        <translation type="unfinished">模型最後的 raft 層與第一層之間的間隙。 只有第一層被提高了這個量，以便降低 raft 層和模型之間的附著。 讓 raft 更容易剝離。</translation>
+        <translation type="unfinished">模型最後的 底座 層與第一層之間的間隙。 只有第一層被提高了這個量，以便降低 底座 層和模型之間的附著。 讓 底座 更容易剝離。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12472,147 +17637,147 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The number of top layers on top of the 2nd raft layer. These are fully filled layers that the model sits on. 2 layers result in a smoother top surface than 1.</source>
-        <translation type="unfinished">第 2 個 raft 層上方的頂層數量。 這些是模型所在的完全填充層。 第二層會產生比第一層更平滑的頂部表面。</translation>
+        <translation type="unfinished">第 2 個 底座 層上方的頂層數量。 這些是模型所在的完全填充層。 第二層會產生比第一層更平滑的頂部表面。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Layer Thickness</source>
-        <translation type="unfinished">Raft 頂層厚度</translation>
+        <translation type="unfinished">底座 頂層厚度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Layer thickness of the top raft layers.</source>
-        <translation type="unfinished">頂部 Raft 層的層厚度。</translation>
+        <translation type="unfinished">頂部 底座 層的層厚度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Line Width</source>
-        <translation type="unfinished">Raft 頂線寬度</translation>
+        <translation type="unfinished">底座 頂線寬度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Width of the lines in the top surface of the raft. These can be thin lines so that the top of the raft becomes smooth.</source>
-        <translation type="unfinished">Raft 頂部表面的走線寬度。 這些走線可以是細線，以便實現平滑的 Raft 頂部。</translation>
+        <translation type="unfinished">底座 頂部表面的走線寬度。 這些走線可以是細線，以便實現平滑的 底座 頂部。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Spacing</source>
-        <translation type="unfinished">Raft 頂部間距</translation>
+        <translation type="unfinished">底座 頂部間距</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The distance between the raft lines for the top raft layers. The spacing should be equal to the line width, so that the surface is solid.</source>
-        <translation type="unfinished">頂部 Raft 層的 Raft 走線之間的距離。 間距應等於走線寬度，以便打造堅固表面。</translation>
+        <translation type="unfinished">頂部 底座 層的 底座 走線之間的距離。 間距應等於走線寬度，以便打造堅固表面。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Thickness</source>
-        <translation type="unfinished">Raft 中間厚度</translation>
+        <translation type="unfinished">底座 中間厚度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Layer thickness of the middle raft layer.</source>
-        <translation type="unfinished">中間 Raft 層的層厚度。</translation>
+        <translation type="unfinished">中間 底座 層的層厚度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Line Width</source>
-        <translation type="unfinished">Raft 中間線寬度</translation>
+        <translation type="unfinished">底座 中間線寬度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Width of the lines in the middle raft layer. Making the second layer extrude more causes the lines to stick to the build plate.</source>
-        <translation type="unfinished">中間 Raft 層的走線寬度。 讓第二層擠出更多會導致走線粘著在打印平臺上。</translation>
+        <translation type="unfinished">中間 底座 層的走線寬度。 讓第二層擠出更多會導致走線粘著在打印平臺上。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Spacing</source>
-        <translation type="unfinished">Raft 中間間距</translation>
+        <translation type="unfinished">底座 中間間距</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The distance between the raft lines for the middle raft layer. The spacing of the middle should be quite wide, while being dense enough to support the top raft layers.</source>
-        <translation type="unfinished">中間 Raft 層的 Raft 走線之間的距離。 中間的間距應足夠寬，同時也要足夠密集，以便支撐頂部 Raft 層。</translation>
+        <translation type="unfinished">中間 底座 層的 底座 走線之間的距離。 中間的間距應足夠寬，同時也要足夠密集，以便支撐頂部 底座 層。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Thickness</source>
-        <translation type="unfinished">Raft 基礎厚度</translation>
+        <translation type="unfinished">底座 基礎厚度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Layer thickness of the base raft layer. This should be a thick layer which sticks firmly to the printer build plate.</source>
-        <translation type="unfinished">基礎 Raft 層的層厚度。 該層應為與打印機打印平臺牢固粘著的厚層。</translation>
+        <translation type="unfinished">基礎 底座 層的層厚度。 該層應為與打印機打印平臺牢固粘著的厚層。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Line Width</source>
-        <translation type="unfinished">Raft 基礎走線寬度</translation>
+        <translation type="unfinished">底座 基礎走線寬度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Width of the lines in the base raft layer. These should be thick lines to assist in build plate adhesion.</source>
-        <translation type="unfinished">基礎 Raft 層的走線寬度。 這些走線應該是粗線，以便協助打印平臺附著。</translation>
+        <translation type="unfinished">基礎 底座 層的走線寬度。 這些走線應該是粗線，以便協助打印平臺附著。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Line Spacing</source>
-        <translation type="unfinished">Raft 基礎走線間距</translation>
+        <translation type="unfinished">底座 基礎走線間距</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The distance between the raft lines for the base raft layer. Wide spacing makes for easy removal of the raft from the build plate.</source>
-        <translation type="unfinished">基礎 Raft 層的 Raft 走線之間的距離。 寬間距方便將 Raft 從打印平臺移除。</translation>
+        <translation type="unfinished">基礎 底座 層的 底座 走線之間的距離。 寬間距方便將 底座 從打印平臺移除。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Print Speed</source>
-        <translation type="unfinished">Raft 打印速度</translation>
+        <translation type="unfinished">底座 打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which the raft is printed.</source>
-        <translation type="unfinished">打印 Raft 的速度。</translation>
+        <translation type="unfinished">打印 底座 的速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Print Speed</source>
-        <translation type="unfinished">Raft 頂部打印速度</translation>
+        <translation type="unfinished">底座 頂部打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which the top raft layers are printed. These should be printed a bit slower, so that the nozzle can slowly smooth out adjacent surface lines.</source>
-        <translation type="unfinished">打印頂部 Raft 層的速度。 這些層應以較慢的速度打印，以便噴嘴緩慢地整平臨近的表面走線。</translation>
+        <translation type="unfinished">打印頂部 底座 層的速度。 這些層應以較慢的速度打印，以便噴嘴緩慢地整平臨近的表面走線。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Print Speed</source>
-        <translation type="unfinished">Raft 中間打印速度</translation>
+        <translation type="unfinished">底座 中間打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which the middle raft layer is printed. This should be printed quite slowly, as the volume of material coming out of the nozzle is quite high.</source>
-        <translation type="unfinished">打印中間 Raft 層的速度。 該層應以很慢的速度打印，因為噴嘴所出的材料量非常高。</translation>
+        <translation type="unfinished">打印中間 底座 層的速度。 該層應以很慢的速度打印，因為噴嘴所出的材料量非常高。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Print Speed</source>
-        <translation type="unfinished">Raft 基礎打印速度</translation>
+        <translation type="unfinished">底座 基礎打印速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The speed at which the base raft layer is printed. This should be printed quite slowly, as the volume of material coming out of the nozzle is quite high.</source>
-        <translation type="unfinished">打印基礎 Raft 層的速度。 該層應以很慢的速度打印，因為噴嘴所出的材料量非常高。</translation>
+        <translation type="unfinished">打印基礎 底座 層的速度。 該層應以很慢的速度打印，因為噴嘴所出的材料量非常高。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Print Acceleration</source>
-        <translation type="unfinished">Raft 打印加速度</translation>
+        <translation type="unfinished">底座 打印加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which the raft is printed.</source>
-        <translation type="unfinished">打印 Raft 的加速度。</translation>
+        <translation type="unfinished">打印 底座 的加速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12622,112 +17787,112 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which the top raft layers are printed.</source>
-        <translation type="unfinished">打印頂部 Raft 層的加速度。</translation>
+        <translation type="unfinished">打印頂部 底座 層的加速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Print Acceleration</source>
-        <translation type="unfinished">Raft 中間打印加速度</translation>
+        <translation type="unfinished">底座 中間打印加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which the middle raft layer is printed.</source>
-        <translation type="unfinished">打印中間 Raft 層的加速度。</translation>
+        <translation type="unfinished">打印中間 底座 層的加速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Print Acceleration</source>
-        <translation type="unfinished">Raft 基礎打印加速度</translation>
+        <translation type="unfinished">底座 基礎打印加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The acceleration with which the base raft layer is printed.</source>
-        <translation type="unfinished">打印基礎 Raft 層的加速度。</translation>
+        <translation type="unfinished">打印基礎 底座 層的加速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Print Jerk</source>
-        <translation type="unfinished">Raft 打印抖動速度</translation>
+        <translation type="unfinished">底座 打印抖動速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The jerk with which the raft is printed.</source>
-        <translation type="unfinished">打印 Raft 的抖動速度。</translation>
+        <translation type="unfinished">打印 底座 的抖動速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Print Jerk</source>
-        <translation type="unfinished">Raft 頂部打印抖動速度</translation>
+        <translation type="unfinished">底座 頂部打印抖動速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The jerk with which the top raft layers are printed.</source>
-        <translation type="unfinished">打印頂部 Raft 層的抖動速度。</translation>
+        <translation type="unfinished">打印頂部 底座 層的抖動速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Print Jerk</source>
-        <translation type="unfinished">Raft 中間打印抖動速度</translation>
+        <translation type="unfinished">底座 中間打印抖動速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The jerk with which the middle raft layer is printed.</source>
-        <translation type="unfinished">打印中間 Raft 層的抖動速度。</translation>
+        <translation type="unfinished">打印中間 底座 層的抖動速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Print Jerk</source>
-        <translation type="unfinished">Raft 基礎打印抖動速度</translation>
+        <translation type="unfinished">底座 基礎打印抖動速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The jerk with which the base raft layer is printed.</source>
-        <translation type="unfinished">打印基礎 Raft 層的抖動速度。</translation>
+        <translation type="unfinished">打印基礎 底座 層的抖動速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Fan Speed</source>
-        <translation type="unfinished">Raft 風扇速度</translation>
+        <translation type="unfinished">底座 風扇速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The fan speed for the raft.</source>
-        <translation type="unfinished">Raft 的風扇速度。</translation>
+        <translation type="unfinished">底座 的風扇速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Top Fan Speed</source>
-        <translation type="unfinished">Raft 頂部風扇速度</translation>
+        <translation type="unfinished">底座 頂部風扇速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The fan speed for the top raft layers.</source>
-        <translation type="unfinished">頂部 Raft 層的風扇速度。</translation>
+        <translation type="unfinished">頂部 底座 層的風扇速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Middle Fan Speed</source>
-        <translation type="unfinished">Raft 中間風扇速度</translation>
+        <translation type="unfinished">底座 中間風扇速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The fan speed for the middle raft layer.</source>
-        <translation type="unfinished">中間 Raft 層的風扇速度。</translation>
+        <translation type="unfinished">中間 底座 層的風扇速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Raft Base Fan Speed</source>
-        <translation type="unfinished">Raft 基礎風扇速度</translation>
+        <translation type="unfinished">底座 基礎風扇速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The fan speed for the base raft layer.</source>
-        <translation type="unfinished">基礎 Raft 層的風扇速度。</translation>
+        <translation type="unfinished">基礎 底座 層的風扇速度。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>SimpleRaft Init Layers</source>
-        <translation type="unfinished">Raft基礎層數</translation>
+        <translation type="unfinished">底座基礎層數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12737,7 +17902,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>SimpleRaft Init Layers  FlowRate</source>
-        <translation type="unfinished">Raft基礎層流量</translation>
+        <translation type="unfinished">底座基礎層流量</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12747,7 +17912,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>SimpleRaft Top Layers</source>
-        <translation type="unfinished">Raft頂層數</translation>
+        <translation type="unfinished">底座頂層數</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12773,6 +17938,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Enable Prime Tower</source>
         <translation type="unfinished">啟用裝填塔</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Prime Tower type</source>
+        <translation type="unfinished">裝填塔類型</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -12832,12 +18002,12 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Prime Tower Brim</source>
-        <translation type="unfinished">裝填塔 Brim</translation>
+        <translation type="unfinished">裝填塔 邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Prime-towers might need the extra adhesion afforded by a brim even if the model doesn&apos;t. Presently can&apos;t be used with the &apos;Raft&apos; adhesion-type.</source>
-        <translation type="unfinished">裝填塔可能需要 Brim 提供額外附著力，無論模型是否需要。目前不可與 &apos;Raft&apos; 附著類型配合使用。</translation>
+        <translation type="unfinished">裝填塔可能需要 邊緣 提供額外附著力，無論模型是否需要。目前不可與 &apos;Raft&apos; 附著類型配合使用。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -13174,6 +18344,16 @@
         <source>How far apart the branches need to be when they touch the model. Making this distance small will cause the tree support to touch the model at more points, causing better overhang but making support harder to remove.</source>
         <translation type="unfinished">在支撐模型時，分支之間需要多大的間距。縮小這一間距會使樹形支撐與模型之間有更多接觸點，帶來更好的懸垂，但會使支撐更難以拆除。</translation>
     </message>
+		<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Tree Support Branch Density</source>
+        <translation type="unfinished">樹形支撐分支密度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Adjusts the density of the support structure used to generate the tips of the branches. A higher value results in better overhangs, but the supports are harder to remove. Use Support Roof for very high values or ensure support density is similarly high at the top.</source>
+        <translation type="unfinished">調整生成的支撐結構接觸點密度。 越大的接觸點密度，帶來更好的懸垂面列印效果，但會使支撐更難以拆除。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Tree Support Branch Diameter</source>
@@ -13232,7 +18412,7 @@
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Top Surface Skin Line Width</source>
-        <translation type="unfinished">頂部表面皮膚線寬</translation>
+        <translation type="unfinished">走線寬度（頂部表面皮膚）</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -13259,6 +18439,16 @@
         <source>A list of integer line directions to use when the top surface skin layers use the lines or zig zag pattern. Elements from the list are used sequentially as the layers progress and when the end of the list is reached, it starts at the beginning again. The list items are separated by commas and the whole list is contained in square brackets. Default is an empty list which means use the traditional default angles (45 and 135 degrees).</source>
         <translation type="unfinished">當頂部表面皮膚層采用線條或鋸齒狀圖案時使用的整數走線方向的列表。 列表中的元素隨層的進度依次使用，當達到列表末尾時，它將從頭開始。 列表項以逗號分隔，整個列表包含在方括號中。 默認是一個空列表，即意味著使用傳統的默認角度（45 和 135 度）。</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Monotonic Top Surface Order</source>
+        <translation type="unfinished">單調頂部表面皮膚順序</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Print top surface lines in an ordering that causes them to always overlap with adjacent lines in a single direction. This takes slightly more time to print, but makes flat surfaces look more consistent.</source>
+        <translation type="unfinished">按照一定的順序列印頂部表面皮膚走線，使它門始終在一個方向上與相鄰的走線重疊。 這需要更長一些的列印時間，但會使平面看起來更一致。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Infill Travel Optimization</source>
@@ -13268,6 +18458,26 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>When enabled, the order in which the infill lines are printed is optimized to reduce the distance travelled. The reduction in travel time achieved largely depends on the model being sliced, infill pattern, density, etc. Note that, for some models that have many small areas of infill, the time to slice the model may be greatly increased.</source>
         <translation type="unfinished">啟用後，可優化打印填充走線的順序，縮短空駛距離。空駛時間的縮短很大程度上取決於被切割的模型、填充圖案、密度等。請註意，對於具有許多小填充區域的一些模型，分割模型的時間可能會大幅增加。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Auto Temperature</source>
+        <translation type="unfinished">自動溫度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Change the temperature for each layer automatically with the average flow speed of that layer.</source>
+        <translation type="unfinished">根據層平均流量自動調節該層列印溫度。。</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Flow Temperature Graph</source>
+        <translation type="unfinished">流量溫度圖</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Data linking material flow (in mm3 per second) to temperature (degrees Celsius).</source>
+        <translation type="unfinished">流量（mm ³/ s）與列印溫度（℃）的對應關係。</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -13408,6 +18618,56 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>The maximum angle of overhangs after the they have been made printable. At a value of 0° all overhangs are replaced by a piece of model connected to the build plate, 90° will not change the model in any way.</source>
         <translation type="unfinished">在懸垂變得可打印後懸垂的最大角度。 當該值為 0° 時，所有懸垂將被與打印平臺連接的模型的一個部分替代，如果為 90° 時，不會以任何方式更改模型。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Enable Gcode offset(Z)</source>
+        <translation type="unfinished">啟動Gcode(Z)偏移</translation>
+    </message>
+    <message>
+        <source>enable the offset of gcode in the z-direction.</source>
+        <translation>啟用Gcode在Z方向上的偏移</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Gcode offset(Z)</source>
+        <translation type="unfinished">Z方向偏移距離</translation>
+    </message>
+	<message>
+        <source>The gcode is globally offset in the z-direction.</source>
+        <translation>gcode在Z方向的整體偏移</translation>
+    </message>
+	<message>
+        <source>Weight limit speed and acceleration Enable</source>
+        <translation>開啟重量限製加速度</translation>
+    </message>
+	<message>
+        <source>Acceleration Limit Volume</source>
+        <translation>重量限製加速度</translation>
+    </message>
+	<message>
+        <source>Height limit speed and acceleration Enable</source>
+        <translation>開啟高度限制速度</translation>
+    </message>
+	<message>
+        <source>Print Speed Limit to Height</source>
+        <translation>高度限制速度</translation>
+    </message>
+    <message>
+        <source>Enable Acceleration to decelerate</source>
+        <translation>啟用減速加速度</translation>
+    </message>
+    <message>
+        <source>Enable acceleration to decelerate.</source>
+        <translation>啟用減速加速度</translation>
+    </message>
+    <message>
+        <source>Acceleration to decelerate</source>
+        <translation>減速加速度</translation>
+    </message>
+    <message>
+        <source>Acceleration to decelerate.</source>
+        <translation>減速加速度</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -13936,6 +19196,16 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Overhang wall Angle when using flexible printing sequence</source>
+        <translation type="unfinished">使用靈活的壁打印順序時的懸垂壁角度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Walls that overhang beyond this Angle will use the printing sequence of inner wall first then outer wall, otherwise use outer wall first then inner wall.</source>
+        <translation type="unfinished">懸垂超過此角度的壁將使用先內壁後外壁的打印順序，否則使用先外壁後內壁。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Overhanging Wall Speed</source>
         <translation type="unfinished">懸垂壁速度</translation>
     </message>
@@ -13955,11 +19225,6 @@
         <translation type="unfinished">是否設定懸垂壁列印速度等級。</translation>
     </message>
 	<message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
-        <source>Overhanging walls of this angle range will be printed at this percentage of their normal print speed.</source>
-        <translation type="unfinished">此懸垂角範圍內的懸垂壁將以其正常列印速度的此百分比列印。</translation>
-    </message>
-    <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Hole Wall Speed</source>
         <translation type="unfinished">孔洞壁速度</translation>
@@ -14364,6 +19629,16 @@
         <source>Feature outlines that are shorter than this length will be printed using Small Feature Speed.</source>
         <translation type="unfinished">短於此長度的特征輪廓將使用較小的特征速度打印。</translation>
     </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Small Feature Fan Speed</source>
+        <translation type="unfinished">小特征風扇速度</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>Feature outlines that are shorter than this length will be printed using Small Feature Speed.</source>
+        <translation type="unfinished">在列印小特征時，風扇速度將降至此百分比。更低的風扇速度可提高回抽效果。</translation>
+    </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>Small Feature Speed</source>
@@ -14483,6 +19758,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
         <source>brim</source>
         <translation type="unfinished">邊緣</translation>
+    </message>
+    <message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
+        <source>autobrim</source>
+        <translation type="unfinished">自動生成邊緣</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="155"/>
@@ -14796,18 +20076,18 @@
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="36"/>
-        <source>Dynamic</source>
-        <translation type="unfinished">高精度打印</translation>
+        <source>High Quality</source>
+        <translation type="unfinished">極致細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="37"/>
-        <source>Balanced</source>
-        <translation type="unfinished">正常打印</translation>
+        <source>Quality</source>
+        <translation type="unfinished">細節</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="38"/>
-        <source>Speedy</source>
-        <translation type="unfinished">快速打印</translation>
+        <source>Normal</source>
+        <translation type="unfinished">正常</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="420"/>
@@ -14923,6 +20203,11 @@
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
         <source>retraction length for travel flow</source>
         <translation type="unfinished">行駛流量的回抽長度</translation>
+    </message>
+	<message>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
+        <source>Exact Flow Enable</source>
+        <translation type="unfinished">啟動精確流量模式</translation>
     </message>
     <message>
         <location filename="../plugins/CrealityUI/CrealityUI/secondqml/EditProfileByFilter.qml" line="568"/>
@@ -15046,138 +20331,626 @@
     </message>
 </context>
 <context>
-    <name>ManagerFdmGroupShow</name>
+    <name>RepairPanelDlg</name>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="87"/>
-        <source>Preview Type:</source>
-        <translation type="unfinished">預覽圖類型：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Damaged Plane</source>
+        <translation>破面</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="87"/>
-        <source>Extrusion 1</source>
-        <translation type="unfinished">擠出機1</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Hole</source>
+        <translation>孔洞</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="95"/>
-        <source>Extrusion 2</source>
-        <translation type="unfinished">擠出機2</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Redundant Shell</source>
+        <translation>多余壳体</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="80"/>
-        <source>Basic Parameters</source>
-        <translation type="unfinished">基本參數</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Normal</source>
+        <translation>法線</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="138"/>
-        <source>Build Plate Shape:</source>
-        <translation type="unfinished">平台形狀：</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Crossed Model Planes</source>
+        <translation>自交</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="41"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="49"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="155"/>
-        <source>cirle</source>
-        <translation type="unfinished">圓</translation>
+        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/RepairPanelDlg.qml" line="12"/>
+        <source>Model Repair</source>
+        <translation>模型修復</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadManage</name>
+    <message>
+        <source>Download Manage</source>
+        <translation>下載管理</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="42"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="50"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="156"/>
-        <source>rectangle</source>
-        <translation type="unfinished">矩形</translation>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="193"/>
-        <source>Machine Height(Max):</source>
-        <translation type="unfinished">平台高度(Max)：</translation>
+        <source>Import</source>
+        <translation>導入</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="222"/>
-        <source>Machine Width(Max):</source>
-        <translation type="unfinished">平台寬度(Max)：</translation>
+        <source>Save</source>
+        <translation>保存</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="260"/>
-        <source>Number of Extruders:</source>
-        <translation type="unfinished">噴嘴個數：</translation>
+        <source>Delete</source>
+        <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="272"/>
-        <source>please input 1-2</source>
-        <translation type="unfinished">請輸入1-2</translation>
+        <source>Save Successed</source>
+        <translation>保存成功</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="299"/>
-        <source>Nozzle Diameter:</source>
-        <translation type="unfinished">噴嘴直徑：</translation>
+        <source>Save Failed</source>
+        <translation>保存失敗</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="327"/>
-        <source>Machine Depth:</source>
-        <translation type="unfinished">機器深度：</translation>
+        <source>save_successed_tip</source>
+        <translation>保存成功，是否立即打開文件夾？</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="362"/>
-        <source>Has Heated Build Plate:</source>
-        <translation type="unfinished">是否有熱床：</translation>
+        <source>save_failed_tip</source>
+        <translation>保存失敗，請重試。</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="387"/>
-        <source>Machine Head &amp; Fan Polygon:</source>
-        <translation type="unfinished">機頭及風扇輪廓大小：</translation>
+        <source>Yes</source>
+        <translation>是</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Generate Preview:</source>
-        <translation type="unfinished">是否生成預覽圖：</translation>
+        <source>No</source>
+        <translation>否</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Is Center Origin:</source>
-        <translation type="unfinished">原點置中：</translation>
+        <source>Ok</source>
+        <translation>好的</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Extruder Type:</source>
-        <translation type="unfinished">擠出機類型：</translation>
+        <source>Downloading</source>
+        <translation>下載中</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Screen Size:</source>
-        <translation type="unfinished">屏幕尺寸：</translation>
+        <source>Finished</source>
+        <translation>已完成</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Distal</source>
-        <translation type="unfinished">遠端</translation>
+        <source>Select All</source>
+        <translation>全選</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="417"/>
-        <source>Proximal</source>
-        <translation type="unfinished">近端</translation>
+        <source>File Size</source>
+        <translation>文件大小</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="155"/>
-        <source>G-code Flavor:</source>
-        <translation type="unfinished">G-code 风格：</translation>
+        <source>Download Speed</source>
+        <translation>下載速度</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="449"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="505"/>
-        <source>Start Code Describe</source>
-        <translation type="unfinished">開始</translation>
+        <source>Download Time</source>
+        <translation>下載時間</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="474"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="522"/>
-        <source>End Code Describe</source>
-        <translation type="unfinished">結束</translation>
+        <source>The Download task list is empty</source>
+        <translation>當前無下載任務</translation>
     </message>
     <message>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="474"/>
-        <location filename="../plugins/CrealityUI/CrealityUI/secondqml/ManagerFdmGroupShow.qml" line="522"/>
-        <source>Machine G-Code</source>
-        <translation type="unfinished">機器G代碼</translation>
+        <source>Go to the model library</source>
+        <translation>前往模型庫</translation>
+    </message>
+	<message>
+        <source>Open folder</source>
+        <translation>打開文件夾</translation>
+    </message>
+</context>
+<context>
+    <name>TipsManageCom</name>
+    <message>
+        <source>The model has not been supported and may fail to print. Do you want to continue adding supports before slicing?</source>
+        <translation>模型未添加支撐,可能會打印失敗,是否要繼續添加支撐後再進行切片?</translation>
+    </message>
+	   <message>
+        <source>Add Support</source>
+        <translation>添加支撐</translation>
+    </message>
+</context>
+<context>
+    <name>CusStyledStatusBar</name>
+    <message>
+        <source>The model has not been supported and may fail to print. Do you want to continue adding supports before slicing?</source>
+        <translation>模型未添加支撐,可能會打印失敗,是否要繼續添加支撐後再進行切片?</translation>
+    </message>
+	   <message>
+        <source>Add Support</source>
+        <translation>添加支撑</translation>
+    </message>
+</context>
+<context>
+    <name>DumpWindow</name>
+    <message>
+        <source>title</source>
+        <translation>錯誤報告</translation>
+    </message>
+    <message>
+        <source>dump_tip_format_0</source>
+        <translation>%1 發生了嚴重錯誤，請將這份錯誤報告發送給我們以便修復問題。</translation>
+    </message>
+    <message>
+        <source>dump_tip_format_1</source>
+        <translation>請點擊“發送報告”按鈕，將錯誤報告自動發佈到我們的服務器。</translation>
+    </message>
+    <message>
+        <source>dump_info_format</source>
+        <translation>%1 版本: %2
+%3 語言: %4
+作業系統: %5
+顯卡: %6
+OpenGL:
+  - OpenGL 版本: %7
+  - OpenGL 供應商: %8
+  - OpenGL 渲染器: %9</translation>
+    </message>
+    <message>
+        <source>accept</source>
+        <translation>發送報告</translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation>關閉</translation>
+    </message>
+</context>
+<context>
+	<name>Cpr_ErrorMsg</name>
+	<message>
+        <source>Connection failure</source>
+        <translation>連接失敗</translation>
+    </message>
+	<message>
+        <source>Empty reply from server</source>
+        <translation>請求超時</translation>
+    </message>
+	<message>
+        <source>Host resolution failure</source>
+        <translation>主機解析失敗</translation>
+    </message>
+	<message>
+        <source>Internal error</source>
+        <translation>內部錯誤</translation>
+    </message>
+	<message>
+        <source>Invalid url format</source>
+        <translation>無效的url格式</translation>
+    </message>
+	<message>
+        <source>Network receive error</source>
+        <translation>網絡接收錯誤</translation>
+    </message>
+	<message>
+        <source>Network send failure</source>
+        <translation>網絡發送失敗</translation>
+    </message>
+	<message>
+        <source>Operation timeout</source>
+        <translation>操作超時</translation>
+    </message>
+	<message>
+        <source>Proxy resolution failure</source>
+        <translation>代理解析失敗</translation>
+    </message>
+	<message>
+        <source>SSL connect error</source>
+        <translation>SSL連接錯誤</translation>
+    </message>
+	<message>
+        <source>SSL local certificate error</source>
+        <translation>SSL本地證書錯誤</translation>
+    </message>
+	<message>
+        <source>SSL remote certificate error</source>
+        <translation>SSL遠程證書錯誤</translation>
+    </message>
+	<message>
+        <source>SSL CA certificate error</source>
+        <translation>SSL CA證書錯誤</translation>
+    </message>
+	<message>
+        <source>Generic SSL error</source>
+        <translation>SSL錯誤</translation>
+    </message>
+	<message>
+        <source>Unsupported protocol</source>
+        <translation>不受支持的協議</translation>
+    </message>
+	<message>
+        <source>Request cancelled</source>
+        <translation>請求取消</translation>
+    </message>
+	<message>
+        <source>Too many redirects</source>
+        <translation>重定向次數過多</translation>
+    </message>
+	<message>
+        <source>Unknown error</source>
+        <translation>未知的錯誤</translation>
+    </message>
+</context>
+<context>
+    <name>Klipper4408_ErrorMsg</name>
+    <message>
+        <source>Abnormal motor drive</source>
+        <translation>电机驱动异常</translation>
+    </message>
+    <message>
+        <source>Internal error</source>
+        <translation>内部错误</translation>
+    </message>
+    <message>
+        <source>Communication abnormality</source>
+        <translation>通讯异常</translation>
+    </message>
+    <message>
+        <source>The temperature of the hot bed is abnormal</source>
+        <translation>热床温度异常</translation>
+    </message>
+    <message>
+        <source>Not heating as expected</source>
+        <translation>未按预期加热</translation>
+    </message>
+    <message>
+        <source>Abnormal extruder</source>
+        <translation>挤出机异常</translation>
+    </message>
+	<message>
+        <source>The coordinates of the print file are abnormal</source>
+        <translation>打印文件坐标异常</translation>
+    </message>
+    <message>
+        <source>AI detection paused</source>
+        <translation>检测到打印质量问题并暂停打印</translation>
+    </message>
+	<message>
+        <source>An unknown print error was detected</source>
+        <translation>檢測到打印發生未知錯誤</translation>
+    </message>
+    <message>
+        <source>Abnormal chamber temperature</source>
+        <translation>温腔温度异常</translation>
+    </message>
+    <message>
+        <source>Abnormal vibration optimization sensor</source>
+        <translation>振纹优化传感器异常</translation>
+    </message>
+    <message>
+        <source>Abnormal fan</source>
+        <translation>风扇异常</translation>
+    </message>
+    <message>
+        <source>Network anomaly</source>
+        <translation>网络异常</translation>
+    </message>
+    <message>
+        <source>AI detects print quality issues</source>
+        <translation>AI检测到打印质量问题</translation>
+    </message>
+    <message>
+        <source>z-Touch exception</source>
+        <translation>z-Touch异常</translation>
+    </message>
+	<message>
+        <source>File exception</source>
+        <translation>文件異常</translation>
+    </message>
+    <message>
+        <source>Unknown exception</source>
+        <translation>未知异常</translation>
+    </message>
+    <message>
+        <source>Axis movement error</source>
+        <translation>軸移動錯誤</translation>
+    </message>
+	<message>
+        <source>Machine in preparation</source>
+        <translation>機器準備中</translation>
+    </message>
+    <message>
+        <source>Continue printing after power failure</source>
+        <translation>检测到上次意外停止的文件</translation>
+    </message>
+    <message>
+        <source>20010</source>
+        <translation>当前耗材用尽，打印已暂停，请更换耗材</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileUiParameterDialog</name>
+    <message>
+        <source>title</source>
+        <translation>選擇自定義設置</translation>
+    </message>
+    <message>
+        <source>select_all</source>
+        <translation>全選</translation>
+    </message>
+    <message>
+        <source>confirm</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>reset</source>
+        <translation>重置</translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ModelSettingAction</name>
+    <message>
+        <source>Object Process Setting</source>
+        <translation>對象參數設置</translation>
+    </message>
+</context>
+<context>
+    <name>ModelSettingTipDialog</name>
+    <message>
+        <source>Edit Process Settings</source>
+        <translation>編輯工藝參數</translation>
+    </message>
+    <message>
+        <source>Switched to object settings mode, where you can edit the parameters of the selected object.</source>
+        <translation>已切換至對象設定模式，可編輯所選對象的參數。</translation>
+    </message>
+    <message>
+        <source>Don't ask me again</source>
+        <translation>不再提示</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>確定</translation>
+    </message>
+</context>
+<context>
+    <name>ParameterExceededMessage</name>
+    <message>
+        <source>The prime tower requires that all objects have the same layer height.</source>
+        <translation>擦料塔要求各個物件擁有相同的層高。</translation>
+    </message>
+    <message>
+        <source>The layer height of each object is different, so the prime tower cannot be enabled.</source>
+        <translation>各個物件的層高存在差異，無法啟用擦料塔。</translation>
+    </message>
+    <message>
+        <source>%1 must not be smaller than support material extrusion width.</source>
+        <translation>%1 不得小於支撐材料擠出寬度。</translation>
+    </message>
+    <message>
+        <source>%1 must not be smaller than support tree tip diameter.</source>
+        <translation>%1 不得小於支撐樹尖端的直徑。</translation>
+    </message>
+    <message>
+        <source>The %1's parameter %2 exceeds the %3 value.</source>
+        <translation>%1 的 %2 超出%3值。</translation>
+    </message>
+    <message>
+        <source>The parameter %1 exceeds the %2 value.</source>
+        <translation>%1 超出%2值。</translation>
+    </message>
+    <message>
+        <source>minimum</source>
+        <translation>最小</translation>
+    </message>
+    <message>
+        <source>maximum</source>
+        <translation>最大</translation>
+    </message>
+    <message>
+        <source>Jump to %1's %2</source>
+        <translation>前往設定 %1 的 %2</translation>
+    </message>
+    <message>
+        <source>Jump to %1</source>
+        <translation>前往設定 %1</translation>
+    </message>
+</context>
+<context>
+    <name>parameter_update</name>
+    <message>
+        <source>A new parameter package update is detected. Would you like to update it?</source>
+        <translation>偵測到有新的參數包可更新，是否更新？</translation>
+    </message>
+    <message>
+        <source>Current version</source>
+        <translation>目前版本</translation>
+    </message>
+    <message>
+        <source>Found new version</source>
+        <translation>發現新版本</translation>
+    </message>
+    <message>
+        <source>Latest version already</source>
+        <translation>已是最新版本</translation>
+    </message>
+    <message>
+        <source>Update Now</source>
+        <translation>立即更新</translation>
+    </message>
+    <message>
+        <source>Updating</source>
+        <translation>更新中</translation>
+    </message>
+    <message>
+        <source>Parameter Package Update</source>
+        <translation>參數包更新</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::StayOnBorderMessage</name>
+    <message>
+        <source>An object is laid over the boundary of the plate or exceeds the height limit. Please solve the problem by moving it totally on or off the plate, and confirming that the height is within the build volume.</source>
+        <translation>對象被放置在列印板的邊界上或超過高度限制。 請通過將其完全移動到列印板內或列印板外，並確認高度在構建空間以內來解决問題。</translation>
+    </message>
+    <message>
+        <source>Jump to </source>
+        <translation>跳到</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ModelNCollisionMessage</name>
+    <message>
+        <source>is too close to others; there may be collisions when printing.</source>
+        <translation>太靠近其他物體，列印時可能會有碰撞。</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::SupportGeneratorMessage</name>
+    <message>
+        <source>Support generators are used but support is not enabled. Please enable support.</source>
+        <translation>使用了支撐添加器但沒有打開支撐。請打開支撐。</translation>
+    </message>
+    <message>
+        <source>Jump to</source>
+        <translation>跳轉到</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::WipeTowerCollisionMessage</name>
+    <message>
+        <source>Prime Tower is too close to others, add collisions may be caused.</source>
+        <translation>擦拭塔離其他對象太近，可能會發生碰撞。</translation>
+    </message>
+</context>
+<context>
+    <name>creative_kernel::ModelTooTallMessage</name>
+    <message>
+        <source>is too tall, and collisions will be caused.</source>
+        <translation>太高，可能會發生碰撞。</translation>
+    </message>
+</context>
+<context>
+    <name>CloudContext</name>
+    <message>
+        <source>restart_appliction_tip</source>
+        <translation>此操作將立即重新啟動應用程式, 是否欲繼續進行?</translation>
+    </message>
+    <message>
+        <source>Copy link successfully!</source>
+        <translation>複製連結成功！</translation>
+    </message>
+</context>
+<context>
+    <name>UserProjectItem</name>
+    <message>
+        <source>me</source>
+        <translation>我</translation>
+    </message>
+    <message>
+        <source>Printer Type</source>
+        <translation>列印機型</translation>
+    </message>
+    <message>
+        <source>Plate Count</source>
+        <translation>盤數量</translation>
+    </message>
+    <message>
+        <source>Print Duraction</source>
+        <translation>列印時長</translation>
+    </message>
+    <message>
+        <source>Material Weight</source>
+        <translation>耗材重量</translation>
+    </message>
+    <message>
+        <source>Import Print Configuration</source>
+        <translation>導入列印配置</translation>
+    </message>
+    <message>
+        <source>Delete Print Configuration</source>
+        <translation>刪除列印配置</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectListDialog</name>
+    <message>
+        <source>Are you sure to delete this configuration?</source>
+        <translation>確認刪除此列印設定檔嗎?</translation>
+    </message>
+</context>
+<context>
+    <name>Upload3mf</name>
+    <message>
+        <source>Upload project files to Creality Cloud</source>
+        <translation>上傳專案檔案到創想雲</translation>
+    </message>
+    <message>
+        <source>Sliced Plate</source>
+        <translation>已切片</translation>
+    </message>
+    <message>
+        <source>Empty Plate</source>
+        <translation>空盤</translation>
+    </message>
+    <message>
+        <source>Not Sliced</source>
+        <translation>未切片</translation>
+    </message>
+    <message>
+        <source>Printer:</source>
+        <translation>列印機：</translation>
+    </message>
+    <message>
+        <source>Filament:</source>
+        <translation>耗材：</translation>
+    </message>
+    <message>
+        <source>Process:</source>
+        <translation>工藝：</translation>
+    </message>
+    <message>
+        <source>Plates:</source>
+        <translation>分盤：</translation>
+    </message>
+    <message>
+        <source>Sliced Plates:</source>
+        <translation>已切片盤：</translation>
+    </message>
+    <message>
+        <source>Export And Upload</source>
+        <translation>導出並上傳</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>FileShareDialog</name>
+    <message>
+        <source>Link</source>
+        <translation>連結</translation>
+    </message>
+    <message>
+        <source>Copy Link</source>
+        <translation>複製連結</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
 </context>
 </TS>

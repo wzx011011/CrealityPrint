@@ -27,9 +27,9 @@ BasicDialog
             /*anchors.centerIn: parent*/
             anchors.fill: parent
             //anchors.leftMargin: 5
-            verticalAlignment: Text.AlignVCenter//anchors.topMargin: 5           
+            verticalAlignment: Text.AlignVCenter//anchors.topMargin: 5
             horizontalAlignment:Text.AlignHCenter//anchors.rightMargin: 5
-            font.pixelSize: 18
+            font.pointSize: Constants.labelFontPointSize_16
             wrapMode: Text.WordWrap
             color: "white"
         }

@@ -5,16 +5,22 @@ Item {
     id: root
 
     property alias lineIndex: textView.currentIndex
-//    property variant model
+    //    property variant model
     property alias model: textView.model
 
     property alias backgroundColor: idBackground.color
     property alias backgroundBorder: idBackground.border
     property alias backgroundRadius: idBackground.radius
+    
+    property bool clickEnabled: true
 
     width: parent.width
     height: parent.height
+
     signal doubleClickItem(var viewIndex)
+    signal preparePressed(var viewIndex)
+    signal prepareReleased(var viewIndex)
+
     Rectangle{
         id: idBackground
         width: parent.width
@@ -29,6 +35,7 @@ Item {
             anchors.leftMargin: 10 * screenScaleFactor
             width: parent.width - 10 * screenScaleFactor
             height: parent.height - 20 * screenScaleFactor
+            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ListView {
                 id: textView
                 width: parent.width// - 20
@@ -37,45 +44,22 @@ Item {
                 focus: true
                 clip: true
             }
-            // background: Rectangle {//by TCJ
-            //     implicitWidth: parent.width
-            //     implicitHeight: parent.height
-            //     color: Constants.tabButtonSelectColor//"transparent"
-            //     border.width: 1
-            //     border.color: Constants.dialogItemRectBgBorderColor
-            // }
         }
     }
-    // BasicScrollView {
-    //     width: parent.width
-    //     height: parent.height      
-    //     ListView {
-    //         id: textView
-    //         width: parent.width - 20
-    //         currentIndex: lineIndex
-    //         delegate: delegateItem
-    //         highlight: highlightComponent
-    //         focus: true
-    //         clip: true          
-    //     }
-    //     background: Rectangle {//by TCJ
-    //         implicitWidth: parent.width
-    //         implicitHeight: parent.height
-    //         color: Constants.tabButtonSelectColor//"transparent"
-    //         border.width: 1
-    //         border.color: Constants.dialogItemRectBgBorderColor
-    //     }
-    // }
+
     Component {
         id: delegateItem
         Item {
             id :wrapper
             width: idtext.contentWidth + 10 * screenScaleFactor
             height: 20 * screenScaleFactor
+            property bool pressed: false
+
             Rectangle {
                 id: bgColor
                 anchors.fill: parent
-                color: "transparent"                              
+                radius: 5
+                color: (idtext.text && wrapper.ListView.isCurrentItem) || wrapper.pressed ? Constants.themeGreenColor: "transparent"
             }
             Text {
                 id : idtext
@@ -84,25 +68,35 @@ Item {
                 property var myIndex
                 text: modelData
                 myIndex : index
-//                width: parent.width
                 height: parent.height
                 wrapMode: Text.WrapAnywhere
                 font.family: Constants.labelFontFamily
-                font.pointSize: Constants.labelFontPointSize
-                color: wrapper.ListView.isCurrentItem? "red": Constants.textColor
+                font.pointSize: Constants.labelFontPointSize_9
+                color: wrapper.ListView.isCurrentItem? "red": "#ffffff"
             }
             MouseArea {
                 id: mousearea
                 anchors.fill: parent
                 onDoubleClicked: {
+                    if (!clickEnabled)
+                        return
+
                     textView.currentIndex = index;
                     doubleClickItem(index)
                 }
                 onPressed: {
-                    bgColor.color = Constants.right_panel_item_checked_color
+                    preparePressed(index)
+                    if (!clickEnabled)
+                        return
+
+                    wrapper.pressed = true
                 }
                 onReleased: {
-                    bgColor.color = "transparent"
+                    prepareReleased(index)
+                    if (!clickEnabled)
+                        return
+
+                    wrapper.pressed = false
                 }
             }
         }
@@ -111,9 +105,15 @@ Item {
     Component {
         id: highlightComponent
         Rectangle {
-            color:  "lightblue"
+            color: "transparent"
             radius: 5
-
+            y: textView.currentItem.y
+            Behavior on y {
+                SpringAnimation {
+                    spring: 3
+                    damping: 0.2
+                }
+            }
         }
     }
 

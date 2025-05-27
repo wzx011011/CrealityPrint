@@ -1,9 +1,8 @@
 #include "splitplugin.h"
 #include "splitcommand.h"
+#include "kernel/kernelui.h"
 
-#include "kernel/abstractkernel.h"
 using namespace creative_kernel;
-
 SplitPlugin::SplitPlugin(QObject* parent)
 	:QObject(parent)
 	, m_command(nullptr)
@@ -29,10 +28,12 @@ void SplitPlugin::initialize()
 	if (!m_command)
 		m_command = new SplitCommand(this);
 
-    AbstractKernelUI::getSelf()->addToolCommand(m_command, "left", 7);
+		getKernelUI()->addToolCommand(m_command,
+			qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_OTHER,
+			qtuser_qml::ToolCommandType::SPLIT);
 }
 
 void SplitPlugin::uninitialize()
 {
-	AbstractKernelUI::getSelf()->removeToolCommand(m_command, "left");
+  getKernelUI()->removeToolCommand(m_command, qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_MAIN);
 }

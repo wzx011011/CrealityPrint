@@ -57,7 +57,7 @@ Item{
             height: 12
             text: btnText
             color: (isHovered || btnSelected) ? "#1E9BE2" : Constants.textColor
-            font.pixelSize: 12
+            font.pointSize: Constants.labelFontPointSize_10
             verticalAlignment: Qt.AlignVCenter
             horizontalAlignment: Qt.AlignHCenter
         }

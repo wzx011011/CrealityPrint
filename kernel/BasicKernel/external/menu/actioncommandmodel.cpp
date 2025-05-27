@@ -20,7 +20,7 @@ enum
 ActionCommandModel::ActionCommandModel(QObject* parent)
     :QAbstractListModel(parent)
 {
-    m_rolesName[maction_name] = "actionName";
+    m_rolesName[maction_name] = "actionNameRole";
     m_rolesName[maction_shortcut] = "actionShortcut";
     m_rolesName[maction_parentmenu] = "parentMenu";
     m_rolesName[maction_source] = "actionSource";
@@ -33,26 +33,30 @@ ActionCommandModel::ActionCommandModel(QObject* parent)
 
 ActionCommandModel::~ActionCommandModel()
 {
+
 }
 
 void ActionCommandModel::addCommand(ActionCommand* command)
 {
     if (command)
     {
-        m_actionCommands.push_back(command);
-        int index = m_actionCommands.size()-1;
+        
+        int index = m_actionCommands.size();
         beginInsertRows(QModelIndex(), index, index);
+        m_actionCommands.push_back(command);
         endInsertRows();
     }
 }
+
 //Add in reverse order, insert first
 void ActionCommandModel::addCommandFront(ActionCommand* command)
 {
     if (command)
     {
-//        qDebug() << "addCommandFront";
+        //        qDebug() << "addCommandFront";
         m_actionCommands.push_front(command);
         int index = 0;//m_actionCommands.size()-1;
+
         beginInsertRows(QModelIndex(), index, index);
         endInsertRows();
     }
@@ -71,8 +75,6 @@ void ActionCommandModel::removeCommandFromQString(QString strName)
      }
      if (index >= 0 && index < m_actionCommands.size())
      {
-//         qDebug() << "remove command " << index << " command";
-
          beginRemoveRows(QModelIndex(), index, index);
          m_actionCommands.removeAt(index);
          endRemoveRows();
@@ -93,17 +95,17 @@ void ActionCommandModel::removeCommand(ActionCommand* command)
 
 void ActionCommandModel::removeAllCommand()
 {
-    qDebug() << "remove all commands";
     for (int index = m_actionCommands.size() -1; index >= 0;index--)
     {
         beginRemoveRows(QModelIndex(), index, index);
+        m_actionCommands.at(index)->deleteLater();
         m_actionCommands.removeAt(index);
         endRemoveRows();
     }
 }
+
 void ActionCommandModel::removeCommandButLastIndex()
 {
-    qDebug() << "remove all buttons but last one";
     for (int index = m_actionCommands.size() -2; index >= 0;index--)
     {
         beginRemoveRows(QModelIndex(), index, index);
@@ -111,6 +113,7 @@ void ActionCommandModel::removeCommandButLastIndex()
         endRemoveRows();
     }
 }
+
 int ActionCommandModel::rowCount(const QModelIndex& parent) const
 {
     return m_actionCommands.size();
@@ -164,21 +167,23 @@ void ActionCommandModel::changeCommand(ActionCommand* command)
           }
       }
 }
+
 bool ActionCommandModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     return false;
+}
+ActionCommand* ActionCommandModel::getData(int index)
+{
+    return m_actionCommands.at(index);
+}
+
+QList<ActionCommand*> ActionCommandModel::actionCommands()
+{
+    return m_actionCommands;
 }
 
 QHash<int, QByteArray> ActionCommandModel::roleNames() const
 {
     return m_rolesName;
 }
-
-
-//QVariant ActionCommandModel:: getCommands()
-//{
-//    QVariant variant;
-//     variant= QVariant::fromValue(m_actionCommands);
-//    return  variant ;
-//}
 

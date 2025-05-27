@@ -6,9 +6,8 @@
 #include"c2dlib.h"
 #include <math.h>
 #include <QQmlProperty>
-
-#include "us/slicermanager.h"
-#include "kernel/abstractkernel.h"
+#include <QPainterPath>
+#include "kernel/kernelui.h"
 #include<string>
 #if 0
 #include "api.h"
@@ -34,12 +33,15 @@ extern "C"
 #include <dirent.h>
 #endif
 
+#include "qtusercore/string/resourcesfinder.h"
+#include "interface/machineinterface.h"
+
 void pathScalse(QPainterPath& path, double ratioX, double ratioY);
 void pathRotation(QPainterPath& path, double angle, int imgCenterX, int imgCenterY);
 QPainterPath getPathsFromImage(QString imagePath, int value);
 void checkIdxRecord(std::vector<int>& index_record);
 int getIdx(std::vector<int>& index_record, int idxNo);
-void runOverPointMark(QImage& srcImg, int laser_work_speed, int density);
+void runOverPointMark(QImage& srcImg, int density, float& extra_l, float& extra_r);
 
 LaserGcodeWorker::LaserGcodeWorker(QObject* parent)
 :Job(parent)
@@ -55,7 +57,7 @@ void LaserGcodeWorker::successed(qtuser_core::Progressor* progressor)
 
 void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 {
-	QString dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+	QString dir = qtuser_core::getOrCreateAppDataLocation("");
 	QString tmpImg = dir + "/tmpImage.bmp";
 	QString tmpGcode = dir + "/tmpGcode.gcode";
 	if (QFile::exists(tmpImg))
@@ -75,7 +77,7 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 	int tShapeW = 0, tShapeH = 0;
 	int tRotate = 0;
 
-	QString Machine = SlicerManager::instance().getCurrentMachine();
+	QString Machine = currentMachineName();
 	int nObjCount = m_pDrawObjectModel->rowCount();
 	DrawObject* obj = nullptr;
 	if (nObjCount == 0) return;
@@ -93,14 +95,18 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 	}
 	checkIdxRecord(index_record);
 	if (density == 0 || density > 9) density = 9;
-	double ratio = density / 3.0f;
+	double ratio = density / 3.0;
+	QSharedPointer<us::USettings> globalsetting(createCurrentGlobalSettings());
+	int machine_width = globalsetting->settings().value("machine_width")->toInt() * 3;
+	int machine_height = globalsetting->settings().value("machine_depth")->toInt() * 3;
 
-	int platformW = m_platWidthPx * ratio;
-	int platformH = m_platHeightPx * ratio;
+	int platformW = machine_width * ratio;
+	int platformH = machine_height * ratio;
+
 	QImage bkg(platformW, platformH, QImage::Format_ARGB32);
 	for (int i = 0; i < platformW; i++) {
 		for (int j = 0; j < platformH; j++) {
-			bkg.setPixel(QPoint(i, j), qRgba(255, 255, 255, 0));//127, 156, 30
+			bkg.setPixel(QPoint(i, j), qRgba(255, 255, 255, 255));//127, 156, 30
 		}
 	}
 	//绘图开始
@@ -121,7 +127,7 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 		x = QQmlProperty::read(obj->qmlObject(), "x").toInt();
 		tx = ratio * (x - m_origin.x());
 		y = QQmlProperty::read(obj->qmlObject(), "y").toInt();
-		ty = ratio * ((y - m_origin.y()) + m_platHeightPx);
+		ty = ratio * ((y - m_origin.y()) + machine_height);
 		width = QQmlProperty::read(obj->qmlObject(), "width").toInt(); 
 		tShapeW = ratio * width;
 		height = QQmlProperty::read(obj->qmlObject(), "height").toInt();
@@ -190,7 +196,6 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 				QString fontfamily = QQmlProperty::read(obj->qmlObject(), "fontfamily").toString();
 				QString fontstyle = QQmlProperty::read(obj->qmlObject(), "fontstyle").toString();			
 				int fontsize = QQmlProperty::read(obj->qmlObject(), "fontsize").toInt();
-				//m_gcodeBuf += QString(m_3in1exporter->CXLetter2Gcode(fontfamily, text, 50.0f, &params,pos).c_str());
 
 				QFont font;
 				font.setFamily(fontfamily);
@@ -282,7 +287,6 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 				QString fontfamily = QQmlProperty::read(obj->qmlObject(), "fontfamily").toString();
 				QString fontstyle = QQmlProperty::read(obj->qmlObject(), "fontstyle").toString();
 				int fontsize = QQmlProperty::read(obj->qmlObject(), "fontsize").toInt();
-				//m_gcodeBuf += QString(m_3in1exporter->CXLetter2Gcode(fontfamily, text, 50.0f, &params,pos).c_str());
 
 				QFont font;
 				font.setFamily(fontfamily);
@@ -340,11 +344,21 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 	}
 	//结束绘图
 	p.end();
-	if ("laser" == m_genType && Machine == "Ender-3 S1 Laser" && obj->type() == "black")
+	float extra_l = 0;
+	float extra_r = 0;
+	if ("laser" == m_genType && obj->type() != "vector")
 	{
-		int laser_work_speed = m_pLaserSettings->laserWorkSpeed();
-		runOverPointMark(bkg, laser_work_speed, density);
+		runOverPointMark(bkg, density, extra_l, extra_r);
 	}
+
+	int bkg_h = bkg.height();
+	int bkg_w = bkg.width();
+	 QImage bkg_mid = bkg.scaled(GCORE_MAX_SUPPORTED_IMG_W, GCORE_MAX_SUPPORTED_IMG_H, Qt::KeepAspectRatio, Qt::FastTransformation);
+	int bkg_h_scalsed = bkg_mid.height();
+	double scalse = bkg_h_scalsed / (double)bkg_h;
+	scalse = int(scalse * 10) / 10.0;
+	bkg_h_scalsed = bkg_h * scalse + 0.5;
+	bkg = bkg.scaled(bkg_w * scalse + 0.5, bkg_h_scalsed, Qt::KeepAspectRatio, (obj->type() == "vector" || obj->type() == "gray") ? Qt::SmoothTransformation : Qt::FastTransformation);
 	bkg.save(tmpImg);
 
 	QByteArray cdata = tmpImg.toLocal8Bit();
@@ -384,15 +398,16 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 	
 	config.offset.x = 0 * 10000; // 0mm
 	config.offset.y = 0 * 10000; // 0mm
-	config.density = density * 10; // 9 pixel//mm
-	config.platHeight = platformH;
+	config.density = density * 10 * scalse + 0.5; // 9 pixel//mm
+	config.platHeight = bkg_h_scalsed;
 	config.vector_factor = 10;
 	config.vector_path.ptNum = path_all.elementCount();
 	config.vector_path.curr_idx = 0;
 	config.vector_path.pt = new PixelData[config.vector_path.ptNum];
-	us::GlobalSetting* globalsetting = SlicerManager::instance().globalsettings();
-	QString laser_open_type = globalsetting->settings().value("laser_open_type")->value().toString();
-	QString laser_close_type = globalsetting->settings().value("laser_close_type")->value().toString();
+	config.extra_travel_distance_x_left = extra_l * 10;
+	config.extra_travel_distance_x_right = extra_r * 10;
+	QString laser_open_type = globalsetting->settings().value("laser_open_type")->str();
+	QString laser_close_type = globalsetting->settings().value("laser_close_type")->str();
 	if (laser_open_type.isEmpty() || laser_close_type.isEmpty())
 	{
 		config.laser_start_command = NULL;
@@ -412,8 +427,8 @@ void LaserGcodeWorker::work(qtuser_core::Progressor* progressor)
 	for (int i = 0; i < config.vector_path.ptNum; i++)
 	{
 		QPainterPath::Element ele = path_all.elementAt(i);
-		config.vector_path.pt[i].pos.x = ele.x * config.vector_factor + 0.5;
-		config.vector_path.pt[i].pos.y = ele.y * config.vector_factor + 0.5;
+		config.vector_path.pt[i].pos.x = ele.x * config.vector_factor * scalse + 0.5;
+		config.vector_path.pt[i].pos.y = ele.y * config.vector_factor * scalse + 0.5;
 		config.vector_path.pt[i].grayval = ele.type == QPainterPath::ElementType::MoveToElement ? 0 : 255;
 	}
 	if ("laser" == m_genType)
@@ -622,9 +637,11 @@ int getIdx(std::vector<int>& index_record, int idxNo)
 	return -1;
 }
 
-void runOverPointMark(QImage& srcImg, int laser_work_speed,int density)
+void runOverPointMark(QImage& srcImg,int density, float& extra_l, float& extra_r)
 {
 	int delta = 10 * density;
+	extra_l = delta;
+	extra_r = delta;
 	int h = srcImg.height();
 	int w = srcImg.width();
 	QRgb* rgbpixel = (QRgb*)srcImg.scanLine(0);
@@ -643,8 +660,12 @@ void runOverPointMark(QImage& srcImg, int laser_work_speed,int density)
 		if (find_idx != -1)
 		{
 			int idx = find_idx - delta;
-			if (idx < 0) idx = 0;
-			rgbpixel[idx + ii * (srcImg.width())] = qRgb(230, 230, 230);
+			if (idx < 0)
+			{
+				if (find_idx < extra_l) extra_l = find_idx;
+				idx = 0;
+			}
+			rgbpixel[idx + ii * (srcImg.width())] = qRgb(254, 254, 254);
 		}
 
 
@@ -661,8 +682,14 @@ void runOverPointMark(QImage& srcImg, int laser_work_speed,int density)
 		if (find_idx != -1)
 		{
 			int idx = find_idx + delta;
-			if (idx > w - 1) idx = w - 1;
-			rgbpixel[idx + ii * (srcImg.width())] = qRgb(230, 230, 230);
+			if (idx > w - 1)
+			{
+				if (w - 1 - find_idx < extra_r) extra_r = w - 1 - find_idx;
+				idx = w - 1;
+			}
+			rgbpixel[idx + ii * (srcImg.width())] = qRgb(254, 254, 254);
 		}
 	}
+	extra_l /= density;
+	extra_r /= density;
 }

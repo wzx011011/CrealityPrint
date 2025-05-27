@@ -1,6 +1,6 @@
 #ifndef _NULLSPACE_SPLITPLUGIN_1591234859229_H
 #define _NULLSPACE_SPLITPLUGIN_1591234859229_H
-#include "creativeinterface.h"
+#include "qtusercore/module/creativeinterface.h"
 
 class SplitCommand;
 class SplitPlugin: public QObject, public CreativeInterface

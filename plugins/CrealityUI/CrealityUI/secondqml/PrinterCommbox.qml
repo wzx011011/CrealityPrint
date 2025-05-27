@@ -105,7 +105,7 @@ ComboBox {
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
         Component.onCompleted:{
-            font.pixelSize = 12
+            font.pointSize = Constants.labelFontPointSize_10
         }
     }
 

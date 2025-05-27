@@ -1,12 +1,12 @@
 #ifndef _NULLSPACE_LASERDISPATCH_1589986318632_H
 #define _NULLSPACE_LASERDISPATCH_1589986318632_H
-#include <QtCore/QObject>
+#include "data/interface.h"
 #include "qtuser3d/module/pickableselecttracer.h"
 #include <QtGui/QVector3D>
-#include "modelspaceobserver.h"
+
 class LaserDispatch: public QObject
     , public qtuser_3d::SelectorTracer
-        , public SpaceTracer
+        , public creative_kernel::SpaceTracer
 {
 	Q_OBJECT
 	Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
@@ -23,9 +23,8 @@ protected:
 	void onSelectionsChanged() override;
 	void selectChanged(qtuser_3d::Pickable* pickable) override;
 
-    void onBoxChanged(qtuser_3d::Box3D& box) override;
-    void onSceneChanged(qtuser_3d::Box3D& box) override;
-	void onGlobalBoxChanged(qtuser_3d::Box3D& box) override {}
+    void onBoxChanged(const qtuser_3d::Box3D& box) override;
+    void onSceneChanged(const qtuser_3d::Box3D& box) override;
 protected slots:
     void enableVisible();
     void disableVisible();

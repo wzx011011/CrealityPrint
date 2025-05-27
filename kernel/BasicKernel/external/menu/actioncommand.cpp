@@ -19,6 +19,7 @@ ActionCommand::ActionCommand(QObject* parent)
 
 ActionCommand::~ActionCommand()
 {
+
 }
 
 bool ActionCommand::enabled()
@@ -32,6 +33,10 @@ void ActionCommand::setEnabled(bool enabled)
         m_enabled = enabled;
         emit enabledChanged();
     }
+}
+void ActionCommand::update()
+{
+    emit enabledChanged();
 }
 
 QString ActionCommand::source() const
@@ -75,6 +80,11 @@ void ActionCommand::setName(const QString& name)
     m_actionname = name;
 }
 
+void ActionCommand::setNameWithout(const QString& name)
+{
+    m_actionNameWithout = name;
+}
+
 void ActionCommand::setSource(const QString& source)
 {
     m_source = source;
@@ -87,10 +97,10 @@ void ActionCommand::setParentMenu(const eMenuType &parentMenu)
 {
     m_eParentMenu =  parentMenu;
 }
- void ActionCommand::setIcon(const QString& icon)
- {
-     m_icon = icon;
- }
+void ActionCommand::setIcon(const QString& icon)
+{
+    m_icon = icon;
+}
 void ActionCommand::execute()
 {
 

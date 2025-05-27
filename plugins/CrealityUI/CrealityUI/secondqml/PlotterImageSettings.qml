@@ -36,8 +36,8 @@ Item {
                 width: 100
                 height: 18
                 text: qsTr("Original Image Show")
-                checked: selShape.originalShow
-
+                checked: selShape ? selShape.originalShow : true
+                // fontSize: Constants.labelFontPointSize_12
                 onCheckedChanged:
                 {
                     selShape.originalShow = !checked
@@ -48,8 +48,8 @@ Item {
                 width: 48
                 height: 18
                 text: qsTr("Reverse")
-                checked: selShape.reverse
-
+                checked: selShape ? selShape.reverse : true
+                // fontSize: Constants.labelFontPointSize_12
                 onCheckedChanged:
                 {
                     selShape.reverse = !checked
@@ -66,14 +66,14 @@ Item {
                     height: 28
                     text: qsTr("Flip Model")
                     color: Constants.textColor
-                    font.pixelSize: 14
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                 }
                 BasicCombobox{
                     width: 120
                     height: 28
                     //font.pixelSize: 14
-                    currentIndex: selShape.filpModelValue//0
+                    currentIndex: selShape ? selShape.filpModelValue : 0
 
                     model: ListModel {
                         id: modelType
@@ -99,7 +99,7 @@ Item {
                     height: 28
                     text: qsTr("Threshold")
                     color: Constants.textColor
-                    font.pixelSize: 14
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -109,7 +109,7 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     id : control
-                    value: selShape.threshold
+                    value: selShape ? selShape.threshold : 0
                     width: 70
                     maximumValue:255
                     minimumValue:1

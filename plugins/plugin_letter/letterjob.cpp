@@ -1,32 +1,26 @@
 #include "letterjob.h"
-#include "letterop.h"
 
-#include "trimesh2/TriMesh_algo.h"
-#include "utils/matrixutil.h"
 #include "data/modeln.h"
-#include "data/modelgroup.h"
 #include "interface/visualsceneinterface.h"
-#include "interface/modelinterface.h"
-#include "interface/cacheinterface.h"
+#include "interface/spaceinterface.h"
+#include "interface/selectorinterface.h"
+#include "interface/shareddatainterface.h"
 
-#include "utils/convexhullcalculator.h"
+#include "data/shareddatamanager/shareddatamanager.h"
 
 #include "qtusercore/module/progressortracer.h"
 
-#include "mmesh/trimesh/trimeshutil.h"
+#include <Qt3DRender/QCamera>
+#include "interface/camerainterface.h"
+#include "qtuser3d/camera/screencamera.h"
+#include "qtuser3d/trimesh2/conv.h"
+#include "us/usettings.h"
+#include "msbase/mesh/tinymodify.h"
+#include "data/spaceutils.h"
 
-#ifdef NOUSE_IGL
-#include "cmesh/mesh/boolean.h"
-#else
-#include "cmesh/igl/booleanigl.h"
-#endif
-
-LetterJob::LetterJob(LetterOp* theOp, QObject* parent)
+LetterJob::LetterJob(QObject* parent)
+	:m_letterModel(nullptr)
 {
-	m_pModel = nullptr;
-	m_pResultMesh = nullptr;
-	m_pOp = theOp;
-	m_bIsTextOutside = true;
 }
 
 LetterJob::~LetterJob()
@@ -34,20 +28,20 @@ LetterJob::~LetterJob()
 
 }
 
-void LetterJob::SetModel(creative_kernel::ModelN* model)
+void LetterJob::SetModelGroup(creative_kernel::ModelGroup* modelgroup)
 {
-	m_pModel = model;
+	m_pModelGroup = modelgroup;
 }
 
-void LetterJob::SetTextMeshs(std::vector<trimesh::TriMesh*>& theTextMeshs, std::vector<QMatrix4x4>& theTextMeshPoses)
+
+void LetterJob::SetObjects(const QList<QObject*>& objectList)
 {
-	m_vTextMeshs = theTextMeshs;
-	m_vTextMeshPoses = theTextMeshPoses;
+	m_objectLists = objectList;
 }
 
-void LetterJob::SetIsTextOutside(bool value)
+void LetterJob::SetLetterModel(cxkernel::LetterModel* letterModel)
 {
-	m_bIsTextOutside = value;
+	m_letterModel = letterModel;
 }
 
 QString LetterJob::name()
@@ -62,182 +56,109 @@ QString LetterJob::description()
 
 void LetterJob::work(qtuser_core::Progressor* progressor)
 {
-	if (m_pModel)
+	qtuser_core::ProgressorTracer tracer(progressor);
+
+	std::vector<TriMeshPtr> trimesh_container;
+	std::vector<trimesh::xform> ixf;
+	for (auto m : m_pModelGroup->models())
 	{
-        if (progressor)
-        {
-            progressor->progress(0.2);
-        }
-		if (m_bIsTextOutside)
+		if (!m)
 		{
-			m_pResultMesh = new trimesh::TriMesh();
-			TransformMesh(m_pModel->mesh(), m_pModel->globalMatrix(), m_pResultMesh);
-
-			trimesh::TriMesh theLetterMesh_global;
-
-			for (size_t i = 0; i < m_vTextMeshs.size(); i++)
-			{
-				TransformMesh(m_vTextMeshs[i], m_vTextMeshPoses[i], &theLetterMesh_global);
-
-				int vertex_id_start = m_pResultMesh->vertices.size();
-
-				for (size_t j = 0; j < theLetterMesh_global.vertices.size(); j++)
-				{
-					auto& v = theLetterMesh_global.vertices[j];
-					m_pResultMesh->vertices.emplace_back(v[0], v[1], v[2]);
-				}
-
-				for (size_t j = 0; j < theLetterMesh_global.faces.size(); j++)
-				{
-					auto& f = theLetterMesh_global.faces[j];
-					m_pResultMesh->faces.emplace_back(vertex_id_start + f[0], vertex_id_start + f[1], vertex_id_start + f[2]);
-				}
-
-				progressor->progress(float(i) / m_vTextMeshs.size());
-			}
+			return;
 		}
-		else
+
+		if (!m->modelNData())
 		{
-			trimesh::TriMesh theModelMesh_global;
-			trimesh::TriMesh theLetterMesh_global;
-			m_pResultMesh = &theModelMesh_global;
-
-			TransformMesh(m_pModel->mesh(), m_pModel->globalMatrix(), &theModelMesh_global);
-
-            int meshnums = m_vTextMeshs.size();
-            float byte = 0.7 / meshnums;
-
-            std::vector<trimesh::TriMesh*> meshs(meshnums,nullptr);
-            for (size_t i = 0; i < meshnums; i++)
-            {
-                meshs[i] = new trimesh::TriMesh();
-                TransformMesh(m_vTextMeshs[i], m_vTextMeshPoses[i], meshs[i]);
-             }
-            mmesh::mergeTriMesh( &theLetterMesh_global, meshs);
-
-            for (size_t i = 0; i < meshnums; i++)
-            {
-                if (meshs[i])
-                {
-                    delete meshs[i];
-                    meshs[i] = nullptr;
-                }
-            }
-            meshs.clear();
-
-            try
-            {
-#ifdef NOUSE_IGL
-                m_pResultMesh = cmesh::cxBooleanOperateMeshObj(m_pResultMesh, &theLetterMesh_global,
-                    m_bIsTextOutside ? cmesh::CMeshBooleanType::CBT_UNION
-                    : cmesh::CMeshBooleanType::CBT_TM1_MINUS_TM2);
-#else
-                qtuser_core::ProgressorTracer tracer(progressor);
-                m_pResultMesh = cmesh::cxBooleanOperateMeshIGLObj(m_pResultMesh, &theLetterMesh_global, cmesh::MESH_BOOLEAN_TYPE_MINUS, &tracer);
-#endif        
-                //m_pResultMesh = cmesh::cxBooleanOperateMeshObj(m_pResultMesh, &theLetterMesh_global,
-                //	m_bIsTextOutside ? cmesh::CMeshBooleanType::CBT_UNION
-                //			: cmesh::CMeshBooleanType::CBT_TM1_MINUS_TM2);
-
-                //qtuser_core::ProgressorTracer tracer(progressor);
-                //m_pResultMesh = cmesh::cxBooleanOperateMeshIGLObj(m_pResultMesh, &theLetterMesh_global, cmesh::MESH_BOOLEAN_TYPE_MINUS, &tracer);
-            }
-            catch (...)
-            {
-                m_pResultMesh = nullptr;
-            }
-
-            if (!m_pResultMesh)
-            {
-                printf("failed to make text on model: 'mmesh::cxBooleanOperateMeshObj' returns null or has exception!\n");
-                return;
-            }
-
-            if (progressor)
-            {
-                progressor->progress(1.0);
-            }
+			tracer.failed("null data.");
+			return;
 		}
-		
+
+		if (m->modelNType() != creative_kernel::ModelNType::normal_part)
+		{
+			continue;
+		}
+
+		TriMeshPtr inputMesh(m->createGlobalMeshWithNormal());
+
+		trimesh_container.push_back(inputMesh);
+
+		trimesh::fxform xf = qtuser_3d::qMatrix2Xform(m->globalMatrix());
+		ixf.push_back(trimesh::xform(trimesh::inv(xf)));
 	}
 
-	progressor->progress(1.0f);
+	cxkernel::CameraModel camera;
+	Qt3DRender::QCamera* mainCamera = creative_kernel::visCamera()->camera();
+	camera.pos = qtuser_3d::qVector3D2Vec3(mainCamera->position());
+	camera.up = qtuser_3d::qVector3D2Vec3(mainCamera->upVector());
+	camera.center = qtuser_3d::qVector3D2Vec3(mainCamera->viewCenter());
+
+	camera.fov = mainCamera->fieldOfView();
+	camera.aspect = mainCamera->aspectRatio();
+	camera.n = mainCamera->nearPlane();
+	camera.f = mainCamera->farPlane();
+
+	QSize surfSize = creative_kernel::surfaceSize();
+	std::vector<TriMeshPtr> output_meshs;
+
+	m_letterModel->_generatrGroup(trimesh_container,surfSize,camera,output_meshs,&tracer);
+
+	for (int i = 0; i < output_meshs.size(); i++)
+	{
+		creative_kernel::ModelN* aModel = m_pModelGroup->models().at(i);
+		if (!aModel)
+			continue;
+
+		if (output_meshs[i])
+		{
+			TriMeshPtr invertedMesh(new trimesh::TriMesh());
+			*invertedMesh = *(output_meshs[i].get());
+
+			trimesh::apply_xform(invertedMesh.get(), ixf[i]);
+
+			trimesh::fxform normalXf = qtuser_3d::qMatrix2Xform(aModel->modelNormalMatrix());
+
+			creative_kernel::changeMeshFaceNormal(invertedMesh.get(), output_meshs[i].get(), normalXf);
+
+			trimesh::apply_xform(output_meshs[i].get(), ixf[i]);
+			output_meshs[i]->clear_bbox();
+			output_meshs[i]->need_bbox();
+
+			cxkernel::MeshData* meshData = new cxkernel::MeshData(output_meshs[i], false);
+			cxkernel::MeshDataPtr meshDataPtr(meshData);
+			m_meshDatas.push_back(meshDataPtr);
+		}
+	}
+
 }
 
 void LetterJob::failed()
 {
-	if (m_pOp)
-	{
-		m_pOp->SetMode(0);
-	}
+	emit finished();
 }
 
 void LetterJob::successed(qtuser_core::Progressor* progressor)
 {
-	creative_kernel::ModelGroup* group = qobject_cast<creative_kernel::ModelGroup*>(m_pModel->parent());
-	if (!group || ! m_pResultMesh || m_pResultMesh->vertices.size() == 0 || m_pResultMesh->faces.size() == 0)
+	int i = 0;
+	for (auto m : m_pModelGroup->models())
 	{
-		if (m_pOp)
+		if (m)
 		{
-			m_pOp->SetMode(0);
-		}
-		return;
-	}
+			if (m->modelNType() != creative_kernel::ModelNType::normal_part)
+			{
+				continue;
+			}
 
-	QString name = m_pModel->objectName().left(m_pModel->objectName().lastIndexOf("."));
-	QString suffix = m_pModel->objectName().right(m_pModel->objectName().length() - m_pModel->objectName().lastIndexOf("."));
-	if (!name.endsWith("-lettered"))
-	{
-		name += "-lettered";
-	}
-
-	name += suffix;
-
-	m_pResultMesh->need_bbox();
-
-	TriMeshPtr meshptr(m_pResultMesh);
-	ConvexHullCalculator::calculate(m_pResultMesh, nullptr);
-	creative_kernel::cache(meshptr);
-    creative_kernel::clearCache();
-
-	creative_kernel::ModelN* newModel = new creative_kernel::ModelN();
-	newModel->setTrimesh(meshptr, progressor);
-	newModel->setObjectName(name);
-	//newModel->needDetectError();
-	newModel->SetInitPosition(m_pModel->GetInitPosition());
-
-	QList<creative_kernel::ModelN*> removes;
-	QList<creative_kernel::ModelN*> adds;
-
-	removes.append(m_pModel);
-	adds.append(newModel);
-	creative_kernel::modifyGroup(removes, adds, group, true);
-
-	m_pModel = nullptr;
-	m_pResultMesh = nullptr;
-	creative_kernel::requestVisUpdate(true);
-
-	if (m_pOp)
-	{
-		m_pOp->SetMode(0);
-	}
-}
-
-void LetterJob::TransformMesh(trimesh::TriMesh* original_mesh, QMatrix4x4 pose, trimesh::TriMesh* transformed_mesh)
-{
-	transformed_mesh->clear();
-	transformed_mesh->vertices = original_mesh->vertices;
-	transformed_mesh->faces = original_mesh->faces;
-
-	trimesh::xform xf_pose;
-
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 0; j < 4; ++j)
-		{
-			xf_pose(i, j) = pose(i, j);
+			QList<creative_kernel::ModelNPropertyMeshChange> changes;
+			creative_kernel::ModelNPropertyMeshChange change;
+			change.model = m;
+			change.name = QStringLiteral("%1").arg(m->name());
+			change.mesh = m_meshDatas[i];
+			changes.append(change);
+			creative_kernel::replaceModelNMeshes(changes, true);
+			i++;
 		}
 	}
 
-	trimesh::apply_xform(transformed_mesh, xf_pose);
+	
+	emit finished();
 }

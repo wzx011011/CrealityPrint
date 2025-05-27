@@ -1,428 +1,687 @@
+import CrealityUI 1.0
+import QtQml 2.0
+import QtQml 2.3
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import "qrc:/CrealityUI"
-import CrealityUI 1.0
+import "qrc:/CrealityUI/cxcloud"
 
-Rectangle {
-    id : idMenuBar
-    // property color backgroundColor: "white"
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            contentWidth + leftPadding + rightPadding)
-    implicitHeight: 40 * screenScaleFactor /*Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             contentHeight + topPadding + bottomPadding)*/
+MenuBar {
+    id: idMenuBar
+
+    property var controlEnabled: kernel_kernel.currentPhase === 0
+    property var isFDMPrinter: kernel_parameter_manager.functionType === 0
+    property var isLaserPrinter: kernel_parameter_manager.functionType === 1
+    property var isCNCPrinter: kernel_parameter_manager.functionType === 2
+    property bool logined: cxkernel_cxcloud.accountService.logined
+    property var cloudContext: standaloneWindow.cloudContext
+
     signal barItemTriggered()
-    Row
-    {
-        spacing: 10
-        height: parent.height
-        BasicMenuBarButton{
-            id : __fileBarButton
-            anchors.verticalCenter: parent.verticalCenter
-            text:qsTr("File") + "(F)"
-            height: 38 * screenScaleFactor
-            icon.source : "qrc:/UI/photo/menufileIcon.png"
-            icon.color: "#9B9BA0"
-            //        icon.source : text.length > 0 ? "qrc:/UI/photo/menuFileIcon.png"
-            onClicked:
-            {
-                __FDMFileMenu.popup(this.x,this.y + this.height)
 
-            }
-        }
+    function validLogin(cb, showUserDialog = true) {
+        if (!logined)
+            return cloudContext.loginDialog.show();
 
-        BasicMenuBarButton{
-            id : __otherBarButton
-            anchors.verticalCenter: parent.verticalCenter
-            text:qsTr("")
-            height: 38 * screenScaleFactor
-            icon.source : "qrc:/UI/photo/menuOtherIcon.png"
-            icon.color: "#9B9BA0"
-            //        icon.source : text.length > 0 ? "qrc:/UI/photo/menuFileIcon.png"
-            onClicked:
-            {
-                __FDMOtherMenu.popup(this.x,this.y + this.height)
-            }
-        }
+        cb();
+        if (showUserDialog)
+            cloudContext.userInfoDialog.show();
+
     }
 
+    function indexOfMenu(menu) {
+        let menu_list = idMenuBar.menus;
+        for (let index = 0; index < menu_list.length; ++index) {
+            if (menu_list[index] === menu)
+                return index;
 
+        }
+        return -1;
+    }
+
+    function showFDMMenuBar() {
+    }
+
+    function onlyShowOtherMenuBar() {
+    }
+
+    function excuteOpt(optName) {
+        Qt.callLater(function(opt_name) {
+            actionCommands.getOpt(opt_name).execute();
+        }, optName);
+    }
+
+    // property color backgroundColor: "white"
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, contentWidth + leftPadding + rightPadding)
+    implicitHeight: 40 * screenScaleFactor /*Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             contentHeight + topPadding + bottomPadding)*/
+    Component.onCompleted: {
+        if (!kernel_global_const.cxcloudEnabled)
+            takeMenu(indexOfMenu(modelLibraryMenu));
+
+    }
 
     BasicMenu {
-        id: __FDMFileMenu
+        id: fileMenu
+
         title: qsTr("File(&F)")
-//        anchors.left: previewBtn.left
-//        anchors.top : previewBtn.bottom
-        BasicMenuItem{
-            id : __openfile
+        maxWidth: Math.max(implicitContentWidth, 280)
+        enabled: controlEnabled && isFDMPrinter
+
+        BasicMenuItem {
+            id: __openfile
+
             actionName: qsTr("Open File")
-            enabled : true
-            actionShortcut : "Ctrl+O"
-            separatorVisible : false
-            onTriggered:
-            {
-                excuteOpt("Open File")
+            //                enabled : controlEnabled
+            actionShortcut: "Ctrl+O"
+            onTriggered: {
+                excuteOpt("Open File");
             }
         }
-        BasicMenuItem{
-            id : __openProject
+
+        BasicMenuItem {
+            id: __openProject
+
             actionName: qsTr("Open Project")
-            enabled : true
+            //                enabled : controlEnabled
             separatorVisible: true
-            onTriggered:
-            {
-                excuteOpt("Open Project")
+            onTriggered: {
+                excuteOpt("Open Project");
             }
         }
-        BasicSubMenu{
-            id : __fileHistory
-            separator : false
-            title : qsTr("Recently files")
-            mymodel : actionCommands.getOpt("Recently files").subMenuActionmodel
+
+        BasicSubMenu {
+            //                enabled : controlEnabled
+
+            id: __fileHistory
+
+            separator: false
+            title: cxTr("Recent Files")
+            mymodel: actionCommands.getOpt("Recently files").subMenuActionmodel
         }
-        BasicSubMenu{
-            id : __projectHistory
-            title : qsTr("Recently Opened Project")
-            mymodel : actionCommands.getOpt("Recently Opened Project").subMenuActionmodel
+
+        BasicSubMenu {
+            //                enabled : controlEnabled
+
+            id: __projectHistory
+
+            title: qsTr("Recently Opened Project")
+            mymodel: projectSubmodel.subMenuActionmodel
         }
-        BasicMenuItem{
-            id : __saveSTL
+
+        BasicMenuItem {
+            id: __saveSTL
+
             separatorVisible: true
             actionName: qsTr("Save STL")
-            enabled : HalotContext.obj("ModelSelector").nocxbinSelectionNum > 0
-            onTriggered:
-            {
-                excuteOpt("Save STL")
+            //                enabled : HalotContext.obj("ModelSelector").nocxbinSelectionNum > 0
+            onTriggered: {
+                excuteOpt("Save STL");
             }
         }
-        BasicMenuItem{
-            id : __saveProject
+
+        BasicMenuItem {
+            id: __saveProject
+
             separatorVisible: true
             actionName: qsTr("Save As Project")
-            actionCmdItem:HalotContext.obj("Command.saveProject");
-            enabled : HalotContext.obj("Command.saveProject");
-            actionShortcut : HalotContext.obj("Command.saveProject").shortcut
-            onTriggered:
-            {
-                excuteOpt("Save As Project")
+            onTriggered: {
+                excuteOpt("Save As Project");
             }
         }
-        BasicMenuItem{
-            id : __closeProject
+
+        BasicSubMenu {
+            id: __standardModel
+
+            title: qsTr("Standard Model")
+            mymodel: actionCommands.getOpt("Standard Model").subMenuActionmodel
+        }
+
+        BasicSubMenu {
+            id: __testdModel
+
+            title: qsTr("Test Model")
+            mymodel: actionCommands.getOpt("Test Model").subMenuActionmodel
+        }
+
+        BasicMenuItem {
+            id: __importPresetConfig
+
+            separatorVisible: true
+            actionName: qsTr("Import Preset Config")
+            onTriggered: {
+                excuteOpt("Import Preset");
+            }
+        }
+
+        BasicMenuItem {
+            id: __exportPresetConfig
+
+            separatorVisible: true
+            actionName: qsTr("Export Preset Config")
+            onTriggered: {
+                excuteOpt("Export Preset");
+            }
+        }
+
+        BasicMenuItem {
+            id: __load3MF
+
+            separatorVisible: true
+            actionName: qsTr("Load 3MF")
+            //                enabled : HalotContext.obj("ModelSelector").nocxbinSelectionNum > 0
+            onTriggered: {
+                excuteOpt("Load 3MF");
+            }
+        }
+
+        BasicMenuItem {
+            id: __save3MF
+
+            separatorVisible: true
+            actionName: qsTr("Save 3MF")
+            //                enabled : HalotContext.obj("ModelSelector").nocxbinSelectionNum > 0
+            onTriggered: {
+                excuteOpt("Save 3MF");
+            }
+        }
+
+        BasicMenuItem {
+            id: __closeProject
+
             separatorVisible: true
             actionName: qsTr("Close")
-            enabled : true
-            actionShortcut : "Ctrl+Q"
-            onTriggered:
-            {
-                excuteOpt("Close")
+            actionShortcut: "Ctrl+Q"
+            onTriggered: {
+                excuteOpt("Close");
             }
         }
         // ...
-    }
-    BasicMenu
-    {
-       id : __FDMOtherMenu
-//       title: qsTr("Other(&O)")
-       BasicMenu {
-           id: editMenu
-           title: qsTr("Edit")
-           BasicMenuItem{
-               actionName: qsTr("Undo")
-               enabled : true
-               actionShortcut : "Ctrl+Z"
-               onTriggered: {
-                   excuteOpt("Undo")
-               }
-           }
-           BasicMenuItem{
-               separatorVisible: true
-               actionName: qsTr("Redo")
-               enabled : true
-               actionShortcut : "Ctrl+Shift+Z"
-               onTriggered: {
-                   excuteOpt("Redo")
-               }
-           }
-       }
 
-       BasicMenu {
-           id: viewMenu
-           title: qsTr("View")
-           // ...
-           BasicMenuItem{
-               separatorVisible: true
-               actionName: qsTr("ShowModelLine")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("ShowModelLine")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("ShowModelFace")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("ShowModelFace")
-               }
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("ShowModelFaceLine")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("ShowModelFaceLine")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("Mirrror X")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Mirrror X")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("Mirrror Y")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Mirrror Y")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("Mirrror Z")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Mirrror Z")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("Mirrror ReSet")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Mirrror ReSet")
-               }
-           }
-           BasicSubMenu{
-               separator : false
-               title : qsTr("View Show")
-               mymodel : actionCommands.getOpt("View Show").subMenuActionmodel
-           }
-           BasicMenuItem{
-               actionName: qsTr("Reset All Model")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Reset All Model")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("Merge Model Locations")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Unit As One")
-               }
-           }
-       }
-
-       BasicMenu {
-           id: toolMenu
-           title: qsTr("Tool")
-           // ...
-           BasicSubMenu{
-               separator : false
-               title : qsTr("Language")
-               mymodel : actionCommands.getOpt("Language").subMenuActionmodel
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Model Repair")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Model Repair")
-               }
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Manage Materials")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Manage Materials")
-               }
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Manage Printer")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Manage Printer")
-               }
-           }
-
-           BasicSubMenu{
-               separator : false
-               title : qsTr("Theme color change")
-               mymodel : actionCommands.getOpt("Theme color change").subMenuActionmodel
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Log View")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Log View")
-               }
-           }
-       }
-
-       BasicMenu {
-           id: modelLibraryMenu
-           title: qsTr("Models")
-           // ...
-           BasicMenuItem{
-               actionName: qsTr("Models")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Models")
-               }
-           }
-       }
-
-       BasicMenu {
-           id: printerCrlMenu
-           title: qsTr("PrinterControl")
-           // ...
-           BasicMenuItem{
-               actionName: qsTr("Creality Cloud Printing")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Creality Cloud Print")
-               }
-           }
-           BasicMenuItem{
-               actionName: qsTr("USB Printing")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("USB Printing")
-               }
-           }
-       }
-
-       BasicMenu {
-           id: helpMenu
-           title: qsTr("Help")
-           // ...
-           BasicMenuItem{
-               actionName: qsTr("About Us")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("About Us")
-               }
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Update")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Update")
-               }
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("Use Course")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Use Course")
-               }
-
-           }
-
-           BasicMenuItem{
-               actionName: qsTr("User Feedback")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("User Feedback")
-               }
-           }
-       }
     }
 
+    BasicMenu {
+        id: editMenu
 
-    BasicMenu
-    {
-       id : __PreOtherMenu
-//       title: qsTr("Other(&O)")
-       BasicMenu {
-           title: qsTr("Tool")
-           // ...
-           BasicSubMenu{
-               separator : false
-               title : qsTr("Language")
-               mymodel : actionCommands.getOpt("Language").subMenuActionmodel
-           }
+        title: qsTr("Edit") + "(&E)"
 
+        BasicMenuItem {
+            actionName: qsTr("Undo")
+            enabled: controlEnabled && isFDMPrinter
+            actionShortcut: "Ctrl+Z"
+            onTriggered: {
+                excuteOpt("Undo");
+            }
+        }
 
-           BasicSubMenu{
-               separator : false
-               title : qsTr("Theme color change")
-               mymodel : actionCommands.getOpt("Theme color change").subMenuActionmodel
-           }
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Redo")
+            enabled: controlEnabled && isFDMPrinter
+            actionShortcut: "Ctrl+Y"
+            onTriggered: {
+                excuteOpt("Redo");
+            }
+        }
 
-           BasicMenuItem{
-               actionName: qsTr("Log View")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Log View")
-               }
-           }
-       }
-       BasicMenu {
-           title: qsTr("Help")
-           // ...
-           BasicMenuItem{
-               actionName: qsTr("About Us")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("About Us")
-               }
-           }
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Copy")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+C "
+            onTriggered: {
+                kernel_ui.onCopy();
+            }
+        }
 
-           BasicMenuItem{
-               actionName: qsTr("Update")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Update")
-               }
-           }
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Paste")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+V "
+            onTriggered: {
+                kernel_ui.onPaste();
+            }
+        }
 
-           BasicMenuItem{
-               actionName: qsTr("Use Course")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("Use Course")
-               }
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Delete Model")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+D"
+            onTriggered: {
+                excuteOpt("Delete Model");
+            }
+        }
 
-           }
-           BasicMenuItem{
-               actionName: qsTr("User Feedback")
-               enabled : true
-               onTriggered: {
-                   excuteOpt("User Feedback")
-               }
-           }
-       }
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Clear All")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+Shift+D"
+            onTriggered: {
+                excuteOpt("Clear All");
+            }
+        }
+
+        BasicMenuItem {
+            //                excuteOpt("Clone Model")
+
+            separatorVisible: true
+            actionName: qsTr("Clone Model")
+            enabled: controlEnabled
+            actionShortcut: enabled ? "Ctrl+Shift+C" : ""
+            onTriggered: {
+                kernel_kernelui.otherCommandIndex = 0;
+            }
+        }
+
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Split Model")
+            enabled: controlEnabled
+            actionShortcut: "Alt+S"
+            onTriggered: {
+                excuteOpt("Split Model");
+            }
+        }
+
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Merge Model")
+            enabled: controlEnabled
+            actionShortcut: "Alt+Shift+M"
+            onTriggered: {
+                excuteOpt("Merge Model");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Merge Model Locations")
+            enabled: controlEnabled && isFDMPrinter
+            actionShortcut: "Ctrl+M"
+            onTriggered: {
+                excuteOpt("Unit As One");
+            }
+        }
+
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Select All Model")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+A"
+            onTriggered: {
+                excuteOpt("Select All Model");
+            }
+        }
+
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("Reset All Model")
+            enabled: controlEnabled
+            actionShortcut: "Ctrl+Shift+R"
+            onTriggered: {
+                excuteOpt("Reset All Model");
+            }
+        }
+
     }
 
-    function showFDMMenuBar()
-    {
+    BasicMenu {
+        id: viewMenu
 
-        __fileBarButton.visible = true
-        __otherBarButton.visible = true
+        title: qsTr("View") + "(&V)"
+        // ...
+        enabled: controlEnabled && isFDMPrinter
+
+        BasicMenuItem {
+            separatorVisible: true
+            actionName: qsTr("ShowModelLine")
+            enabled: controlEnabled
+            onTriggered: {
+                excuteOpt("ShowModelLine");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("ShowModelFace")
+            enabled: controlEnabled
+            onTriggered: {
+                excuteOpt("ShowModelFace");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("ShowModelFaceLine")
+            enabled: true
+            onTriggered: {
+                excuteOpt("ShowModelFaceLine");
+            }
+        }
+        //        BasicMenuItem{
+
+        //            actionName: qsTr("Merge Model Locations")
+        //            enabled : true
+        //            onTriggered: {
+        //                excuteOpt("Unit As One")
+        //            }
+        //        }
+        Column {
+            width: viewMenu.width
+
+            Repeater {
+                id: idMenuItems
+
+                model: actionCommands.getOpt("View Show").subMenuActionmodel
+
+                delegate: BasicMenuItem {
+                    width: viewMenu.width
+                    actionName: actionNameRole
+                    enabled: true
+                    onTriggered: {
+                        actionItem.execute();
+                        viewMenu.close();
+                    }
+                }
+
+            }
+
+        }
+
     }
 
-    function onlyShowOtherMenuBar()
-    {
-        __fileBarButton.visible = false
-        __otherBarButton.visible = true
+    BasicMenu {
+        id: toolMenu
+
+        title: qsTr("Tool") + "(&T)"
+
+        // ...
+        BasicSubMenu {
+            separator: false
+            title: qsTr("Language")
+            mymodel: actionCommands.getOpt("Language").subMenuActionmodel
+        }
+
+        BasicSubMenu {
+            separator: false
+            title: qsTr("Theme color change")
+            mymodel: actionCommands.getOpt("Theme color change").subMenuActionmodel
+        }
+
+//        BasicMenuItem {
+//            visible: Qt.platform.os !== "windows"
+//            actionName: qsTr("Model Repair")
+//            enabled: controlEnabled && isFDMPrinter
+//            onTriggered: {
+//                excuteOpt("Model Repair");
+//            }
+//        }
+
+        BasicMenuItem {
+            actionName: qsTr("Manage Printer")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("Manage Printer");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Manage Filaments")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                //                excuteOpt("Manage Material")
+                standaloneWindow.showManageMaterialDialog();
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Preferences")
+            enabled: true
+            onTriggered: {
+                excuteOpt("Preferences");
+            }
+        }
+
+        Loader {
+            active: kernel_global_const.sliceHeightSettingEnabled
+
+            sourceComponent: BasicMenuItem {
+                enabled: kernel_modelspace.modelNNum > 0
+                actionName: "切片高度设置"
+                onTriggered: {
+                    toolMenu.close();
+                    kernel_ui.requestQmlDialog("slice_height_setting_dialog");
+                }
+            }
+
+        }
+
+        Loader {
+            active: kernel_global_const.partitionPrintEnabled
+
+            sourceComponent: BasicMenuItem {
+                enabled: kernel_modelspace.modelNNum > 0
+                actionName: "分区打印"
+                onTriggered: {
+                    toolMenu.close();
+                    kernel_ui.requestQmlDialog("partition_print_dialog");
+                }
+            }
+
+        }
+
     }
 
-    function excuteOpt(optName)
-    {
-        actionCommands.getOpt(optName).execute()
+    BasicMenu {
+        id: modelLibraryMenu
+
+        title: qsTr("Creality Cloud") + "(&M)"
+        enabled: isFDMPrinter
+
+        BasicMenuItem {
+            actionName: qsTr("Model Library")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("Models");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Download Manage")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: validLogin(() => {
+                return cloudContext.downloadManageDialog.show();
+            }, false)
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("My Model")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: validLogin(() => {
+                return cloudContext.userInfoDialog.setPage(UserInfoDialog.Page.UPLOADED_MODEL);
+            })
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("My Slice")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: validLogin(() => {
+                return cloudContext.userInfoDialog.setPage(UserInfoDialog.Page.UPLOADED_SLICE);
+            })
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("My Devices")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: validLogin(() => {
+                return cloudContext.userInfoDialog.setPage(UserInfoDialog.Page.PRINTER);
+            })
+        }
+
     }
+
+    BasicMenu {
+        id: calibrationMenu
+
+        title: qsTr("Calibration(&C)")
+
+        // ...
+        BasicMenuItem {
+            actionName: qsTr("Temperature")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("Temperature");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Coarse tune")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                kernel_slice_calibrate.lowflow();
+                excuteOpt("Coarse tune");
+            }
+        }
+
+        BasicMenuItem {
+            // excuteOpt("FlowFineTuning")
+
+            actionName: qsTr("Fine tune")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                kernel_slice_calibrate.highflow(1);
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("PA")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("PA");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Retraction test")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("Retraction");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: cxTr("Maximum volume flow")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("MaxFlowVolume");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("VFA")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("VFA");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Tutorial")
+            enabled: controlEnabled && isFDMPrinter
+            onTriggered: {
+                excuteOpt("Tutorial");
+            }
+        }
+
+    }
+
+    BasicMenu {
+        id: helpMenu
+
+        title: qsTr("Help") + "(&H)"
+
+        BasicMenuItem {
+            property string modelData: "About Us"
+
+            actionName: qsTr(modelData)
+            enabled: true
+            onTriggered: {
+                excuteOpt(modelData);
+            }
+        }
+
+        Loader {
+            active: kernel_global_const.upgradeable
+
+            sourceComponent: BasicMenuItem {
+                property string modelData: "Update"
+
+                actionName: qsTr(modelData)
+                enabled: true
+                onTriggered: {
+                    excuteOpt(modelData);
+                }
+            }
+
+        }
+
+        Loader {
+            active: kernel_global_const.teachable
+
+            sourceComponent: BasicMenuItem {
+                property string modelData: "Use Course"
+
+                actionName: qsTr(modelData)
+                enabled: true
+                onTriggered: {
+                    excuteOpt(modelData);
+                }
+            }
+
+        }
+
+        Loader {
+            active: kernel_global_const.feedbackable
+
+            sourceComponent: BasicMenuItem {
+                property string modelData: "User Feedback"
+
+                actionName: qsTr(modelData)
+                enabled: true
+                onTriggered: {
+                    excuteOpt(modelData);
+                }
+            }
+
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Log View")
+            enabled: true
+            onTriggered: {
+                excuteOpt("Log View");
+            }
+        }
+
+        BasicMenuItem {
+            actionName: qsTr("Mouse Operation Function")
+            enabled: true
+            onTriggered: {
+                idAllMenuDialog.mosueInfo.visible = true;
+            }
+        }
+
+    }
+
+    delegate: BasicMenuBarItemStyle {
+        leftPadding: 10 * screenScaleFactor
+        rightPadding: 10 * screenScaleFactor
+        //        topPadding : 5
+        //        width: 67* screenScaleFactor
+        //        padding:20* screenScaleFactor
+        height: idMenuBar.height
+        onTriggered: {
+            barItemTriggered();
+        }
+    }
+
 }

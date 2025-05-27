@@ -3,52 +3,24 @@ import QtQuick.Layouts 1.13
 import QtQuick.Controls 2.5
 import "../qml"
 Item {
-    width: 262*screenScaleFactor
+    width: 230*screenScaleFactor
     property var settingsModel
     implicitHeight:200*screenScaleFactor
     anchors.leftMargin: 23*screenScaleFactor
     signal genPlotterGcode()
     Column{
-        spacing:5
-        Label {
-            color: Constants.textColor
-            text:qsTr("Slice Settings")
-            font.family: Constants.labelFontFamily
-            font.pointSize: 13
-            font.bold: true
-			width: 100*screenScaleFactor
-			height:30*screenScaleFactor
+        spacing:5*screenScaleFactor
+        Item{
+            width: 5*screenScaleFactor
+            height: 5*screenScaleFactor
         }
 
         Row{
 			spacing:25
-            visible:false
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
-                font.family: Constants.labelFontFamily
-                text:qsTr("Run Count")
-                color: Constants.textColor
-				verticalAlignment: Qt.AlignVCenter
-				horizontalAlignment: Qt.AlignLeft
-            }
-            BasicDialogTextField {
-                width: 120*screenScaleFactor
-                height: 28*screenScaleFactor
-                horizontalAlignment: Text.AlignLeft
-                text: settingsModel.plotterTotalNum
-                onTextChanged: {
-                    settingsModel.plotterTotalNum = parseInt(text);
-                }
-            }			
-		}
-        Row{
-			spacing:25
-			Label {
-                width: 90*screenScaleFactor
-				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily
                 text:qsTr("Power Rate")
                 color: Constants.textColor
@@ -72,7 +44,7 @@ Item {
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily
                 text:qsTr("Speed Rate")
                 color: Constants.textColor
@@ -96,7 +68,7 @@ Item {
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily               
                 text:qsTr("Travel Speed")
                 color: Constants.textColor
@@ -120,7 +92,7 @@ Item {
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily                
                 text:qsTr("Work Speed")
                 color: Constants.textColor
@@ -145,7 +117,7 @@ Item {
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily                
                 text:qsTr("Work Depth")
                 color: Constants.textColor
@@ -170,7 +142,7 @@ Item {
 			Label {
                 width: 90*screenScaleFactor
 				height: 28*screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize
+                font.pointSize:Constants.labelFontPointSize_9
                 font.family: Constants.labelFontFamily                
                 text:qsTr("Travel Height")
                 color: Constants.textColor

@@ -13,6 +13,11 @@ Rectangle {
     readonly property int checkboxWidth: 15* screenScaleFactor
     readonly property int margin: 10* screenScaleFactor
     property bool addSuportMode: true
+
+    MouseArea{//捕获鼠标点击空白地方的事件
+        anchors.fill: parent
+    }
+
     StyledLabel {
        id: panel_name
        anchors.top: parent.top
@@ -39,7 +44,7 @@ Rectangle {
             id: auto_support
             text: qsTr("Auto Support")
             color: Constants.textColor
-            font.pixelSize: Constants.labelFontPixelSize
+            font.pointSize: Constants.labelFontPointSize_6
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.topMargin: margin
@@ -49,7 +54,7 @@ Rectangle {
             id: support_grid
             text: qsTr("Support Grid")
             color: Constants.textColor
-            font.pixelSize: Constants.labelFontPixelSize
+            font.pointSize: Constants.labelFontPointSize_6
             width: 100* screenScaleFactor
             anchors.top: auto_support.bottom
             anchors.topMargin: margin * 2
@@ -91,7 +96,7 @@ Rectangle {
             id: overhang_angle
             color: Constants.textColor
             width: 100* screenScaleFactor
-            font.pixelSize: support_grid.font.pixelSize
+            font.pointSize: Constants.labelFontPointSize_6
             anchors.top: support_grid.bottom
             anchors.topMargin: margin * 2* screenScaleFactor
             anchors.left: support_grid.left
@@ -111,16 +116,15 @@ Rectangle {
 
         CheckBox {
             id: platform_checkbox
-            text: "<font color='#E3EBEE'>" + qsTr("Only add support to the hot bed") + "</font>"
-           // text: qsTr("Only add support to the hot bed")
-            font.pixelSize: 12* screenScaleFactor
+            text: "<font color='#E3EBEE'>" + qsTr("Only add support to the plate") + "</font>"
+            font.pointSize: Constants.labelFontPointSize_10
             font.family: Constants.labelFontFamily
             indicator.width: checkboxWidth
             indicator.height: checkboxWidth
             anchors.top: overhang_angle_text.bottom
             anchors.topMargin: 0
-
         }
+
         BasicButton
         {
             id: generate_support
@@ -157,7 +161,7 @@ Rectangle {
             id: custom_support
             text: qsTr("Custom Support")
             color: Constants.textColor
-            font.pixelSize: Constants.labelFontPixelSize
+            font.pointSize: Constants.labelFontPointSize_6
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.topMargin: margin
@@ -212,9 +216,6 @@ Rectangle {
         id: clear_support
         text: qsTr("Clear All Supports")
         btnRadius:5
-//        btnTextColor : "#E3EBEE"
-//        hoveredBtnBgColor:  Constants.hoveredColor
-//        defaultBtnBgColor : Constants.buttonColor
         defaultBtnBgColor : "#FFFFFF"
         hoveredBtnBgColor : "#3492FF"
         btnTextColor : down || hovered ? "#FFFFFF":"3492FF"

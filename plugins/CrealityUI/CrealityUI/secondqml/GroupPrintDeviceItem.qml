@@ -29,7 +29,6 @@ Button{
 
     MouseArea
     {
-        //anchors.fill: parent
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: isGcodeItem ? 97 : 0
@@ -69,7 +68,7 @@ Button{
             StyledLabel{
                 width: 130
                 height: parent.height
-                font.pixelSize:14
+                font.pointSize: Contants.labelFontPointSize_12
                 color: "#333333"
                 text: itemName
                 elide: Text.ElideRight
@@ -79,7 +78,7 @@ Button{
             StyledLabel{
                 width: 130
                 height: parent.height
-                font.pixelSize:14
+                font.pointSize: Contants.labelFontPointSize_12
                 color: "#333333"
                 text: isGcodeItem ? sliceType : allCount
                 elide: Text.ElideRight
@@ -93,14 +92,12 @@ Button{
                 Row{
                     anchors{
                         horizontalCenter: parent.horizontalCenter
-                        //verticalCenter: parent.verticalCenter
                     }
                     width: (isGcodeItem & idCheckBox.checked) ? (13 + 13 + idCountLabel.width + 20) : idCountLabel.width
                     height: parent.height
                     spacing: 10
                     CusSkinButton_Image{
                         anchors{
-                            //horizontalCenter: parent.horizontalCenter
                             verticalCenter: parent.verticalCenter
                         }
                         width: 13
@@ -111,7 +108,6 @@ Button{
                         btnImgPressed: "qrc:/UI/photo/group_print_task_create_img_count_reduce.png"
                         onClicked:
                         {
-                            // delete count
                             if(deviceCount == 1)
                             {
                                 return
@@ -123,17 +119,16 @@ Button{
                     }
                     StyledLabel{
                         id: idCountLabel
-                        width: idCountLabel.contentWidth//97//parent.width - 58 - 130 - 130
+                        width: idCountLabel.contentWidth
                         height: parent.height
-                        font.pixelSize:14
+                        font.pointSize: Contants.labelFontPointSize_12
                         color: "#333333"
-                        text: deviceCount//qsTr("2")
+                        text: deviceCount
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment:Text.AlignHCenter
                     }
                     CusSkinButton_Image{
                         anchors{
-                            //horizontalCenter: parent.horizontalCenter
                             verticalCenter: parent.verticalCenter
                         }
                         width: 13
@@ -144,7 +139,6 @@ Button{
                         btnImgPressed: "qrc:/UI/photo/group_print_task_create_img_count_add.png"
                         onClicked:
                         {
-                            // add count
                             deviceCount++
                         }
                     }
@@ -159,16 +153,12 @@ Button{
         color: idDeviceItemBtn.hovered ? "#C9EBFF" : (idCheckBox.checked ? "#ECECEC" : "#FFFFFF")
     }
 
-
     UploadMessageDlg{
         id:idGcodeItemUnknownBtnClk
         visible: false
-        //cancelBtnVisible: false
         onSigOkButtonClicked:
         {
             idGcodeItemUnknownBtnClk.close()
-
-            // get printer list
             sigRedefineFileSliceType(gcodeId, itemName)
         }
     }

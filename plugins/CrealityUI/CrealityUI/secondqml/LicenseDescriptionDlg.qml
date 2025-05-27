@@ -23,8 +23,6 @@ BasicDialog{
         anchors.leftMargin: 5+21
         width: parent.width-10 - 21
         height: parent.height-titleHeight-10-30-30
-        hpolicy: ScrollBar.AlwaysOff
-        vpolicy: ScrollBar.AlwaysOn
         clip : true
         Column{
             width: 708//parent.width-21
@@ -35,7 +33,7 @@ BasicDialog{
                 wrapMode: Text.WordWrap
                 color: "#333333"
                 text: qsTr("In Creality Cloud, your original work (inc 3D prints & articles) is restrictedly protected under Creative Commons Licenses 4.0. If you find any breach of agreement, please contact us to discuss further action.")
-                font.pixelSize:14
+                font.pointSize: Constants.labelFontPointSize_12
             }
             Row{
                 width: parent.width
@@ -50,7 +48,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -59,12 +57,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -86,7 +84,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY-SA"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -95,12 +93,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -122,7 +120,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY-NC"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -131,12 +129,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -158,7 +156,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY-NC-SA"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -167,12 +165,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -194,7 +192,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY-ND"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -203,12 +201,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, and only so long as attribution is given to the creator. The license allows for commercial use.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -230,7 +228,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC BY-NC-ND"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -239,12 +237,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, for noncommercial purposes only, and only so long as attribution is given to the creator.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false
@@ -266,7 +264,7 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#333333"
                         text: "CC0"
-                        font.pixelSize:18
+                        font.pointSize: Constants.labelFontPointSize_16
                         font.weight: "Bold"
                     }
                     StyledLabel{
@@ -275,12 +273,12 @@ BasicDialog{
                         wrapMode: Text.WordWrap
                         color: "#666666"
                         text: qsTr("(aka CC Zero) is a public dedication tool, which allows creators to give up their copyright and put their works into the worldwide public domain.")
-                        font.pixelSize:12
+                        font.pointSize: Constants.labelFontPointSize_10
                     }
                 }
                 Image{
                     width: 172
-                    height: 60   
+                    height: 60
                     mipmap: true
                     smooth: true
                     cache: false

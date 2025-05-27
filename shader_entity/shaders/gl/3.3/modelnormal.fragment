@@ -1,0 +1,33 @@
+#version 330 core
+
+out vec4 fragmentColor;
+
+in vec3 gnormal;
+in vec3 worldPosition;
+in vec4 color;
+in vec2 intensity;
+
+uniform float transparency;
+uniform vec3 minSpace;
+uniform vec3 maxSpace;
+uniform float topVisibleHeight;
+uniform float bottomVisibleHeight;
+uniform int checkscope;
+uniform vec4 outPlatformGain;
+
+void main( void )
+{
+	if(checkscope > 0 && (worldPosition.z < bottomVisibleHeight || worldPosition.z > topVisibleHeight))
+		discard;
+
+	vec4 _color = color;
+
+	if(worldPosition.x < minSpace.x || worldPosition.y < minSpace.y 
+		|| worldPosition.x > maxSpace.x || worldPosition.y > maxSpace.y || worldPosition.z > maxSpace.z
+		|| (abs(worldPosition.z - 0.0) < 0.01 && dot(gnormal, vec3(0.0, 0.0, -1.0)) > 0.99))
+	{
+		_color = _color * outPlatformGain;
+	}
+
+	fragmentColor = vec4(vec3(intensity.y) + (_color.rgb * intensity.x), transparency);
+}

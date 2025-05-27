@@ -1,12 +1,10 @@
 #include "repairop.h"
 
-#include "qtuser3d/entity/modelnentity.h"
-
 #include <QtCore/QDebug>  
 
 #include "interface/visualsceneinterface.h"
 #include "interface/eventinterface.h"
-#include "interface/jobsinterface.h"
+#include "cxkernel/interface/jobsinterface.h"
 #include "interface/reuseableinterface.h"
 #include "interface/selectorinterface.h"
 
@@ -28,15 +26,17 @@ RepairOp::~RepairOp()
 
 void RepairOp::repairModel(QList<creative_kernel::ModelN*> selections)
 {
+#ifdef Q_OS_WINDOWS
 	RepairJob* job = new RepairJob();
 	for (size_t i = 0; i < selections.size(); i++)
 	{
 		ModelN* m = selections.at(i);
 		job->setModel(m);
 	}
-	executeJob(JobPtr(job));
+	cxkernel::executeJob(qtuser_core::JobPtr(job));
 	disconnect(getKernel()->jobExecutor(), SIGNAL(jobsEnd()), this, SIGNAL(repairSuccess()));
 	connect(getKernel()->jobExecutor(), SIGNAL(jobsEnd()), this, SIGNAL(repairSuccess()));
+#endif
 }
 void RepairOp::onAttach()
 {
@@ -53,14 +53,15 @@ void RepairOp::onDettach()
 
 void RepairOp::onLeftMouseButtonClick(QMouseEvent* event)
 {
-	QVector3D position, normal;
-	ModelN* model = checkPickModel(event->pos(), position, normal);
+#ifdef Q_OS_WINDOWS
+	ModelN* model = checkPickModel(event->pos());
 	if(model)
 	{
 		RepairJob* job = new RepairJob();
 		job->setModel(model);
-		executeJob(JobPtr(job));
+		cxkernel::executeJob(qtuser_core::JobPtr(job));
 	}
+#endif
 }
 
 void RepairOp::onHoverMove(QHoverEvent* event)

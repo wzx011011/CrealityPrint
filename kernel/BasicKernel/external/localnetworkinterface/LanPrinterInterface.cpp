@@ -3,31 +3,31 @@
 #include <unordered_map>
 #include <cpr/cpr.h>
 #include "rapidjson/document.h"
-#include <cxnet.h>
 #include <iostream>
-
+#include <math.h>
 namespace creative_kernel
 {
 	LanPrinterInterface::LanPrinterInterface()
 	{
-		//qRegisterMetaType<RemotePrinter>("PrinterStates");
+
 	}
 
 	LanPrinterInterface::~LanPrinterInterface()
 	{
+
 	}
 	
-	void LanPrinterInterface::getDeviceState(const std::string& strServerIp, std::function<void(std::unordered_map<std::string, std::string>)> callback)
+	void LanPrinterInterface::getDeviceState(const std::string& strServerIp, std::function<void(std::unordered_map<std::string, std::string>, RemotePrinterSession)> callback, RemotePrinterSession printerSession)
 	{
 		std::string strUrl = "http://" + strServerIp + ":" + std::to_string(cServerPort) + cUrlSuffixState;
 		cpr::GetCallback([](cpr::Response r) {
 			return r.text;
-			}, cpr::Url{ strUrl },
+			}, cpr::Url{ strUrl }, cpr::Timeout{ 1000 },
 				cpr::Parameters{ {"fname", "net"},{"opt","iot_conf"},{"function","set"},{"ReqPrinterPara","0"} });
 
 		auto future_text_set = cpr::GetCallback([](cpr::Response r) {
 			return r.text;
-			}, cpr::Url{ strUrl },
+			}, cpr::Url{ strUrl }, cpr::Timeout{ 1000 },
 				cpr::Parameters{ {"fname", "net"},{"opt","iot_conf"},{"function","set"},{"ReqPrinterPara","1"} });
 
 		if (future_text_set.wait_for(std::chrono::seconds(10)) == std::future_status::ready)
@@ -66,7 +66,7 @@ namespace creative_kernel
 				}
 				if (callback != nullptr)
 				{
-					callback(retKvs);
+					callback(retKvs, printerSession);
 				}
 				return ;
 				}, cpr::Url{ strUrl },
@@ -74,43 +74,52 @@ namespace creative_kernel
 		}
 	}
 	
-	int LanPrinterInterface::sendFileToDevice(const std::string& strIP, std::string filePath, std::function<void(float)> callback, std::function<void(std::string)> errorCallback)
+	std::future<void> LanPrinterInterface::sendFileToDevice(const std::string& strIP, const std::string& fileName, const std::string& filePath, std::function<void(float)> callback, std::function<void(int)> errorCallback)
 	{
-		cpr::FtpPutCallback(filePath, [=](cpr::Response r) {
+		return cpr::FtpPutCallback(fileName, filePath, [=](cpr::Response r) {
 			if (r.error.code != cpr::ErrorCode::OK)
 			{
 				if (errorCallback)
 				{
-					errorCallback(r.error.message);
+					errorCallback(int(r.error.code));
 				}
 			}
-
-			}, cpr::Url{ "ftp://" + strIP + "/mmcblk0p1/creality/gztemp/"},
-				cpr::ProgressCallback([=](cpr::cpr_off_t downloadTotal, cpr::cpr_off_t downloadNow, cpr::cpr_off_t uploadTotal, cpr::cpr_off_t uploadNow, intptr_t userdata)
+			else
 			{
+				if (callback)
+				{
+					callback(1);
+				}
+			}
+		}, 
+			cpr::Url{ "ftp://" + strIP + "/mmcblk0p1/creality/gztemp/"},
+			cpr::ProgressCallback([=](cpr::cpr_off_t downloadTotal, cpr::cpr_off_t downloadNow, cpr::cpr_off_t uploadTotal, cpr::cpr_off_t uploadNow, intptr_t userdata) {
 				if (uploadTotal && uploadNow)
 				{
 					if (callback != nullptr)
 					{
-						callback((float)uploadNow/uploadTotal);
+						uploadNow == uploadTotal ? callback(0.99f) : callback((float)uploadNow / uploadTotal);
 					}
 				}
 				return true;
-			}));
-		return 0;
+			})
+		);
 	}
 	
 	std::list<std::string> LanPrinterInterface::getFileListFromDevice(const std::string& strIP, std::function<void(std::string)> callback)
 	{
 		std::list<std::string> fileList;
-		cpr::FtpListFileAsync("ftp://" + strIP + "/mmcblk0p1/creality/gztemp/", cpr::WriteCallback([=](std::string data, intptr_t userdata)
-			{
+		cpr::FtpListFileAsync
+		(
+			"ftp://" + strIP + "/mmcblk0p1/creality/gztemp/", 
+			cpr::WriteCallback([=](std::string data, intptr_t userdata) {
 				if (callback != nullptr)
 				{
 					callback(data);
 				}
 				return true;
-			}));
+			})
+		);
 		return fileList;
 	}
 
@@ -128,7 +137,8 @@ namespace creative_kernel
 		{
 		case PrintControlType::PRINT_START:
 		{
-			parameters.Add(cpr::Parameter{ "print", value });
+			std::string filepath = "/media/mmcblk0p1/creality/gztemp/" + value;
+			parameters.Add(cpr::Parameter{ "print", filepath });
 			break;
 		}
 		case PrintControlType::PRINT_PAUSE:
@@ -201,6 +211,21 @@ namespace creative_kernel
 			parameters.Add(cpr::Parameter{ "led", value });
 			break;
 		}
+		case PrintControlType::CONTROL_CMD_1STNOZZLETEMP:
+		{
+			parameters.Add(cpr::Parameter{ "_1st_nozzleTemp2", value });
+			break;
+		}
+		case PrintControlType::CONTROL_CMD_2NDNOZZLETEMP:
+		{
+			parameters.Add(cpr::Parameter{ "_2nd_nozzleTemp2", value });
+			break;
+		}
+		case PrintControlType::CONTROL_CMD_CHAMBERTEMP:
+		{
+			parameters.Add(cpr::Parameter{ "chamberTemp2", value });
+			break;
+		}
 		default:
 			break;
 		}
@@ -210,7 +235,9 @@ namespace creative_kernel
 			{
 				callback();
 			}
-			}, cpr::Url{ strUrl }, parameters);
+		}, 
+			cpr::Url{ strUrl }, parameters
+		);
 		return 0;
 	}
 	void LanPrinterInterface::transparentCommand(const std::string& strServerIp, const std::string& value, std::function<void()> callback)

@@ -124,7 +124,7 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     text: propertyButton.text
                     color: "#333333"
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     font.family: Constants.labelFontFamily
                 }
             }

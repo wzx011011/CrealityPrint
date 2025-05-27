@@ -1,731 +1,579 @@
 #include "translateop.h"
 #include <QQmlProperty>
 #include "qtuser3d/math/space3d.h"
+#include "qtuser3d/camera/cameracontroller.h"
+#include "qtuser3d/trimesh2/conv.h"
+
 #include <QMetaObject>
 #include "interface/visualsceneinterface.h"
 #include "interface/selectorinterface.h"
 #include "interface/camerainterface.h"
-#include "interface/modelinterface.h"
-#include "interface/spaceinterface.h"
+#include "interface/printerinterface.h"
+#include "interface/modelgroupinterface.h"
+
 #include "interface/eventinterface.h"
-#include "us/slicermanager.h"
+#include "interface/reuseableinterface.h"
+#include "kernel/kernelui.h"
+#include "data/spaceutils.h"
 
-#include "data/fdmsupportgroup.h"
-using namespace creative_kernel;
-TranslateOp::TranslateOp(creative_kernel::AbstractKernelUI* pKernel, QObject* parent)
-	:SceneOperateMode(parent)
-	, m_mode(TMode::null)
-	, m_selectedModel(nullptr)
-	, m_pKernelUI(pKernel)
-{
-	m_helperEntity = new qtuser_3d::TranslateHelperEntity();
-	moveEnable = false;
-}
+#include "internal/multi_printer/printer.h"
 
-TranslateOp::~TranslateOp()
+namespace creative_kernel
 {
-}
-
-void TranslateOp::setMessage(bool isRemove)
-{
-	if (isRemove)
+	TranslateOp::TranslateOp(QObject* parent)
+		:MoveOperateMode(parent)
 	{
-		for (size_t i = 0; i < m_selectedModels.size(); i++)
-		{
-			ModelN* model = m_selectedModels.at(i);
-			if (model->hasFDMSupport())
-			{
-				FDMSupportGroup* p_support = m_selectedModels.at(i)->fdmSupport();
-				p_support->clearSupports();
-			}
+		int types =
+			HELPERTYPE_AXIS_X | \
+			HELPERTYPE_AXIS_Y | \
+			HELPERTYPE_AXIS_Z | \
+			HELPERTYPE_PLANE_XY | \
+			HELPERTYPE_PLANE_YZ | \
+			HELPERTYPE_PLANE_ZX;
 
-			// 清空附属模型
-			if (model->hasAttach())
-			{
-				m_selectedModels.at(i)->clearAttachModel();
-			}
+		m_type = qtuser_3d::SceneOperateMode::ReusableMode;
+		m_helperEntity = new qtuser_3d::TranslateHelperEntity(nullptr, types);
+		m_helperEntity->setCameraController(cameraController());
+	}
+
+	TranslateOp::~TranslateOp()
+	{
+	}
+
+	/*void TranslateOp::setMessage(bool isRemove)
+	{
+		if (isRemove)
+		{
+			requestVisUpdate(true);
 		}
+	}
+
+	bool TranslateOp::getMessage()
+	{
+		return false;
+	}*/
+
+	void TranslateOp::onAttach()
+	{
+		m_helperEntity->attach();
+
+		tracePickable(m_helperEntity->xArrowPickable());
+		tracePickable(m_helperEntity->yArrowPickable());
+		tracePickable(m_helperEntity->zArrowPickable());
+		tracePickable(m_helperEntity->xyPlanePickable());
+		tracePickable(m_helperEntity->yzPlanePickable());
+		tracePickable(m_helperEntity->zxPlanePickable());
+		tracePickable(m_helperEntity->xyzCubePickable());
+
+		addModelNSelectorTracer(this);
+		onSelectionsChanged();
+
+		addLeftMouseEventHandler(this);
+		addWheelEventHandler(this);
+		addKeyEventHandler(this);
+
+		traceSpace(this);
+
+		requestVisUpdate(true);
+
+	}
+
+	void TranslateOp::onDettach()
+	{
+		m_helperEntity->detach();
+
+		unTraceSpace(this);
+
+		unTracePickable(m_helperEntity->xArrowPickable());
+		unTracePickable(m_helperEntity->yArrowPickable());
+		unTracePickable(m_helperEntity->zArrowPickable());
+		unTracePickable(m_helperEntity->xyPlanePickable());
+		unTracePickable(m_helperEntity->yzPlanePickable());
+		unTracePickable(m_helperEntity->zxPlanePickable());
+		unTracePickable(m_helperEntity->xyzCubePickable());
+
+		visHide(m_helperEntity);
+
+		removeModelNSelectorTracer(this);
+
+		removeLeftMouseEventHandler(this);
+		removeWheelEventHandler(this);
+		removeKeyEventHandler(this);
+	
 		requestVisUpdate(true);
 	}
-}
 
-bool TranslateOp::getMessage()
-{
-	//if (m_selectedModels.size())
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void TranslateOp::onLeftMouseButtonPress(QMouseEvent* event)
 	{
-		ModelN* model = m_selectedModels.at(i);
-		if (model->hasFDMSupport())
+		MoveOperateMode::onLeftMouseButtonPress(event);
+		setNeedCheckScope(0);
+
+		auto models = selectionms();
+		if (models.isEmpty())
+			return;
+
+		qtuser_3d::Pickable* pickable = checkPickable(event->pos(), nullptr);
+		if (pickable == m_helperEntity->xArrowPickable())
+			setMode(TMode::x);
+		else if (pickable == m_helperEntity->yArrowPickable())
+			setMode(TMode::y);
+		else if (pickable == m_helperEntity->zArrowPickable())
+			setMode(TMode::z);
+		else if (pickable == m_helperEntity->xyPlanePickable())
+			setMode(TMode::xy);
+		else if (pickable == m_helperEntity->yzPlanePickable())
+			setMode(TMode::yz);
+		else if (pickable == m_helperEntity->zxPlanePickable())
+			setMode(TMode::zx);
+		resetSpacePoint(event->pos());
+	}
+
+	void TranslateOp::onLeftMouseButtonRelease(QMouseEvent* event)
+	{
+		MoveOperateMode::onLeftMouseButtonRelease(event);
+		notifySpaceChange(true);
+		setNeedCheckScope(0);
+	}
+
+	void TranslateOp::onLeftMouseButtonMove(QMouseEvent* event)
+	{
+		MoveOperateMode::onLeftMouseButtonMove(event);
+		updateHelperEntity();
+
+		emit positionChanged();
+		setNeedCheckScope(0);
+	}
+
+	void TranslateOp::onLeftMouseButtonClick(QMouseEvent* event)
+	{
+	}
+
+	void TranslateOp::onWheelEvent(QWheelEvent* event)
+	{
+	}
+
+	void TranslateOp::onSelectionsChanged()
+	{
+		QList<creative_kernel::ModelN*> selections = selectionms();
+		onSelectModelsChanged(selections);
+
+		creative_kernel::initSelectedGroupsBoudingBox(m_lastGroupBoxes);
+	}
+
+	void TranslateOp::onSceneChanged(const trimesh::dbox3& box)
+	{
+		updateHelperEntity();
+		creative_kernel::checkSelectedGroupsBoudingBox(m_lastGroupBoxes);
+	}
+
+	void TranslateOp::onModelGroupModified(ModelGroup* _model_group, const QList<ModelN*>& removes, const QList<ModelN*>& adds)
+	{
+		if (!_model_group->models().isEmpty())
 		{
-			FDMSupportGroup* p_support = m_selectedModels.at(i)->fdmSupport();
-			if (p_support->fdmSupportNum())
-			{
-				return true;
-			}
+			onSelectionsChanged();
 		}
-		if (model->hasAttach())
+	}
+
+	void TranslateOp::center()
+	{
+		auto groups = selectedGroups();
+		if (groups.size())
 		{
-			return true;
+			center_groups(groups);
+		}
+		else {
+			QList<ModelN*> list = selectedParts();
+			center_models(list);
 		}
 	}
-	return false;
-}
 
-void TranslateOp::onAttach()
-{
-    QList<ModelN*> selectModels = selectionms();
-    tracePickable(m_helperEntity->xPickable(), false);
-    tracePickable(m_helperEntity->yPickable(), false);
-    tracePickable(m_helperEntity->zPickable(), false);
-    if(selectModels.length()>0)
-    {
-        creative_kernel::selectOne(selectModels.at(0));
-    }else{
-
-        //creative_kernel::selectOne(selectModels.at(0));
-    }
-
-    addSelectTracer(this);
-	onSelectionsChanged();
-
-	addLeftMouseEventHandler(this);
-	addKeyEventHandler(this);
-
-	if (m_pKernelUI != nullptr)
+	void TranslateOp::movePositionToinit(QList<creative_kernel::ModelN*>& selections)
 	{
-		m_pKernelUI->switchPopupMode();
-	}
-	m_bShowPop = true;
-     //set left tool bar pop to autoclose status
-//    QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(true)));
-
-}
-
-void TranslateOp::onDettach()
-{
-	unTracePickable(m_helperEntity->xPickable(), false);
-	unTracePickable(m_helperEntity->yPickable(), false);
-	unTracePickable(m_helperEntity->zPickable(), false);
-	
-	visHide(m_helperEntity);
-	//setSelectedModel(nullptr);
-	m_selectedModels.clear();
-	removeSelectorTracer(this);
-
-	removeLeftMouseEventHandler(this);
-	removeKeyEventHandler(this);
-
-	requestVisUpdate(true);
-
-	if (m_pKernelUI != nullptr)
-	{
-		m_pKernelUI->switchPopupMode();
-	}
-	m_bShowPop = false;
-    //restore left tool bar status
-    //QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(false)));
-}
-
-void TranslateOp::onLeftMouseButtonPress(QMouseEvent* event)
-{
-	moveEnable = false;
-	m_mode = TMode::null;
-	m_saveLocalPositions.clear();
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		Pickable* pickable = checkPickable(event->pos(), nullptr);
-
-		
-
-		if (pickable == m_helperEntity->xPickable()) m_mode = TMode::x;
-		else if (pickable == m_helperEntity->yPickable()) m_mode = TMode::y;
-		else if (pickable == m_helperEntity->zPickable()) m_mode = TMode::z;
-		else if (pickable != nullptr) m_mode = TMode::sp;
-		ModelN* model = qobject_cast<ModelN*>(pickable);
-		//if (model == m_selectedModels[0])
-		//{
-		//	m_mode = TMode::sp;
-		//}
-		if (pickable == m_selectedModels[i] || m_mode == TMode::x || m_mode == TMode::y || m_mode == TMode::z)
+		if (selections.isEmpty())
 		{
-			moveEnable = true;
+			return;
 		}
 
+		QList<ModelGroup*>gs;
+		gs << selections.first()->getModelGroup();
+		beginNodeSnap(gs, selections);
 
-		m_spacePoint = process(event->pos());
-		m_saveLocalPositions.push_back(m_selectedModels[i]->localPosition());
-	}
-
-	//if (m_selectedModel)
-	//{
-	//	Pickable* pickable = checkPickable(event->pos(), nullptr);
-	//	if (pickable == m_helperEntity->xPickable()) m_mode = TMode::x;
-	//	if (pickable == m_helperEntity->yPickable()) m_mode = TMode::y;
-	//	if (pickable == m_helperEntity->zPickable()) m_mode = TMode::z;
-	//	
-	//	ModelN* model = qobject_cast<ModelN*>(pickable);
-	//	if (model == m_selectedModel)
-	//	{
-	//		m_mode = TMode::sp;
-	//	}
-
-	//	m_spacePoint = process(event->pos());
-	//	m_saveLocalPosition = m_selectedModel->localPosition();
-	//}
-}
-
-void TranslateOp::onLeftMouseButtonRelease(QMouseEvent* event)
-{
-	if (!moveEnable)
-	{
-		return;
-	}
-
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		if (m_mode != TMode::null && !SlicerManager::instance().getDoingSlice())
-		{	//
-			QVector3D p = process(event->pos());
-			QVector3D delta = clip(p - m_spacePoint);
-			QVector3D newLocalPosition = m_saveLocalPositions[i] + delta;
-			moveModel(m_selectedModels[i], m_saveLocalPositions[i], newLocalPosition, true);
-			requestVisUpdate(true);
-			emit positionChanged();
-			if (m_pKernelUI != nullptr)
-			{
-				m_pKernelUI->switchPopupMode();
-			}
-//            QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(true)));
-            //QQmlProperty::write(getKernelUI()->leftToolbar(), "showPop", QVariant::fromValue(false));
-            m_bShowPop = false;
-		}
-		//m_saveLocalPositions[i] = m_selectedModels[i]->localPosition();
-	}
-	
-	/*if (m_mode == TMode::null)
-	{
-		AbstractKernelUI::getSelf()->switchShowPop(false);	
-	}*/
-
-	//if (m_selectedModel && (m_mode != TMode::null))
-	//{	//
-	//	QVector3D p = process(event->pos());
-	//	QVector3D delta = clip(p - m_spacePoint);
-	//	QVector3D newLocalPosition = m_saveLocalPosition + delta;
-
-	//	moveModel(m_selectedModel, m_saveLocalPosition, newLocalPosition, true);
-
-	//	requestVisUpdate(true);
-	//	emit positionChanged();
-	//}
-}
-
-void TranslateOp::onLeftMouseButtonMove(QMouseEvent* event)
-{
-	if (!moveEnable)
-	{
-		return;
-	}
-
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		if (m_mode != TMode::null && !SlicerManager::instance().getDoingSlice())
-		{
-			QVector3D p = process(event->pos());
-			QVector3D delta = clip(p - m_spacePoint);
-
-			moveModel(m_selectedModels[i], m_saveLocalPositions[i], m_saveLocalPositions[i] + delta);
-
-			requestVisUpdate(true);
-
-            if(!m_bShowPop)
-            {
-				if (m_pKernelUI != nullptr)
-				{
-					m_pKernelUI->switchPopupMode();
-				}
-                //QQmlProperty::write(getKernelUI()->leftToolbar(), "showPop", QVariant::fromValue(true));
-                //QMetaObject::invokeMethod(getKernelUI()->leftToolbar(), "switchPopupMode",Q_ARG(QVariant, QVariant::fromValue(false)));
-                m_bShowPop=true;
-            }
-		}
-	}
-    emit positionChanged();
-	//if (m_selectedModel && (m_mode != TMode::null))
-	//{
-	//	QVector3D p = process(event->pos());
-	//	QVector3D delta = clip(p - m_spacePoint);
-	//	
-	//	moveModel(m_selectedModel, m_saveLocalPosition, m_saveLocalPosition + delta);
-
-	//	requestVisUpdate(true);
-	//	emit positionChanged();
-	//}
-}
-
-void TranslateOp::onLeftMouseButtonClick(QMouseEvent* event)
-{
-	/*QList<creative_kernel::ModelN*> selections = selectionms();
-	if (selections.size() == 0)
-	{
-		AbstractKernelUI::getSelf()->switchShowPop(false);		
-	}
-	else
-	{
-		AbstractKernelUI::getSelf()->switchShowPop(true);
-	}*/
-	
-}
-
-void TranslateOp::onKeyPress(QKeyEvent* event)
-{
-	QList<creative_kernel::ModelN*> selections = selectionms();
-	if (selections.size() == 0)
-		return;
-
-	QVector3D delta;
-	bool needUpdate = false;
-
-	//���û�����-->��ʱ
-	if (event->key() == Qt::Key_Right)
-	{
-		delta = QVector3D(1.0f, 0.0f, 0.0f);
-		needUpdate = true;
-	}
-	//���û�����<--��ʱ
-	else if (event->key() == Qt::Key_Left)
-	{
-		delta = QVector3D(-1.0f, 0.0f, 0.0f);
-		needUpdate = true;
-	}
-	//���û�����up��ʱ
-	else if (event->key() == Qt::Key_Up)
-	{
-		delta = QVector3D(0.0f, 1.0f, 0.0f);
-		needUpdate = true;
-	}
-	//���û�����Down��ʱ
-	else if (event->key() == Qt::Key_Down)
-	{
-		delta = QVector3D(0.0f, -1.0f, 0.0f);
-		needUpdate = true;
-	}
-
-	if (SlicerManager::instance().getDoingSlice())
-	{
-		needUpdate = false;
-	}
-
-
-	if (needUpdate)
-	{
 		for (size_t i = 0; i < selections.size(); i++)
 		{
-			QVector3D localPosition = selections.at(i)->localPosition();
-			moveModel(selections.at(i), localPosition, localPosition + delta);
+			//QVector3D oldLocalPosition = selections.at(i)->localPosition();
+			QVector3D initPosition = selections.at(i)->GetInitPosition();
+			initPosition.setZ(0.0f);
+			QVector3D position = selections.at(i)->mapGlobal2Local(initPosition);
+			position.setX(initPosition.x());
+			position.setY(initPosition.y());
+
+			//moveModel(selections.at(i), oldLocalPosition, position, true);
+			trimesh::dvec3 tDelta(position.x(), position.y(), position.z());
+			trimesh::xform xf = trimesh::xform::trans(tDelta);
+			selections.at(i)->applyMatrix(xf);
+			selections.at(i)->dirty();
 		}
-		requestVisUpdate(true);
-		emit positionChanged();
+
+		updateSpaceNodeRender(gs, false);
+		updateSpaceNodeRender(selections, true);
+		endNodeSnap();
 	}
-}
 
-void TranslateOp::onKeyRelease(QKeyEvent* event)
-{
-}
-
-void TranslateOp::onSelectionsChanged()
-{
-	QList<creative_kernel::ModelN*> selections = selectionms();
-	bool flag = (selections.size() == 0) ? false : true;
-	AbstractKernelUI::getSelf()->switchShowPop(flag);
-	setSelectedModel(selections);
-	emit mouseLeftClicked();
-}
-
-void TranslateOp::selectChanged(qtuser_3d::Pickable* pickable)
-{
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
+	void TranslateOp::reset()
 	{
-		if (pickable == m_selectedModels[i])
+	}
+
+	QVector3D TranslateOp::position()
+	{
+		auto groups = selectedGroups();
+		if (groups.size())
+		{
+			return position_groups(groups);
+		}
+		else {
+			auto list = selectedParts();
+			return position_models(list);
+		}
+
+		return QVector3D();
+	}
+
+	void TranslateOp::setPosition(QVector3D position)
+	{
+		auto groups = selectedGroups();
+		if (groups.size())
+		{
+			setPosition_groups(position, groups);
+		}
+		else {
+			auto list = selectedParts();
+			setPosition_models(position, list);
+		}
+
+		setNeedCheckScope(0);
+	}
+
+	void TranslateOp::setBottom()
+	{
+		auto groups = selectedGroups();
+		if (groups.size())
+		{
+			setBottom_groups(groups);
+		}
+		else {
+			auto list = selectedParts();
+			setBottom_models(list);
+		}
+	}
+
+	void TranslateOp::updateHelperEntity()
+	{
+		auto models = selectionms();
+		if (models.size())
+		{
+			trimesh::dbox3 box = creative_kernel::modelsBox(models);
+			m_helperEntity->updateBox(qtuser_3d::triBox2Box3D(box));
+		}
+	}
+
+	bool TranslateOp::shouldMultipleSelect()
+	{
+		return true;
+	}
+
+	void TranslateOp::onSelectModelsChanged(QList<creative_kernel::ModelN*>& models)
+	{
+		if (models.size())
+		{
 			updateHelperEntity();
-	}
-	if (m_selectedModels.size() > 0)
-	{
-		emit positionChanged();
-	}
-	//if (pickable == m_selectedModel)
-	//	updateHelperEntity();
-}
+			visShow(m_helperEntity);
+		}
+		else
+		{
+			visHide(m_helperEntity);
+		}
 
-void TranslateOp::setSelectedModel(creative_kernel::ModelN* model)
-{
-	//trace selected node
-	m_selectedModel = model;
-
-#if 0
-	TranslateMode* mode = qobject_cast<TranslateMode*>(parent());
-	if (!m_selectedModel)
-	{
-		mode->setSource("qrc:/kernel/qml/NoSelect.qml");
-	}
-	else {
-		mode->setSource("qrc:/kernel/qml/MovePanel.qml");
-	}
-
-	qtuser_qml::ToolCommandCenter* left = getUILCenter();
-	left->changeCommand(mode);
-#endif
-	buildFromSelections();
-}
-
-void TranslateOp::setSelectedModel(QList<creative_kernel::ModelN*> models)
-{
-	m_selectedModels = models;
-	m_saveLocalPositions.clear();
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		m_saveLocalPositions.push_back(m_selectedModels[i]->localPosition());
-
-	}
-	buildFromSelections();
-}
-
-void TranslateOp::buildFromSelections()
-{
-	if (m_selectedModels.size())
-	{
-		updateHelperEntity();
-		visShow(m_helperEntity);
-	}
-	else
-	{
-		visHide(m_helperEntity);
-	}
-
-	//if (m_selectedModel)
-	//{
-	//	updateHelperEntity();
-	//	visShow(m_helperEntity);
-	//}
-	//else
-	//{
-	//	visHide(m_helperEntity);
-	//}
-
-	requestVisUpdate(true);
-	if (m_selectedModels.size())
-	{
-		emit positionChanged();
-	}
+		requestVisPickUpdate(true);
 		
-}
-void TranslateOp::center()
-{
-	qtuser_3d::Box3D modelsbox;
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		if (m_selectedModels[i])
+		if (models.size())
 		{
-			qtuser_3d::Box3D modelbox = m_selectedModels[i]->globalSpaceBox();
-			modelsbox += modelbox;
-		}
-	}
-	QVector3D movePos;
-	float newZ = 0;
-	if (modelsbox.valid)
-	{
-		qtuser_3d::Box3D box = creative_kernel::baseBoundingBox();
-		QVector3D size = box.size();
-		QVector3D center = box.center();
-		newZ = center.z() - size.z() / 2.0f;
-
-		movePos = box.center() - modelsbox.center();
-		movePos.setZ(0);
-	}
-
-	for (size_t i = 0; i < m_selectedModels.size(); i++)
-	{
-		if (m_selectedModels[i])
-		{
-			QVector3D oldLocalPosition = m_selectedModels[i]->localPosition();
-			QVector3D newPositon = oldLocalPosition + movePos;
-			//newPositon.setZ(newZ);
-
-			moveModel(m_selectedModels[i], oldLocalPosition, newPositon/*m_selectedModels[i]->mapGlobal2Local(newPositon)*/, true);
-
-			updateHelperEntity();
-			requestVisUpdate(true);
-		}
-	}
-
-	emit positionChanged();
-
-  //  if(m_selectedModel)
-  //  {
-  //      QVector3D oldLocalPosition = m_selectedModel->localPosition();
-  //      qtuser_3d::Box3D box = creative_kernel::baseBoundingBox();
-  //      QVector3D size = box.size();
-  //      QVector3D center = box.center();
-		//center.setZ(center.z() - size.z() / 2.0f);
-
-  //      moveModel(m_selectedModel, oldLocalPosition, m_selectedModel->mapGlobal2Local(center), true);
-
-  //      updateHelperEntity();
-		//requestVisUpdate(true);
-
-  //      emit positionChanged();
-  //  }
-}
-
-void TranslateOp::movePositionToinit(QList<creative_kernel::ModelN*>& selections)
-{
-    for (size_t i = 0; i < selections.size(); i++)
-    {
-        QVector3D oldLocalPosition = selections.at(i)->localPosition();
-        QVector3D initPosition = selections.at(i)->GetInitPosition();
-        initPosition.setZ(0.0f);
-        QVector3D position = selections.at(i)->mapGlobal2Local(initPosition);
-        position.setX(initPosition.x());
-        position.setY(initPosition.y());
-
-        moveModel(selections.at(i), oldLocalPosition, position, true);
-    }
-}
-
-void TranslateOp::reset()
-{
-	QList<ModelN*> selections = selectionms();
-	if(selections.size())
-	{
-		//for (size_t i = 0; i < selections.size(); i++)
-		//{
-		//	QVector3D oldLocalPosition = selections.at(i)->localPosition();
-		//	QVector3D initPosition = selections.at(i)->GetInitPosition();
-  //          QVector3D position = selections.at(i)->mapGlobal2Local(initPosition);
-  //          position.setX(initPosition.x());
-  //          position.setY(initPosition.y());
-
-		//	moveModel(selections.at(i), oldLocalPosition, position, true);
-		//}
-
-        movePositionToinit(selections);
-	}
-	else
-	{
-		ModelSpace* space = getModelSpace();
-		QList<ModelN*> models = space->modelns();
-		//for (size_t i = 0; i < models.size(); i++)
-		//{
-		//	QVector3D oldLocalPosition = models.at(i)->localPosition();
-		//	QVector3D initPosition = models.at(i)->GetInitPosition();
-		//	initPosition.setZ(0.0f);
-
-		//	moveModel(models.at(i), oldLocalPosition, models.at(i)->mapGlobal2Local(initPosition), true);
-		//}
-
-        movePositionToinit(models);
-	}
-	updateHelperEntity();
-	requestVisUpdate(true);
-	emit positionChanged();
-}
-
-QVector3D TranslateOp::position()
-{
-	//qtuser_3d::Box3D box;
-	//for (size_t i = 0; i < m_selectedModels.size(); i++)
-	//{
-	//	box += m_selectedModels[i]->globalSpaceBox();
-	//}
-	//if (m_selectedModels.size())
-	//{
-	//	QVector3D size = box.size();
-	//	QVector3D center = box.center();
-	//	center.setZ(center.z() - size.z() / 2.0f);
-	//	return center;
-	//}
-	if (m_selectedModels.size() > 0)
-	{
-        //return m_selectedModels[m_selectedModels.size() - 1]->localPosition();
-
-		//10-22 lisugui ��ԭע��,ԭ����������ķ���������ֵ�������֮�󣬳�ʼZ ����Ϊ0
-		qtuser_3d::Box3D box = m_selectedModels[m_selectedModels.size() - 1]->globalSpaceBox();
-		QVector3D size = box.size();
-		QVector3D center = box.center();
-		center.setZ(center.z() - size.z() / 2.0f);
-		//end
-		return center;
-	}
-    return QVector3D(0.0f, 0.0f, 0.0f);
-}
-
-void TranslateOp::setPosition(QVector3D position)
-{
-	if (1 == m_selectedModels.size())
-	{
-		moveModel(m_selectedModels[0], m_selectedModels[0]->localPosition()/*QVector3D()*/, m_selectedModels[0]->mapGlobal2Local(position), true);
-		updateHelperEntity();
-		requestVisUpdate(true);
-		emit positionChanged();
-	}
-	else
-	{
-        qDebug()<<"position =" <<position;
-
-
-		for (size_t i = 0; i < m_selectedModels.size(); i++)
-		{
-            QVector3D moveOffset = position - m_selectedModels[m_selectedModels.size() - 1]->localPosition();
-            qDebug()<<"moveOffset =" <<moveOffset;
-            moveModel(m_selectedModels[i], m_selectedModels[i]->localPosition(),m_selectedModels[i]->localPosition() + moveOffset, true);
-		}
-		if (m_selectedModels.size())
-		{
-			updateHelperEntity();
-			requestVisUpdate(true);
 			emit positionChanged();
 		}
+		emit mouseLeftClicked();
 	}
-}
 
-void TranslateOp::setBottom()
-{
-    for (size_t i = 0; i < m_selectedModels.size(); i++)
-    {
-        qtuser_3d::Box3D box = m_selectedModels[i]->globalSpaceBox();
+	void TranslateOp::TranslateOp::reset_models(QList<creative_kernel::ModelN*>& models)
+	{
+	}
 
-		float fOffset = -box.min.z();
-		if (m_selectedModels[i]->hasFDMSupport())
+	void TranslateOp::TranslateOp::center_models(QList<creative_kernel::ModelN*>& models)
+	{
+		beginNodeSnap(QList<ModelGroup *>(), models);
+
+		qtuser_3d::Box3D modelsbox;
+		for (auto m : models)
 		{
-			//DLPģʽ�� �õײ�������֧��ʱ������֧�ų�ʼλ�õ�ƫ����
-			fOffset += m_selectedModels[i]->getSupportLiftHeight();
+			qtuser_3d::Box3D modelbox = m->globalSpaceBox();
+			modelsbox += modelbox;
+		}
+		QVector3D movePos;
+		float newZ = 0;
+		if (modelsbox.valid)
+		{
+			Printer* printer = getSelectedPrinter();
+			qtuser_3d::Box3D box = printer->globalBox();
+			QVector3D size = box.size();
+			QVector3D center = box.center();
+			newZ = center.z() - size.z() / 2.0f;
+
+			movePos = box.center() - modelsbox.center();
+			movePos.setZ(0);
 		}
 
-        QVector3D zoffset = QVector3D(0.0f, 0.0f, fOffset);
-        QVector3D localPosition = m_selectedModels[i]->localPosition();
-
-        moveModel(m_selectedModels[i], localPosition, localPosition + zoffset, true);
-    }
-    if(m_selectedModels.size())
-    {
-        updateHelperEntity();
-        requestVisUpdate(true);
-        emit positionChanged();
-    }
-//	if (m_selectedModels.size())
-//	{
-//		qtuser_3d::Box3D box = m_selectedModels[m_selectedModels.size() - 1]->globalSpaceBox();
-//        QVector3D zoffset = QVector3D(0.0f, 0.0f, -box.min.z());
-//        QVector3D localPosition = m_selectedModels[m_selectedModels.size() - 1]->localPosition();
-
-//        moveModel(m_selectedModels[m_selectedModels.size() - 1], localPosition, localPosition + zoffset, true);
-
-//        updateHelperEntity();
-//		requestVisUpdate(true);
-//        emit positionChanged();
-//	}
-
-}
-
-QVector3D TranslateOp::process(const QPoint& point)
-{
-	qtuser_3d::Ray ray = visRay(point);
-
-	QVector3D planeCenter;
-	QVector3D planeDir;
-	getProperPlane(planeCenter, planeDir, ray);
-
-	QVector3D c;
-	qtuser_3d::lineCollidePlane(planeCenter, planeDir, ray, c);
-    if(c.x() > PosMax) { c.setX(PosMax); }
-    if(c.y() > PosMax) { c.setY(PosMax);}
-    if(c.z() > PosMax) { c.setZ(PosMax);}
-	return c;
-}
-
-void TranslateOp::getProperPlane(QVector3D& planeCenter, QVector3D& planeDir, qtuser_3d::Ray& ray)
-{
-	planeCenter = QVector3D(0.0f, 0.0f, 0.0f);
-	qtuser_3d::Box3D box = m_selectedModels[m_selectedModels.size()-1]->globalSpaceBox();
-	planeCenter = box.center();
-
-	QList<QVector3D> dirs;
-	if (m_mode == TMode::x)  // x
-	{
-		dirs << QVector3D(0.0f, 1.0f, 0.0f);
-		dirs << QVector3D(0.0f, 0.0f, 1.0f);
-	}
-	else if (m_mode == TMode::y)
-	{
-		dirs << QVector3D(1.0f, 0.0f, 0.0f);
-		dirs << QVector3D(0.0f, 0.0f, 1.0f);
-	}
-	else if (m_mode == TMode::z)
-	{
-		dirs << QVector3D(1.0f, 0.0f, 0.0f);
-		dirs << QVector3D(0.0f, 1.0f, 0.0f);
-	}
-	else if (m_mode == TMode::sp)
-	{
-		dirs << QVector3D(0.0f, 0.0f, 1.0f);
-		dirs << QVector3D(0.0f, 0.0f, 1.0f);
-	}
-
-	float d = -1.0f;
-	for (QVector3D& n : dirs)
-	{
-		float dd = QVector3D::dotProduct(n, ray.dir);
-		if (qAbs(dd) > d)
+		for (auto m : models)
 		{
-			planeDir = n;
+			//QVector3D oldLocalPosition = m->localPosition();
+			//QVector3D newPositon = oldLocalPosition + movePos;
+			//moveModel(m, oldLocalPosition, newPositon, true);
+
+			trimesh::dvec3 tDelta(movePos.x(), movePos.y(), movePos.z());
+			trimesh::xform xf = trimesh::xform::trans(tDelta);
+			m->applyMatrix(xf);
+			m->dirty();
 		}
-	}
-}
 
-QVector3D TranslateOp::clip(const QVector3D& delta)
-{
-	QVector3D clipDelta = delta;
-	if (m_mode == TMode::x)  // x
+		endNodeSnap();
+
+		updateHelperEntity();
+		requestVisUpdate(true);
+		emit positionChanged();
+
+	}
+
+	QVector3D TranslateOp::TranslateOp::position_models(QList<creative_kernel::ModelN*>& models)
 	{
-		clipDelta.setY(0.0f);
-		clipDelta.setZ(0.0f);
+		if (models.size() == 1)
+		{
+			creative_kernel::ModelN* theModel = models.at(0);
+			qtuser_3d::Box3D box = theModel->globalSpaceBox();
+			return QVector3D(box.center().x(), box.center().y(), box.min.z());
+		}
+		return QVector3D(0.0f, 0.0f, 0.0f);
 	}
-	else if (m_mode == TMode::y)
+
+	void TranslateOp::TranslateOp::setPosition_models(QVector3D position, QList<creative_kernel::ModelN*>& models)
 	{
-		clipDelta.setX(0.0f);
-		clipDelta.setZ(0.0f);
+		if (models.empty())
+			return;
+
+		beginNodeSnap(QList<ModelGroup *>(), models);
+
+		QVector3D displayPos = position_models(models);
+		if (!displayPos.isNull())
+		{
+			if (models.size() == 1)
+			{
+				creative_kernel::ModelN* theModel = models.at(0);
+				qtuser_3d::Box3D box = theModel->globalSpaceBox();
+				float newZ = position.z() - displayPos.z() + box.center().z();
+				position.setZ(newZ);
+			}
+		}
+		
+		if (1 == models.size())
+		{
+			auto model = models.last();
+			setModelToWorldPosition(model, position);
+			model->dirty();
+		}
+		else
+		{
+			for (auto m : models)
+			{
+				trimesh::dvec3 src_w = m->globalBoundingBox().center();
+				setModelToWorldPosition(m, QVector3D(src_w.x + position.x(), 
+											src_w.y + position.y(),
+											src_w.z + position.z()));
+				m->dirty();
+			}
+			
+		}
+		endNodeSnap();
+
+		updateSpaceNodeRender(models, true);
+
+		updateHelperEntity();
+		//requestVisUpdate(true);
+		emit positionChanged();
+
+		setNeedCheckScope(0);
 	}
-	else if (m_mode == TMode::z)
+
+	void TranslateOp::TranslateOp::setBottom_models(QList<creative_kernel::ModelN*>& models)
 	{
-		clipDelta.setY(0.0f);
-		clipDelta.setX(0.0f);
+		if (models.isEmpty())
+		{
+			return;
+		}
+
+		beginNodeSnap(QList<ModelGroup *>(), models);
+
+		for (auto m : models)
+		{
+			qtuser_3d::Box3D box = m->globalSpaceBox();
+			QVector3D c = box.center();
+			setModelToWorldPosition(m, QVector3D(c.x(), c.y(), box.size().z()/2.0));
+
+			m->dirty();
+		}
+		
+		endNodeSnap();
+		updateHelperEntity();
+		updateSpaceNodeRender(models, true);
+		emit positionChanged();
+
 	}
 
-	return clipDelta;
-}
-
-void TranslateOp::updateHelperEntity()
-{
-	if (m_selectedModels.size())
+	void TranslateOp::reset_groups(QList<ModelGroup*>& groups)
 	{
-		qtuser_3d::Box3D box = m_selectedModels[m_selectedModels.size()-1]->globalSpaceBox();
-		m_helperEntity->updateBox(box);
 	}
 
-	//if (m_selectedModel)
-	//{
-	//	qtuser_3d::Box3D box = m_selectedModel->globalSpaceBox();
-	//	m_helperEntity->updateBox(box);
-	//}
-}
+	void TranslateOp::center_groups(QList<ModelGroup*>& groups)
+	{
+		if (groups.isEmpty())
+		{
+			return;
+		}
 
-void TranslateOp::onMachineSelectChange()
-{
-	updateHelperEntity();
-}
+		beginNodeSnap(groups, QList<ModelN*>());
 
-bool TranslateOp::getShowPop()
-{
-	return m_bShowPop;
-}
+		qtuser_3d::Box3D groupsbox;
+		for (auto m : groups)
+		{
+			qtuser_3d::Box3D modelbox = m->globalSpaceBox();
+			groupsbox += modelbox;
+		}
+		QVector3D movePos;
+		float newZ = 0;
+		if (groupsbox.valid)
+		{
+			Printer* printer = getSelectedPrinter();
+			qtuser_3d::Box3D box = printer->globalBox();
+			QVector3D size = box.size();
+			QVector3D center = box.center();
+			newZ = center.z() - size.z() / 2.0f;
 
+			movePos = box.center() - groupsbox.center();
+			movePos.setZ(0);
+		}
+
+		//QList<QVector3D> starts, ends;
+		for (auto m : groups)
+		{
+			//QVector3D oldLocalPosition = m->localPosition();
+			//QVector3D newPositon = oldLocalPosition + movePos;
+			
+			//m->setLocalPosition(newPositon);
+			/*starts << oldLocalPosition;
+			ends << newPositon;*/
+			trimesh::dvec3 tDelta(movePos.x(), movePos.y(), movePos.z());
+			trimesh::xform xf = trimesh::xform::trans(tDelta);
+			m->applyMatrix(xf);
+			m->dirty();
+		}
+		//moveModelGroups(groups, starts, ends, true);
+
+		endNodeSnap();
+		updateHelperEntity();
+		requestVisUpdate(true);
+		emit positionChanged();
+	}
+
+	QVector3D TranslateOp::position_groups(QList<ModelGroup*>& groups)
+	{
+		trimesh::dvec3 pos = _position_groups(groups);
+		return QVector3D(pos.x, pos.y, pos.z);
+	}
+
+	trimesh::dvec3 TranslateOp::_position_groups(QList<ModelGroup*>& groups)
+	{
+		if (groups.size() == 1)
+		{
+			auto g = groups.at(0);
+			trimesh::dbox3 box;
+			for (ModelN* model : g->normalModels())
+			{
+				if (model->isVisible())
+				{
+					box += model->globalBoundingBox();
+				}
+			}
+			return trimesh::dvec3(box.center().x, box.center().y, box.min.z);
+		}
+		return trimesh::dvec3(0.0, 0.0, 0.0);
+	}
+
+	void TranslateOp::setPosition_groups(QVector3D position, QList<ModelGroup*>& groups)
+	{
+		if (groups.empty())
+			return;
+
+		beginNodeSnap(groups, QList<ModelN*>());
+
+		trimesh::dvec3 displayPos = _position_groups(groups);
+		
+		if (1 == groups.size())
+		{
+			auto group = groups.last();
+			trimesh::dvec3 delta = trimesh::dvec3(position.x() - displayPos.x,
+												  position.y() - displayPos.y, 
+												  position.z() - displayPos.z);
+			trimesh::xform xf = trimesh::xform::trans(delta);
+			group->applyMatrix(xf);
+			
+			group->dirty();
+		}
+		else
+		{
+			for (auto& m : groups)
+			{
+				trimesh::dvec3 tDelta(position.x(), position.y(), position.z());
+				trimesh::xform xf = trimesh::xform::trans(tDelta);
+				m->applyMatrix(xf);
+				m->dirty();
+			}
+		}
+
+		endNodeSnap();
+		updateHelperEntity();
+		requestVisUpdate(true);
+		emit positionChanged();
+	}
+
+	void TranslateOp::setBottom_groups(QList<ModelGroup*>& groups)
+	{
+		if (groups.isEmpty())
+		{
+			return;
+		}
+		beginNodeSnap(groups, QList<ModelN*>());
+
+		for (auto m : groups)
+		{
+			m->layerBottom();
+			m->dirty();
+		}
+		
+		endNodeSnap();
+		updateSpaceNodeRender(groups, true);
+		updateHelperEntity();
+		emit positionChanged();
+	}
+
+	void TranslateOp::notifyPositionChanged()
+	{
+		updateHelperEntity();
+		requestVisUpdate(true);
+		emit positionChanged();
+	}
+}

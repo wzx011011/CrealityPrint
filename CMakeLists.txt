@@ -1,12 +1,17 @@
-cmake_minimum_required (VERSION 3.1)
-
-
-project(Creative3D LANGUAGES CXX C)
-set(BUNDLE_NAME "Creality Print")
+cmake_minimum_required (VERSION 3.5)
+project(ETechPrint LANGUAGES CXX C)
+if(NOT DEFINED BUNDLE_NAME)
+        set(BUNDLE_NAME "ETechPrint")
+endif()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+if(NOT DEFINED USE_LOCAL_PARAM_PACKAGE)
+	set(USE_LOCAL_PARAM_PACKAGE 0)
+endif()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/scripts/cmake/")
-include(BuildPlatformDetection) 
-set(APP_TYPE 7)  
+include(BuildPlatformDetection)
+
+set(APP_TYPE 7)
 set(BUILD_OS "xxxx")
 if(BUILD_OS_WIN64)
 	set(BUILD_OS "win64")
@@ -17,13 +22,22 @@ elseif(BUILD_OS_LINUX)
 elseif(BUILD_OS_OSX)
 	set(BUILD_OS "macx")
 endif()
-include(ConfigureAllModules)  
 
-set(CC_GLOBAL_PACKAGE_INSTALL 1)  
+include(ConfigureAllModules)
+
+__enable_openmp()
+
+set(CC_GLOBAL_PACKAGE_INSTALL 1)
 if(BUILD_OS_WIN64 OR BUILD_OS_WIN32)
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi")
 	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /DEBUG /OPT:REF /OPT:ICF")
 	set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} /DEBUG /OPT:REF /OPT:ICF")
+endif()
+if(CC_BC_MAC)
+	set(BUNDLE_NAME "E-Tech_Print")
+endif()
+if(CC_BC_MAC)
+	set(CMAKE_CXX_FLAGS "--sysroot ${CMAKE_OSX_SYSROOT} ${CMAKE_CXX_FLAGS}")
 endif()
 
 set(CMAKE_CXX_STANDARD 14)
@@ -36,84 +50,115 @@ else()
     set(CMAKE_C_FLAGS "-fPIC")
 endif()
 
-if(NOT ("${PROJECT_VERSION_EXTRA}" STREQUAL "Alpha"))
-	add_definitions(-DMACHINE_FILE_SUBNAME)
-endif()
-	add_definitions(-DCLOUD_BETA_URL)
-
-set(QML_ENTRY_DIR ${CMAKE_SOURCE_DIR}/kernel/CreativeKernel/res/qml/)
+set(QML_ENTRY_DIR ${CMAKE_SOURCE_DIR}/kernel/BasicKernel/res/qml/)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-__build_info_header()
-__enable_cxdef()
-__enable_qt5()
-__enable_spdlog()
-__enable_openmp()
 
-__cc_find(QhullWrapper)
-__cc_find(Clipper)
-__cc_find(Clipper3r)
-# __cc_find(Qcxffmpeg)
+set(CPACK_ORGANIZATION "E-Tech")
 
-__cc_find(OssWrapper)
-__cc_find(AliyunOss)
-
-__cc_find(tbb)
-
-__cc_find(CXbin)
-__cc_find(NestPlacer)
-__cc_find(Quazip)
-__cc_find(ppcs)
-__cc_find(sensors_analytics_sdk)
-__cc_find(SplitSlot)
-__cc_find(enchase)
-__cc_find(libqrencode)
-__cc_find(cpr)
-
-option(GEN_TRANSLATIONS_TS "create TS file" OFF)
-
-if(CC_BC_MAC)
-     add_definitions(-DNOUSE_IGL)
+if(DEFINED PROJECT_VERSION_EXTRA)
+	if(${PROJECT_VERSION_EXTRA} STREQUAL "Release")
+		set(DUMPTOOL_OPTION_SCENE_FILE "false")
+	endif()
 endif()
 
-add_subdirectory(mmesh)
+if(NOT DEFINED CACHE_BUILD_INFO_HEADER)
+	set(CACHE_BUILD_INFO_HEADER true)
+endif()
+
+if(NOT CACHE_BUILD_INFO_HEADER OR
+	NOT CMAKE_BUILD_TYPE MATCHES "Debug" OR
+	NOT EXISTS "${CMAKE_BINARY_DIR}/buildinfo.h")
+	__configure_build_info_header(
+		.
+		customized
+		dumptool
+	)
+endif()
+
+
+__enable_spdlog()
+
+option(GEN_TRANSLATIONS_TS "create TS file" OFF)
+option(BASICKERNEL_USE_UTEST "build BasicKernel utest" OFF)
+
+add_subdirectory(msbase)
+set(MODELMODULE_USE_UTEST OFF)
+add_subdirectory(modelModule)
+add_subdirectory(nestplacer)
+add_subdirectory(crslice)
+add_subdirectory(crslice2/crslice)
+add_subdirectory(common_3mf)
+
+add_subdirectory(cadcore)
+add_subdirectory(topomesh)
+add_subdirectory(qhullWrapper)
+
+__enable_qt5()
 add_subdirectory(qtuser)
+add_subdirectory(qtuser_3d)
+add_subdirectory(shader_entity)
 
-set(qtuser qtuser_core qtuser_3d qtuser_qml)
+add_subdirectory(qcxffmpeg)
+add_subdirectory(qcxchart)
 
-set(CXSS_CURA_ENGINE "cloud")
-add_subdirectory(cxutil)
-add_subdirectory(cxss)
+add_subdirectory(cxcloud)
+add_subdirectory(cxgcode)
+add_subdirectory(cxkernel)
 
-add_subdirectory(cxmdns)
-add_subdirectory(cxnet)
-add_subdirectory(Qcxffmpeg)
-
-set(CLibs ${QtQmlQ3dLibs} ${qtuser} trimesh2 UserSettings mmesh enchase)
-
-set(NPLACER_SUPPORT_LIBS clipperz libnest2d nestplacer nlopt)
-
+add_subdirectory(spread)
 add_subdirectory(kernel)
-add_subdirectory(cserialport)
-set(Creative3D_plugins  CrealityUI 
-					    plugin_cx3d_exporter 
-					    plugin_info
-					    plugin_letter
-					    plugin_log
-					    plugin_meshio_common
-					    plugin_pick_bottom
-						plugin_simple_support 
-						plugin_split
-                        plugin_repairnew
-						plugin_extend_mesh
-						plugin_slice_fdm
-						plugin_laser
-						plugin_localnet
-						)
-						
+
+set(Creative3D_plugins
+	CrealityUI
+	plugin_localnet
+)
+
+option(BUILD_LASER_PLUGIN "enable laser plugin" OFF)
+if(BUILD_LASER_PLUGIN)
+	LIST(APPEND Creative3D_plugins plugin_laser)
+endif()
+
+option(BUILD_TOOL_PLUGIN "enable tools plugins" ON)
+if(BUILD_TOOL_PLUGIN)
+	LIST(APPEND Creative3D_plugins
+		plugin_info
+		plugin_letter
+		plugin_pick_bottom
+		plugin_split
+		plugin_repairnew
+		plugin_photo_mesh
+		#plugin_usb_print
+		plugin_hollow
+		plugin_drill
+		plugin_distance_measure
+		plugin_color
+		plugin_support_painting
+		plugin_seam_painting
+		plugin_adaptive_layer
+		plugin_relief
+	)
+endif()
+
 add_subdirectory(plugins)
+add_subdirectory(Creative3D)
 
-add_subdirectory(Creative3D)			
+if(BUILD_OS_WIN64 OR BUILD_OS_WIN32)
+	add_subdirectory(dumptool)
+endif()
+
+
+set(UNIT_TEST_TOOL_ENABLED "true")
+if(DEFINED PROJECT_VERSION_EXTRA)
+	if(${PROJECT_VERSION_EXTRA} STREQUAL "Release")
+		set(UNIT_TEST_TOOL_ENABLED "false")
+	endif()
+endif()
+if(UNIT_TEST_TOOL_ENABLED)
+	if(BUILD_OS_WIN64 OR BUILD_OS_WIN32)
+		add_subdirectory(unittesttool)
+	endif()
+endif()
+
 add_subdirectory(scripts/cmake/)
-

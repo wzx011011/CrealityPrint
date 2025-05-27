@@ -204,7 +204,7 @@ BasicDialog
                 font.family: Constants.labelFontFamily
                 font.weight: Constants.labelFontWeight
                 text: qsTr("Save Project Time Interval can not be empty")
-                font.pixelSize: Constants.labelFontPixelSize
+                font.pointSize: Constants.labelFontPointSize_6
                 color:"white"
             }
         }

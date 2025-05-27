@@ -1,15 +1,17 @@
 #ifndef _creative_kernel_UNDOMATRIXCHANGE_1590115341614_H
 #define _creative_kernel_UNDOMATRIXCHANGE_1590115341614_H
+#include "data/header.h"
+#include "data/kernelenum.h"
+#include "data/rawdata.h"
+
 #include <QtGui/QVector3D>
 #include <QtGui/QQuaternion>
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QList>
-#include "data/trimeshheader.h"
+#include <QMetaType>
 
 namespace creative_kernel
 {
-	class ModelN;
-
 	struct V3Change
 	{
 		QVector3D start;
@@ -22,9 +24,15 @@ namespace creative_kernel
 		QQuaternion end;
 	};
 
+	struct ColorChange
+	{
+		int start;
+		int end;
+	};
+
 	struct NUnionChangedStruct
 	{
-		ModelN* model;
+		int64_t modelId;
 
 		V3Change posChange;
 		bool posActive;
@@ -35,41 +43,54 @@ namespace creative_kernel
 		QChanged rotateChange;
 		bool rotateActive;
 
+		ColorChange colorChange;
+		bool colorActive;
+
+		int modelGroupId;
+
 		NUnionChangedStruct()
-			: model(nullptr)
 		{
 			posActive = false;
 			scaleActive = false;
 			rotateActive = false;
+			colorActive = false;
 		}
 	};
 
-	struct NMirrorStruct
+	struct NodeChange
 	{
-		ModelN* model;
-		int type;
-		QMatrix4x4 start;
-		QMatrix4x4 end;
+		int64_t id;
+		trimesh::xform start_xf;
+		trimesh::xform end_xf;
 	};
 
-	struct MeshChange
+	struct ModelNPropertyMeshUndo
 	{
-		ModelN* model;
-		TriMeshPtr start;
-		TriMeshPtr end;
-		QString startName;
-		QString endName;
+		int64_t model_id;
 
-		TriMeshPtr aux_start;
-		TriMeshPtr aux_end;
-		int aux_pos;
+		QString start_name;
+		QString end_name;
 
-		MeshChange()
-			: model(nullptr)
-		{
-			aux_pos = -1;
-		}
+		SharedDataID start_data_id;
+		SharedDataID end_data_id;
+	};
+
+	struct LayoutChangeInfo
+	{
+		QList<int64_t> moveModelGroupIds;
+
+		int printersCount;
+
+		QList<QVector3D> endPoses;
+		QList<QQuaternion> endQuaternions;
+	};
+	
+	struct WipeTowerChange
+	{
+		int index;
+		QVector3D start;
+		QVector3D end;
 	};
 }
-
+Q_DECLARE_METATYPE(creative_kernel::LayoutChangeInfo)
 #endif // _creative_kernel_UNDOMATRIXCHANGE_1590115341614_H

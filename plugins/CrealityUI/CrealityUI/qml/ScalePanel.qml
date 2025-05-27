@@ -1,15 +1,16 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.13
 import "../secondqml"
 
-BasicDialogNoWin_V4 {
+LeftPanelDialog {
     id:control
     width: 300* screenScaleFactor
     height: 240* screenScaleFactor
     title: qsTr("Scale")
     property var msale
     property var size:msale ? msale.orgSize : ""
-
+    property bool lockCheck: msale ? msale.uniformCheck : true
     enum XYZType
     {
         X_Type =0,
@@ -17,72 +18,100 @@ BasicDialogNoWin_V4 {
         Z_Type
     }
 
-    visible: msale.message
+    //    visible: msale.message
 
-    onMsaleChanged: {
-        if(msale)
-        {console.log("onMsaleChanged aaaaa!")
-            lock()
-            signalsBlocked(true)
-            cloader.item.x_scale.setRealValue(msale.scale.x * 100)
-            cloader.item.y_scale.setRealValue(msale.scale.y * 100)
-            cloader.item.z_scale.setRealValue(msale.scale.z * 100)
-            cloader.item.x_length.setRealValue(msale.size.x)
-            cloader.item.y_length.setRealValue(msale.size.y)
-            cloader.item.z_length.setRealValue(msale.size.z)
-            signalsBlocked(false)
-            unlock()
+    enum XYZScaleType
+    {
+        X_Type =0,
+        Y_Type,
+        Z_Type,
+        XYZ_Type
+    }
+    enum XYZSizeType
+    {
+        X_Size =0,
+        Y_Size,
+        Z_Size,
+        XYZ_X_Size,
+        XYZ_Y_Size,
+        XYZ_Z_Size
+    }
 
-            msale.scaleChanged.disconnect(onScaleChange)
-            msale.scaleChanged.connect(onScaleChange)
+    MouseArea{//捕获鼠标点击空白地方的事件
+        anchors.fill: parent
+    }
+    /*BasicDialogV4 {
+        id: warningDialog
+        width: 500* screenScaleFactor
+        height: 200* screenScaleFactor
+        title: qsTr("Warning")
+        maxBtnVis: false
+        bdContentItem:Rectangle {
+            color: Constants.lpw_bgColor
+            ColumnLayout{
+                anchors.centerIn: parent
+                spacing: 30* screenScaleFactor
+                StyledLabel{
+                    color: Constants.textColor
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    Layout.preferredWidth: 450 * screenScaleFactor
+                    text: qsTr("You are unlocking the uniform ratio, which means the model will not return to its original size. Do you want to proceed?")
+                }
+
+                RowLayout{
+                    Layout.alignment: Qt.AlignHCenter
+                    spacing: 20* screenScaleFactor
+                    BasicDialogButton {
+                        text: qsTr("OK")
+                        Layout.minimumWidth: 120 * screenScaleFactor
+                        Layout.fillHeight: true
+                        btnRadius: height / 2
+                        btnBorderW: 1 * screenScaleFactor
+                        btnTextColor: Constants.manager_printer_button_text_color
+                        borderColor: Constants.manager_printer_button_border_color
+                        defaultBtnBgColor: Constants.manager_printer_button_default_color
+                        hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                        selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                        onSigButtonClicked: {
+                            if(warningDialog.visible)
+                                warningDialog.close()
+                        }
+                    }
+                    BasicDialogButton {
+                        text: qsTr("Cancel")
+                        Layout.minimumWidth: 120 * screenScaleFactor
+                        Layout.fillHeight: true
+                        btnRadius: height / 2
+                        btnBorderW: 1 * screenScaleFactor
+                        btnTextColor: Constants.manager_printer_button_text_color
+                        borderColor: Constants.manager_printer_button_border_color
+                        defaultBtnBgColor: Constants.manager_printer_button_default_color
+                        hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                        selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                        onSigButtonClicked: {
+                            warningDialog.close()
+                            cusContent.cusCheckBox.checked = true
+                        }
+                    }
+                }
+            }
         }
-    }
+    }*/
 
-    function lock()
-    {
-        msale.blockSignalScaleChanged(true)
-    }
-
-    function unlock()
-    {
-        msale.blockSignalScaleChanged(false)
-    }
-
-    function signalsBlocked(blocked)
-    {
-        cloader.item.x_scale.bSignalsBlcked = blocked
-        cloader.item.y_scale.bSignalsBlcked = blocked
-        cloader.item.z_scale.bSignalsBlcked = blocked
-        cloader.item.x_length.bSignalsBlcked = blocked
-        cloader.item.y_length.bSignalsBlcked = blocked
-        cloader.item.z_length.bSignalsBlcked = blocked
-    }
-
-
-    function onScaleChange(){
-        
-        if(msale)
-        {console.log("onScaleChange sss aaaaa!!!")
-            signalsBlocked(true)
-            cloader.item.x_scale.setRealValue(msale.scale.x * 100)
-            cloader.item.y_scale.setRealValue(msale.scale.y * 100)
-            cloader.item.z_scale.setRealValue(msale.scale.z * 100)
-            cloader.item.x_length.setRealValue(msale.size.x)
-            cloader.item.y_length.setRealValue(msale.size.y)
-            cloader.item.z_length.setRealValue(msale.size.z)
-            signalsBlocked(false)
-            //console.log("z_length.value +" + z_length.value)
-        }
-    }
-
-    bdContentItem:Rectangle {
+    Item {
         property alias x_scale: x_scale
         property alias y_scale: y_scale
         property alias z_scale: z_scale
         property alias x_length: x_length
         property alias y_length: y_length
         property alias z_length: z_length
-        color: Constants.lpw_bgColor
+        property alias cusCheckBox: uniformScalingCheckbox
+        property real maxEnlarge: 1000//允许缩放的最大倍数
+        anchors.fill: control.panelArea
+        id: cusContent
         Column{
             anchors.top: parent.top
             anchors.topMargin: 20* screenScaleFactor
@@ -99,7 +128,7 @@ BasicDialogNoWin_V4 {
                     rightPadding: 10//
                     color: "#FB0202"
                     text: "X:"
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                 }
                 LeftToolSpinBox {
                     id:x_length
@@ -108,45 +137,37 @@ BasicDialogNoWin_V4 {
                     height: 28* screenScaleFactor
                     realStepSize: 5
                     // realFrom:(size.x/10000) < 0.01 ? 0.01 : size.x/10000
-                    realFrom:(size.x === undefined) ? 0.001 : size.x * 0.00107
-                    realTo:(size.x === undefined) ? 9999 : size.x*100
+                    realFrom:(size) ? 0.001 : size.x * 0.00107
+                    realTo:(size) ? 9999 : size.x * cusContent.maxEnlarge
                     realValue: msale ? msale.size.x.toFixed(2) : 1
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ? msale.size.x.toFixed(2) : 1
                     onValueEdited:{
-                        console.log("x_length")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue).toFixed(2) === msale.size.x.toFixed(2))return
-                        lock()
-                        signalsBlocked(true)
-                        if(uniformScalingCheckbox.checked)
+                        console.log("====scale.x_length.value = " + realValue)
+                        if(!msale || realValue < realFrom)return ;
+                        if(lockCheck)
                         {
-                            //                               myText
-                            var factor = realValue/size.x
-                            msale.scale.x = factor
-                            msale.scale.y = factor
-                            msale.scale.z = factor
-                            msale.size.x = realValue
-                            msale.size.y = msale.scale.y * size.y
-                            msale.size.z = msale.scale.z * size.z
-                            //                               //updata qml show data
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.XYZ_X_Size) //xyz_scale
+                        }
+                        else
+                        {
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.X_Size) //x_scale
+                        }
+                        //                        realValue = Qt.binding(function(){return msale.size.x.toFixed(2) });
 
-                            x_scale.setRealValue(msale.scale.x *100)
-                            y_scale.setRealValue(msale.scale.y * 100)
-                            z_scale.setRealValue(msale.scale.z * 100)
-                            y_length.setRealValue(msale.size.y)
-                            z_length.setRealValue(msale.size.z)
-                        }
-                        else{
-                            msale.size.x = realValue
-                            msale.scale.x = realValue/size.x
-                            x_scale.setRealValue(msale.scale.x * 100)
-                        }
-                        signalsBlocked(false)
-                        unlock()
+                    }
+
+                    onRealValueChanged: {
+                        kernel_model_selector.sizeChanged()
+                        console.log("111111111111111")
+                    }
+
+                    onTmpValChanged:
+                    {
+                        console.log("tmpVal xxx=",tmpVal)
+                        realValue = tmpVal
                     }
                 }
                 LeftToolSpinBox {
@@ -156,49 +177,32 @@ BasicDialogNoWin_V4 {
                     id:x_scale
                     realStepSize:0.5
                     realFrom:0.1
-                    realTo:9999
-                    realValue: msale ? msale.scale.x * 100 : 100
+                    realTo:cusContent.maxEnlarge * 100
+                    realValue: tmpVal>realTo?realTo:tmpVal // msale ? msale.scale.x.toFixed(2) * 100 : 100
                     unitchar : "%"
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ?( msale.scale.x * 100).toFixed(2) : 100
                     onValueEdited:{
-                        console.log("x_scale")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue/100).toFixed(3) === msale.scale.x.toFixed(3))return
-                        //lock C++ signal
-                        lock()
-                        //lock other SpinBox signal
-                        signalsBlocked(true)
+                        if(!msale || realValue < 1)return ;
+                        console.log("===scale.x_scale.value = " + realValue)
 
-                        if(msale)
+                        if(lockCheck)
                         {
-                            if(uniformScalingCheckbox.checked)
-                            {
-                                msale.scale.x = x_scale.realValue/100
-                                msale.scale.y = x_scale.realValue/100
-                                msale.scale.z = x_scale.realValue/100
-
-                                msale.size.x = msale.scale.x * size.x
-                                msale.size.y = msale.scale.y * size.y
-                                msale.size.z = msale.scale.z * size.z
-
-                                y_scale.setRealValue(msale.scale.y * 100)
-                                z_scale.setRealValue(msale.scale.z * 100)
-                                x_length.setRealValue(msale.size.x)
-                                y_length.setRealValue(msale.size.y)
-                                z_length.setRealValue(msale.size.z)
-                            }else{
-                                msale.scale.x = x_scale.realValue/100
-                                msale.size.x = msale.scale.x * size.x
-                                x_length.setRealValue(msale.size.x)
-                            }
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.XYZ_Type) //xyz_scale
                         }
-
-                        signalsBlocked(false)
-                        unlock()
+                        else
+                        {
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.X_Type) //x_scale
+                        }
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
+                    }
+                    onRealValueChanged: {
+                        kernel_model_selector.sizeChanged()
                     }
                 }
             }
@@ -212,7 +216,7 @@ BasicDialogNoWin_V4 {
                     rightPadding: 10//
                     color: "#00FD00"
                     text: "Y:"
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                 }
                 LeftToolSpinBox {
                     id:y_length
@@ -221,50 +225,30 @@ BasicDialogNoWin_V4 {
                     height: 28* screenScaleFactor
                     realStepSize: 5
                     // realFrom:(size.y/10000) < 0.01 ? 0.01 : size.y/10000
-                    realFrom:(size.y === undefined) ? 0.001 : size.y * 0.00107
-                    realTo:(size.y === undefined) ? 9999 : size.y*100
+                    realFrom:(size) ? 0.001 : size.y * 0.00107
+                    realTo:(size) ? 9999 : size.y*cusContent.maxEnlarge
                     realValue: msale ? msale.size.y.toFixed(2) : 1
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ? msale.size.y.toFixed(2) : 1
                     onValueEdited:{
-                        console.log("y_length")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue).toFixed(2) === msale.size.y.toFixed(2))return
-                        lock()
-                        signalsBlocked(true)
-
-                        if(uniformScalingCheckbox.checked)
+                        console.log("====scale.y_length.value = " + realValue)
+                        if(!msale || realValue < realFrom)return ;
+                        if(lockCheck)
                         {
-                            var factor =  y_length.realValue/size.y
-                            msale.scale.x = factor
-                            msale.scale.y = factor
-                            msale.scale.z = factor
-
-                            msale.size.x = msale.scale.x * size.x
-                            msale.size.y = realValue
-                            msale.size.z = msale.scale.z * size.z
-
-                            //
-                            //updata qml show data
-                            x_scale.setRealValue(msale.scale.x * 100)
-                            y_scale.setRealValue(msale.scale.y * 100)
-                            z_scale.setRealValue(msale.scale.z * 100)
-                            x_length.setRealValue(msale.size.x)
-                            //                               y_length.setRealValue(msale.scale.y * size.y)
-                            z_length.setRealValue(msale.size.z)
-
-                        }else{
-                            msale.size.y = realValue
-                            msale.scale.y = parseFloat(realValue/size.y).toFixed(4)
-                            y_scale.setRealValue(msale.scale.y * 100)
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.XYZ_Y_Size) //xyz_scale
                         }
+                        else
+                        {
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.Y_Size) //x_scale
+                        }
+                        realValue = Qt.binding(function(){return msale.size.y.toFixed(2) });
 
-
-                        signalsBlocked(false)
-                        unlock()
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
                 LeftToolSpinBox {
@@ -274,51 +258,29 @@ BasicDialogNoWin_V4 {
                     id:y_scale
                     realStepSize:0.5
                     realFrom:0.1
-                    realTo:9999
-                    realValue: msale ? msale.scale.y * 100: 100
+                    realTo:cusContent.maxEnlarge*100
+                    realValue: tmpVal>realTo?realTo:tmpVal  // msale ? msale.scale.y * 100: 100
                     unitchar : "%"
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ? (msale.scale.y * 100).toFixed(2): 100
                     onValueEdited:{
-                        console.log("y_scale")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue/100).toFixed(3) === msale.scale.y.toFixed(3))return
-                        lock()
-                        signalsBlocked(true)
-
-                        if(msale)
+                        if(!msale || realValue < 1)return ;
+                        if(lockCheck)
                         {
-                            if(uniformScalingCheckbox.checked)
-                            {
-                                msale.scale.x = y_scale.realValue/100
-                                msale.scale.y = y_scale.realValue/100
-                                msale.scale.z = y_scale.realValue/100
-
-                                msale.size.x = msale.scale.x * size.x
-                                msale.size.y = msale.scale.y * size.y
-                                msale.size.z = msale.scale.z * size.z
-
-                                //updata qml show data
-                                x_scale.setRealValue(msale.scale.x * 100)
-                                //                                  y_scale.setRealValue(msale.scale.y * 100)
-                                z_scale.setRealValue(msale.scale.z * 100)
-                                x_length.setRealValue(msale.size.x)
-                                y_length.setRealValue(msale.size.y)
-                                z_length.setRealValue(msale.size.z)
-                            }
-                            else
-                            {
-                                msale.scale.y = y_scale.realValue/100
-                                msale.size.y = msale.scale.y * size.y
-                                y_length.setRealValue(msale.size.y)
-                            }
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.XYZ_Type) //xyz_scale
                         }
+                        else
+                        {
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.Y_Type) //y_scale
+                        }
+                        //                        realValue = Qt.binding(function(){return (msale.scale.y * 100).toFixed(2)});
 
-                        signalsBlocked(false)
-                        unlock()
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
             }
@@ -332,7 +294,7 @@ BasicDialogNoWin_V4 {
                     rightPadding: 10//
                     color: "#008FFD"
                     text: "Z:"
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                 }
                 LeftToolSpinBox {
                     id:z_length
@@ -340,50 +302,31 @@ BasicDialogNoWin_V4 {
                     height: 28* screenScaleFactor
                     realStepSize: 5
                     // realFrom:(size.z/10000) < 0.01 ? 0.01 : size.z/10000
-                    realFrom:(size.z === undefined) ? 0.001 : size.z * 0.00107
-                    realTo:(size.z === undefined) ? 9999 : size.z*100
-                    realValue: msale ? msale.size.z : 1
+                    realFrom:(size) ? 0.001 : size.z * 0.00107
+                    realTo:(size) ? 9999 : size.z*cusContent.maxEnlarge
+                    realValue: msale ? msale.size.z.toFixed(2) : 1
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ? msale.size.z.toFixed(2) : 1
                     onValueEdited:{
                         console.log("z_length")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue).toFixed(2) === msale.size.z.toFixed(2))return
-                        lock()
-                        signalsBlocked(true)
-
-                        if(uniformScalingCheckbox.checked)
+                        if(!msale || realValue < realFrom)return ;
+                        console.log("====scale.z_length.value = " + realValue)
+                        if(lockCheck)
                         {
-                            var factor =  z_length.realValue/size.z;
-                            msale.scale.x = factor
-                            msale.scale.y = factor
-                            msale.scale.z = factor
-
-                            msale.size.x = msale.scale.x * size.x
-                            msale.size.y = msale.scale.y * size.y
-                            msale.size.z = realValue
-
-                            x_scale.setRealValue(msale.scale.x * 100)
-                            y_scale.setRealValue(msale.scale.y * 100)
-                            z_scale.setRealValue(msale.scale.z * 100)
-                            x_length.setRealValue(msale.size.x)
-                            y_length.setRealValue(msale.size.y)
-                            //                               z_length.setRealValue(msale.scale.z * size.z)
-
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.XYZ_Z_Size) //xyz_scale
                         }
                         else
                         {
-                            msale.size.z = realValue
-                            msale.scale.z = z_length.realValue/size.z
-
-                            z_scale.setRealValue(msale.scale.z * 100)
+                            msale.setQmlSize(realValue,ScalePanel.XYZSizeType.Z_Size) //x_scale
                         }
+                        //                        realValue = Qt.binding(function(){return msale.size.z.toFixed(2) });
 
-                        signalsBlocked(false)
-                        unlock()
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
                 LeftToolSpinBox {
@@ -392,95 +335,63 @@ BasicDialogNoWin_V4 {
                     id:z_scale
                     realStepSize:0.5
                     realFrom:0.1
-                    realTo:9999
-                    realValue: msale ? msale.scale.z * 100 : 100
+                    realTo:cusContent.maxEnlarge*100
+                    realValue: tmpVal>realTo?realTo:tmpVal//msale ? msale.scale.z * 100 : 100
                     unitchar : "%"
                     textValidator: RegExpValidator {
                         regExp:   /(\d{1,4})([.,]\d{1,2})?$/
                     }
+                    property var tmpVal: msale ? (msale.scale.z * 100).toFixed(2) : 100
                     onValueEdited:{
-                        console.log("z_scale")
-                        if(!msale)return
-                        if(isNaN(realValue)) return
-                        if(realValue === 0 || size === "")return;
-                        if(parseFloat(realValue/100).toFixed(3) === msale.scale.z.toFixed(3))return
-                        lock()
-                        signalsBlocked(true)
-
-                        if(msale)
+                        if(!msale || realValue < 1)return ;
+                        console.log("===scale.z_scale.value = " + realValue)
+                        if(lockCheck)
                         {
-                            if(uniformScalingCheckbox.checked)
-                            {
-                                msale.scale.x = z_scale.realValue/100//parseFloat(z_scale.realValue/100).toFixed(2)
-                                msale.scale.y = z_scale.realValue/100//parseFloat(z_scale.realValue/100).toFixed(2)
-                                msale.scale.z = z_scale.realValue/100//parseFloat(z_scale.realValue/100).toFixed(2)
-
-                                msale.size.x = msale.scale.x * size.x
-                                msale.size.y = msale.scale.y * size.y
-                                msale.size.y = msale.scale.z * size.z
-                                //                                  onScaleChange()
-
-                                x_scale.setRealValue(msale.scale.x * 100)
-                                y_scale.setRealValue(msale.scale.y * 100)
-                                //                                  z_scale.setRealValue(msale.scale.z * 100)
-                                x_length.setRealValue(msale.size.x)
-                                y_length.setRealValue(msale.size.y)
-                                z_length.setRealValue(msale.size.z)
-                            }
-                            else
-                            {
-                                msale.scale.z = z_scale.realValue/100
-                                msale.size.z = msale.scale.z * size.z
-                                z_length.setRealValue(msale.size.z)
-                            }
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.XYZ_Type) //xyz_scale
                         }
+                        else
+                        {
+                            msale.setQmlScale(realValue / 100,ScalePanel.XYZScaleType.Z_Type) //z_scale
+                        }
+                        //                        realValue = Qt.binding(function(){return (msale.scale.z * 100).toFixed(2)});
 
-                        signalsBlocked(false)
-                        unlock()
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
             }
             StyleCheckBox {
                 id: uniformScalingCheckbox
-                checked: msale ? msale.uniformCheck : false
-                fontSize:12
+                checked: lockCheck
                 text: qsTr("Uniform")
 
                 onCheckedChanged:
                 {
-                    console.log("checked = " + checked)
-                    msale.uniformCheck = checked
+                    if(msale)
+                        msale.uniformCheck = checked
                 }
 
+                onClicked: {
+                    //if(!checked)
+                    //    warningDialog.visible = true
+                }
             }
+
             BasicButton{
                 width: 258* screenScaleFactor
                 height: 30* screenScaleFactor
                 text : qsTr("Reset")
-                btnRadius:3
+                btnRadius:15* screenScaleFactor
                 btnBorderW:1
                 anchors.horizontalCenter: parent.horizontalCenter
                 borderColor: Constants.lpw_BtnBorderColor
-                borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                defaultBtnBgColor: Constants.lpw_BtnColor
-                hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                 onSigButtonClicked:
                 {
-                    msale.scale.x = 1
-                    msale.scale.y = 1
-                    msale.scale.z = 1
-
-                    msale.size.x = msale.scale.x * size.x
-                    msale.size.y = msale.scale.y * size.y
-                    msale.size.z = msale.scale.z * size.z
-
-                    x_scale.setRealValue(100)
-                    y_scale.setRealValue(100)
-                    z_scale.setRealValue(100)
-                    x_length.setRealValue(msale.size.x)
-                    y_length.setRealValue(msale.size.y)
-                    z_length.setRealValue(msale.size.z)
-
+                    msale.reset()
                 }
             }
         }

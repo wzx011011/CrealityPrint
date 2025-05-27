@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.12
 import CrealityUI 1.0
+import QtQml.Models 2.13
 import "qrc:/CrealityUI"
 BasicDialog
 {
@@ -18,16 +19,24 @@ BasicDialog
     property alias myCmbCurrentIndex :idHigherCmb.currentIndex
     property alias myColorModel :idColorModel.text
     property alias mySmothing: idSmothing.text
-	
-	function initTextVelue()
-	{
-		idHeight.text = "2.2"
-		idWidth.text = "140"
-		idBase.text = "0.35"
-		idHigherCmb.currentIndex = 0
-		idColorModel.text = "Linear"
-		idSmothing.text = "9"
-	}
+
+    onVisibleChanged: {
+        if(visible){
+            idHigherCmb.model = supPattern
+        }else{
+            idHigherCmb.model = null
+        }
+    }
+
+    function initTextVelue()
+    {
+        idHeight.text = "2.2"
+        idWidth.text = "140"
+        idBase.text = "0.35"
+        idHigherCmb.currentIndex = 0
+        idColorModel.text = "Linear"
+        idSmothing.text = "9"
+    }
     Rectangle
     {
         width: parent.width
@@ -48,7 +57,7 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize
+                font.pointSize : Constants.labelFontPointSize_9
                 verticalAlignment: Qt.AlignVCenter
             }
             BasicDialogTextField
@@ -57,7 +66,7 @@ BasicDialog
                 height : 30 * screenScaleFactor
                 width : 140 * screenScaleFactor
                 text: "0.35"
-//                validator: RegExpValidator { regExp: /(\d{1,6})([.,]\d{1,3})?$/ }
+                //                validator: RegExpValidator { regExp: /(\d{1,6})([.,]\d{1,3})?$/ }
                 //dayu 0 de xiao shu xiaoshu zhineng 4 wei
                 validator: RegExpValidator { regExp: /(^[1-9](\d+)?(\.\d{1,4})?$)|(^\d\.\d{1,4}$)/}
 
@@ -70,7 +79,7 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize
+                font.pointSize : Constants.labelFontPointSize_9
                 verticalAlignment: Qt.AlignVCenter
             }
             BasicDialogTextField
@@ -90,7 +99,7 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize:Constants.labelFontPointSize  // panelFontSize
+                font.pointSize:Constants.labelFontPointSize_9  // panelFontSize
                 verticalAlignment: Qt.AlignVCenter
             }
             BasicDialogTextField
@@ -109,32 +118,27 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize  // panelFontSize
+                font.pointSize : Constants.labelFontPointSize_9  // panelFontSize
                 verticalAlignment: Qt.AlignVCenter
             }
+
+            ListModel {
+                id:supPattern
+                ListElement { text: qsTr("Darker is higher"); }
+                ListElement { text: qsTr("Lighter is higher"); }
+            }
+
             BasicCombobox {
                 id:idHigherCmb
                 height : 30 * screenScaleFactor
                 width: 140 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize
+                font.pointSize : Constants.labelFontPointSize_9
                 currentIndex: 0
                 popPadding : 2 * screenScaleFactor
-                model: ListModel {
-                    id:supPattern
-                    ListElement { text: qsTr("Darker is higher"); }
-                    ListElement { text: qsTr("Lighter is higher"); }
-                }
+                model: supPattern
                 property var modelText: "0"
                 onModelTextChanged: {
-//                    var myText = keyTranlateValue(modelText)
-//                    if(myText === "")
-//                    {
-//                        currentIndex = 1
-//                    }
-//                    else
-//                    {
-//                         displayText = myText
-//                    }
+
                 }
                 onCurrentIndexChanged:
                 {
@@ -146,7 +150,7 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize
+                font.pointSize : Constants.labelFontPointSize_9
                 verticalAlignment: Qt.AlignVCenter
             }
             BasicDialogTextField
@@ -154,7 +158,7 @@ BasicDialog
                 id :idColorModel
                 height : 30 * screenScaleFactor
                 width : 140 * screenScaleFactor
-				color: "white"
+                color: "white"
                 text: "Linear"
                 enabled: false
             }
@@ -164,7 +168,7 @@ BasicDialog
                 /*color: "black"*/
                 height : 30 * screenScaleFactor
                 width : 160 * screenScaleFactor
-                font.pointSize : Constants.labelFontPointSize
+                font.pointSize : Constants.labelFontPointSize_9
                 verticalAlignment: Qt.AlignVCenter
             }
             BasicDialogTextField
@@ -187,10 +191,10 @@ BasicDialog
             height : 30 * screenScaleFactor
             width : 160 * screenScaleFactor
             visible : (idHeight.text === ""
-                      ||idWidth.text === ""
-                      || idBase.text === ""
-                      || idSmothing.text === "") ? true : false
-            font.pointSize : Constants.labelFontPointSize
+                       ||idWidth.text === ""
+                       || idBase.text === ""
+                       || idSmothing.text === "") ? true : false
+            font.pointSize : Constants.labelFontPointSize_9
         }
         Grid
         {
@@ -208,7 +212,7 @@ BasicDialog
                 btnRadius:5
                 btnBorderW:0
                 defaultBtnBgColor: Constants.profileBtnColor
-        hoveredBtnBgColor: Constants.profileBtnHoverColor
+                hoveredBtnBgColor: Constants.profileBtnHoverColor
                 onSigButtonClicked:
                 {
                     if(idHeight.text === ""
@@ -219,8 +223,8 @@ BasicDialog
 
                         return
                     }
-                    close()
                     accept()
+                    close()
                 }
             }
 
@@ -232,7 +236,7 @@ BasicDialog
                 btnRadius:5
                 btnBorderW:0
                 defaultBtnBgColor: Constants.profileBtnColor
-        hoveredBtnBgColor: Constants.profileBtnHoverColor
+                hoveredBtnBgColor: Constants.profileBtnHoverColor
                 onSigButtonClicked:
                 {
                     cancel()

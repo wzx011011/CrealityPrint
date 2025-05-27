@@ -1,7 +1,6 @@
 #include "repair.h"
 #include "repaircommand.h"
 
-#include "kernel/abstractkernel.h"
 #include "menu/ccommandlist.h"
 
 using namespace creative_kernel;

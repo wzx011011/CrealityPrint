@@ -11,6 +11,7 @@ Button{
     property var hoverBgColor:Constants.tittleBarBtnColor
     property var borderwidth: 1
     property int buttonRadius: 3
+    property color hoveredBdColor: "#4D4D4D"
 
     font.family: Constants.labelFontFamily
     font.weight: Constants.labelFontWeight
@@ -23,6 +24,7 @@ Button{
             width: control.iconWidth
             height: control.iconHeight
             source:  normalIconSource
+            fillMode: Image.PreserveAspectFit
         }
     }
 
@@ -36,7 +38,7 @@ Button{
         //opacity: enabled ? 1 : 0.3
         visible: true
         border.width : control.hovered ? borderwidth : 0
-        border.color : "#4D4D4D"
+        border.color : hovered? hoveredBdColor : "#4D4D4D"
         radius : control.buttonRadius
     }
 }

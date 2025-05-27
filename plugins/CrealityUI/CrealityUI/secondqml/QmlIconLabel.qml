@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import "../qml"
 
 //QtQuick.control2带Icon的Label是个单独的控件
 //但是自定义起来不大方便，比如没有renderType那就只能全局设置该属性
@@ -47,7 +48,7 @@ Item{
             horizontalAlignment: Text.AlignHCenter
             font{
                 family: "SimSun"
-                pixelSize: 14
+                pointSize: Constants.labelFontPointSize_12
             }
         }
     }

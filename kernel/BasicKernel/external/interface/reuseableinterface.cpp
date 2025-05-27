@@ -2,14 +2,20 @@
 #include "external/kernel/kernel.h"
 #include "external/kernel/reuseablecache.h"
 #include "qtuser3d/camera/screencamera.h"
-#include "external/data/modeleffect.h"
 #include "qtuser3d/camera/screencamera.h"
+
+#include "internal/render/printerentity.h"
+#include "interface/visualsceneinterface.h"
+#include "interface/spaceinterface.h"
+#include "internal/parameter/parametermanager.h"
+#include "entity/worldindicatorentity.h"
 
 namespace creative_kernel
 {
-	qtuser_3d::PrinterEntity* getCachedPrinterEntity()
+	void cacheReuseable(Qt3DCore::QNode* parent)
 	{
-		return getKernel()->reuseableCache()->getCachedPrinterEntity();
+		getKernel()->reuseableCache()->setParent(parent);
+		getIndicatorEntity()->freshTextures();
 	}
 
 	Qt3DRender::QCamera* getCachedCameraEntity()
@@ -17,64 +23,125 @@ namespace creative_kernel
 		return getKernel()->reuseableCache()->mainScreenCamera()->camera();
 	}
 
-	Qt3DRender::QEffect* getCachedModelEffect(QVector3D *minspace, QVector3D *maxspace)
+	qtuser_3d::XEffect* getCachedModelEffect()
 	{
-		return getKernel()->reuseableCache()->getCachedModelEffect(minspace, maxspace);
+		return getKernel()->reuseableCache()->getCachedModelEffect();
 	}
 
-	Qt3DRender::QEffect* getCachedLineEffect()
+	qtuser_3d::XEffect* getCachedModelWireFrameEffect()
 	{
-		return getKernel()->reuseableCache()->getCachedLineEffect();
+		return getKernel()->reuseableCache()->getCachedModelWireFrameEffect();
 	}
 
-	Qt3DRender::QEffect* getCachedSupportEffect()
+	qtuser_3d::XEffect* getCachedCaptureModelWireFrameEffect()
 	{
-		return getKernel()->reuseableCache()->getCachedSupportEffect();
+		return getKernel()->reuseableCache()->getCachedCaptureModelWireFrameEffect();
 	}
-    //lisugui 2020-10-27
+
+	qtuser_3d::XEffect* getCachedCaptureModelEffect()
+	{
+		return getKernel()->reuseableCache()->getCachedCaptureModelEffect();
+	}
+
+	qtuser_3d::XEffect* getCachedTransparentModelEffect()
+	{
+		return getKernel()->reuseableCache()->getCachedTransparentModelEffect();
+	}
+
+	qtuser_3d::XEffect* getCachedPreviewModelEffect()
+	{
+		return getKernel()->reuseableCache()->getCachedPreviewModelEffect();
+	}
+
+	qtuser_3d::XEffect* getCacheModelLayerEffect()
+	{
+		return getKernel()->reuseableCache()->getCacheModelLayerEffect();
+	}
+
     void setModelEffectClipBottomZ(float bottomZ)
     {
-        ModelEffect* effectProxy = getKernel()->reuseableCache()->modelEffectProxy();
-        effectProxy->setVisibleBottomHeight(bottomZ);
+        getKernel()->reuseableCache()->setVisibleBottomHeight(bottomZ);
+		requestVisUpdate();
     }
+	
+	void setModelEffectClipBottomZSceneBottom() {
+		trimesh::dbox3 box = sceneBoundingBox();
+		setModelEffectClipBottomZ(box.min.z);
+	}
 
-	void setModelEffectBottomZ(float bottomZ)
+	void setNeedCheckScope(int checkscope)
 	{
-		ModelEffect* effectProxy = getKernel()->reuseableCache()->modelEffectProxy();
-		effectProxy->setBottom(bottomZ);
+		getKernel()->reuseableCache()->setNeedCheckScope(checkscope);
 	}
 
 	void setModelEffectClipMaxZ(float z)
 	{
-		ModelEffect* effectProxy = getKernel()->reuseableCache()->modelEffectProxy();
-		effectProxy->setVisibleTopHeight(z);
+		getKernel()->reuseableCache()->setVisibleTopHeight(z);
+		requestVisUpdate();
 	}
 	
-	void setModelEffectBox(QVector3D& dmin, QVector3D& dmax)
+	void setModelEffectBox(const QVector3D& dmin, const QVector3D& dmax)
 	{
-		ModelEffect* effectProxy = getKernel()->reuseableCache()->modelEffectProxy();
-		effectProxy->setSpaceBox(dmin, dmax);
+		getKernel()->reuseableCache()->setSpaceBox(dmin, dmax);
+	}
+	
+	void setModelEffectClipMaxZSceneTop() {
+		trimesh::dbox3 box = sceneBoundingBox();
+		setModelEffectClipMaxZ((float)box.max.z + 0.5f);
 	}
 
-	void cacheNode(Qt3DCore::QNode* node)
+	void setModelZProjectColor(const QVector4D& color)
 	{
-		if (node)
-		{
-			Qt3DCore::QNode* cacheNode = getKernel()->reuseableCache()->cacheNode();
-			node->setParent(cacheNode);
-		}
+		getKernel()->reuseableCache()->setModelZProjectColor(color);
 	}
 
-	void unCacheNode(Qt3DCore::QNode* node)
+	void setModelClearColor(const QVector4D& color)
 	{
-		if (node)
-		{
-			node->setParent((Qt3DCore::QNode*)nullptr);
-		}
+		getKernel()->reuseableCache()->setModelClearColor(color);
 	}
 
-	void setZProjectColor(const QVector4D& color)
+	void setModelSection(const QVector3D &frontPos, const QVector3D &backPos, const QVector3D &normal)
 	{
-		getKernel()->reuseableCache()->setZProjectColor(color);
+		getKernel()->reuseableCache()->setSection(frontPos, backPos, normal);
+	}
+
+	void resetModelSection()
+	{
+		getKernel()->reuseableCache()->resetSection();
+	}
+
+	void setModelOffset(const QVector3D& offset)
+	{
+		getKernel()->reuseableCache()->setOffset(offset);
+	}
+
+	void setZProjectEnabled(bool enabled)
+	{
+		getKernel()->reuseableCache()->setZProjectEnabled(enabled);
+	}
+
+	void setPrinterVisible(bool visible)
+	{
+		getKernel()->reuseableCache()->setPrinterVisible(visible);
+	}
+
+	qtuser_3d::WorldIndicatorEntity* getIndicatorEntity()
+	{
+		return getKernel()->reuseableCache()->getIndicatorEntity();
+	}
+
+	void updatePrinterBox(const trimesh::dbox3& box)
+	{
+		return getKernel()->reuseableCache()->updatePrinterBox(box);
+	}
+
+	qtuser_3d::CacheTexture* getCacheTexture()
+	{
+		return getKernel()->reuseableCache()->getCacheTexture();
+	}
+
+	void resetIndicatorAngle()
+	{
+		getKernel()->reuseableCache()->resetIndicatorAngle();
 	}
 }

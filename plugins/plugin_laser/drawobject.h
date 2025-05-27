@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QImage>
+#include <QPainterPath>
 class DrawObject : public QObject
 {
     Q_OBJECT

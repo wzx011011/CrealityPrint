@@ -32,7 +32,6 @@ T.TabBar {
 
     background: Rectangle {
         radius: 5
-        implicitHeight: control.implicitHeight
         color: backgroundColor
     }
 }

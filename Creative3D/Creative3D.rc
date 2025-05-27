@@ -12,13 +12,13 @@ BEGIN
   BEGIN
     BLOCK "080904E4"
     BEGIN
-      VALUE "CompanyName", "CREALITY"
-      VALUE "FileDescription", "CrealityPrint"//
+      VALUE "CompanyName", "E-Tech"
+      VALUE "FileDescription", "E-Tech"//
       VALUE "FileVersion", "1.0"
-      VALUE "InternalName", "Creality 3D"
-      VALUE "LegalCopyright", "Creality Company"
-      VALUE "OriginalFilename", "CrealityPrint.exe"//by TCJ
-      VALUE "ProductName", "CrealityPrint"//
+      VALUE "InternalName", "E-Tech 3D"
+      VALUE "LegalCopyright", "E-Tech Company"
+      VALUE "OriginalFilename", "E-TechPrint.exe"//by TCJ
+      VALUE "ProductName", "E-TechPrint"//
       VALUE "ProductVersion", "1.0"
     END
   END

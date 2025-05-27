@@ -4,14 +4,15 @@
 #include <QObject>
 #include <QtCore/QStandardPaths>
 #include "drawobjectmodel.h"
-#include "inout/cxhandlerbase.h"
+#include "qtusercore/module/cxhandlerbase.h"
 #include "laserimgprovider.h"
 #include "lasersettings.h"
 #include "plottersettings.h"
 class CX2DLib;
 class LaserExportFile;
 class PlotterUndo;
-class LaserScene : public QObject,public CXHandleBase
+class LaserScene : public QObject, 
+    public qtuser_core::CXHandleBase
 {
     Q_OBJECT
     Q_PROPERTY(DrawObjectModel * drawObjectModel READ drawObjectModel)
@@ -25,6 +26,9 @@ public:
     };
     LaserScene(QObject* parent,SCENETYPE type);
     virtual ~LaserScene();
+
+    void uninitialize();
+
     Q_INVOKABLE DrawObjectModel *drawObjectModel();
     Q_INVOKABLE QObject* laserSettings();
     //Q_INVOKABLE void addDragRectObject(QObject *obj, int sharpType);
@@ -70,20 +74,15 @@ public:
     int height();
     QPoint origin() {return m_origin;}
     void setOrigin(QPoint origin) {m_origin=origin;}
-    QStringList supportFilters() override;
-    QString supportOpenModel() override;
+    QString filter() override;
+    QString filterKey() override;
     void handle(const QString& fileName) override;
     void handle(const QStringList& fileNames) override;
     void detectObject(QObject* obj, long long newX, long long newY, double newWidth, double newHeight, double newRatation);
     bool saveGcode(const QString& fileNmae);
     void saveLocalGcodeFileSuccess();
     void saveLocalGcodeFileFail();
-    void localSaveTmpGcode();
     QString getTmpFilePeth();
-    QString getCanWriteFolder()
-    {
-        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    }
 signals:
     void originChanged();
 public slots:
@@ -116,6 +115,8 @@ private:
     PlotterUndo* m_plotterUndo;
     PlotterUndo* m_LaserUndo;
     QObject* m_switchModel = NULL;
+
+    bool m_tempSave;
 };
 
 #endif // LASERSCENE_H

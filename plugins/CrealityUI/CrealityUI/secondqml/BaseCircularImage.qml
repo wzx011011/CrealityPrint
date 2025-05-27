@@ -23,7 +23,7 @@ Rectangle {
         visible: false
         anchors.fill: parent
         source: img_src
-        sourceSize: Qt.size(parent.size, parent.size)
+        sourceSize: Qt.size(parent.width, parent.height)
         antialiasing: true
     }
     Rectangle {

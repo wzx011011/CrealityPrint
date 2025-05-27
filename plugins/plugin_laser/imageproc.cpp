@@ -20,54 +20,6 @@ IMG2DLib::IMG2DLib()
 IMG2DLib::~IMG2DLib()
 {}
 
-
-//reads a bmp file, stores it in a 2D vector
-vector<vector<int>> readFile(string file_name, int &numrows, int &numcols) {
-	int row = 0, col = 0;
-
-	ifstream infile(file_name);
-
-	stringstream ss;
-	string inputLine = "";
-
-	// First line : version
-	//getline(infile, inputLine);
-	getline(infile, inputLine);
-	if (inputLine.compare("P2") != 0)
-		cerr << "Version error" << endl;
-	else
-	//	cout << "Version : " << inputLine << endl;
-
-	// Secondline : size
-	ss << infile.rdbuf();
-	ss >> numcols >> numrows;
-	//cout << numcols << " columns and " << numrows << " rows" << endl;
-
-
-	// Third line : comment
-	ss >> inputLine;
-	//cout << "Comment : " << inputLine << endl;
-
-	vector<vector<int>> image(numrows);
-
-	//int array[numrows][numcols]; not using array
-
-	int input;
-
-	// Following lines : data
-	for (row = 0; row < numrows; ++row) {
-		for (col = 0; col < numcols; ++col) {
-			ss >> input;
-			if (input != 0)
-				input = 1;
-			image[row].push_back(input);
-		}
-	}
-
-	infile.close();
-	return image;
-}
-
 //Saves the altered image 2D vector to a txt file. Used for debugging
 void saveTextFile(string file_name, vector<vector<int>> image) {
 	ofstream myfile;

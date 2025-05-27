@@ -1,0 +1,33 @@
+{
+  "printerList": [
+    {
+      "engineVersion": "5.2.0",
+      "seriesId": 11,
+      "type": 1,
+      "printerIntName": "CR-K1 Max",
+      "name": "K1 Max",
+      "thumbnail": "https://pic-cdn.creality.com/printer/0aaec939c33332fc836461ee4cc001e3",
+      "xSize": 300.0,
+      "ySize": 300.0,
+      "zSize": 300.0,
+      "nozzleDiameter": [
+        "0.6"
+      ],
+      "supMaterialType": [
+        "ABS",
+        "PETG",
+        "PLA",
+        "TPU"
+      ],
+      "version": "1703239498",
+      "zipUrl": "https://file-cdn.creality.com/slice-profile/package/5.2.0/CR-K1/0.4/1703239498/CR-K1-0.4.zip"
+    }
+  ],
+  "series": [
+    {
+      "id": 11,
+      "name": "K1",
+      "type": 1
+    }
+  ]
+}

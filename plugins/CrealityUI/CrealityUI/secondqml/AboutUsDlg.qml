@@ -1,205 +1,368 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.12
+import QtQuick 2.13
+import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.13
+
 import CrealityUI 1.0
+
 import "qrc:/CrealityUI"
-BasicDialog
-{
-    id: idDialog
-    width: 730 * screenScaleFactor
-    height: (Constants.languageType == 0 ? 450 : 400) *  screenScaleFactor //mac中文字显示差异，需多留空白
-    titleHeight : 30 * screenScaleFactor
-    property int spacing: 5
+import "qrc:/CrealityUI/components"
+
+BasicDialogV4 {
+    id: root
+
+    width: 800 * screenScaleFactor
+    height: 480 * screenScaleFactor
+
     title: qsTr("About Us")
-    property string version:""
-    property string website: ""
-    property string telnumber: "+86 755-8523 4565"
-    property string email: "teamcloud@creality.com"
+    maxBtnVis: false
+    readonly property string context: cxkernel_const.translateContext
 
-    onVisibleChanged:
-    {
-        console.log("Constants.languageType: " + Constants.languageType)
+    readonly property string logo: "qrc:/scence3d/res/logo.png"
+    readonly property bool logoVisible: true
+
+    readonly property string name: cxkernel_const.bundleName
+    readonly property bool nameVisible: true
+
+    readonly property string version: "%1 %2 %3".arg(name)
+    .arg(cxkernel_const.version)
+    .arg(cxkernel_const.versionExtra)
+    readonly property bool versionVisible: true
+
+    readonly property string copyright: qsTranslate(context, "sofrware_copyright")
+    readonly property bool copyrightVisible: copyright !== "sofrware_copyright"
+
+    readonly property string introduction: cxTr("offical_introduction")
+    readonly property bool introductionVisible: introduction !== "offical_introduction"
+
+    readonly property string websiteTitle: qsTranslate(context, "aboutusdialog_webside")
+    readonly property string website: qsTranslate(context, "offical_webside")
+    readonly property bool websiteVisible: website !== "offical_webside"
+
+    readonly property string emailTitle: qsTranslate(context, "aboutusdialog_email")
+    readonly property string email: qsTranslate(context, "offical_email")
+    readonly property bool emailVisible: email !== "offical_email"
+
+    readonly property string telephoneTitle: qsTranslate(context, "aboutusdialog_telephone")
+    readonly property string telephone: qsTranslate(context, "offical_telephone")
+    readonly property bool telephoneVisible: telephone !== "offical_telephone"
+
+    readonly property string engineCopyright1: qsTranslate(context, "engine_copyright1")
+    readonly property bool engineCopyrightVisible1: engineCopyright1 !== "engine_copyright1"
+    readonly property string engineCopyright2: qsTranslate(context, "engine_copyright2")
+    readonly property bool engineCopyrightVisible2: engineCopyright2 !== "engine_copyright2"
+    readonly property string engineCopyright3: qsTranslate(context, "engine_copyright3")
+    readonly property bool engineCopyrightVisible3: engineCopyright3 !== "engine_copyright3"
+    readonly property string engineCopyright4: qsTranslate(context, "engine_copyright4")
+    readonly property bool engineCopyrightVisible4: engineCopyright4 !== "engine_copyright4"
+    readonly property string engineCopyright5: qsTranslate(context, "engine_copyright5")
+    readonly property bool engineCopyrightVisible5: engineCopyright5 !== "engine_copyright5"
+
+    CopyRightDlg {
+        id: copyright_dialog
     }
-    
-    Column
-    {
-        y:60//50
-        width: parent.width
-        height: parent.height-20
-        spacing:20
-        Item
-        {
-    //        color: "transparent"
-            width: parent.width
-            height: 28
-            Row
-            {
-                id:idIconRect
-                width: 35 + idLogoName.width
-                height: 28
-                leftPadding: 25//(parent.width - idIconRect.width )/2
-                spacing: 5//10
+
+    bdContentItem: Item{
+        ColumnLayout {
+            id: root_layout
+
+            anchors.fill: parent
+            anchors.margins: 20 * screenScaleFactor
+            //            anchors.topMargin: 20 * screenScaleFactor + root.currentTitleHeight
+
+            spacing: 10 * screenScaleFactor
+
+            RowLayout {
+                id: logo_name_layout
+
+                Layout.fillWidth: true
+                Layout.bottomMargin: parent.spacing
+
+                visible: root.logoVisible || root.nameVisible
+
                 Image {
-                    id: idImage
-                    width: 25
-                    height: 28
-                    source: "qrc:/UI/photo/LOGO.png"
+                    id: logo_image
+
+                    width: 28 * screenScaleFactor
+                    height: 28 * screenScaleFactor
+
+                    visible: root.logoVisible
+
+                    source: root.logo
+                    sourceSize.width: width
+                    sourceSize.height: height
+                    fillMode: Image.PreserveAspectFit
                 }
-                StyledLabel {
-                    id: idLogoName
-                    text: "Creality Print"
-                    width: contentWidth
-                    height: 28
-                    verticalAlignment: Qt.AlignVCenter
+
+                Text {
+                    id: name_text
+
+                    Layout.fillWidth: true
+
+                    visible: root.nameVisible
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    text: root.name
+                    textFormat: Text.PlainText
+                    wrapMode: Text.WordWrap
                     font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize:  Constants.labelFontPointSize_12
+                    color: Constants.textColor
                 }
             }
-        }
 
-        StyledLabel {
-            id: textEdit
-            x:25
-            text: qsTr("Founded in 2014, Shenzhen Creality 3D Technology Co., Ltd. is the first R & D manufacturer in China to enter the 3D printing industry and is committed to building a full range of 3D printing solutions, whose business field mainly focuses on the R & D, manufacturing and sales of 3D printers, extending to 3D printing accessories, 3D printing filament, 3D education curriculum system, 3D printing services, etc.  At present, it has become a leading high-tech enterprise in China's 3D printing industry, with its R & D strength, production, quality and services all leading the industry.")
-            height: contentHeight + 20
-            width:idDialog.width - 55
-            wrapMode: TextEdit.Wrap
-        }
+            TextEdit {
+                id: introduction_edit
 
-        Column
-        {
-            topPadding: -10
-            leftPadding: 25//(idDialog.width - 380 ) /2
-            spacing: 8//10
+                Layout.fillWidth: true
+                height: contentHeight
+                Layout.bottomMargin: parent.spacing
 
-            StyledLabel
-            {
-               id: idVersion
-               width:380 * screenScaleFactor
-               horizontalAlignment: Text.LeftToRight
-               text: "Creality Print " + version
+                visible: root.introductionVisible
 
-               wrapMode: Label.WordWrap
+                padding: 0
+
+                text: root.introduction
+                textFormat: TextEdit.PlainText
+                wrapMode: TextEdit.WordWrap
                 font.family: Constants.labelFontFamily
-               //font.pixelSize:Constants.labelFontPixelSize  // panelFontSize 14
+                font.weight: Constants.labelFontWeight
+                font.pointSize: Constants.labelFontPointSize_9
+                color: Constants.textColor
+
+                readOnly: true
+                selectByMouse: true
+                selectByKeyboard: false
             }
 
+            Text {
+                id: version_text
 
-            StyledLabel
-            {
-               id: idCopyRight
-               width:600 * screenScaleFactor//380
-               horizontalAlignment: Text.LeftToRight
-               //版权归深圳市创想三维科技有限公司，保留所有权利
-               text: qsTr("Copyright©2014-2024 Shenzhen Creality 3D technology company, LTD. All rights reserved.")
-               wrapMode: Text.WordWrap
-//               color: "black"
-               //font.pixelSize:Constants.labelFontPixelSize  // panelFontSize
-               font.family: Constants.labelFontFamily
+                Layout.fillWidth: true
+
+                visible: root.versionVisible
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignTop
+
+                text: root.version
+                textFormat: Text.PlainText
+                wrapMode: Text.WordWrap
+                font.family: Constants.labelFontFamily
+                font.weight: Constants.labelFontWeight
+                font.pointSize: Constants.labelFontPointSize_9
+                color: Constants.textColor
             }
 
-            StyledLabel
-            {
-               id: idWebsite
-               width:380 * screenScaleFactor
-               horizontalAlignment: Text.LeftToRight
-               text: qsTr("Website:") + "<a href=' " +website +"'>" + website +  "</a> "
-               wrapMode: Label.WordWrap
-//               color:  "black"
-               //font.pixelSize:Constants.labelFontPixelSize  // panelFontSize
-                font.family: Constants.labelFontFamily
-               MouseArea
-               {
-                   id:idMouse
-                    anchors.fill: parent
-                    anchors.leftMargin: 30
-                    onClicked:
-                    {
-                        Qt.openUrlExternally(website)
+            Column{
+                Layout.fillWidth: true
+                id:engineCopyrightId
+                Text {
+                    Layout.fillWidth: true
+                    height:contentHeight
+                    visible: root.engineCopyrightVisible1
+                    text: root.engineCopyright1
+                    textFormat: Text.PlainText
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
+                Text {
+                    Layout.fillWidth: true
+                    height:contentHeight
+                    visible: root.engineCopyrightVisible2
+                    text: root.engineCopyright2
+                    textFormat: Text.PlainText
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
+                Text {
+                    Layout.fillWidth: true
+                    height:contentHeight
+                    visible: root.engineCopyrightVisible3
+                    text: root.engineCopyright3
+                    textFormat: Text.PlainText
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
+                Text {
+                    Layout.fillWidth: true
+                    lineHeight:1
+                    visible: root.engineCopyrightVisible4
+                    text: root.engineCopyright4
+                    textFormat: Text.PlainText
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
+                Text {
+                    Layout.fillWidth: true
+                    height:10
+                    visible: root.engineCopyrightVisible5
+                    text: root.engineCopyright5
+                    textFormat: Text.PlainText
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
+
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            Column{
+                spacing:2
+                RowLayout{
+                    spacing:5
+                    // anchors.top:engineCopyrightId.bottom
+                    // anchors.topMargin:5
+                    Text {
+                        id: website_text
+                        visible: root.websiteVisible
+                        text: "%1: <a href='%2' style='color:%3'>%2</a>"
+                        .arg(root.websiteTitle)
+                        .arg(root.website)
+                        .arg("#449ec7")
+                        textFormat: Text.RichText
+                        Layout.fillWidth: true
+                        font.family: Constants.labelFontFamily
+                        font.weight: Constants.labelFontWeight
+                        font.pointSize: Constants.labelFontPointSize_9
+                        color: Constants.textColor
+                        width: 300
+                        onLinkActivated: function(link) {
+                            Qt.openUrlExternally(link)
+                        }
                     }
-               }
+
+                    Text {
+                        id: email_text
+                        Layout.fillWidth: true
+                        visible: root.emailVisible
+                        text: "%1: <a href='mailto:%2' style='color:%3'>%2</a>"
+                        .arg(root.emailTitle)
+                        .arg(root.email)
+                        .arg("#449ec7")
+                        textFormat: Text.RichText
+                        wrapMode: Text.WordWrap
+                        font.family: Constants.labelFontFamily
+                        font.weight: Constants.labelFontWeight
+                        font.pointSize: Constants.labelFontPointSize_9
+                        color: Constants.textColor
+                        width: 300
+                        onLinkActivated: function(link) {
+                            Qt.openUrlExternally(link)
+                        }
+                    }
+
+                    Text {
+                        id: telephone_text
+                        Layout.fillWidth: true
+                        visible: root.telephoneVisible
+                        text: "%1: %2"
+                        .arg(root.telephoneTitle)
+                        .arg(root.telephone)
+                        textFormat: Text.RichText
+                        wrapMode: Text.WordWrap
+                        font.family: Constants.labelFontFamily
+                        font.weight: Constants.labelFontWeight
+                        font.pointSize: Constants.labelFontPointSize_9
+                        color: Constants.textColor
+                        width: 300
+                    }
+                }
+
+
+                Text {
+                    id: copyright_text
+
+                    Layout.fillWidth: true
+
+                    visible: root.copyrightVisible
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignTop
+
+                    text: root.copyright
+                    textFormat: Text.PlainText
+                    wrapMode: Text.WordWrap
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    color: Constants.textColor
+                }
             }
 
-            StyledLabel
-            {
-               id: idTel
-               width:380 * screenScaleFactor
-               horizontalAlignment: Text.LeftToRight
-               text: qsTr("Tel:")  + telnumber
-               wrapMode: Label.WordWrap
-               //font.pixelSize:Constants.labelFontPixelSize  // panelFontSize
-               font.family: Constants.labelFontFamily
-            }
-            StyledLabel
-            {
-               id: idEMail
-               width:380
-               horizontalAlignment: Text.LeftToRight
-               text: qsTr("Email:")  + email
-               wrapMode: Label.WordWrap
-               //font.pixelSize:Constants.labelFontPixelSize
-               font.family: Constants.labelFontFamily
-            }
-        }
 
-        Item {
-            width: (idDialog.width - 14) * screenScaleFactor
-            height : 2
-            
-            Rectangle {
-                // anchors.left: idCol.left
-                // anchors.leftMargin: -10
-                x: 7
-                width:parent.width > parent.height ?  parent.width : 2
-                height: parent.width > parent.height ?  2 : parent.height
-                color: Constants.splitLineColor
-                Rectangle {
-                    width: parent.width > parent.height ? parent.width : 1
-                    height: parent.width > parent.height ? 1 : parent.height
-                    color: Constants.splitLineColorDark
+            RowLayout {
+                id: button_layout
+
+                Layout.fillWidth: true
+                Layout.minimumHeight: 28 * screenScaleFactor
+                Layout.maximumHeight: Layout.minimumHeight
+                Layout.alignment: Qt.AlignCenter
+
+                spacing: 10 * screenScaleFactor
+                TextMetrics {
+                    id: textMetrics
+                    font.family: Constants.labelFontFamily
+                    font.weight: Constants.labelFontWeight
+                    font.pointSize: Constants.labelFontPointSize_9
+                    elide: Text.ElideMiddle
+                    elideWidth: 100
+                    text: qsTr("Portions Copyright")
+                }
+                BasicDialogButton {
+                    id: copyright_button
+
+                    Layout.minimumWidth: 125 * screenScaleFactor
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignCenter
+
+                    text: qsTr("Portions Copyright")
+
+                    btnRadius: height / 2
+                    btnBorderW: 0
+                    defaultBtnBgColor: Constants.profileBtnColor
+                    hoveredBtnBgColor: Constants.profileBtnHoverColor
+
+                    onSigButtonClicked: {
+                        copyright_dialog.show()
+                    }
+                    Layout.preferredWidth: textMetrics.width +20
+                }
+
+                BasicDialogButton {
+                    id: close_button
+
+                    Layout.minimumWidth: 125 * screenScaleFactor
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignCenter
+
+                    text: qsTr("Close")
+
+                    btnRadius: height / 2
+                    btnBorderW: 0
+                    defaultBtnBgColor: Constants.profileBtnColor
+                    hoveredBtnBgColor: Constants.profileBtnHoverColor
+
+                    onSigButtonClicked: {
+                        root.close()
+                    }
                 }
             }
         }
 
-        Row
-        {
-            id: idBtnrow
-            spacing: 10
-            width: 395 * screenScaleFactor
-            height: 30 * screenScaleFactor
-            x: 230
-            BasicButton {
-                id: basicComButton
-                width: 125 * screenScaleFactor
-                height: 28 * screenScaleFactor
-                btnRadius:3
-                btnBorderW:0
-                defaultBtnBgColor: Constants.profileBtnColor
-                hoveredBtnBgColor: Constants.profileBtnHoverColor
-                text: qsTr("Portions Copyright")
-                onSigButtonClicked:
-                {
-                    idcopyrihgt.show()
-                }
-            }
-
-            BasicButton {
-                id: basicComButton1
-                width: 125 * screenScaleFactor
-                height: 28 * screenScaleFactor
-                btnRadius:3
-                btnBorderW:0
-                defaultBtnBgColor: Constants.profileBtnColor
-                hoveredBtnBgColor: Constants.profileBtnHoverColor
-                text: qsTr("Close")
-                onSigButtonClicked:
-                {
-                    idDialog.close()
-                }
-            }
-        }
-
-    }
-
-    CopyRightDlg{
-        id: idcopyrihgt
-    }
-}
+    }}

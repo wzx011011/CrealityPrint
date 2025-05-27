@@ -1,507 +1,828 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.3
-//import CrealityUI 1.0
-//import "qrc:/CrealityUI"
-import ".."
+import QtQuick 2.10
+import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.0
+import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls 1.4 as Control14
+import CrealityUI 1.0
+import QtQml 2.13
+import Qt.labs.platform 1.1
+import "../components"
 import "../qml"
+import ".."
 
-BasicDialog {
-    id: idDialog
-    width: 500
-    height: 450
-    titleHeight : 30
-    property int spacing: 5
-    title: qsTr("Manage Materials")
-//    color : "white"//"#061F3B"
+BasicDialogV4
+{
+    id: idAddPrinterDlg
+    width: 1040 * screenScaleFactor
+    height: 591 * screenScaleFactor
+    titleHeight : 30 * screenScaleFactor
+    maxBtnVis: false
+    title: qsTr("Manage Material")
 
-    property var modelcontrol
+    property var currentMachine : null
+    property var currentMaterial : null
 
-    property alias material: idmaterialAll.model
-    property alias currentindex:idmaterialAll.currentIndex
-    property bool bmachinetype: false
-    property var unitstring: "¥/m"
-    property double costValue: 0
+    property bool isCurMaterialUser: false
+    property string lastMaterialName
+    property string currentMaterialName
+    property string btnState : "addState"
+    property int extruderNum : 0
+    property int extruderIndex : 0
+    property int currentMaterialIndex: 0
+    property var materialParams
+    property var itemsModel : currentMaterial? currentMaterial.materialParameterModel(extruderIndex) : null
+    property string curGroupKey: "properties"
 
-    //property val name: value
-    function init(obj)
-    {
-        modelcontrol=obj
-        console.log("init func")
-    }
-    function machinetype(type)
-    {
-        bmachinetype=type
-        if(type)
-        {
-            fdmtype.visible=true
-            dlptype.visible=false
-        }
-        else
-        {
-            fdmtype.visible=false
-            dlptype.visible=true
-        }
+    ManageMaterialDlgData{
+        id: itemsData
+        currentExtruder: extruderNum
     }
 
-    function materials(names)
-    {
-        material=names
-    }
-    function initValue(index)
-    {
-        if(idmaterialAll.currentIndex !== index)
-            idmaterialAll.currentIndex=index
-
-        if(bmachinetype)
-        {
-            iddiameter.text=modelcontrol.getValue("material_diameter")
-            idtype.text=modelcontrol.getValue("material_type")
-            idtemperature.text=modelcontrol.getValue("material_print_temperature")
-            idbrand.text=modelcontrol.getValue("material_brand")
-            costValue=modelcontrol.getValue("material_cost")
-            if(modelcontrol.getMoneyType() == "$")
-            {
-                costValue = costValue/ 7.0
-                unitstring = "$/m"
-            }
-        }
-        else
-        {
-            idtypedlp.text=modelcontrol.getValue("material_type")
-            idsensitivity.text=modelcontrol.getValue("sensitivity")
-        }
-    }
-
-    function writeValue()
-    {
-        if(bmachinetype)
-        {
-            iddiameter.text=modelcontrol.getValue("material_diameter")
-            idtype.text=modelcontrol.getValue("material_type")
-            idtemperature.text=modelcontrol.getValue("material_print_temperature")
-            idbrand.text=modelcontrol.getValue("material_brand")
-            costValue=modelcontrol.getValue("material_cost")
-            if(modelcontrol.getMoneyType() == "$")
-            {
-                costValue = costValue/ 7.0
-                unitstring = "$/m"
-            }
-        }
-        else
-        {
-            idtypedlp.text=modelcontrol.getValue("material_type")
-            idsensitivity.text=modelcontrol.getValue("sensitivity")
-        }
-    }
-
-    onVisibleChanged:
-    {
-        var moneyType = modelcontrol.getMoneyType()
-        if(moneyType  == "$")
-        {
-            unitstring = "$/m"
-        }
-        else
-        {
-            unitstring = "¥/m"
-        }
-    }
-
-    Grid
-    {
-//        x:20
-        y:titleHeight + 20
-       rows: 5
-       height: parent.height - 30
-       width :450
-       spacing: 10
-       x : (idDialog.width - width ) / 2
-       Item
-       {
-           width: 400
-           height:30
-           Row
-           {
-               x:20
-               spacing: 10
-               StyledLabel {
-                   height : 28
-                   width: 135
-
-                   text: qsTr("Material Select:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-               }
-               BasicCombobox {
-                   id:idmaterialAll
-       //            y:titleHeight + 18
-       //            x:180
-                   //currentIndex: 1
-                   height:28
-                   width: 250
-                   onCurrentIndexChanged:
-                   {
-                       modelcontrol.materialChanged(idmaterialAll.textAt(currentIndex))
-                       writeValue()
-                   }
-               }
-           }
-
-       }
-       BasicSeparator
-       {
-           width: parent.width
-           height : 2
-       }
-
-       BasicGroupBox
-       {
-           id: idGroup
-           x:20
-//           y:titleHeight + 70
-           title: qsTr("General parameters")
-//           font.pixelSize : 16
-           width: 400
-           height:280
-
-           //fdm
-           Grid
-           {
-               id:fdmtype
-               visible: false
-//               x:20
-               y:10
-               rowSpacing: 8//20
-               columnSpacing: 10//60
-               rows: 5
-               columns: 2
-               StyledLabel {
-                   width: 140
-                   height: 28
-                   Layout.row: 0
-                   Layout.column: 1
-                   text: qsTr("Material Type:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicTextField {
-                   id: idtype
-                   Layout.row: 0
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-                   verticalAlignment: Qt.AlignVCenter
-
-                   onEditingFinished:{
-                       modelcontrol.valueChanged("material_type",idtype.text)
-                       console.log("material_type = "+idtype.text);
-                   }
-               }
-
-                StyledLabel {
-                   width: 140
-                   height: 28
-                   Layout.row: 1
-                   Layout.column: 1
-                   text: qsTr("Brand:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-               }
-               BasicTextField {
-                   id: idbrand
-                   Layout.row: 1
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-//                   width: 200
-//                   height: 30
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                      modelcontrol.valueChanged("material_brand",idbrand.text)
-                   }
-               }
-               StyledLabel {
-                   Layout.row: 2
-                   Layout.column: 1
-                   width: 140
-                   height: 28
-                   text: qsTr("Diameter:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicDialogTextField {
-                   id: iddiameter
-                   Layout.row: 2
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                      modelcontrol.valueChanged("material_diameter",iddiameter.text)
-                   }
-               }
-               
-               StyledLabel {
-                   width: 140
-                   height: 28
-                   Layout.row: 3
-                   Layout.column: 1
-                   text: qsTr("Printing Temperature:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicDialogTextField {
-                   id: idtemperature
-                   Layout.row: 3
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-//                   width: 200
-//                   height: 30
-
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                      modelcontrol.valueChanged("material_print_temperature",idtemperature.text)
-                   }
-               }
-               
-               StyledLabel {
-                   width: 140
-                   height: 28
-                   Layout.row: 4
-                   Layout.column: 1
-                   text: qsTr("Filament Cost:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicDialogTextField {
-                   id: idcost
-                   Layout.row: 4
-                   Layout.column: 2
-                   text: Number(costValue).toFixed(2)
-                   implicitHeight:28
-                   implicitWidth: 250
-                   unitChar: unitstring
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                        var val = idcost.text
-                        if(modelcontrol.getMoneyType() == "$")
-                        {
-                            val = idcost.text * 7.0
-                        }
-                        modelcontrol.valueChanged("material_cost",val)
-                   }
-               }
-           }
-
-           //dlp
-           GridLayout
-           {
-               id:dlptype
-               visible: false
-//               x:20
-               y:10
-               rowSpacing: 20
-               columnSpacing: 60
-               StyledLabel {
-                   Layout.column: 1
-                   width: 140
-                   text: qsTr("Material Type:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicDialogTextField {
-                   id: idtypedlp
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-//                   width: 200
-//                   height: 30
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                      modelcontrol.valueChanged("material_type",idtypedlp.text)
-                      console.log("material_type = "+idtypedlp.text);
-                   }
-               }
-
-               StyledLabel {
-                   Layout.row: 1
-                   Layout.column: 1
-                   text: qsTr("Sensitivity:") + " "
-                   horizontalAlignment: Qt.AlignRight
-                   verticalAlignment: Qt.AlignVCenter
-
-               }
-               BasicDialogTextField {
-                   id: idsensitivity
-                   Layout.row: 1
-                   Layout.column: 2
-                   implicitHeight:28
-                   implicitWidth: 250
-
-                   verticalAlignment: Qt.AlignVCenter
-                   onEditingFinished:{
-                       modelcontrol.valueChanged("sensitivity",idsensitivity.text)
-                   }
-               }
-           }
-       }
-       BasicSeparator
-       {
-           width: parent.width
-           height : 2
-       }
-
-        Item {//
-            width: parent.width
-            height:  50
-            Grid
-            {
-                width: 350//parent.width
-                height : 50
-                columns: 4
-                spacing: 10
-                anchors.centerIn:parent//
-
-                BasicDialogButton
-                {
-                    id : idSave
-                    width:80
-                    height: 30
-                    text: qsTr("New")
-                    btnRadius:3
-                    btnBorderW:0
-                    defaultBtnBgColor: Constants.profileBtnColor
-                    hoveredBtnBgColor: Constants.profileBtnHoverColor
-                    onSigButtonClicked:
-                    {
-                        addeditmaterial.visible=true
-                    }
-                }
-
-                BasicDialogButton
-                {
-                    id : idsave
-                    width:80
-                    height: 30
-                    text: qsTr("Save")
-                    btnRadius:3
-                    btnBorderW:0
-                    defaultBtnBgColor: Constants.profileBtnColor
-                    hoveredBtnBgColor: Constants.profileBtnHoverColor
-                    onSigButtonClicked:
-                    {
-                        if(fdmtype.visible === true && iddiameter.text === "" && idtype.text === "" && idtemperature.text === ""
-                                && idbrand.text === "" && idcost.text === "")
-                        {
-                            messageDialog.show();
-							return
-                        }
-                        // if(dlptype.visible === true && idtypedlp.text === "" && idsensitivity.text === "")
-                        // {
-                        //     messageDialog.show();
-						// 	return
-                        // }
-
-                        var val = idcost.text
-                        if(modelcontrol.getMoneyType() == "$")
-                        {
-                            val = idcost.text * 7.0
-                        }
-                        modelcontrol.valueChanged("material_cost",val)
-                        idDialog.close()
-                    }
-                }
-
-                BasicDialogButton
-                {
-                    id : idreset
-                    width:80
-                    height: 30
-                    text: qsTr("Reset")
-                    btnRadius:3
-                    btnBorderW:0
-                    defaultBtnBgColor: Constants.profileBtnColor
-                    hoveredBtnBgColor: Constants.profileBtnHoverColor
-                    onSigButtonClicked:
-                    {
-                        modelcontrol.resetMaterial()
-                        writeValue()
-                    }
-                }
-                
-                BasicDialogButton//BasicComButton
-                {
-                    id : iddelete
-                    width:80
-                    height: 30
-                    text: qsTr("Delete")
-                    btnRadius:3
-                    btnBorderW:0
-                    defaultBtnBgColor: Constants.profileBtnColor
-                    hoveredBtnBgColor: Constants.profileBtnHoverColor
-                    onSigButtonClicked:
-                    {
-                        modelcontrol.deleteMaterial()
-                    }
-                }
-                //    BasicDialogButton//BasicComButton//by TCJ
-                //    {
-                //        id : idcancel
-                //        width:80
-                //        height: 30
-                //        text: qsTr("Cancel")
-                //        onSigButtonClicked:
-                //        {
-                //            idDialog.close();
-                //        }
-                //    }
-                
-
-            }
-            AddEditMaterial{
-                    id:addeditmaterial
-                    model_material:material
-                    //objectName: "addeditprinterobj"
-                    visible:false
-                    onMaterialadd:
-                    {
-                        modelcontrol.addMaterial(newmaterialtext,currentText_printer)
-                    }
-                }
-        }
-    }
-
-
-    BasicDialog
-    {
-        id: messageDialog
-        width: 400
-        height: 200
-        titleHeight : 30
-        title: qsTr("Message")
+    ColorPanel{
+        id:colorPanel
         visible: false
-        Rectangle{
-            anchors.centerIn: parent
-            width: parent.width/2
-            height: parent.height/2
-            color: "transparent"
-            Text {
-                id: warringdlgname
-                anchors.centerIn: parent
-                font.family: Constants.labelFontFamily
-                font.weight: Constants.labelFontWeight
-                text: qsTr("All parameters cannot be empty at the same time!!")
-                font.pixelSize: Constants.labelFontPixelSize
-                color:Constants.textColor
+        x: 600
+        y: 83
+        onCurrentColorChanged: {
+        }
+    }
+
+    function changeItemsModelByKey(groupKey){
+        if(!currentMaterial)
+            return
+        console.log("currentMaterial.materialParameterModel(extruderIndex) ==========", currentMaterial.materialParameterModel(extruderIndex))
+        if(groupKey === "properties"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("property")
+        }  if(groupKey === "temperature"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("temperature")
+        }  if(groupKey === "flow"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("flow")
+        }  if(groupKey === "cooling"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("cool")
+        }  if(groupKey === "override"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("override")
+        }if(groupKey === "gcode"){
+            currentMaterial.materialParameterModel(extruderIndex).setMaterialCategory("gcode")
+        }
+    }
+
+    function resetFunc() {
+        currentMaterial.reset()
+        warningDlg.visible = false
+    }
+
+    function deleteFunc() {
+        if(currentMachine)
+            currentMachine.deleteUserMaterial(addMaterialDlg.materialName, idAddPrinterDlg.extruderIndex)
+        warningDlg.visible = false
+    }
+
+    function generateDefaultName(format, existingNames) {
+        let counter = 1;
+        let defaultName = format + counter;
+
+        let existingSet = new Set;
+        for (let name of existingNames) {
+            let index = name.lastIndexOf("_")
+            if (index !== -1)
+                name = name.substring(0, index)
+            existingSet.add(name)
+        }
+
+        while (existingSet.has(defaultName)) {
+            counter++;
+            defaultName = format + counter;
+        }
+
+        return defaultName;
+    }
+
+    UploadMessageDlg{
+        id: warningDlg
+    }
+
+    BasicDialogV4{
+        property string materialName: "Ender-3"
+        property string defaultMaterialName: ""
+        id: addMaterialDlg
+        width: 600*screenScaleFactor
+        height: 206*screenScaleFactor
+        title: qsTr("Custom Material")
+        maxBtnVis: false
+        bdContentItem:Item{
+            GridLayout{
+                anchors.top: parent.top
+                anchors.topMargin: 20*screenScaleFactor
+                anchors.horizontalCenter: parent.horizontalCenter
+                columns: 2
+
+                StyledLabel{
+                    text : qsTr("Material Name") + ": "
+                    Layout.preferredWidth: 120*screenScaleFactor
+                }
+
+                BasicDialogTextField{
+                    id: materialNameField
+                    Layout.preferredWidth: 405*screenScaleFactor
+                    Layout.preferredHeight : 28*screenScaleFactor
+                    onlyPositiveNum: false
+                    radius: 5
+                    text : addMaterialDlg.defaultMaterialName
+                    font.pointSize:Constants.labelFontPointSize_10
+                    validator: RegExpValidator { regExp: null}
+                    onEditingFinished: {
+                    }
+                }
+
+                StyledLabel{
+                    text : qsTr("Material Diameter") + ": "
+                    Layout.preferredWidth: 120*screenScaleFactor
+                }
+
+                BasicDialogTextField{
+                    Layout.preferredWidth: 405*screenScaleFactor
+                    Layout.preferredHeight : 28*screenScaleFactor
+                    onlyPositiveNum: false
+                    radius: 5
+                    text : addMaterialDlg.materialName == "" ? "1.75" : materialsComb.currentText.split('_')[1]
+                    font.pointSize:Constants.labelFontPointSize_10
+                    validator: RegExpValidator { regExp:  /(^-?[1-9]\d*\.\d+$|^-?0\.\d+$|^-?[1-9]\d*$|^0$)/}
+                    onEditingFinished: {
+                    }
+                }
+
+                StyledLabel{
+                    text : qsTr("Chose Model") + ": "
+                    Layout.preferredWidth: 120*screenScaleFactor
+                }
+
+                BasicCombobox{
+                    id: materialsComb
+                    showCount: 3
+                    Layout.preferredWidth: 405*screenScaleFactor
+                    Layout.preferredHeight : 28*screenScaleFactor
+                    model: currentMachine ? currentMachine.materialsName : []
+                    currentIndex: currentMaterialIndex
+                    Component.onCompleted:{
+                    }
+
+                    onStyleComboBoxIndexChanged:{
+                    }
+                }
+            }
+
+            Row{
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 20*screenScaleFactor
+                spacing: 20*screenScaleFactor
+                BasicDialogButton {
+                    text: qsTr("Create")
+                    width: 120*screenScaleFactor
+                    height: 28*screenScaleFactor
+                    btnRadius: height / 2
+                    btnBorderW: 1 * screenScaleFactor
+                    btnTextColor: Constants.manager_printer_button_text_color
+                    borderColor: Constants.manager_printer_button_border_color
+                    defaultBtnBgColor: Constants.manager_printer_button_default_color
+                    hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                    selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                    onSigButtonClicked: {
+                        let modelName = currentMachine.materialsNameList()[materialsComb.currentIndex]
+                        currentMachine.addUserMaterial(modelName, materialNameField.text, idAddPrinterDlg.extruderIndex)
+                        addMaterialDlg.close()
+                        cloader.item.leftListView.currentIndex = idAddPrinterDlg.cloader.item.leftListView.count - 1
+                    }
+                }
+
+                BasicDialogButton {
+                    text: qsTr("Cancel")
+                    width: 120*screenScaleFactor
+                    height: 28*screenScaleFactor
+                    btnRadius: height / 2
+                    btnBorderW: 1 * screenScaleFactor
+                    btnTextColor: Constants.manager_printer_button_text_color
+                    borderColor: Constants.manager_printer_button_border_color
+                    defaultBtnBgColor: Constants.manager_printer_button_default_color
+                    hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                    selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                    onSigButtonClicked: {
+                        addMaterialDlg.close()
+                    }
+                }
             }
         }
     }
 
+    BasicDialogV4{
+        property string materialType: "PLA"
+        property string materialFileName: ""
+        id: importMaterialFileDlg
+        width: 600*screenScaleFactor
+        height: 206*screenScaleFactor
+        title: qsTr("Import Material")
+        maxBtnVis: false
+        bdContentItem:Item{
+            GridLayout{
+                anchors.top: parent.top
+                anchors.topMargin: 20*screenScaleFactor
+                anchors.horizontalCenter: parent.horizontalCenter
+                columns: 2
+                StyledLabel{
+                    text : qsTr("Material Name") + ": "
+                    Layout.preferredWidth: 120*screenScaleFactor
+                }
+
+                BasicDialogTextField{
+                    id: mnTextField
+                    Layout.preferredWidth: 405*screenScaleFactor
+                    Layout.preferredHeight : 28*screenScaleFactor
+                    onlyPositiveNum: false
+                    radius: 5
+                    text : importMaterialFileDlg.materialFileName
+                    font.pointSize:Constants.labelFontPointSize_10
+                    validator: RegExpValidator { regExp:  /[\[\],0-9\x22]+/}
+                    onEditingFinished: {
+                    }
+                }
+
+                StyledLabel{
+                    text : qsTr("Material Type") + ": "
+                    Layout.preferredWidth: 120*screenScaleFactor
+                }
+
+                BasicDialogTextField{
+                    Layout.preferredWidth: 405*screenScaleFactor
+                    Layout.preferredHeight : 28*screenScaleFactor
+                    onlyPositiveNum: false
+                    radius: 5
+                    enabled: false
+                    text : importMaterialFileDlg.materialType
+                    font.pointSize:Constants.labelFontPointSize_10
+                    validator: RegExpValidator { regExp:  /[\[\],0-9\x22]+/}
+                    onEditingFinished: {
+                    }
+                }
+            }
+
+            Row{
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 20*screenScaleFactor
+                spacing: 20*screenScaleFactor
+                BasicDialogButton {
+                    text: qsTr("OK")
+                    width: 120*screenScaleFactor
+                    height: 28*screenScaleFactor
+                    btnRadius: height / 2
+                    btnBorderW: 1 * screenScaleFactor
+                    btnTextColor: Constants.manager_printer_button_text_color
+                    borderColor: Constants.manager_printer_button_border_color
+                    defaultBtnBgColor: Constants.manager_printer_button_default_color
+                    hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                    selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                    onSigButtonClicked: {
+                        currentMachine.importMaterial(inputDialog.currentFile, mnTextField.text)
+                        importMaterialFileDlg.close()
+                        cloader.item.leftListView.currentIndex = idAddPrinterDlg.cloader.item.leftListView.count - 1
+                    }
+                }
+
+                BasicDialogButton {
+                    text: qsTr("Cancel")
+                    width: 120*screenScaleFactor
+                    height: 28*screenScaleFactor
+                    btnRadius: height / 2
+                    btnBorderW: 1 * screenScaleFactor
+                    btnTextColor: Constants.manager_printer_button_text_color
+                    borderColor: Constants.manager_printer_button_border_color
+                    defaultBtnBgColor: Constants.manager_printer_button_default_color
+                    hoveredBtnBgColor: Constants.manager_printer_button_checked_color
+                    selectedBtnBgColor: Constants.manager_printer_button_checked_color
+
+                    onSigButtonClicked: {
+                        importMaterialFileDlg.close()
+                    }
+                }
+            }
+        }
+    }
+
+    bdContentItem: Rectangle {
+        property alias leftListView: idLeftListView
+
+        color: Constants.themeColor
+        RowLayout{
+            anchors.fill: parent
+            anchors.margins: 20* screenScaleFactor
+            ListView{
+                id: idLeftListView
+                spacing: 20* screenScaleFactor
+                Layout.preferredWidth: 140* screenScaleFactor
+                Layout.fillHeight: true
+                Layout.topMargin: 0
+                currentIndex: 0
+                ScrollBar.vertical: ScrollBar {
+                }
+                model: currentMachine ? currentMachine.materialsName : []
+                clip: true
+                delegate:RadioButton{
+                    id: cbItem
+                    width: idLeftListView.width - 10*screenScaleFactor
+                    checked: model.index === idLeftListView.currentIndex
+                    indicator: Rectangle {
+                        implicitWidth: 10* screenScaleFactor
+                        implicitHeight: 10* screenScaleFactor
+                        x: cbItem.leftPadding
+                        y: parent.height / 2 - height / 2
+                        radius: 5* screenScaleFactor
+                        color:cbItem.checked ? "#00a3ff" : "transparent"
+                        border.color: "#cbcbcc"
+                        border.width: cbItem.checked ? 0 : 1* screenScaleFactor
+                        Rectangle {
+                            width: 4* screenScaleFactor
+                            height: 4* screenScaleFactor
+                            anchors.centerIn: parent
+                            visible: cbItem.checked
+                            color: "#ffffff"
+                            radius: 2* screenScaleFactor
+                            anchors.margins: 4* screenScaleFactor
+                        }
+                    }
+
+                    contentItem:Label {
+                        text: modelData
+                        font.family: Constants.labelFontFamily
+                        font.weight: Constants.labelFontWeight
+                        font.pointSize: Constants.labelFontPointSize_9
+                        leftPadding: cbItem.indicator.width + cbItem.spacing
+                        color: cbItem.checked || cbItem.hovered
+                               ? Constants.manager_printer_switch_checked_color
+                               : Constants.manager_printer_switch_default_color
+                        verticalAlignment: Qt.AlignVCenter
+                        horizontalAlignment: Qt.AlignLeft
+                        elide: Text.ElideRight
+                        wrapMode: Text.NoWrap
+                    }
+
+                    onCheckedChanged: {
+
+                    }
+
+                    onClicked: {
+                        idLeftListView.currentIndex = model.index
+                    }
+
+                    ToolTip.visible: hovered
+                    ToolTip.text: modelData
+
+                }
+                onCurrentIndexChanged: {
+                    console.log("+++currentIndex = ", currentIndex)
+                    currentMaterialIndex = currentIndex
+                    let curMaterialName = currentMachine.materialsNameList()[currentIndex]
+
+                    setCurrentMaterial(curMaterialName)
+                    addMaterialDlg.materialName = curMaterialName
+                    idAddPrinterDlg.lastMaterialName = currentMaterial.name()
+                    currentMaterialName = curMaterialName
+                    duplicateLabel.visible = idAddPrinterDlg.isCurMaterialUser && duplicateLabel.visible
+                }
+            }
+
+            Rectangle{
+                color: Constants.dialogItemRectBgBorderColor
+                anchors.top: parent.top
+                Layout.preferredWidth: 1* screenScaleFactor
+                Layout.preferredHeight: columnItem.height - 60* screenScaleFactor
+            }
+
+            Item{
+                Layout.fillWidth: true
+            }
+
+            Column{
+                id: columnItem
+                Layout.preferredWidth: 830* screenScaleFactor
+                Layout.fillHeight: true
+                Layout.topMargin: 0
+                spacing: 22* screenScaleFactor
+                Grid{
+                    rows: 2
+                    columns: 4
+                    rowSpacing: 2* screenScaleFactor
+                    columnSpacing: 10* screenScaleFactor
+                    verticalItemAlignment: Grid.AlignVCenter
+                    Layout.leftMargin: 0
+                    StyledLabel{
+                        height : 30* screenScaleFactor
+                        text: qsTr("Material Name") + ":"
+                        font.pointSize:Constants.labelFontPointSize_9
+                        verticalAlignment: Qt.AlignVCenter
+                        horizontalAlignment: Qt.AlignRight
+                    }
+
+                    Row{
+                        BasicDialogTextField{
+                            id: materialNameEdit
+                            readOnly: !idAddPrinterDlg.isCurMaterialUser
+                            width: 160* screenScaleFactor
+                            height : 28* screenScaleFactor
+                            radius: 5* screenScaleFactor
+                            objectName: "material_name"
+                            validator: null
+                            text: currentMachine ? currentMachine.materialsName[currentMaterialIndex] : ""
+                            onTextChanged: {
+
+                            }
+
+                            onEditingFinished: {
+                                let isDuplicate = currentMachine.checkMaterialName(currentMaterial.uniqueName(), text)
+                                if (isDuplicate) {
+                                    duplicateLabel.visible = idAddPrinterDlg.isCurMaterialUser
+                                    return
+                                }
+
+                                let tempIndex = currentMaterialIndex
+                                duplicateLabel.visible = false
+                                currentMachine.modifyMaterialName(lastMaterialName, materialNameEdit.text)
+                                idAddPrinterDlg.lastMaterialName = text
+                                cloader.item.leftListView.currentIndex = tempIndex
+                                idLeftListView.currentIndex = tempIndex
+                            }
+                        }
+
+                        StyledLabel{
+                            id: duplicateLabel
+                            visible: false//idAddPrinterDlg.isCurMaterialUser
+                            color:"red"
+                            height : 30* screenScaleFactor
+                            text: qsTr("Duplicate name")
+                            font.pointSize:Constants.labelFontPointSize_9
+                            verticalAlignment: Qt.AlignVCenter
+                            horizontalAlignment: Qt.AlignRight
+                        }
+                    }
+
+                    StyledLabel{
+                        height : 30* screenScaleFactor
+                        text: qsTr("Brand") + ":"
+                        font.pointSize:Constants.labelFontPointSize_9
+                        verticalAlignment: Qt.AlignVCenter
+                        horizontalAlignment: Qt.AlignRight
+                    }
+
+                    BasicDialogTextField{
+                        readOnly: true
+                        width: 160* screenScaleFactor
+                        height : 28* screenScaleFactor
+                        radius: 5* screenScaleFactor
+                        objectName: "brand"
+                        text: currentMaterial? currentMaterial.brand() : "materialBrand"
+                        //                        strToolTip: qsTr(SettingJson.getDescription(objectName))
+                        onEditingFinished: {
+                        }
+                        onTextChanged:
+                        {
+                        }
+                    }
+
+                    StyledLabel{
+                        height : 30* screenScaleFactor
+                        text: qsTr("Material Type") + ":"
+                        font.pointSize:Constants.labelFontPointSize_9
+                        verticalAlignment: Qt.AlignVCenter
+                        horizontalAlignment: Qt.AlignRight
+                    }
+
+                    Row{
+                        BasicDialogTextField{
+                            id : idMaterialType
+                            readOnly: true
+                            width: 160* screenScaleFactor
+                            height : 28* screenScaleFactor
+                            radius: 5* screenScaleFactor
+                            text: currentMaterial? currentMaterial.type() : "materialType"
+                            objectName: "material_type"
+                            onEditingFinished: {
+                                materialParams.mg.materialType = text
+                            }
+                            onTextChanged:
+                            {
+                            }
+                        }
+
+                        StyledLabel{
+                            width : 100* screenScaleFactor
+                            height : 30* screenScaleFactor
+                            text: ""
+                            font.pointSize:Constants.labelFontPointSize_9
+                            verticalAlignment: Qt.AlignVCenter
+                            horizontalAlignment: Qt.AlignRight
+                        }
+                    }
+
+                    StyledLabel{
+                        height : 30* screenScaleFactor
+                        text: qsTr("Color") + ":"
+                        font.pointSize:Constants.labelFontPointSize_9
+                        verticalAlignment: Qt.AlignVCenter
+                        horizontalAlignment: Qt.AlignRight
+                    }
+                    Rectangle{
+                        id: colorBtn
+                        objectName: "color"
+                        width: 20
+                        height: 20
+                        radius: 5
+                        color:colorPanel.currentColor
+                        MouseArea{
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onClicked: {
+                                colorPanel.visible = true
+                            }
+                        }
+                    }
+                }
+                CustomTabView{
+                    id: cusTableView
+                    width: 830* screenScaleFactor
+                    height: 373* screenScaleFactor
+                    Layout.leftMargin: 0
+                    onCurrentPanelChanged: {
+                        idAddPrinterDlg.curGroupKey = currentPanel.objectName
+                        changeItemsModelByKey(currentPanel.objectName)
+                    }
+
+                    Repeater{
+                        id: repter
+                        model:ListModel{
+                            ListElement{labelText: qsTr("Properties"); itemKey: "properties"}
+                            ListElement{labelText: qsTr("Temperature"); itemKey: "temperature"}
+                            ListElement{labelText: qsTr("Flow"); itemKey: "flow"}
+                            ListElement{labelText: qsTr("Cooling"); itemKey: "cooling"}
+                            ListElement{labelText: qsTr("Override"); itemKey: "override"}
+                            ListElement{labelText: qsTr("G-code"); itemKey: "gcode"}
+                        }
+                        delegate:tabViewItem
+                    }
+                }
+
+                Row{
+                    id: btnsRow
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    spacing: 10* screenScaleFactor
+                    state: idAddPrinterDlg.btnState
+                    states: [
+                        State {
+                            name: "addState"
+                            PropertyChanges {
+                                target: resetBtn
+                                visible: false
+                            }
+                            PropertyChanges {
+                                target: deleteBtn
+                                visible: false
+                            }
+                        },
+                        State {
+                            name: "manageState"
+                            PropertyChanges {
+                                target: resetBtn
+                                visible: true
+                            }
+                            PropertyChanges {
+                                target: deleteBtn
+                                visible: true
+                            }
+                        }
+                    ]
+                    BasicButton {
+                        id: newBtn
+                        width: 120* screenScaleFactor
+                        height: 28* screenScaleFactor
+                        text: qsTr("Create")
+                        btnRadius:14* screenScaleFactor
+                        btnBorderW:1* screenScaleFactor
+                        defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                        hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
+                        onSigButtonClicked:{
+                            if (!currentMachine)
+                                return
+
+                            /* 获取模板名称 */
+                            let templateName = currentMachine.materialsName[currentMaterialIndex]
+                            let index = templateName.lastIndexOf("_")
+                            if (index !== -1)
+                                templateName = templateName.substring(0, index)
+
+                            let defaultName
+                            let copyPrefix = "@copy"
+                            let prefixIndex = templateName.indexOf(copyPrefix)
+                            if (prefixIndex !== -1) {
+                                let format = templateName.substring(0, prefixIndex + 5)
+                                defaultName = generateDefaultName(format, currentMachine.materialsNameInMachine())
+                            } else {
+                                let format = templateName + copyPrefix
+                                defaultName = generateDefaultName(format, currentMachine.materialsNameInMachine())
+                            }
+
+                            addMaterialDlg.defaultMaterialName = defaultName
+                            addMaterialDlg.visible = true
+                        }
+                    }
+                    BasicButton {
+                        id: resetBtn
+                        width: 120* screenScaleFactor
+                        height: 28* screenScaleFactor
+                        text: qsTr("Reset")
+                        btnRadius:14* screenScaleFactor
+                        btnBorderW:1* screenScaleFactor
+                        defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                        hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
+                        onSigButtonClicked:
+                        {
+                            warningDlg.msgText = qsTr("Do you want to reset the selected filament parameters?")
+                            warningDlg.visible = true
+                            warningDlg.sigOkButtonClicked.disconnect(resetFunc)
+                            warningDlg.sigOkButtonClicked.disconnect(deleteFunc)
+                            warningDlg.sigOkButtonClicked.connect(resetFunc)
+
+                        }
+                    }
+                    BasicButton {
+                        id: deleteBtn
+                        width: 120* screenScaleFactor
+                        height: 28* screenScaleFactor
+                        text: qsTr("Delete")
+                        btnRadius:14* screenScaleFactor
+                        btnBorderW:1* screenScaleFactor
+                        defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                        hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
+                        enabled : idAddPrinterDlg.isCurMaterialUser
+                        onSigButtonClicked:{
+                            warningDlg.msgText = qsTr("Do you want to delete the selected filament?")
+                            warningDlg.visible = true
+                            warningDlg.sigOkButtonClicked.disconnect(resetFunc)
+                            warningDlg.sigOkButtonClicked.disconnect(deleteFunc)
+                            warningDlg.sigOkButtonClicked.connect(deleteFunc)
+                        }
+                    }
+
+                    BasicButton {
+                        id: importBtn
+                        width: 120* screenScaleFactor
+                        height: 28* screenScaleFactor
+                        text: qsTr("Import")
+                        btnRadius:14* screenScaleFactor
+                        btnBorderW:1* screenScaleFactor
+                        defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                        hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
+                        onSigButtonClicked:{
+                            inputDialog.open()
+                        }
+                    }
+                    BasicButton {
+                        id: exportBtn
+                        width: 120* screenScaleFactor
+                        height: 28* screenScaleFactor
+                        text: qsTr("Export")
+                        btnRadius:14* screenScaleFactor
+                        btnBorderW:1* screenScaleFactor
+                        defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                        hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
+                        onSigButtonClicked:{
+                            saveDialog.open()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    FileDialog {
+        id: inputDialog
+        title: qsTr("Import")
+        fileMode: FileDialog.OpenFile
+        options: if(Qt.platform.os == "linux") return FileDialog.DontUseNativeDialog
+        nameFilters: ["Profiles (*.cxfilament)", "All files (*)"]
+        onAccepted: {
+            importMaterialFileDlg.materialType =  currentMachine.getMaterialType(inputDialog.currentFile)
+            importMaterialFileDlg.materialFileName = currentMachine.getFileNameByPath(inputDialog.currentFile)
+            importMaterialFileDlg.visible = true
+        }
+    }
+
+    FileDialog {
+        id: saveDialog
+        title: qsTr("Export")
+        fileMode: FileDialog.SaveFile
+        options: if(Qt.platform.os == "linux") return FileDialog.DontUseNativeDialog
+        nameFilters: ["Profiles (*.cxfilament)", "All files (*)"]
+        defaultSuffix : "cxfilament"
+        onAccepted: {
+            currentMaterial.exportMaterialFromQml(saveDialog.currentFile)
+        }
+    }
+
+    ParameterComponent{
+        id:gCom
+    }
+
+    Component{
+        id: emptyItem
+        Item {}
+    }
+
+    Component{
+        id: tabViewItem
+        CustomTabViewItem{
+            id: modelItem
+            title: model.labelText
+            objectName: model.itemKey
+            BasicScrollView{
+                id: bsv
+                anchors.fill: parent
+                padding: 10* screenScaleFactor
+                hpolicyVisible: false
+                vpolicyVisible: contentHeight > height
+                clip: true
+                ColumnLayout{
+                    width: bsv.contentItem.width
+                    Repeater{
+                        model: idAddPrinterDlg.itemsModel
+                        delegate: {
+                            if (modelItem.objectName !== idAddPrinterDlg.curGroupKey)
+                                return emptyItem
+                            if(idAddPrinterDlg.curGroupKey === "override")
+                                return gCom.recoverItemRowCom;
+                            else
+                                return gCom.itemRow
+                        }
+                    }
+
+                    Item{
+                        Layout.fillHeight: true
+                    }
+                }
+            }
+            Component.onCompleted: {
+                if(model.index === 0){
+                    parent.defaultPanel = this
+                }
+            }
+        }
+    }
+
+    //获取左侧列表
+    function getleftBtnList(){
+        return currentMachine.materialsList()
+    }
+
+    //
+    function startShowMaterialDialog(_state, _extruderIndex, materialName, machineObject){
+        btnState = _state
+        extruderIndex = _extruderIndex
+        currentMachine = machineObject
+        //        cloader.item.leftListView.model = currentMachine.materialNames()
+        cloader.item.leftListView.currentIndex = currentMachine.extruderMaterialIndex(_extruderIndex)
+        var material = currentMachine.materialObject(materialName)
+        itemsModel.sestExtruderIndex(extruderIndex)
+        changeItemsModelByKey(curGroupKey)
+
+        visible = true
+
+        //        let curName = currentMachine.materialsName[cloader.item.leftListView.currentIndex]
+
+        console.log("+++curName = ", materialName)
+        setCurrentMaterial(materialName)
+    }
+
+    function hideMaterialDialog(){
+        currentMachine = null
+        currentMaterial = null
+        idAddPrinterDlg.close()
+    }
+
+    function setCurrentMaterial(materialName){
+        if(!currentMachine)
+            return
+
+        var material = currentMachine.materialObject(materialName)
+        if(!material || (material == currentMaterial)){
+            return
+        }
+        currentMaterial = material
+        console.log("==============materialName = ", materialName)
+        idAddPrinterDlg.isCurMaterialUser = currentMaterial.isUserDef()
+        console.log("==============isUser = ", idAddPrinterDlg.isCurMaterialUser)
+        itemsData.materialParams = currentMaterial.settingsObject()
+        idAddPrinterDlg.materialParams = currentMaterial.settingsObject()
+        itemsModel.sestExtruderIndex(extruderIndex)
+        changeItemsModelByKey(curGroupKey)
+    }
 }

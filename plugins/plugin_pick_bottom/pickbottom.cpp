@@ -1,7 +1,6 @@
 #include "pickbottom.h"
 #include "pickbottomcommand.h"
-
-#include "kernel/abstractkernel.h"
+#include "kernel/kernelui.h"
 
 using namespace creative_kernel;
 PickBottom::PickBottom(QObject* parent)
@@ -28,12 +27,14 @@ void PickBottom::initialize()
 {
 	if (!m_command)
 		m_command = new PickBottomCommand(this);
-    AbstractKernelUI::getSelf()->addToolCommand(m_command, "left", 6);
-	//addLCommand(m_command);
+	getKernelUI()->addToolCommand(m_command,
+		qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_MAIN,
+		qtuser_qml::ToolCommandType::PICK_BUTTON);
 }
 
 void PickBottom::uninitialize()
 {
-	AbstractKernelUI::getSelf()->removeToolCommand(m_command, "left");
+  getKernelUI()->removeToolCommand(m_command, qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_MAIN);
+  //getKernelUI()->removeToolCommand(m_autocommand, qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_MAIN);
 	//removeLCommand(m_command);
 }

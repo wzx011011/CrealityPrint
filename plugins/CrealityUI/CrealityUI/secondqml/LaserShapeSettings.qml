@@ -46,7 +46,7 @@ Item {
 					y:17
 					width: 90* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
 					text: qsTr("Move")
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -56,7 +56,7 @@ Item {
 				Label {
 					width: 15* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: "X"
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -97,7 +97,7 @@ Item {
 				spacing: 5
 				Label {
 					width: 90* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: ""
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -107,7 +107,7 @@ Item {
 				Label {
 					width: 15* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: "Y"
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -153,7 +153,7 @@ Item {
 					y:17
 					width: 90* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
 					text: qsTr("Size")
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -163,7 +163,7 @@ Item {
 				Label {
 					width: 15* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: "X"
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -218,7 +218,7 @@ Item {
 				spacing: 5
 				Label {
 					width: 90* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: ""
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -228,7 +228,7 @@ Item {
 				Label {
 					width: 15* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: "Y"
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -294,7 +294,6 @@ Item {
                     text: qsTr("Uniform")
                     onCheckedChanged:
                     {
-                        console.log("checked = " + checked)
 						Constants.bIsLaserSizeLoced = checked
                         //msale.uniformCheck = checked
                     }
@@ -313,7 +312,7 @@ Item {
 				Label {
 					width: 90* screenScaleFactor
 					height: 28* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
 					text: qsTr("Rotate")
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor
@@ -322,7 +321,7 @@ Item {
 				}
 				Label {
 					width: 15* screenScaleFactor
-					font.pointSize:Constants.labelFontPointSize
+					font.pointSize:Constants.labelFontPointSize_9
                     text: ""
 					font.family: Constants.labelFontFamily
 					color: Constants.textColor

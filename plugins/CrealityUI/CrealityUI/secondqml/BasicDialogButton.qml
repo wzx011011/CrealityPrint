@@ -11,7 +11,7 @@ import "../qml"
     Button {
         id : propertyButton
 
-        property var pointSize: Constants.labelFontPointSize
+        property var pointSize: Constants.labelFontPointSize_9
         property string enabledIconSource
         property string disabledIconSource
         property string pressedIconSource
@@ -31,14 +31,18 @@ import "../qml"
 
         property color btnTextColor: Constants.textColor //"white"
         property color borderColor: Constants.rectBorderColor  //"#929292"
+         property color borderHoverColor: "transparent" // Constants.lpw_BtnBorderHoverColor
         property var btnRadius: 14
         property var btnBorderW: 1
         property var strTooptip: ""
+        property var positionTooptip: BasicTooltip.Position.TOP
         property alias imgWidth: icon_image.width
         property alias imgHeight: icon_image.height
         property alias btnHovred: propertyButton.hovered
         property var isAnimatedImage: false
         signal sigButtonClicked()
+
+        property alias iconImage: icon_image
 
         function setAnimatedImageStatus(value)
         {
@@ -57,12 +61,8 @@ import "../qml"
         font.pointSize: pointSize
         BasicTooltip {
             id: idTooptip
-            visible: propertyButton.hovered
+            visible: text !== "" && propertyButton.hovered
             text: strTooptip
-            font:Constants.font
-            height: 20
-            width : strTooptip.length ===0 ? 0: contentWidth + 10
-
         }
 
         contentItem: Item {
@@ -115,11 +115,10 @@ import "../qml"
                return propertyButton.hovered ?hoveredBtnBgColor:defaultBtnBgColor
             }
             border.width: btnBorderW
-            border.color: borderColor
+            border.color: propertyButton.hovered? borderHoverColor : borderColor
         }
         onClicked:
         {
-            console.log("click")
           //  idTooptip.visible = false
             sigButtonClicked()
             if(isAnimatedImage){

@@ -1,0 +1,23 @@
+#version 150 core
+/* gcodepolyc.fragment */
+
+out vec4 fragColor;
+in vec4 color;
+in vec2 intensity;
+in float step;
+
+uniform vec2 clipValue; // x: show first step, y: show last step
+uniform vec2 layerStepRange; // x: layer first step, y: layer last step
+
+void main() 
+{
+	if (color.a < 0.5 || step > clipValue.y || step < clipValue.x)
+		discard;
+
+	vec4 _color = color;
+	if (clipValue.y < layerStepRange.y && step < layerStepRange.x)
+		_color = vec4(0.161, 0.161, 0.161, 1.0);
+
+	fragColor = vec4(vec3(intensity.y) + _color.rgb * intensity.x, color.a);
+}
+

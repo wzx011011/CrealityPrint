@@ -1,33 +1,28 @@
 #ifndef _ZSLIDERINFO_H
 #define _ZSLIDERINFO_H
-#include <QtCore/QObject>
-#include <QObject>
+#include "data/interface.h"
 
-#include "modelspaceobserver.h"
-class ZSliderInfo: public QObject
-        , public SpaceTracer
+class ZSliderInfo: public QObject, public creative_kernel::SpaceTracer
 {
-
 	Q_OBJECT
+    Q_PROPERTY(float maxLayer READ maxLayer NOTIFY maxLayerChanged)
+
 public:
     ZSliderInfo(QObject* parent = nullptr);
     virtual ~ZSliderInfo();
-	void setObject(QObject* object);
-    void enableVisible();
-    void disableVisible();
-    Q_INVOKABLE int layers();
+
+    float maxLayer();
+
     Q_INVOKABLE void setTopCurrentLayer(float layer);
     Q_INVOKABLE void setBottomCurrentLayer(float layer);
-    void initMaxLayer();
-    Q_INVOKABLE void  updateZHeight(float layer);
-protected slots:
-    void onBoxChanged(qtuser_3d::Box3D& box) override;
-    void onSceneChanged(qtuser_3d::Box3D& box) override;
-    void onGlobalBoxChanged(qtuser_3d::Box3D& box) override {}
+
+protected:
+    void onSceneChanged(const trimesh::dbox3& box) override;
+
 signals:
-    void maxZHeightChanged();
-private:
-    QObject* m_object;
-    int m_maxLayer =0;
+    void maxLayerChanged();
+
+protected:
+    float m_maxLayer;
 };
 #endif // _ZSLIDERINFO_H

@@ -23,7 +23,7 @@ Item {
             StyledLabel {
                   text: errorModel + " " + qsTr("Model(s) Invalid")
                   font.family:  Constants.labelFontFamily
-                  font.pixelSize: Constants.labelFontPixelSize
+                  font.pointSize: Constants.labelFontPointSize_6
                   color: Constants.infoPanelColor                 
             }
         }

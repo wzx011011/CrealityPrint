@@ -2,15 +2,14 @@
 
 ;--------------------------------
 ; You must define these values
-
-@CPACK_PACKAGE_UNICODE@
-
-
+  @CPACK_PACKAGE_UNICODE@
   !define VERSION "@CPACK_PACKAGE_VERSION@"
   !define PATCH  "@CPACK_PACKAGE_VERSION_PATCH@"
   !define INST_DIR "@CPACK_TEMPORARY_DIRECTORY@"
   !define PROCESS_NAME "@CPACK_SOFEWARE_PROCESS_NAME@"
-
+  !define APP_NAME  "@CPACK_NSIS_PACKAGE_NAME@"
+  !define PROJECT_NAME "@CPACK_NSIS_PROJECT_NAME@"
+  !define CXCLOUD_LOCAL_MODEL_DIR "@CPACK_NSIS_CXCLOUD_LOCAL_MODEL_DIR@"
 ;--------------------------------
 ;Variables
 
@@ -29,8 +28,7 @@
   !include "MUI.nsh"
 
   ;Default installation folder
-  InstallDir "@CPACK_NSIS_INSTALL_ROOT@\@CPACK_PACKAGE_INSTALL_DIRECTORY@"
-  InstallDirRegKey HKCU "Software\@CPACK_PACKAGE_INSTALL_DIRECTORY@" ""
+  InstallDir "@CPACK_NSIS_INSTALL_ROOT@\@CPACK_PACKAGE_INSTALL_DIRECTORY@ @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
 
 ;--------------------------------
 ;General
@@ -48,8 +46,9 @@
 @CPACK_NSIS_DEFINES@
 
   !include Sections.nsh
+  !Include Library.nsh
+  !include "x64.nsh"
   !include 'nsProcess.nsh'
-
 ;--- Component support macros: ---
 ; The code for the add/remove functionality is from:
 ;   http://nsis.sourceforge.net/Add/Remove_Functionality
@@ -162,6 +161,13 @@ Var AR_RegFlags
 
   !define MUI_HEADERIMAGE
   !define MUI_ABORTWARNING
+
+;--------------------------------
+; path functions
+
+!verbose 3
+!include "WinMessages.NSH"
+!verbose 4
 
 ;----------------------------------------
 ; based upon a script of "Written by KiCHiK 2003-01-18 05:57:02"
@@ -474,21 +480,21 @@ FunctionEnd
 !insertmacro StrStr "un."
 
 Function Trim ; Added by Pelaca
-	Exch $R1
-	Push $R2
+  Exch $R1
+  Push $R2
 Loop:
-	StrCpy $R2 "$R1" 1 -1
-	StrCmp "$R2" " " RTrim
-	StrCmp "$R2" "$\n" RTrim
-	StrCmp "$R2" "$\r" RTrim
-	StrCmp "$R2" ";" RTrim
-	GoTo Done
+  StrCpy $R2 "$R1" 1 -1
+  StrCmp "$R2" " " RTrim
+  StrCmp "$R2" "$\n" RTrim
+  StrCmp "$R2" "$\r" RTrim
+  StrCmp "$R2" ";" RTrim
+  GoTo Done
 RTrim:
-	StrCpy $R1 "$R1" -1
-	Goto Loop
+  StrCpy $R1 "$R1" -1
+  Goto Loop
 Done:
-	Pop $R2
-	Exch $R1
+  Pop $R2
+  Exch $R1
 FunctionEnd
 
 Function ConditionalAddToRegisty
@@ -530,6 +536,65 @@ FunctionEnd
 !endif
 
 ;--------------------------------
+; Installation types
+@CPACK_NSIS_INSTALLATION_TYPES@
+
+;--------------------------------
+; Component sections
+@CPACK_NSIS_COMPONENT_SECTIONS@
+
+!include "FileAssociation.nsh"
+
+Section "Open STL files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".stl" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.stl.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Stereolithography Mesh" 1
+SectionEnd
+
+Section "Open 3MF files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".3mf" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.3mf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "3D Manufacturing Format" 2
+SectionEnd
+
+Section /o "Open AMF files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".amf" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.amf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Additive Manufacturing Format" 2
+SectionEnd
+
+Section /o "Open CTM files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".ctm" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.ctm.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Open Compressed Triangle Mesh" 2
+SectionEnd
+
+Section /o "Open DAE files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".dae" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.dae.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "COLLADA Digital Asset Exchange" 2
+SectionEnd
+
+Section /o "Open GLB files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".glb" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.glb.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "glTF Binary" 2
+SectionEnd
+
+Section /o "Open glTF files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".gltf" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.gltf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "glTF Embedded JSON" 2
+SectionEnd
+
+Section /o "Open OBJ files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".obj" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.obj.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Wavefront OBJ" 2
+SectionEnd
+
+Section /o "Open PLY files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".ply" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.ply.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Stanford Triangle Format" 2
+SectionEnd
+
+Section /o "Open X3D files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".x3d" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.x3d.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "XML-based 3D model" 2
+SectionEnd
+
+Section /o "Open ZAE files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".zae" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.zae.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "Compressed COLLADA Digital Asset Exchange" 2
+SectionEnd
+
+Section "Open GCODE files with ${APP_NAME}"
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".gcode" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.gcode.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@" "G-code toolpath" 4
+    ${RegisterExtension} "$INSTDIR\${PROCESS_NAME}" ".g"     "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.g.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"     "G-code toolpath" 4
+SectionEnd
+
+;--------------------------------
 ; Define some macro setting for the gui
 @CPACK_NSIS_INSTALLER_MUI_ICON_CODE@
 @CPACK_NSIS_INSTALLER_ICON_CODE@
@@ -540,11 +605,8 @@ FunctionEnd
 
 ;--------------------------------
 ;Pages
-  @CPACK_NSIS_INSTALLER_WELCOME_TITLE_CODE@
-  @CPACK_NSIS_INSTALLER_WELCOME_TITLE_3LINES_CODE@
   !insertmacro MUI_PAGE_WELCOME
-
-  !insertmacro MUI_PAGE_LICENSE "$(LNG_License)" 
+  !insertmacro MUI_PAGE_LICENSE "$(LNG_License)"
   Page custom InstallOptionsPage
   !define MUI_PAGE_CUSTOMFUNCTION_SHOW  OverwriteInstallationShow
   !insertmacro MUI_PAGE_DIRECTORY
@@ -553,84 +615,149 @@ FunctionEnd
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "SHCTX"
   !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\@CPACK_PACKAGE_VENDOR@\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@"
   !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
+  !define MUI_STARTMENUPAGE_DEFAULTFOLDER "@CPACK_NSIS_STARTMENU_DIRECTORY@"
   !insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
 
   @CPACK_NSIS_PAGE_COMPONENTS@
 
   !insertmacro MUI_PAGE_INSTFILES
-  @CPACK_NSIS_INSTALLER_FINISH_TITLE_CODE@
-  @CPACK_NSIS_INSTALLER_FINISH_TITLE_3LINES_CODE@
   !insertmacro MUI_PAGE_FINISH
 
   !insertmacro MUI_UNPAGE_CONFIRM
+  !insertmacro MUI_UNPAGE_COMPONENTS
   !insertmacro MUI_UNPAGE_INSTFILES
 
 ;--------------------------------
 ;Languages
 
   !insertmacro MUI_LANGUAGE "English" ;first language is the default language
+  !insertmacro MUI_LANGUAGE "Albanian"
+  !insertmacro MUI_LANGUAGE "Arabic"
+  !insertmacro MUI_LANGUAGE "Basque"
+  !insertmacro MUI_LANGUAGE "Belarusian"
+  !insertmacro MUI_LANGUAGE "Bosnian"
+  !insertmacro MUI_LANGUAGE "Breton"
+  !insertmacro MUI_LANGUAGE "Bulgarian"
+  !insertmacro MUI_LANGUAGE "Croatian"
+  !insertmacro MUI_LANGUAGE "Czech"
+  !insertmacro MUI_LANGUAGE "Danish"
+  !insertmacro MUI_LANGUAGE "Dutch"
+  !insertmacro MUI_LANGUAGE "Estonian"
+  !insertmacro MUI_LANGUAGE "Farsi"
+  !insertmacro MUI_LANGUAGE "Finnish"
+  !insertmacro MUI_LANGUAGE "French"
+  !insertmacro MUI_LANGUAGE "German"
+  !insertmacro MUI_LANGUAGE "Greek"
+  !insertmacro MUI_LANGUAGE "Hebrew"
+  !insertmacro MUI_LANGUAGE "Hungarian"
+  !insertmacro MUI_LANGUAGE "Icelandic"
+  !insertmacro MUI_LANGUAGE "Indonesian"
+  !insertmacro MUI_LANGUAGE "Irish"
+  !insertmacro MUI_LANGUAGE "Italian"
+  !insertmacro MUI_LANGUAGE "Japanese"
+  !insertmacro MUI_LANGUAGE "Korean"
+  !insertmacro MUI_LANGUAGE "Kurdish"
+  !insertmacro MUI_LANGUAGE "Latvian"
+  !insertmacro MUI_LANGUAGE "Lithuanian"
+  !insertmacro MUI_LANGUAGE "Luxembourgish"
+  !insertmacro MUI_LANGUAGE "Macedonian"
+  !insertmacro MUI_LANGUAGE "Malay"
+  !insertmacro MUI_LANGUAGE "Mongolian"
+  !insertmacro MUI_LANGUAGE "Norwegian"
+  !insertmacro MUI_LANGUAGE "Polish"
+  !insertmacro MUI_LANGUAGE "Portuguese"
+  !insertmacro MUI_LANGUAGE "PortugueseBR"
+  !insertmacro MUI_LANGUAGE "Romanian"
+  !insertmacro MUI_LANGUAGE "Russian"
+  !insertmacro MUI_LANGUAGE "Serbian"
+  !insertmacro MUI_LANGUAGE "SerbianLatin"
   !insertmacro MUI_LANGUAGE "SimpChinese"
+  !insertmacro MUI_LANGUAGE "Slovak"
+  !insertmacro MUI_LANGUAGE "Slovenian"
+  !insertmacro MUI_LANGUAGE "Spanish"
+  !insertmacro MUI_LANGUAGE "Swedish"
+  !insertmacro MUI_LANGUAGE "Thai"
   !insertmacro MUI_LANGUAGE "TradChinese"
- ;!insertmacro MUI_LANGUAGE "Albanian"
- ;!insertmacro MUI_LANGUAGE "Arabic"
- ;!insertmacro MUI_LANGUAGE "Basque"
- ;!insertmacro MUI_LANGUAGE "Belarusian"
- ;!insertmacro MUI_LANGUAGE "Bosnian"
- ;!insertmacro MUI_LANGUAGE "Breton"
- ;!insertmacro MUI_LANGUAGE "Bulgarian"
- ;!insertmacro MUI_LANGUAGE "Croatian"
- ;!insertmacro MUI_LANGUAGE "Czech"
- ;!insertmacro MUI_LANGUAGE "Danish"
- ;!insertmacro MUI_LANGUAGE "Dutch"
- ;!insertmacro MUI_LANGUAGE "Estonian"
- ;!insertmacro MUI_LANGUAGE "Farsi"
- ;!insertmacro MUI_LANGUAGE "Finnish"
- ;!insertmacro MUI_LANGUAGE "French"
- ;!insertmacro MUI_LANGUAGE "German"
- ;!insertmacro MUI_LANGUAGE "Greek"
- ;!insertmacro MUI_LANGUAGE "Hebrew"
- ;!insertmacro MUI_LANGUAGE "Hungarian"
- ;!insertmacro MUI_LANGUAGE "Icelandic"
- ;!insertmacro MUI_LANGUAGE "Indonesian"
- ;!insertmacro MUI_LANGUAGE "Irish"
- ;!insertmacro MUI_LANGUAGE "Italian"
- ;!insertmacro MUI_LANGUAGE "Japanese"
- ;!insertmacro MUI_LANGUAGE "Korean"
- ;!insertmacro MUI_LANGUAGE "Kurdish"
- ;!insertmacro MUI_LANGUAGE "Latvian"
- ;!insertmacro MUI_LANGUAGE "Lithuanian"
- ;!insertmacro MUI_LANGUAGE "Luxembourgish"
- ;!insertmacro MUI_LANGUAGE "Macedonian"
- ;!insertmacro MUI_LANGUAGE "Malay"
- ;!insertmacro MUI_LANGUAGE "Mongolian"
- ;!insertmacro MUI_LANGUAGE "Norwegian"
- ;!insertmacro MUI_LANGUAGE "Polish"
- ;!insertmacro MUI_LANGUAGE "Portuguese"
- ;!insertmacro MUI_LANGUAGE "PortugueseBR"
- ;!insertmacro MUI_LANGUAGE "Romanian"
- ;!insertmacro MUI_LANGUAGE "Russian"
- ;!insertmacro MUI_LANGUAGE "Serbian"
- ;!insertmacro MUI_LANGUAGE "SerbianLatin"
- ;!insertmacro MUI_LANGUAGE "Slovak"
- ;!insertmacro MUI_LANGUAGE "Slovenian"
- ;!insertmacro MUI_LANGUAGE "Spanish"
- ;!insertmacro MUI_LANGUAGE "Swedish"
- ;!insertmacro MUI_LANGUAGE "Thai"
- ;!insertmacro MUI_LANGUAGE "Turkish"
- ;!insertmacro MUI_LANGUAGE "Ukrainian"
- ;!insertmacro MUI_LANGUAGE "Welsh"
+  !insertmacro MUI_LANGUAGE "Turkish"
+  !insertmacro MUI_LANGUAGE "Ukrainian"
+  !insertmacro MUI_LANGUAGE "Welsh"
 
   LangString DESC_Custom ${LANG_ENGLISH} "The software is currently running. Are you sure to close it?"
   LangString DESC_Custom ${LANG_SIMPCHINESE} "系统检测到软件正在运行，是否关闭软件？"
   LangString DESC_Custom ${LANG_TRADCHINESE} "系統檢驗到軟體正在執行，是否關閉軟體？"
 
-  LangString DESC_Custom_file ${LANG_ENGLISH} "Are you sure to delete this configuration file? "
-  LangString DESC_Custom_file ${LANG_SIMPCHINESE} "是否删除配置文件？"
-  LangString DESC_Custom_file ${LANG_TradChinese} "是否刪除設定檔？" 
-  
+  LangString DESC_configuration_file ${LANG_ENGLISH} "configuration file"
+  LangString DESC_configuration_file ${LANG_SIMPCHINESE} "配置文件"
+  LangString DESC_configuration_file ${LANG_TradChinese} "設定檔"
+
+  LangString DESC_installed ${LANG_ENGLISH} "is already installed. "
+  LangString DESC_installed ${LANG_SIMPCHINESE} "已经安装"
+  LangString DESC_installed ${LANG_TradChinese} "已經安裝"
+
+  LangString DESC_old_version ${LANG_ENGLISH} "Do you want to uninstall the old version before installing the new version? "
+  LangString DESC_old_version ${LANG_SIMPCHINESE} "在安装新版本前是否需要卸载旧版本？"
+  LangString DESC_old_version ${LANG_TradChinese} "在安裝新版本前是否需要卸載舊版本？"
+
+  LangString DESC_not_uninstall ${LANG_ENGLISH} "Unable to uninstall"
+  LangString DESC_not_uninstall ${LANG_SIMPCHINESE} "不能够卸载"
+  LangString DESC_not_uninstall ${LANG_TradChinese} "不能夠卸載"
+
+  LangString DESC_continue_install ${LANG_ENGLISH} "Do you wish to continue installation?"
+  LangString DESC_continue_install ${LANG_SIMPCHINESE} "是否需要继续安装？"
+  LangString DESC_continue_install ${LANG_TradChinese} "是否需要繼續安裝？"
+
   LicenseLangString LNG_License ${LANG_ENGLISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
   LicenseLangString LNG_License ${LANG_SIMPCHINESE} "@CPACK_RESOURCE_FILE_LICENSE@"
-  LicenseLangString LNG_License ${LANG_TradChinese} "@CPACK_RESOURCE_FILE_LICENSE_TD@"
+  LicenseLangString LNG_License ${LANG_TRADCHINESE} "@CPACK_RESOURCE_FILE_LICENSE_TD@"
+
+  LicenseLangString LNG_License ${LANG_ALBANIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_ARABIC} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_BASQUE} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_BELARUSIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_BOSNIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_BRETON} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_BULGARIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_CROATIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_CZECH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_DANISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_DUTCH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_ESTONIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_FARSI} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_FINNISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_FRENCH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_GERMAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_GREEK} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_HEBREW} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_HUNGARIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_ICELANDIC} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_INDONESIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_IRISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_ITALIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_JAPANESE} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_KOREAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_KURDISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_LATVIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_LITHUANIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_LUXEMBOURGISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_MACEDONIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_MALAY} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_MONGOLIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_NORWEGIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_POLISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_PORTUGUESE} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_PORTUGUESEBR} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_ROMANIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_RUSSIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SERBIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SERBIANLATIN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SLOVAK} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SLOVENIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SPANISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_SWEDISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_THAI} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_TURKISH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_UKRAINIAN} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
+  LicenseLangString LNG_License ${LANG_WELSH} "@CPACK_RESOURCE_FILE_LICENSE_EN@"
 
 ;--------------------------------
 ;Reserve Files
@@ -641,17 +768,6 @@ FunctionEnd
 
   ReserveFile "NSIS.InstallOptions.ini"
   !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
-
-  ; for UserInfo::GetName and UserInfo::GetAccountType
-  ReserveFile /plugin 'UserInfo.dll'
-
-;--------------------------------
-; Installation types
-@CPACK_NSIS_INSTALLATION_TYPES@
-
-;--------------------------------
-; Component sections
-@CPACK_NSIS_COMPONENT_SECTIONS@
 
 ;--------------------------------
 ;Installer Sections
@@ -664,11 +780,10 @@ Section "-Core installation"
   @CPACK_NSIS_FULL_INSTALL@
 
   ;Store installation folder
-  WriteRegStr HKCU "Software\@CPACK_PACKAGE_INSTALL_DIRECTORY@" "" $INSTDIR
   WriteRegStr SHCTX "Software\@CPACK_PACKAGE_VENDOR@\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "" $INSTDIR
-
+  WriteRegStr HKCU "Software\Microsoft\DirectX\UserGpuPreferences" "$INSTDIR\${PROCESS_NAME}" "GpuPreference=2;"
   ;Create uninstaller
-  WriteUninstaller "$INSTDIR\@CPACK_NSIS_UNINSTALL_NAME@.exe"
+  WriteUninstaller "$INSTDIR\Uninstall.exe"
   Push "DisplayName"
   Push "@CPACK_NSIS_DISPLAY_NAME@"
   Call ConditionalAddToRegisty
@@ -679,7 +794,7 @@ Section "-Core installation"
   Push "@CPACK_PACKAGE_VENDOR@"
   Call ConditionalAddToRegisty
   Push "UninstallString"
-  Push "$INSTDIR\@CPACK_NSIS_UNINSTALL_NAME@.exe"
+  Push "$INSTDIR\Uninstall.exe"
   Call ConditionalAddToRegisty
   Push "NoRepair"
   Push "1"
@@ -716,7 +831,7 @@ Section "-Core installation"
   CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
 @CPACK_NSIS_CREATE_ICONS@
 @CPACK_NSIS_CREATE_ICONS_EXTRA@
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\@CPACK_NSIS_UNINSTALL_NAME@.exe"
+  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall @CPACK_NSIS_DISPLAY_NAME@.lnk" "$INSTDIR\Uninstall.exe"
 
   ;Read a value from an InstallOptions INI file
   !insertmacro MUI_INSTALLOPTIONS_READ $DO_NOT_ADD_TO_PATH "NSIS.InstallOptions.ini" "Field 2" "State"
@@ -740,7 +855,35 @@ Section "-Core installation"
   Push "$INSTALL_DESKTOP"
   Call ConditionalAddToRegisty
 
+  WriteRegStr HKCR "CrealityPrintLink" "URL Protocol" ""
+  WriteRegStr HKCR "CrealityPrintLink\shell\open\command" "" '"$INSTDIR\${PROCESS_NAME}" "%1"'
+  WriteRegStr HKCU "SOFTWARE\Creality\Creative3D\@CPACK_PACKAGE_VERSION_MAJOR@.0\cloud_service" "auto_check_upgradeable" "true"
+  WriteRegStr HKCU "SOFTWARE\Creality\Creative3D\@CPACK_PACKAGE_VERSION_MAJOR@.0\profile_setting" "first_start" "0"
   !insertmacro MUI_STARTMENU_WRITE_END
+
+  ; Do not install the VS C++ redistributable package in silent installation
+  IfSilent +3
+  IntCmp $vcredist_selected 0 +2
+  ExecWait '"$INSTDIR\vcredist_x@CPACK_NSIS_PACKAGE_ARCHITECTURE@.exe" /install /quiet /norestart'
+
+  ; Do not install the arduino driver in silent installation
+  ;IfSilent +7
+  ;IntCmp $usbdriver_selected 0 +6
+  ;${If} ${RunningX64}
+  ;    ExecWait '"$INSTDIR\resources\windows\CH341SER\SETUP.exe" /S'
+  ;${Else}
+  ;    ExecWait '"$INSTDIR\resources\windows\CH341SER\SETUP.exe" /S'
+  ;${EndIf}
+
+  ;Do not install stl thumb
+  IfSilent +7
+  IntCmp $stlthumb_selected 0 +6
+  WriteRegStr HKCR ".stl\shellex\{e357fccd-a995-4576-b01f-234630154e96}" "" "{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}"
+  WriteRegStr HKCR "CLSID\{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}" "" "STLThumbWinShellExtension.STLThumbnailProvider Class"
+  WriteRegDWORD HKCR "CLSID\{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}" "DisableProcessIsolation" 1
+  WriteRegStr HKCR "CLSID\{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}\InprocServer32" "" "$INSTDIR\STLThumbWinShellExtension.dll"
+  WriteRegStr HKCR "CLSID\{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}\InprocServer32" "ThreadingModel" "Apartment"
+
 
 @CPACK_NSIS_EXTRA_INSTALL_COMMANDS@
 
@@ -765,6 +908,10 @@ FunctionEnd
 ;--------------------------------
 ; determine admin versus local install
 Function un.onInit
+  VAR /GLOBAL UserAppDataDir
+  VAR /GLOBAL UserLocalAppDataDir
+  StrCpy $UserAppDataDir "$APPDATA"
+  StrCpy $UserLocalAppDataDir "$LOCALAPPDATA"
 
   ClearErrors
   UserInfo::GetName
@@ -827,7 +974,17 @@ FunctionEnd
 ;--------------------------------
 ;Uninstaller Section
 
-Section "Uninstall"
+Section "Un.${APP_NAME}"
+  SectionIn RO
+  ${nsProcess::FindProcess} "${PROCESS_NAME}" $R0
+  IntCmp $R0 0 0 readUninstall readUninstall
+  MessageBox MB_YESNO  "$(DESC_Custom)"   IDYES delePro  IDNO 0
+  Abort
+  delePro:
+  ${nsProcess::KillProcess} "${PROCESS_NAME}" $R0
+  ;Sleep 1000
+  readUninstall:
+
   ReadRegStr $START_MENU SHCTX \
    "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "StartMenu"
   ;MessageBox MB_OK "Start menu is in: $START_MENU"
@@ -842,9 +999,6 @@ Section "Uninstall"
     "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "InstallToDesktop"
   ;MessageBox MB_OK "Install to desktop: $INSTALL_DESKTOP "
 
-  ${nsProcess::KillProcess} "${PROCESS_NAME}" $R0
-  Sleep 3000
-
 @CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS@
 
   ;Remove files we installed.
@@ -857,27 +1011,50 @@ Section "Uninstall"
   Delete "$INSTDIR\AddRemove.exe"
 !endif
 
+  ;Unregister file associations
+  ${UnRegisterExtension} ".3mf"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.3mf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".amf"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.amf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".ctm"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.ctm.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".dae"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.dae.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".glb"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.glb.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".gltf"  "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.gltf.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".obj"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.obj.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".ply"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.ply.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".stl"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.stl.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".x3d"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.x3d.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".zae"   "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.zae.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".gcode" "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.gcode.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+  ${UnRegisterExtension} ".g"     "@CPACK_PACKAGE_NAME_NO_WHITESPACES@.g.@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@"
+
+  ;Remove executable from MuiCache
+  DeleteRegKey HKCR "Local Settings\Software\Microsoft\Windows\Shell\MuiCache\$INSTDIR\Print.exe.ApplicationCompany"
+  DeleteRegKey HKCR "Local Settings\Software\Microsoft\Windows\Shell\MuiCache\$INSTDIR\Print.exe.FriendlyAppName"
+
+  ;Remove stl thumb
+  DeleteRegKey HKCR ".stl\shellex\{e357fccd-a995-4576-b01f-234630154e96}"
+  DeleteRegKey HKCR "CLSID\{AF07F051-9D08-44A7-8C63-9296ADFEDDD7}"
+
   ;Remove the uninstaller itself.
-  Delete "$INSTDIR\@CPACK_NSIS_UNINSTALL_NAME@.exe"
+  Delete "$INSTDIR\Uninstall.exe"
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@"
 
   ;Remove the installation directory if it is empty.
   RMDir "$INSTDIR"
 
   ; Remove the registry entries.
-  DeleteRegKey /ifempty HKCU "Software\@CPACK_PACKAGE_INSTALL_DIRECTORY@"
   DeleteRegKey SHCTX "Software\@CPACK_PACKAGE_VENDOR@\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@"
+  DeleteRegKey HKCR "CrealityPrintLink"
 
   ; Removes all optional components
   !insertmacro SectionList "RemoveSection_CPack"
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
 
-  Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall @CPACK_NSIS_DISPLAY_NAME@.lnk"
 @CPACK_NSIS_DELETE_ICONS@
 @CPACK_NSIS_DELETE_ICONS_EXTRA@
 
-  ;Delete empty start menu parent directories
+  ;Delete empty start menu parent diretories
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
 
   startMenuDeleteLoop:
@@ -896,7 +1073,7 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
 @CPACK_NSIS_DELETE_ICONS_EXTRA@
 
-  ;Delete empty start menu parent directories
+  ;Delete empty start menu parent diretories
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
 
   secondStartMenuDeleteLoop:
@@ -917,6 +1094,22 @@ Section "Uninstall"
   doNotRemoveFromPath:
 SectionEnd
 
+Section /o "Un.$(DESC_configuration_file)"
+  SetShellVarContext current
+  ReadRegStr $R1 HKCU "Software\${APP_NAME}" ""
+  RMDir /r "$R1"
+  RMDir /r '$APPDATA\\\\@CPACK_ORGANIZATION@\\\\Creative3D'
+  RMDir /r "$LOCALAPPDATA\\\\@CPACK_ORGANIZATION@\\\\Creative3D"
+  DeleteRegKey HKCU "Software\@CPACK_ORGANIZATION@\Creative3D"
+  SetShellVarContext all
+SectionEnd
+
+Section /o "@CPACK_NSIS_UNINSTALL_LOCAL_MODEL@Un.$(DESC_downloaded_models)"
+  SetShellVarContext current
+  RMDir /r '$APPDATA\\\\@CPACK_ORGANIZATION@\\\\${CXCLOUD_LOCAL_MODEL_DIR}'
+  SetShellVarContext all
+SectionEnd
+
 ;--------------------------------
 ; determine admin versus local install
 ; Is install for "AllUsers" or "JustMe"?
@@ -927,8 +1120,51 @@ SectionEnd
 ; Choose different default installation folder based on SV_ALLUSERS...
 ; "Program Files" for AllUsers, "My Documents" for JustMe...
 
-Function .onInit
+; Needed to remove " from the old uninstaller paths
+!include "CharStrStrip.nsh"
 
+; Uninstall a previous version of Cura.
+; Parameters are:
+; _NAME: Display name
+; _VERSION: Registry entry to get the Uninstall executable from.
+; _ID: A unique ID to track this instance.
+!macro uninstallVersion _NAME _VERSION _ID
+  Push $0
+
+  ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${_VERSION}" "UninstallString"
+  ${CharStrip} '"' $0 $0
+
+  StrCmp $0 "" _end_${_ID}
+
+  MessageBox MB_YESNOCANCEL|MB_ICONQUESTION \
+    "${_NAME} $(DESC_installed)$\n$\n$(DESC_old_version)" \
+    /SD IDNO IDYES _uninst_${_ID} IDNO _end_${_ID}
+  Abort
+
+_uninst_${_ID}:
+  Push $1
+  Push $2
+
+  ClearErrors
+  StrLen $1 "\uninstall.exe"
+  StrCpy $2 $0 -$1 # remove "\uninstall.exe" from UninstallString to get path
+  CreateDirectory "$Temp\${_VERSION}"
+  CopyFiles /SILENT /FILESONLY "$2\uninstall.exe" "$Temp\${_VERSION}\"
+  ExecWait '"$Temp\${_VERSION}\uninstall.exe" _?=$2'
+
+  IfErrors 0 +3
+    MessageBox MB_YESNO|MB_ICONEXCLAMATION "$(DESC_not_uninstall) ${_NAME}. $(DESC_continue_install)" /SD IDYES IDYES +2
+    Abort
+
+  Pop $2
+  Pop $1
+
+_end_${_ID}:
+  Pop $0
+
+!macroend
+
+Function .onInit
   ${nsProcess::FindProcess} "${PROCESS_NAME}" $R0
   IntCmp $R0 0 0 readUninstall readUninstall
   MessageBox MB_YESNO  "$(DESC_Custom)"   IDYES delePro  IDNO 0
@@ -936,43 +1172,13 @@ Function .onInit
   delePro:
   ${nsProcess::KillProcess} "${PROCESS_NAME}" $R0
   ;Sleep 1000
-  readUninstall:
-  ReadRegStr $R3 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "UninstallString"
-  StrCmp $R3 "" noDelConFile 0
-  MessageBox MB_YESNO  "$(DESC_Custom_file)"   IDYES 0  IDNO noDelConFile
-  ExecWait '"$R3" /S'
-  noDelConFile:
-  ReadRegStr $R1 HKCU "Software\Creality Print" ""
-  RMDir /r "$R1"
-  RMDir /r "$APPDATA\\\\Creality\\\\Creative3D\\\\sliceconfig"
-  #delete destop link
-  SetShellVarContext all
-  @CPACK_ONINIT_DELETE_DESTOP_LINK@
 
-;  StrCmp "@CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL@" "ON" 0 inst
-;
-;  ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "UninstallString"
-;  StrCmp $0 "" inst
-;
-;  MessageBox MB_YESNOCANCEL|MB_ICONEXCLAMATION \
-;  "@CPACK_NSIS_PACKAGE_NAME@ is already installed. $\n$\nDo you want to uninstall the old version before installing the new one?" \
-;  /SD IDYES IDYES uninst IDNO inst
-;  Abort
-;
-;;Run the uninstaller
-;uninst:
-;  ClearErrors
-;  StrLen $2 "\Uninstall.exe"
-;  StrCpy $3 $0 -$2 # remove "\Uninstall.exe" from UninstallString to get path
-;  ExecWait '"$0" /S _?=$3' ;Do not copy the uninstaller to a temp file
-;
-;  IfErrors uninst_failed inst
-;uninst_failed:
-;  MessageBox MB_OK|MB_ICONSTOP "Uninstall failed."
-;  Abort
-
+readUninstall:
+  ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${_VERSION}" "UninstallString"
+  ${CharStrip} '"' $0 $0
 
 inst:
+
   ; Reads components status for registry
   !insertmacro SectionList "InitSection"
 
@@ -980,9 +1186,12 @@ inst:
   ; the install directory by comparing it to the
   ; install directory that is expected to be the
   ; default
+  ReadRegStr $0 HKLM "Software\@CPACK_PACKAGE_VENDOR@\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" ""
+  StrCmp "$0" "" +2 +1
+  StrCpy $INSTDIR "$0"
   StrCpy $IS_DEFAULT_INSTALLDIR 0
   StrCmp "$INSTDIR" "@CPACK_NSIS_INSTALL_ROOT@\@CPACK_PACKAGE_INSTALL_DIRECTORY@" 0 +2
-    StrCpy $IS_DEFAULT_INSTALLDIR 1
+  StrCpy $IS_DEFAULT_INSTALLDIR 1
 
   StrCpy $SV_ALLUSERS "JustMe"
   ; if default install dir then change the default
@@ -1021,16 +1230,15 @@ inst:
 
   noOptionsPage:
 FunctionEnd
-
 Function OverwriteInstallationShow
   ReadRegStr $0 HKCU "Software\@CPACK_PACKAGE_INSTALL_DIRECTORY@" ""
   ${If} $0 == ""
   ${Else}
-  FindWindow $0 "#32770" "" $HWNDPARENT
-  GetDlgItem $0 $0 1001
-  EnableWindow $0 0
-  FindWindow $0 "#32770" "" $HWNDPARENT
-  GetDlgItem $0 $0 1019
-  EnableWindow $0 0
+  ; FindWindow $0 "#32770" "" $HWNDPARENT
+  ; GetDlgItem $0 $0 1001
+  ; EnableWindow $0 0
+  ; FindWindow $0 "#32770" "" $HWNDPARENT
+  ; GetDlgItem $0 $0 1019
+  ; EnableWindow $0 0
   ${EndIf}
 FunctionEnd

@@ -6,29 +6,35 @@
 
 #include "interface/visualsceneinterface.h"
 #include "interface/camerainterface.h"
-#include "external/utils/trimeshselect.h"
+#include "interface/spaceinterface.h"
+#include "interface/modelgroupinterface.h"
 
 using namespace qtuser_3d;
 namespace creative_kernel
 {
-	void addSelectTracer(SelectorTracer* tracer)
-	{
-		getKernel()->modelSelector()->addTracer(tracer);
+	bool wipeTowerSelected() 
+	{ 
+		return getKernel()->modelSelector()->wipeTowerSelected(); 
 	}
 
-	void removeSelectorTracer(SelectorTracer* tracer)
+	void addModelNSelectorTracer(ModelNSelectorTracer* tracer)
 	{
-		getKernel()->modelSelector()->removeTracer(tracer);
+		getKernel()->modelSelector()->addModelNSelectorTracer(tracer);
 	}
 
-	void disableReverseSelect(bool disable)
+	void removeModelNSelectorTracer(ModelNSelectorTracer* tracer)
 	{
-		getKernel()->modelSelector()->disableReverseSelect(disable);
+		getKernel()->modelSelector()->removeModelNSelectorTracer(tracer);
 	}
 
-	void enableSupportMode(bool able)
+	void notifyPickableChanged(qtuser_3d::Pickable* pickable)
 	{
-		getKernel()->modelSelector()->enableSupportMode(able);
+		getKernel()->modelSelector()->changed(pickable);
+	}
+
+	Printer* selectedPlate()
+	{
+		return getKernel()->modelSelector()->selectedPlate();
 	}
 
 	QList<ModelN*> selectionms()
@@ -36,20 +42,63 @@ namespace creative_kernel
 		return getKernel()->modelSelector()->selectionms();
 	}
 
-	ModelN* hoverCandidate()
+	QList<ModelN*> selectionms(ModelNType type)
 	{
-		return getKernel()->modelSelector()->hoverCandidate();
+		return getKernel()->modelSelector()->selectionms(type);
 	}
 
-
-	void tracePickable(Pickable* entity, bool request)
+	QList<ModelN*> selectedParts()
 	{
-		getKernel()->modelSelector()->addPickable(entity, request);
+		return getKernel()->modelSelector()->selectedParts();
 	}
 
-	void unTracePickable(Pickable* entity, bool request)
+	QList<ModelN*> unselectionms() {
+		return getKernel()->modelSelector()->unselectionms();
+	}
+
+	QList<ModelGroup*> selectedGroups()
 	{
-		getKernel()->modelSelector()->removePickable(entity, request);
+		return getKernel()->modelSelector()->selectedGroups();
+	}
+
+	QList<QList<ModelN*>> selectedModelnsList()
+	{
+		return getKernel()->modelSelector()->selectedModelnsList();
+	}
+
+	qtuser_3d::Box3D selectionsBoundingbox()
+	{
+		return getKernel()->modelSelector()->selectionsBoundingbox();
+	}
+
+	int selectedPartsNum()
+	{
+		return getKernel()->modelSelector()->selectedPartsNum();
+	}
+
+	int selectedGroupsNum()
+	{
+		return getKernel()->modelSelector()->selectedGroupsNum();
+	}
+
+	void tracePickable(Pickable* entity)
+	{
+		getKernel()->modelSelector()->addPickable(entity);
+	}
+
+	void unTracePickable(Pickable* entity)
+	{
+		getKernel()->modelSelector()->removePickable(entity);
+	}
+
+	void addPickables(QList<qtuser_3d::Pickable*> pickables)
+	{
+		getKernel()->modelSelector()->addPickables(pickables);
+	}
+
+	void removePickables(QList<qtuser_3d::Pickable*> pickables)
+	{
+		getKernel()->modelSelector()->removePickables(pickables);
 	}
 
 	Pickable* checkPickable(const QPoint& point, int* primitiveID)
@@ -57,127 +106,134 @@ namespace creative_kernel
 		return getKernel()->modelSelector()->check(point, primitiveID);
 	}
 
-	ModelN* checkPickModel(const QPoint& point, QVector3D& position, QVector3D& normal, int* faceID)
+	ModelN* checkPickModel(const QPoint& point, QVector3D& position, QVector3D& normal, int* primitiveID)
 	{
-		int primitiveID = -1;
-		Pickable* pickable = checkPickable(point, &primitiveID);
-		ModelN* model = qobject_cast<ModelN*>(pickable);
-		if (model)
-		{
-			model->rayCheck(primitiveID, visRay(point), position, &normal);
-			if (model->isFanZhuan())
-			{
-				normal = -normal;
-			}
-		}
-		if (faceID)
-		{
-			*faceID = primitiveID;
-		}
-		return model;
+		return getKernel()->modelSelector()->checkPickModel(point, position, normal, primitiveID);
 	}
 
-	ModelN* rclickModelN(const QPoint& point)
+	ModelN* checkPickModel(const QPoint& point)
 	{
-		int primitiveID = -1;
-		Pickable* pickable = checkPickable(point, &primitiveID);
-
-		if (pickable != nullptr)
-		{
-			QString qname = pickable->metaObject()->className();
-			if (qname.indexOf("ModelN") == -1)
-			{
-				return nullptr;
-			}
-		}
-		return (ModelN*)pickable;
+		return getKernel()->modelSelector()->checkPickModel(point);
 	}
 
-	int getModelSelectFace(ModelN* model, int faceId, std::vector<QVector3D>& vertexData, std::vector<QVector3D>& normalData, bool global)
+	// the normal is returned after applyed by (normal matrix)
+	ModelN* checkPickModelEx(const QPoint& point, QVector3D& position, QVector3D& normal, int* primitiveID)
 	{
-		trimesh::TriMesh* mesh = model->mesh();
-		
-		if (!mesh || (faceId < 0) || (faceId >= mesh->faces.size()))
-			return 0;
-
-		trimeshSelect(mesh, faceId, vertexData);
-		if (global)
-		{
-			QMatrix4x4 m = model->globalMatrix();
-			for (int i = 0; i < 3; ++i)
-			{
-				QVector3D v = vertexData.at(i);
-				vertexData.at(i) = m * v;
-			}
-		}
-
-		QVector3D v01 = vertexData.at(1) - vertexData.at(0);
-		QVector3D v02 = vertexData.at(1) - vertexData.at(0);
-		QVector3D n = QVector3D::crossProduct(v01, v02);
-		n.normalize();
-		normalData.resize(3, n);
-		return 3;
+		return getKernel()->modelSelector()->checkPickModelEx(point, position, normal, primitiveID);
 	}
 
-	void selectedPickableInfoChanged(qtuser_3d::Pickable* pickable)
+	bool pointHover(QHoverEvent* event)
 	{
-		getKernel()->modelSelector()->changed(pickable);
+		return getKernel()->modelSelector()->pointHover(event);
 	}
 
-	bool hoverVis(QPoint point)
+	void pointSelect(QMouseEvent* event)
 	{
-		return getKernel()->modelSelector()->hover(point);
+		getKernel()->modelSelector()->pointSelect(event);
 	}
 
-	void selectVis(QPoint point)
+	void areaSelect(const QRect& rect, QMouseEvent* event)
 	{
-		getKernel()->modelSelector()->select(point);
+		getKernel()->modelSelector()->areaSelect(rect, event);
 	}
 
-	void selectAll()
+	void selectAllModelGroup()
 	{
-		getKernel()->modelSelector()->selectAll();
-		requestVisUpdate();
-	}
-	
-		
-	ModelNSelector* getModelSelect()
-	{
-		return getKernel()->modelSelector();
+		getKernel()->modelSelector()->selectAllModelGroup();
 	}
 
-    void selectModel(QObject* model,bool state)
-    {
-        Pickable* pickable = qobject_cast<Pickable*>(model);
-        getKernel()->modelSelector()->select(pickable);
-    }
-
-	void appendSelect(qtuser_3d::Pickable* pickable)
+	void ctrlASelectAll()
 	{
-		getKernel()->modelSelector()->appendSelect(pickable);
-	}
-
-	void selectOne(qtuser_3d::Pickable* pickable)
-	{
-		getKernel()->modelSelector()->select(pickable);
-	}
-
-	void disSelect(qtuser_3d::Pickable* pickable)
-	{
-		QList<qtuser_3d::Pickable*> onList;
-		QList<qtuser_3d::Pickable*> offList;
-		offList << pickable;
-		getKernel()->modelSelector()->select(onList, offList);
-	}
-
-	void selectMore(QList<qtuser_3d::Pickable*> pickables)
-	{
-		QList<qtuser_3d::Pickable*> offLists = getKernel()->modelSelector()->selectionmPickables();
-		getKernel()->modelSelector()->select(pickables, offLists);
+		getKernel()->modelSelector()->ctrlASelectAll();
 	}
 
 	void updateFaceBases()
 	{
 		getKernel()->modelSelector()->updateFaceBases();
+	}
+
+	void removeSelections()
+	{
+		getKernel()->modelSelector()->removeSelections();
+	}
+
+	void mirrorXSelections(bool reversible)
+	{
+		getKernel()->modelSelector()->mirrorXSelections(reversible);
+	}
+
+	void mirrorYSelections(bool reversible)
+	{
+		getKernel()->modelSelector()->mirrorYSelections(reversible);
+	}
+
+	void mirrorZSelections(bool reversible)
+	{
+		getKernel()->modelSelector()->mirrorZSelections(reversible);
+	}
+
+	void mergeSelectionsGroup()
+	{
+		getKernel()->modelSelector()->mergeSelectionsGroup();
+	}
+
+	void splitSelectionsGroup2Objects()
+	{
+		getKernel()->modelSelector()->splitSelectionsGroup2Objects();
+	}
+
+	void splitSelectionsModels2Parts()
+	{
+		getKernel()->modelSelector()->splitSelectionsModels2Parts();
+	}
+
+	void cloneSelections(int num)
+	{
+		getKernel()->modelSelector()->cloneSelections(num);
+	}
+
+	void onCopySelections()
+	{
+		getKernel()->modelSelector()->onCopySelections();
+	}
+
+	bool canPasteEnabled()
+	{
+	  return getKernel()->modelSelector()->canPasteEnabled();
+	}
+
+	void onPasteSelections()
+	{
+		getKernel()->modelSelector()->onPasteSelections();
+	}
+
+	void selectGroup(ModelGroup* group, bool append)
+	{
+		getKernel()->modelSelector()->selectGroup(group, append);
+	}
+
+	void selectGroups(const QList<ModelGroup*>& groups)
+	{
+		getKernel()->modelSelector()->selectGroups(groups);
+	}
+
+	void selectModelN(ModelN* model, bool append, bool force)
+	{
+		getKernel()->modelSelector()->selectModelN(model, append, force);
+	}
+
+	void unselectGroups(const QList<ModelGroup*>& groups)
+	{
+		getKernel()->modelSelector()->unselectGroups(groups);
+	}
+
+	void unselectModels(const QList<ModelN*>& models)
+	{
+		getKernel()->modelSelector()->unselectModels(models);
+	}
+
+	void unselectAll()
+	{
+		getKernel()->modelSelector()->unselectAll();
 	}
 }

@@ -3,71 +3,27 @@ import QtQuick.Controls 2.0
 import "qrc:/CrealityUI"
 import "../secondqml"
 
-BasicDialogNoWin_V4 {//by TCJ
+LeftPanelDialog {//by TCJ
     id:control
     width: 300* screenScaleFactor
-    height: 269* screenScaleFactor
+    height: 240* screenScaleFactor
     title:qsTr("Rotate")
     property var mrotate
-
-    visible: mrotate.message
-
-    onMrotateChanged: {
-        if(mrotate)
-        {//console.log("-------onMrotateChanged555----aaaaa---")
-            lock()
-            signalsBlocked(true)
-            cloader.item.x_angle.setRealValue(mrotate.rotate.x)
-            cloader.item.y_angle.setRealValue(mrotate.rotate.y)
-            cloader.item.z_angle.setRealValue(mrotate.rotate.z)
-            signalsBlocked(false)
-            unlock()
-
-            mrotate.rotateChanged.disconnect(onRotateChange)
-            mrotate.rotateChanged.connect(onRotateChange)
-        }
-    }
-
-    function lock()
-    {
-        mrotate.blockSignalScaleChanged(true)
-    }
-    function unlock()
-    {
-        mrotate.blockSignalScaleChanged(false)
-    }
-    function signalsBlocked(blocked)
-    {
-        cloader.item.x_angle.bSignalsBlcked = blocked
-        cloader.item.y_angle.bSignalsBlcked = blocked
-        cloader.item.z_angle.bSignalsBlcked = blocked
-    }
-
-
-    function onRotateChange (){
-        if(mrotate)
-        {//console.log("onRotateChange aaaaa")
-            signalsBlocked(true)
-            cloader.item.x_angle.setRealValue(mrotate.rotate.x)
-            cloader.item.y_angle.setRealValue(mrotate.rotate.y)
-            cloader.item.z_angle.setRealValue(mrotate.rotate.z)
-            signalsBlocked(false)
-        }
-    }
-
-
-
-
     readonly property  int  g_nButHeight: 32
-    signal valueXChanged()
-    signal valueYChanged()
-    signal valueZChanged()
-    signal resetValue()
-    bdContentItem:Rectangle {
+
+    MouseArea{//捕获鼠标点击空白地方的事件
+        anchors.fill: parent
+    }
+
+
+
+    Item {
         property alias x_angle: x_angle
         property alias y_angle: y_angle
         property alias z_angle: z_angle
-        color: Constants.lpw_bgColor
+
+        anchors.fill: control.panelArea
+
         Column{
             spacing:20* screenScaleFactor
             anchors.top: parent.top
@@ -80,17 +36,16 @@ BasicDialogNoWin_V4 {//by TCJ
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : qsTr("+45°")
-                    pointSize: 9
+                    text : qsTr("-45°")
+                    pointSize: Constants.labelFontPointSize_9
                     btnRadius:14
                     btnBorderW:1
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.x += 45
+                        mrotate.setQmlRotate((x_angle.realValue - 45 )%360,0)
                     }
                 }
 
@@ -100,7 +55,7 @@ BasicDialogNoWin_V4 {//by TCJ
                     width:12* screenScaleFactor
                     height: 28* screenScaleFactor
                     font.family: Constants.labelFontFamily
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignHCenter
                 }
@@ -112,40 +67,38 @@ BasicDialogNoWin_V4 {//by TCJ
                     realStepSize:5
                     realFrom:-9999
                     realTo:9999
+                    realValue: mrotate ? mrotate.rotate.x%360 : 0
                     textValidator: RegExpValidator {
                         regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
                     }
-                    //                       realValue:  mrotate.rotate.x
+                    property var tmpVal: mrotate ? mrotate.rotate.x%360 : 0
                     unitchar: qsTr("° ")
 
-                    onTextPressed: {console.log("X onTextPressed aaaaa")
-                        mrotate.startRotate()
-                    }
+//                    onTextPressed: {
+//                        mrotate.startRotate()
+//                    }
                     onValueEdited:{
-                        if(!mrotate)return
-                        if(isNaN(realValue)) return
-                        if(parseFloat(realValue).toFixed(2) === mrotate.rotate.x.toFixed(2))return
-                        lock()
-                        console.log("mrotate.rotate =" + mrotate.rotate )
-                        mrotate.rotate = Qt.vector3d(x_angle.realValue,mrotate.rotate.y,mrotate.rotate.z)
-                        unlock()
+                        mrotate.setQmlRotate(realValue,0)
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
 
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : "-45°"
+                    text : "+45°"
                     btnRadius:14
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.labelFontPointSize_9
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.x -= 45
+                        mrotate.setQmlRotate((x_angle.realValue + 45 )%360,0)
                     }
                 }
             }
@@ -154,17 +107,16 @@ BasicDialogNoWin_V4 {//by TCJ
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : qsTr("+45°")
+                    text : qsTr("-45°")
                     btnRadius:14
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.labelFontPointSize_9
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.y += 45
+                        mrotate.setQmlRotate((y_angle.realValue - 45 )%360,1)
                     }
                 }
 
@@ -174,7 +126,7 @@ BasicDialogNoWin_V4 {//by TCJ
                     width:12* screenScaleFactor
                     height: 28* screenScaleFactor
                     font.family: Constants.labelFontFamily
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignHCenter
                 }
@@ -185,39 +137,40 @@ BasicDialogNoWin_V4 {//by TCJ
                     realStepSize:5
                     realFrom:-9999
                     realTo:9999
+                    realValue: mrotate ? mrotate.rotate.y%360 : 0
                     textValidator: RegExpValidator {
                         regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
                     }
                     //                       realValue: mrotate.rotate.y
                     unitchar: qsTr("° ")
+                    property var tmpVal: mrotate ? mrotate.rotate.y%360 : 0
 
-                    onTextPressed: {
-                        mrotate.startRotate()
-                    }
+//                    onTextPressed: {
+//                        mrotate.startRotate()
+//                    }
                     onValueEdited:{
-                        if(!mrotate)return
-                        if(isNaN(realValue)) return
-                        if(parseFloat(realValue).toFixed(2) === mrotate.rotate.y.toFixed(2))return
-                        lock()
-                        mrotate.rotate = Qt.vector3d(mrotate.rotate.x,y_angle.realValue,mrotate.rotate.z)
-                        unlock()
+                        mrotate.setQmlRotate(realValue,1)
+                    }
+
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
 
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : "-45°"
+                    text : "+45°"
                     btnRadius:14
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.labelFontPointSize_9
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.y -= 45
+                        mrotate.setQmlRotate((y_angle.realValue + 45 )%360,1)
                     }
                 }
             }
@@ -226,17 +179,16 @@ BasicDialogNoWin_V4 {//by TCJ
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : qsTr("+45°")
+                    text : qsTr("-45°")
                     btnRadius:14
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.labelFontPointSize_9
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.z += 45
+                        mrotate.setQmlRotate((z_angle.realValue - 45 )%360,2)
                     }
                 }
 
@@ -245,7 +197,7 @@ BasicDialogNoWin_V4 {//by TCJ
                     text: "Z:"
                     width:12* screenScaleFactor
                     height: 28* screenScaleFactor
-                    font.pointSize: 9
+                    font.pointSize: Constants.labelFontPointSize_9
                     font.family: Constants.labelFontFamily
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignHCenter
@@ -257,64 +209,58 @@ BasicDialogNoWin_V4 {//by TCJ
                     realStepSize:5
                     realFrom:-9999
                     realTo:9999
+                    realValue: mrotate ? mrotate.rotate.z%360 : 0
+
                     textValidator: RegExpValidator {
                         regExp:   /^([\+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/
                     }
                     //                       realValue: mrotate.rotate.z
                     unitchar: qsTr("° ")
+                    property var tmpVal: mrotate ? mrotate.rotate.z%360 : 0
 
-                    onTextPressed: {
-                        mrotate.startRotate()
-                    }
+//                    onTextPressed: {
+//                        mrotate.startRotate()
+//                    }
                     onValueEdited:{
-                        if(!mrotate)return
-                        if(isNaN(realValue)) return
-                        if(parseFloat(realValue).toFixed(2) === mrotate.rotate.z.toFixed(2))return
-                        lock()
-                        mrotate.rotate = Qt.vector3d(mrotate.rotate.x,mrotate.rotate.y,z_angle.realValue)
-                        unlock()
+                       mrotate.setQmlRotate(realValue,2)
+                    }
+                    onTmpValChanged:
+                    {
+                        realValue = tmpVal
                     }
                 }
 
                 BasicButton{
                     width: 56* screenScaleFactor
                     height: 28* screenScaleFactor
-                    text : "-45°"
+                    text : "+45°"
                     btnRadius:14
                     btnBorderW:1
-                    pointSize: 9
+                    pointSize: Constants.labelFontPointSize_9
                     borderColor: Constants.lpw_BtnBorderColor
-                    borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                    defaultBtnBgColor: Constants.lpw_BtnColor
-                    hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                    defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                    hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                     onSigButtonClicked:
                     {
-                        mrotate.rotate.z -= 45
+                        mrotate.setQmlRotate((z_angle.realValue + 45 )%360,2)
                     }
                 }
             }
+
             BasicButton{
                 width: 258* screenScaleFactor
                 height: 28* screenScaleFactor
                 text : qsTr("Reset")
                 btnRadius:14
                 btnBorderW:1
-                pointSize: 9
+                pointSize: Constants.labelFontPointSize_9
                 anchors.horizontalCenter: parent.horizontalCenter
                 borderColor: Constants.lpw_BtnBorderColor
-                borderHoverColor: Constants.lpw_BtnBorderHoverColor
-                defaultBtnBgColor: Constants.lpw_BtnColor
-                hoveredBtnBgColor: Constants.lpw_BtnHoverColor
+                defaultBtnBgColor: Constants.leftToolBtnColor_normal
+                hoveredBtnBgColor: Constants.leftToolBtnColor_hovered
                 onSigButtonClicked:
                 {
-                    lock()
-                    signalsBlocked(true)
                     mrotate.reset()
-                    x_angle.setRealValue(0)
-                    y_angle.setRealValue(0)
-                    z_angle.setRealValue(0)
-                    signalsBlocked(false)
-                    unlock()
                 }
             }
         }

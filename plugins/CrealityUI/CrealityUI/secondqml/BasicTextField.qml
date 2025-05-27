@@ -90,8 +90,6 @@ TextField{
         anchors.bottom: placeholder.bottom
         anchors.right: placeholder.right
         text: ""
-        width: contentWidth
-        height: placeholder.height
         color: enabled ? "#999999" : Qt.lighter("#999999",0.7)
         opacity : control.enabled ? 1 : 0.3
 
@@ -100,7 +98,6 @@ TextField{
     QQC2.ToolTip {
         id: tipCtrl
         visible: hovered&&(strToolTip!="") ? true : false
-        //timeout: 2000
 		delay: 100
 		width: 400
         implicitHeight: idTextArea.contentHeight + 40
@@ -116,14 +113,13 @@ TextField{
 			color: Constants.textColor
 			font.family: Constants.labelFontFamily
 			font.weight: Constants.labelFontWeight
-			font.pixelSize: 14
+            font.pointSize: Constants.labelFontPointSize_12
 			readOnly: true
 			background: Rectangle
 			{
 				anchors.fill : parent
 				color: Constants.tooltipBgColor
 				border.width:1
-				//border.color:hovered ? "lightblue" : "#bdbebf"
 			}
         }
     }

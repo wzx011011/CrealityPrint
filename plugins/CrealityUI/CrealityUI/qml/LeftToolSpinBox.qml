@@ -13,11 +13,11 @@ SpinBox {
     property real realStepSize: 1.0
     property real realFrom: 0.0
     property real realTo: 100.0
-    property real orgValue:1
+    property var orgValue:1
     property alias  textObj: numbTxt
     property var wheelEnable: true
 
-
+    property bool bResetOtgValue: false
     //lisugui 2020-10-14 control signal block
     property bool bSignalsBlcked: false
 
@@ -58,8 +58,12 @@ SpinBox {
         selectedTextColor: "#ffffff"
         horizontalAlignment: Qt.AlignLeft
         verticalAlignment: Qt.AlignVCenter
-        validator: RegExpValidator {
-            regExp:   /(\d{1,4})([.,]\d{1,2})?$/
+        focus:  activeFocus
+        validator: DoubleValidator {
+            bottom: control.from / control.factor
+            top: control.to / control.factor
+            notation: DoubleValidator.StandardNotation
+            decimals: control.decimals
         }
         MouseArea{
             enabled: wheelEnable
@@ -84,25 +88,45 @@ SpinBox {
         }
 
         onTextChanged: {
+            if (text.includes("+")) {
+                text = text.replace("+", "")
+            }
             if(text == "NaN")
-                text =control.textFromValue(control.realFrom, control.locale)
-        }
+            {
+                if(bResetOtgValue)
+                {
+                    text =control.textFromValue(orgValue, control.locale)
+                }
+                else
+                {
+                    text =control.textFromValue(control.realFrom, control.locale)
+                }
 
+            }
+        }
         onAccepted:
         {
             console.log("******onAccepted******")
+            if(text==="" && bResetOtgValue)
+            {
+                text = orgValue
+            }
             if(text <realFrom)realValue =control.textFromValue(control.realFrom, control.locale)
             else if(text > realTo) realValue =control.textFromValue(control.realTo, control.locale)
             var locale_lang = Qt.locale("zh_CN");
             realValue = Number.fromLocaleString(locale_lang, text)// control.value/factor
             orgValue = realValue
-            //            text = Qt.binding(function(){ return control.textFromValue(realValue, control.locale)})
+            text = Qt.binding(function(){ return control.textFromValue(realValue, control.locale)})
             valueEdited()
         }
         onActiveFocusChanged:
         {
             if(!activeFocus)
             {
+                if(text==="" && bResetOtgValue)
+                {
+                    text = orgValue
+                }
                 if(text <realFrom)realValue =control.textFromValue(control.realFrom, control.locale)
                 else if(text > realTo) realValue =control.textFromValue(control.realTo, control.locale)
                 if(orgValue == realValue)return
@@ -135,14 +159,13 @@ SpinBox {
         id:idUp
         x: control.mirrored ? 0 : parent.width - width - 1
         y:1
-        //          height: parent.height/2 - 1
         implicitWidth: control.height -2
         implicitHeight: parent.height/2 - 1
         color: "transparent"
         z:2
         Image {
-            width: 7
-            height: 5
+            width: sourceSize.width* screenScaleFactor
+            height: sourceSize.height* screenScaleFactor
             source: control.up.pressed || control.up.hovered? Constants.upBtnImgSource_d:Constants.upBtnImgSource
             anchors.centerIn: parent
             horizontalAlignment: Text.AlignHCenter
@@ -153,15 +176,14 @@ SpinBox {
     down.indicator: Rectangle {
         x: control.mirrored ? 0:parent.width - width - 1
         y:parent.height/2
-        //          height: parent.height/2 - 1
         implicitWidth: control.height -2 //16
         implicitHeight: parent.height/2 - 1
         color: "transparent"
         z:2
         Image {
-            width: 7
-            height: 5
-            source: control.down.pressed || control.down.hovered ?Constants.downBtnImgSource_d : Constants.downBtnImgSource
+            width: sourceSize.width* screenScaleFactor
+            height: sourceSize.height* screenScaleFactor
+            source: control.down.pressed || control.down.hovered ? Constants.downBtnImgSource_d : Constants.downBtnImgSource
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             anchors.centerIn: parent
@@ -179,11 +201,6 @@ SpinBox {
         orgValue = realValue
         realValue = control.value/factor
         valueEdited()
-    }
-    validator: DoubleValidator {
-        notation:DoubleValidator.StandardNotation
-        bottom: Math.min(control.from, control.to)
-        top:  Math.max(control.from, control.to)
     }
 
     textFromValue: function(value, locale) {

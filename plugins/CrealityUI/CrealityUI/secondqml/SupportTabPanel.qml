@@ -11,18 +11,18 @@ Rectangle {
     radius: 0//5
     color: "red"//"#4b4b4d"
     border.width: 1
-    border.color: Constants.rightPanelRectBgBorderColor
+//    border.color: Constants.rightPanelRectBgBorderColor
 
     property var com
     property  var control
-    readonly property int checkboxWidth: 15
-    readonly property int textfileWidth: 60
-    readonly property int margin: 10
+    readonly property int checkboxWidth: 15 * screenScaleFactor
+    readonly property int textfileWidth: 60 * screenScaleFactor
+    readonly property int margin: 10 * screenScaleFactor
     readonly property int panelFontSize: 18
-    readonly property int resetButtonHeight: 23
-    readonly property int resetButtonWidth: 160
+    readonly property int resetButtonHeight: 23 * screenScaleFactor
+    readonly property int resetButtonWidth: 160 * screenScaleFactor
 
-    property var defaultSupportGird: Math.ceil(Math.sqrt(SettingJson.minimum_support_area))
+    property var defaultSupportGird: ""
 
     signal sliceClicked()
 
@@ -34,8 +34,8 @@ Rectangle {
     {
         rows: 12
         spacing:20
-        y:20
-        x:10
+        y:20 * screenScaleFactor
+        x:10 * screenScaleFactor
         width: parent.width - 20
         BasicGroupBox {
 
@@ -51,15 +51,15 @@ Rectangle {
                     id: support_grid
                     text: qsTr("Support Grid")
                     color: Constants.textColor
-                    font.pixelSize: Constants.labelFontPixelSize
-                    width: 100
-                    height: 28
+                    font.pointSize: Constants.labelFontPointSize_6
+                    width: 100 * screenScaleFactor
+                    height: 28 * screenScaleFactor
                 }
 
                 SizeTextField {
                     id: support_grid_text
-                    width: 130
-                    height: 28
+                    width: 130 * screenScaleFactor
+                    height: 28 * screenScaleFactor
                     text: defaultSupportGird
                     placeholderText : qsTr("Side length")
 
@@ -85,22 +85,22 @@ Rectangle {
 
             Row
             {
-                y:40
+                y:40 * screenScaleFactor
                 spacing: 5
                 StyledLabel {
                     id: overhang_angle
                     color: Constants.textColor
-                    width: 100
-                    height: 28
-                    font.pixelSize: support_grid.font.pixelSize
+                    width: 100 * screenScaleFactor
+                    height: 28 * screenScaleFactor
+                    font.pointSize: Constants.labelFontPointSize_6
                     text: qsTr("Maximum Angle")
                 }
 
                 SizeTextField {
                     id: overhang_angle_text
-                    width: 130
-                    height: 28
-                    text: SettingJson.support_angle//qsTr("30")
+                    width: 130 * screenScaleFactor
+                    height: 28 * screenScaleFactor
+                    text: qsTr("30")
                     placeholderText: qsTr("Enter Angle")//
                     unitchar: qsTr("(°)")//qsTr("度(°)")
 
@@ -114,10 +114,10 @@ Rectangle {
             }
             StyleCheckBox {
                 id:platform_checkbox
-                y:75
-                width: 240
-                height: 28
-                text: qsTr("Only add support to the hot bed")
+                y:75 * screenScaleFactor
+                width: 240 * screenScaleFactor
+                height: 28 * screenScaleFactor
+                text: qsTr("Only add support to the plate")
 
             }
 
@@ -125,12 +125,12 @@ Rectangle {
 
         Item {
             width: idRoot.width -3
-            height : 2
+            height : 2 * screenScaleFactor
             
             Rectangle {
                 // anchors.left: idCol.left
                 // anchors.leftMargin: -10
-                x: -9
+                x: -9 * screenScaleFactor
                 width:parent.width > parent.height ?  parent.width : 2
                 height: parent.width > parent.height ?  2 : parent.height
                 color: Constants.splitLineColor
@@ -145,14 +145,14 @@ Rectangle {
         BasicGroupBox
         {
             width: parent.width
-            height : 60
+            height : 60 * screenScaleFactor
             title:  qsTr("Automatic Support")
             BasicButton
             {
                 id: generate_support
                 //y:5
-                height: 28
-                width: 230
+                height: 28 * screenScaleFactor
+                width: 230 * screenScaleFactor
                 btnRadius:3
                 text : qsTr("Automatic Support")
                 //                defaultBtnBgColor : "#FFFFFF"
@@ -199,16 +199,16 @@ Rectangle {
         {
             title: qsTr("Custom Support")
             width: parent.width
-            height: 60
+            height: 60 * screenScaleFactor
             Row
             {
                 //y:5
-                spacing: 10
+                spacing: 10 * screenScaleFactor
                 BasicButton {
                     id: add_support
                     text: qsTr("Add")
-                    width: 110
-                    height: 28
+                    width: 110 * screenScaleFactor
+                    height: 28 * screenScaleFactor
                     btnRadius:3
                     /*enabled: !addSuportMode*/
                     onSigButtonClicked: {
@@ -260,8 +260,8 @@ Rectangle {
         }
 
         Rectangle{
-            width:240
-            height:30
+            width:240 * screenScaleFactor
+            height:30 * screenScaleFactor
             color:"transparent"
             BasicButton {
                 id: clear_support
@@ -295,23 +295,23 @@ Rectangle {
             }
         }
 
-        Rectangle{
-            width:240
-            height:80
-            color:"transparent"
-            BasicButton {
-                id: idbackbtn
-                x: 10
-                text: qsTr("Back to Printer Config")
-                btnRadius:3
-                width: 230
-                height: 28
-                onSigButtonClicked: {
-                    //control.onSliceClicked(false)
-                    control.backToPrinterConfig()
-                }
-            }
-        }
+//        Rectangle{
+//            width:240
+//            height:80
+//            color:"transparent"
+//            BasicButton {
+//                id: idbackbtn
+//                x: 10
+//                text: qsTr("Back to Printer Config")
+//                btnRadius:3
+//                width: 230
+//                height: 28
+//                onSigButtonClicked: {
+//                    //control.onSliceClicked(false)
+//                    control.backToPrinterConfig()
+//                }
+//            }
+//        }
 
         
 
@@ -336,32 +336,32 @@ Rectangle {
         //         }
         //     }
         // }
-        Rectangle{
-            width: 250
-            height: 70
-            color:"transparent"
-            x:20
-            SliceExecute
-            {
-                id:idSliceBtn
-                text : qsTr("Start Slice")
-                anchors.horizontalCenter: parent.horizontalCenter
-                width:230
-                height:48
-                btnRadius : 3
-                enabled : true
-                onSigButtonClicked: {
-                    control.onSliceClicked(true)
-                }
-                onEnabledChanged:
-                {
-                    if(enabled == false)
-                    {
-                        control.onSliceClicked(false)
-                    }
-                }
-            }
-        }
+//        Rectangle{
+//            width: 250
+//            height: 70
+//            color:"transparent"
+//            x:20
+//            SliceExecute
+//            {
+//                id:idSliceBtn
+//                text : qsTr("Start Slice")
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                width:230
+//                height:48
+//                btnRadius : 3
+//                enabled : true
+//                onSigButtonClicked: {
+//                    control.onSliceClicked(true)
+//                }
+//                onEnabledChanged:
+//                {
+//                    if(enabled == false)
+//                    {
+//                        control.onSliceClicked(false)
+//                    }
+//                }
+//            }
+//        }
     }
     UploadMessageDlg{
         id: idHasSupport

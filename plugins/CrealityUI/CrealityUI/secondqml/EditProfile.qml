@@ -1,10 +1,7 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.0
-//import QtQuick.Dialogs 1.3
 
-//import CrealityUI 1.0
-//import "qrc:/CrealityUI"
 import ".."
 import "../qml"
 
@@ -17,62 +14,54 @@ BasicDialog
     title: qsTr("Edit")
     //titleHeight : 30
     property int spacing: 5
-    //add界面传过来的三个变量
-    property string profileName:qsTr("new") //文件名
-    property string profileMachine: "Ender-3" //机型
-    property string profileMaterial: "PLA" //材料
-    property string profileQuality: "high" //质量
-    property bool isDefault: true
-    property int addOrEdit: 0 //0: add, 1: edit
 
-    property var layer_height:0 //layerheight.text
-    property var line_width:0 //linewidth.text
-    property var wall_line_count:0 //walllinecount.text
-    property var infill_sparse_density:0 // infillsparsedensity.text
-    property var material_print_temperature:0 //materialprinttemperature.text
-    property var material_bed_temperature:0 //materialbedtemperature.text
-    property var support_enable:0 //supportenable.checked
-    property var support_angle:0 //supportangle.text
-    property var adhesion_type:0 //  adhesiontype.modelText
-    property var prime_tower_enable:0 //primetowerenable.checked
-    property var min_skin_width_for_expansion:0 // minskinwidthforexpansion.text
-    property var min_infill_area:0 //mininfillarea.text
-    property var infill_before_walls:0 // infillbeforewalls.checked
-    property var infill_wipe_dist:0 // infillwipedist.text
-    property var zig_zaggify_infill:0 // zigzaggifyinfill.checked
+	property var currentMachine : null
+	property var currentProfile : null
 
-    property var inputErrorStatus : 0x0000
-	property var inputErrorStatus2 : 0x0000
-    property var specialErrorStatus : 0x0000
+	property int addOrEdit: 1 //0: add, 1: edit
 
-    property var labelMap: {0:0}
-    property var textBoxMap: {0:0}
+	property var simpleProfileLabelMap: {0:0}
+	property var simpleProfileItemMap: {0:0}
 
+	property var profileButtonMap: {0:0}
+	property var profileLabelMap: {0:0}
+	property var profileItemMap: {0:0}
+	property var classTypeFilter: "Quality"
 
-    signal valchanged(string key,string value)
-    signal reseted()
-    signal saveProfile()
-    signal canceled()
+	function showEditProfile(_addOrEdit, machine){
+		addOrEdit = _addOrEdit
+		currentMachine = machine
+		currentProfile = machine.currentProfileObject
 
-    signal advancedProfile()
+		idProfileName.text = findTranslate(currentProfile.name())
+		idEditFilterProfileName.text = findTranslate(currentProfile.name())
 
-    function initEditProfileByFilter()
-    {
-        console.log("initAdvanceParam")
-        idEditProfileByFilter.initClassTypeList()
-        idEditProfileByFilter.initProfileValueList()
-        idEditProfileByFilter.showProfileType()
-        updateLanguage()
-    }
+		if(simpleProfileLabelMap[0] === 0){
+			simpleProfileLabelMap = {}
+			simpleProfileItemMap = {}
+		}
 
-    function findTranslate(key)
-    {
+		visible = true
+	}
+
+	function hideEditProfile(){
+		currentProfile.cancel()
+		currentMachine = null
+		currentProfile = null
+
+		editProfiledlg.close()
+	}
+
+    function findTranslate(key){
+        var quality = ""
+        var tempArray = key.split("_")
+        quality = tempArray[tempArray.length-1]
         var tranlateValue = ""
-        if(key === "high")tranlateValue = qsTr("Dynamic")
-        else if(key === "middle") tranlateValue= qsTr("Balanced")
-        else if(key === "low")tranlateValue = qsTr("Speedy")
-        else if(key === "best")tranlateValue = qsTr("Best quality")
-        else if(key === "fast")tranlateValue = qsTr("Very Speedy")
+        if(quality === "high")tranlateValue = qsTr("High Quality")
+        else if(quality === "middle") tranlateValue= qsTr("Quality")
+        else if(quality === "low")tranlateValue = qsTr("Normal")
+        else if(quality === "best")tranlateValue = qsTr("Best quality")
+        else if(quality === "fast")tranlateValue = qsTr("Fast")
         else
         {
             tranlateValue = key
@@ -80,161 +69,7 @@ BasicDialog
         return tranlateValue
     }
 
-    property var translateMap: {0:0}
-    function deleteMap()
-    {
-        modelType.clear()
-    }
-    //all combobox qsTr insert to Map
-    function mapTranslate()
-    {
-        var modelMap = SettingJson.getSettingOptions("adhesion_type")
-        for(var key in modelMap){
-            console.log("Key = " +key + " value = " + modelMap[key])
-            modelType.append({"key":key, "modelData":qsTr(modelMap[key])})
-        }
-    }
-    function keyTranlateValue(data)
-    {
-        var value = translateMap[data]
-        if(!value)
-        {
-            value = data
-        }
-        console.log("keyTranlateValue(data) =" + value)
-        return  value
-    }
-    function valueTranlateKey(data)
-    {
-        var keyName = data
-        for(var key in translateMap){
-            if(translateMap[key] === data)
-            {
-                keyName = {"text" : key}.text
-                break
-            }
-        }
-        return  keyName
-    }
-    //cmb init translate
-    function cmbTranslateUpdate()
-    {
-        deleteMap()
-        mapTranslate()
-    }
-
-    function updateAdhesionType(data)
-    {
-        return keyTranlateValue(data)
-    }
-
-    function showEditProfileByFilter()
-    {
-        idEditProfileByFilter.updateComponent()
-        idEditProfileByFilter.showProfileType()
-        idEditProfileByFilter.profileName = editProfiledlg.profileName
-        idEditProfileByFilter.visible=true
-    }
-
-    property var isReseting : false
-    function resetValue()
-    {
-        isReseting = true
-        supportenable.checked = SettingJson.support_enable
-
-        var modelMap = SettingJson.getSettingOptions("adhesion_type")
-        adhesiontype.currentIndex = SettingJson.findIndexByType(modelMap,SettingJson.adhesion_type)
-
-        layerheight.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        linewidth.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        walllinecount.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        infillsparsedensity.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        materialprinttemperature.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        materialbedtemperature.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        supportangle.defaultBackgroundColor = Constants.dialogItemRectBgColor
-
-        supportInfillRate.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        smallfeaturemaxlength.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        speedprint.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        speedinfill.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        speedwall.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        supportmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        infillmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        wallmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-        smallfeaturespeedfactor.defaultBackgroundColor = Constants.dialogItemRectBgColor
-
-        inputErrorStatus = 0x0000
-		inputErrorStatus2 = 0x0000
-
-        idEditProfileByFilter.resetComponent()
-
-        isReseting = false
-    }
-
-
-    function editProfiledchanged(key,value)
-    {
-        console.log("editProfiledchanged key : " + key + " value : "+value)
-        if(SettingJson.checkSettingValue(key,value))
-        {
-            valchanged(key,value)
-            SettingJson.setSettingValue(key,value)
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SettingJson.setSettingValue()~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            if(!isReseting)
-            {
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SettingJson.updateSettingData()~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                SettingJson.updateSettingData()
-                idEditProfileByFilter.updateComponent()
-            }
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
-
-    ListModel {
-        id: specialModelType
-    }
-
-    function textFieldTextChanged(key, value)
-    {
-        valchanged(key,value)
-    }
-
-    function textFieldEditFinish(key, value)
-    {
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~textFieldEditFinish~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        var comType = SettingJson.getSettingType(key)
-        if(comType == "bool")
-        {
-            editProfiledchanged(key,value)
-        }
-        else if(comType == "enum")
-        {
-            var selectKey = textBoxMap[key].model.get(value).key
-            editProfiledchanged(key,selectKey)
-        }
-        else
-        {
-            if(editProfiledchanged(key,value))
-            {
-                textBoxMap[key].defaultBackgroundColor = Constants.dialogItemRectBgColor
-                specialErrorStatus = specialErrorStatus & (0xFFFF - textBoxMap[key].errorCode)
-            }
-            else
-            {
-                textBoxMap[key].defaultBackgroundColor = "red"
-                specialErrorStatus = specialErrorStatus | textBoxMap[key].errorCode
-            }
-        }
-
-    }
-
-    function updateLanguage()
-    {
-        cmbTranslateUpdate()
+    function updateLanguage(){
         idEditProfileByFilter.updateLanguage()
     }
 
@@ -245,14 +80,12 @@ BasicDialog
         y :25 + titleHeight
         width: parent.width-40* screenScaleFactor
         height: parent.height-titleHeight-50* screenScaleFactor
-        Grid
-        {
+        Grid{
             width: parent.width
             height: parent.height
             rows: 6
             spacing: 20
-            Row
-            {
+            Row {
                 width: parent.width
                 height: 25* screenScaleFactor
                 y: 5* screenScaleFactor
@@ -266,47 +99,28 @@ BasicDialog
                     horizontalAlignment: Qt.AlignRight
                 }
                 StyledLabel {//by TCJ
-                    id: textEdit
+                    id: idProfileName
                     width: 160* screenScaleFactor
                     height: 25* screenScaleFactor
-                    text: findTranslate(profileName)
                     verticalAlignment: Qt.AlignVCenter
                 }
 
                 StyledLabel {
                     id: elementMaterial
                     text: qsTr("Material:")
+					visible : false
                     width: 160* screenScaleFactor
                     height: 25* screenScaleFactor
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignRight
                 }
 
-                CusText{
-                    height:28* screenScaleFactor
+                StyledLabel{
+                    height: 25* screenScaleFactor
                     width: 140* screenScaleFactor
-                    fontText: editProfiledlg.profileMaterial
-                    fontColor: "white"
+					visible: false
+                    verticalAlignment: Qt.AlignVCenter
                 }
-
-                //               BasicCombobox {
-                //                   id:textEditMaterial
-                //                   height:28
-                //                   width: 140
-                //                   enabled:false
-                //                   model: materialModel
-                //                   onCurrentIndexChanged:
-                //                   {
-
-                //                   }
-                //               }
-                // StyledLabel {//by TCJ
-                //     id: textEditMaterial
-                //     width: 100
-                //     height: 25
-                //     text: "PLA"
-                //     verticalAlignment: Qt.AlignVCenter
-                // }
             }
 
             Item {
@@ -314,8 +128,6 @@ BasicDialog
                 height : 2
 
                 Rectangle {
-                    // anchors.left: idCol.left
-                    // anchors.leftMargin: -10
                     x: -23* screenScaleFactor
                     width:parent.width > parent.height ?  parent.width : 2
                     height: parent.width > parent.height ?  2 : parent.height
@@ -333,8 +145,7 @@ BasicDialog
 
                 width: parent.width
                 height: 340* screenScaleFactor
-                BasicScrollView
-                {
+                BasicScrollView{
                     width: parent.width
                     height: 340* screenScaleFactor
                     hpolicy: ScrollBar.AlwaysOff
@@ -350,312 +161,6 @@ BasicDialog
                             rows: 10
                             rowSpacing: 7
                             columnSpacing: 10
-
-                            StyledLabel {
-                                id: element1
-                                text: qsTr("Layer Height:")
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                font.pointSize:Constants.labelFontPointSize
-                                strToolTip: qsTr(SettingJson.getDescription("layer_height"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: layerheight
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.layer_height
-                                strToolTip:qsTr(SettingJson.getDescription("layer_height"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("layer_height",layerheight.text))
-                                    {
-                                        layerheight.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFFFE
-                                    }
-                                    else
-                                    {
-                                        layerheight.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0001
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("layer_height",layerheight.text)
-                                }
-                                unitChar: "mm"
-                            }
-
-                            StyledLabel {
-                                id: element2
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Line Width:")
-                                strToolTip: qsTr(SettingJson.getDescription("line_width"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: linewidth
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.line_width
-                                strToolTip: qsTr(SettingJson.getDescription("line_width"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("line_width",linewidth.text))
-                                    {
-                                        linewidth.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFFFD
-                                    }
-                                    else
-                                    {
-                                        linewidth.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0002
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("line_width",linewidth.text)
-                                }
-                                unitChar: "mm"
-                            }
-
-                            StyledLabel {
-                                id: element3
-                                text: qsTr("Wall Line Count:")
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                strToolTip: qsTr(SettingJson.getDescription("wall_line_count"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: walllinecount
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.wall_line_count
-                                strToolTip: qsTr(SettingJson.getDescription("wall_line_count"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("wall_line_count",walllinecount.text))
-                                    {
-                                        walllinecount.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFFFB
-                                    }
-                                    else
-                                    {
-                                        walllinecount.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0004
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("wall_line_count",walllinecount.text)
-                                }
-                            }
-
-                            StyledLabel {
-                                id: element4
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Infill Sparse Density:")
-                                strToolTip: qsTr(SettingJson.getDescription("infill_sparse_density"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: infillsparsedensity
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.infill_sparse_density
-                                strToolTip: qsTr(SettingJson.getDescription("infill_sparse_density"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("infill_sparse_density",infillsparsedensity.text))
-                                    {
-                                        infillsparsedensity.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFFF7
-                                    }
-                                    else
-                                    {
-                                        infillsparsedensity.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0008
-                                    }
-                                }
-
-                                onTextChanged:
-                                {
-                                    valchanged("infill_sparse_density",infillsparsedensity.text)
-                                }
-                                unitChar: "%"
-                            }
-
-                            StyledLabel {
-                                id: element9
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                font.pointSize:9//Constants.labelLargeFontPointSize
-                                text: qsTr("Adhesion Type:")
-                                strToolTip: qsTr(SettingJson.getDescription("adhesion_type"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicCombobox {
-                                id: adhesiontype
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                //currentIndex : -1
-                                strToolTip: qsTr(SettingJson.getDescription("adhesion_type"))
-                                model: ListModel {
-                                    id: modelType
-                                }
-                                onCurrentIndexChanged: {
-                                    editProfiledchanged("adhesion_type",modelType.get(currentIndex).key)
-                                }
-                                Component.onCompleted:{
-                                    var modelMap = SettingJson.getSettingOptions("adhesion_type")
-                                    for(var key in modelMap){
-                                        console.log("Key = " +key + " value = " + modelMap[key])
-                                        modelType.append({"key":key, "modelData":qsTr(modelMap[key])})
-                                    }
-                                }
-                            }
-
-                            StyledLabel {
-                                id: element7
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Generate Support:")
-                                strToolTip: qsTr(SettingJson.getDescription("support_enable"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            StyleCheckBox {
-                                id:supportenable
-                                width: 129* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                checked: SettingJson.support_enable
-                                strToolTip: qsTr(SettingJson.getDescription("support_enable"))
-                                onCheckedChanged: {
-                                    console.log("support_enable changed")
-                                    editProfiledchanged("support_enable",supportenable.checked.toString())
-                                }
-                            }
-
-                            StyledLabel {
-                                id: element8
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                font.pointSize:Constants.labelFontPointSize
-                                text: qsTr("Support Overhang Angle:")
-                                strToolTip: qsTr(SettingJson.getDescription("support_angle"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: supportangle
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                font.pointSize:Constants.labelFontPointSize
-                                //validator: RegExpValidator{regExp: /^([1-9]|([1-9][0-9])|([1-2][0-9][0-9])|([3][0-5][0-9])|([0]{1}))$|^[3][6][0]$/}
-                                text: SettingJson.support_angle
-                                strToolTip: qsTr(SettingJson.getDescription("support_angle"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("support_angle",supportangle.text))
-                                    {
-                                        supportangle.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFFBF
-                                    }
-                                    else
-                                    {
-                                        supportangle.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0040
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("support_angle",supportangle.text)
-                                }
-                                unitChar: "°"
-                            }
-
-                            StyledLabel {
-                                id: element10
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Support Density:")
-                                strToolTip: qsTr(SettingJson.getDescription("support_infill_rate"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: supportInfillRate
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.support_infill_rate
-                                strToolTip: qsTr(SettingJson.getDescription("support_infill_rate"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("support_infill_rate",supportInfillRate.text))
-                                    {
-                                        supportInfillRate.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFF7F
-                                    }
-                                    else
-                                    {
-                                        supportInfillRate.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0080
-                                    }
-                                }
-
-                                onTextChanged:
-                                {
-                                    valchanged("support_infill_rate",supportInfillRate.text)
-                                }
-                                unitChar: "%"
-                            }
-
-                            StyledLabel {
-                                id: element11
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Small Feature Max Length:")
-                                strToolTip: qsTr(SettingJson.getDescription("small_feature_max_length"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: smallfeaturemaxlength
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.small_feature_max_length
-                                strToolTip: qsTr(SettingJson.getDescription("small_feature_max_length"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("small_feature_max_length",smallfeaturemaxlength.text))
-                                    {
-                                        smallfeaturemaxlength.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFEFF
-                                    }
-                                    else
-                                    {
-                                        smallfeaturemaxlength.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0100
-                                    }
-                                }
-
-                                onTextChanged:
-                                {
-                                    valchanged("small_feature_max_length",smallfeaturemaxlength.text)
-                                }
-                                unitChar: "mm"
-                            }
-
                         }
                         Grid{
                             id: idGrid2
@@ -663,321 +168,6 @@ BasicDialog
                             rows: 10
                             rowSpacing: 7
                             columnSpacing:10
-
-                            StyledLabel {
-                                id: element5
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Printing Temperature:")
-                                strToolTip: qsTr(SettingJson.getDescription("material_print_temperature"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: materialprinttemperature
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.material_print_temperature
-                                strToolTip: qsTr(SettingJson.getDescription("material_print_temperature"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("material_print_temperature",materialprinttemperature.text))
-                                    {
-                                        materialprinttemperature.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFDFF
-                                    }
-                                    else
-                                    {
-                                        materialprinttemperature.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0200
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("material_print_temperature",materialprinttemperature.text)
-                                }
-                                unitChar: "℃"
-                            }
-
-                            StyledLabel {
-                                id: element6
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Build Plate Temperature:")
-                                strToolTip: qsTr(SettingJson.getDescription("material_bed_temperature"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: materialbedtemperature
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.material_bed_temperature
-                                strToolTip: qsTr(SettingJson.getDescription("material_bed_temperature"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("material_bed_temperature",materialbedtemperature.text))
-                                    {
-                                        materialbedtemperature.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xFBFF
-                                    }
-                                    else
-                                    {
-                                        materialbedtemperature.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0400
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("material_bed_temperature",materialbedtemperature.text)
-                                }
-                                unitChar: "℃"
-                            }
-
-                            StyledLabel {
-                                id: element12
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Print Speed:")
-                                strToolTip: qsTr(SettingJson.getDescription("speed_print"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: speedprint
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.speed_print
-                                strToolTip: qsTr(SettingJson.getDescription("speed_print"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("speed_print",speedprint.text))
-                                    {
-                                        speedprint.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xF7FF
-                                    }
-                                    else
-                                    {
-                                        speedprint.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x0800
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("speed_print",speedprint.text)
-                                }
-                                unitChar: "mm/s"
-                            }
-
-                            StyledLabel {
-                                id: element13
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Infill Speed:")
-                                strToolTip: qsTr(SettingJson.getDescription("speed_infill"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: speedinfill
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.speed_infill
-                                strToolTip: qsTr(SettingJson.getDescription("speed_infill"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("speed_infill",speedinfill.text))
-                                    {
-                                        speedinfill.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xEFFF
-                                    }
-                                    else
-                                    {
-                                        speedinfill.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x1000
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("speed_infill",speedinfill.text)
-                                }
-                                unitChar: "mm/s"
-                            }
-
-                            StyledLabel {
-                                id: element14
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Wall Speed:")
-                                strToolTip: qsTr(SettingJson.getDescription("speed_wall"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: speedwall
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.speed_wall
-                                strToolTip: qsTr(SettingJson.getDescription("speed_wall"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("speed_wall",speedwall.text))
-                                    {
-                                        speedwall.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0xBFFF
-                                    }
-                                    else
-                                    {
-                                        speedwall.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x4000
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("speed_wall",speedwall.text)
-                                }
-                                unitChar: "mm/s"
-                            }
-
-                            StyledLabel {
-                                id: element15
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Support Flow:")
-                                strToolTip: qsTr(SettingJson.getDescription("support_material_flow"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: supportmaterialflow
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.support_material_flow
-                                strToolTip: qsTr(SettingJson.getDescription("support_material_flow"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("support_material_flow",supportmaterialflow.text))
-                                    {
-                                        supportmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus = inputErrorStatus & 0x7FFF
-                                    }
-                                    else
-                                    {
-                                        supportmaterialflow.defaultBackgroundColor = "red"
-                                        inputErrorStatus = inputErrorStatus | 0x8000
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("support_material_flow",supportmaterialflow.text)
-                                }
-                                unitChar: "%"
-                            }
-
-                            StyledLabel {
-                                id: element16
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Infill Flow:")
-                                strToolTip: qsTr(SettingJson.getDescription("infill_material_flow"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: infillmaterialflow
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.infill_material_flow
-                                strToolTip: qsTr(SettingJson.getDescription("infill_material_flow"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("infill_material_flow",infillmaterialflow.text))
-                                    {
-                                        infillmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus2 = inputErrorStatus2 & 0xFFFE
-                                    }
-                                    else
-                                    {
-                                        infillmaterialflow.defaultBackgroundColor = "red"
-                                        inputErrorStatus2 = inputErrorStatus2 | 0x0001
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("infill_material_flow",infillmaterialflow.text)
-                                }
-                                unitChar: "%"
-                            }
-
-                            StyledLabel {
-                                id: element17
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Wall Flow:")
-                                strToolTip: qsTr(SettingJson.getDescription("wall_material_flow"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: wallmaterialflow
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.wall_material_flow
-                                strToolTip: qsTr(SettingJson.getDescription("wall_material_flow"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("wall_material_flow",wallmaterialflow.text))
-                                    {
-                                        wallmaterialflow.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus2 = inputErrorStatus2 & 0xFFFD
-                                    }
-                                    else
-                                    {
-                                        wallmaterialflow.defaultBackgroundColor = "red"
-                                        inputErrorStatus2 = inputErrorStatus2 | 0x0002
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("wall_material_flow",wallmaterialflow.text)
-                                }
-                                unitChar: "%"
-                            }
-
-                            StyledLabel {
-                                id: element18
-                                width : 160* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: qsTr("Small Feature Speed:")
-                                strToolTip: qsTr(SettingJson.getDescription("small_feature_speed_factor"))
-                                verticalAlignment: Qt.AlignVCenter
-                                horizontalAlignment: Qt.AlignRight
-                            }
-
-                            BasicDialogTextField {
-                                id: smallfeaturespeedfactor
-                                width: 120* screenScaleFactor
-                                height : 30* screenScaleFactor
-                                text: SettingJson.small_feature_speed_factor
-                                strToolTip: qsTr(SettingJson.getDescription("small_feature_speed_factor"))
-                                onEditingFinished: {
-                                    if(editProfiledchanged("small_feature_speed_factor",smallfeaturespeedfactor.text))
-                                    {
-                                        smallfeaturespeedfactor.defaultBackgroundColor = Constants.dialogItemRectBgColor
-                                        inputErrorStatus2 = inputErrorStatus2 & 0xFFFB
-                                    }
-                                    else
-                                    {
-                                        smallfeaturespeedfactor.defaultBackgroundColor = "red"
-                                        inputErrorStatus2 = inputErrorStatus2 | 0x0004
-                                    }
-                                }
-                                onTextChanged:
-                                {
-                                    valchanged("small_feature_speed_factor",smallfeaturespeedfactor.text)
-                                }
-                                unitChar: "%"
-                            }
                         }
                     }
                 }
@@ -1005,9 +195,7 @@ BasicDialog
             Item {
                 width: parent.width
                 height:  30* screenScaleFactor
-                Grid
-                {
-                    //                    x:(parent.width - width) /2
+                Grid {
                     columns: 4
                     spacing: 10
                     width: 430* screenScaleFactor
@@ -1017,22 +205,15 @@ BasicDialog
                         id: basicComButton1
                         width: 98* screenScaleFactor
                         height: 28* screenScaleFactor
-                        text: qsTr("Save")//(isDefault && addOrEdit == 1)? qsTr("Save as") : qsTr("Save")
+                        text: qsTr("Save")
                         btnRadius:3
                         btnBorderW:0
                         defaultBtnBgColor: Constants.profileBtnColor
                         hoveredBtnBgColor: Constants.profileBtnHoverColor
                         onSigButtonClicked:
                         {
-                            if((inputErrorStatus + specialErrorStatus + inputErrorStatus2) == 0)
-                            {
-                                saveProfile()
-                                editProfiledlg.close()
-                            }
-                            else
-                            {
-                                idMessageDlg.show()
-                            }
+                            currentProfile.save()
+							hideEditProfile()
                         }
                     }
 
@@ -1047,8 +228,7 @@ BasicDialog
                         hoveredBtnBgColor: Constants.profileBtnHoverColor
                         onSigButtonClicked:
                         {
-                            reseted()
-                            resetValue()
+                            currentProfile.reset()
                         }
                     }
 
@@ -1056,27 +236,17 @@ BasicDialog
                         id: basicComButton3
                         width: 98* screenScaleFactor
                         height: 28* screenScaleFactor
-                        text: enabled ? qsTr("Advance Setting") : qsTr("Loading")+"("+ countDown.timeCnt +"s)"
+                        text: qsTr("Advance Setting")
                         btnRadius:3
                         btnBorderW:0
                         defaultBtnBgColor: Constants.profileBtnColor
                         hoveredBtnBgColor: Constants.profileBtnHoverColor
-                        onSigButtonClicked:
-                        {
-                            if(idEditProfileByFilter.getCreateFinished())
-                            {
-                                showEditProfileByFilter()
-                            }
-                            else
-                            {
-                                countDown.timeCnt = 10
-                                countDown.start()
-                            }
+                        onSigButtonClicked:{
+                            idEditProfileFilter.showEditProfileFilter()
                         }
                     }
 
-                    BasicButton
-                    {
+                    BasicButton {
                         id : comCancel
                         width: 98* screenScaleFactor
                         height: 28* screenScaleFactor
@@ -1087,10 +257,18 @@ BasicDialog
                         defaultBtnBgColor: Constants.profileBtnColor
                         hoveredBtnBgColor: Constants.profileBtnHoverColor
 
-                        onSigButtonClicked:
-                        {
-                            canceled()
-                            editProfiledlg.close()
+                        onSigButtonClicked:{
+							if (addOrEdit == 0)
+								currentMachine.removeProfile(currentProfile.name());
+                            hideEditProfile()
+                        }
+                        Connections{//关闭和取消进行相同的操作
+                            target: editProfiledlg
+                            onDialogClosed:{
+								if (addOrEdit == 0)
+									currentMachine.removeProfile(currentProfile.name());
+                                hideEditProfile()
+                            }
                         }
                     }
                 }
@@ -1100,37 +278,7 @@ BasicDialog
         }
     }
 
-    Timer{
-        id:countDown;
-        interval: 1000;
-        repeat: true;
-        triggeredOnStart: true;
-        property var timeCnt:10
-        onTriggered: {
-            timeCnt -= 1;
-            //basicComButton3.text = qsTr("Loading")+"("+ timeCnt +"s)"
-            basicComButton3.enabled = false
-
-            if(timeCnt < 0 )
-            {
-                //basicComButton3.text = qsTr("Advance Setting")
-                basicComButton3.enabled = true
-                countDown.stop()
-            }
-            if(idEditProfileByFilter.getCreateFinished())
-            {
-                console.log("timeout timeCnt:"+ timeCnt)
-                showEditProfileByFilter()
-
-                //basicComButton3.text = qsTr("Advance Setting")
-                basicComButton3.enabled = true
-                countDown.stop()
-            }
-        }
-    }
-
-    BasicDialog
-    {
+    BasicDialog {
         id: idMessageDlg
         width: 400* screenScaleFactor
         height: 200* screenScaleFactor
@@ -1154,31 +302,376 @@ BasicDialog
         }
     }
 
-    EditProfileByFilter
-    {
-        id: idEditProfileByFilter
-        objectName:"editprofilebyfilterobj"
-        onValchangedAd:
-        {
-            valchanged(key,value)
-        }
-        onResetedAd: {
-            reseted()
-        }
-        onSaveProfileAd:{
-            saveProfile()
-			
-            //reseted()
-			SettingJson.updateSettingData()
-            idEditProfileByFilter.updateComponent()
-			
-            resetValue()
+    Component {
+        id: someComponent
+        ListModel {
         }
     }
 
-    onDialogClosed:
-    {
+	BasicDialog {
+		id: idEditProfileFilter
 
-    }
+		width: 700 * screenScaleFactor
+		height: 670 * screenScaleFactor
+		title: qsTr("Edit")
+		property int spacing: 5
+
+		function createProfileButtons(){
+			if(profileButtonMap[0] === 0){
+				console.log("idEditProfileFilter createProfileButtons profileButtonMap.")
+				profileButtonMap = {}
+			}
+		}
+
+		function createProfileButton(key){
+			console.log("createProfileButton : " + key)
+			var componentButton = Qt.createComponent("../qml/BasicButton.qml")
+			if (componentButton.status === Component.Ready) {
+				var obj = componentButton.createObject(profileTypeBtnList, {"width": 120*screenScaleFactor,
+																			"height" : 30*screenScaleFactor,
+																			"btnRadius" : 3,
+																			"keyStr" : key,
+																			"pointSize":Constants.labelFontPointSize,
+																			"btnBorderW":0,
+																			"defaultBtnBgColor": Constants.dialogContentBgColor,
+																			"hoveredBtnBgColor": Constants.typeBtnHoveredColor,
+																			"text": qsTr(key)}
+																			)
+				obj.sigButtonClickedWithKey.connect(onProfileTypeChanged)
+				profileButtonMap[key] = obj
+			}
+		}
+
+		function createProfileValues(profileType){
+			if(!profileLabelMap[profileType]){
+
+				profileLabelMap[profileType] = {}
+				profileItemMap[profileType] = {}
+			}
+		}
+
+		function showEditProfileFilter(){
+			createProfileButtons()
+			onProfileTypeChanged(classTypeFilter)
+
+			filterProfileTypeList()
+			this.visible = true
+		}
+
+		function hideEditProfileFilter(){
+			this.close()
+		}
+
+		function onProfileTypeChanged(type){
+			for(var key in profileButtonMap)
+			{
+				if(key == type){
+					profileButtonMap[key].defaultBtnBgColor = "#1E9BE2"//"#1EB6E2"
+					classTypeFilter = key
+
+					createProfileValues(classTypeFilter)
+					filterProfileValueList()
+				}
+				else
+				{
+					profileButtonMap[key].defaultBtnBgColor = Constants.dialogContentBgColor
+				}
+			}
+			idParamScrollView.setVScrollBarPosition(0)
+		}
+
+		function filterProfileTypeList(){
+			var strArray = []
+			for(var key in profileButtonMap){
+				var nameFilter = idSearch.text
+
+				var lable = key.toLowerCase()
+				var paramlevel = (key == "Special Machine Type" || key == "Mesh Fixes") ? 3 : 1
+				if(nameFilter == "")
+				{
+					if((idConfiguration.currentIndex + 1) >= paramlevel)
+					{
+						strArray.push(key)
+					}
+				}
+				else
+				{
+					if(lable.search(nameFilter.toLowerCase()) != -1 && (idConfiguration.currentIndex + 1) >= paramlevel)
+					{
+						strArray.push(key)
+					}
+				}
+			}
+
+			for(var key in profileButtonMap){
+				profileButtonMap[key].visible = false
+			}
+
+			for(var key in strArray)
+			{
+				profileButtonMap[strArray[key]].visible = true
+			}
+
+		}
+
+		function filterProfileValueList(){
+			var roscnt = 1
+			var nameFilter = idSearch.text
+			for(var classType in profileLabelMap)
+			{
+			    if(classType == 0)
+			    {
+			        continue
+			    }
+
+				var labelContainer = profileLabelMap[classType]
+				var itemContainer = profileItemMap[classType]
+				for(var key in labelContainer)
+				{
+				}
+			}
+			profileValuelList.rows = roscnt
+		}
+
+		Item {
+			x:30
+			y :25 + titleHeight
+			width: parent.width-40*screenScaleFactor
+			height: parent.height-titleHeight-50*screenScaleFactor
+			Column {
+				spacing: 20
+				Item {
+					implicitWidth: innerRow.width
+					implicitHeight: innerRow.height
+					clip: true
+					Row
+					{
+						id: innerRow
+						spacing:10
+						StyledLabel {
+							id: idFilterProfile
+                            text: qsTr("Profile:")
+							width: idFilterProfile.contentWidth//70
+							height: 30*screenScaleFactor
+							verticalAlignment: Qt.AlignVCenter
+							horizontalAlignment: Qt.AlignLeft
+						}
+						StyledLabel {
+							id: idEditFilterProfileName
+							width: idFilterProfile.contentWidth//150
+							height: 30*screenScaleFactor
+							verticalAlignment: Qt.AlignVCenter
+							horizontalAlignment: Qt.AlignLeft
+						}
+
+						Item {
+							width:2*screenScaleFactor
+							height: 30*screenScaleFactor
+							BasicSeparator
+							{
+								anchors.fill: parent
+							}
+						}
+
+						BasicLoginTextEdit
+						{
+							id: idSearch
+							placeholderText: qsTr("Search")
+							height : 30*screenScaleFactor
+							width : 200*screenScaleFactor
+							font.pointSize:Constants.labelFontPointSize
+							headImageSrc:hovered ? Constants.searchBtnImg_d : Constants.searchBtnImg
+							tailImageSrc: hovered && idSearch.text != "" ? Constants.clearBtnImg : ""
+							hoveredTailImageSrc:Constants.clearBtnImg_d
+							radius : 14
+							text: ""
+							onEditingFinished: {
+							}
+							onTailBtnClicked:
+							{
+								idSearch.text = ""
+								idSearchButton.sigButtonClicked()
+							}
+						}
+
+						BasicButton {
+							id: idSearchButton
+							width: 60*screenScaleFactor
+							height: 30*screenScaleFactor
+							btnRadius:13
+							btnBorderW:0
+							enabled: idSearch.text != "" ? true : false
+							defaultBtnBgColor: enabled ?  Constants.searchBtnNormalColor : Constants.searchBtnDisableColor
+							hoveredBtnBgColor: Constants.searchBtnHoveredColor
+							text: qsTr("Search")
+							onSigButtonClicked:{
+								idEditProfileFilter.filterProfileValueList()
+								idEditProfileFilter.filterProfileTypeList()
+								//showProfileType()
+							}
+						}
+
+						Rectangle {
+							color: "transparent"
+							width: 175*screenScaleFactor - idFilterProfile.contentWidth - element.contentWidth
+							height: 30*screenScaleFactor
+						}
+
+						Row{
+							id:idConfiguration
+							height: 30*screenScaleFactor
+							x:-4
+							y:1
+							width:160*screenScaleFactor
+							spacing:5
+							property var currentIndex:1
+							ButtonGroup { id: idConfigurationGroup }
+							BasicRadioButton {
+								id: idTextInside
+								text: qsTr("Advanced")
+								checked: true
+								ButtonGroup.group: idConfigurationGroup
+								onClicked:{
+									idConfiguration.currentIndex = 1
+									idEditProfileFilter.filterProfileValueList()
+									idEditProfileFilter.filterProfileTypeList()
+								}
+							}
+							BasicRadioButton {
+								id: idTextOutside
+								text: qsTr("Expert")
+								ButtonGroup.group: idConfigurationGroup
+								onClicked:{
+									idConfiguration.currentIndex = 2
+									idEditProfileFilter.filterProfileValueList()
+									idEditProfileFilter.filterProfileTypeList()
+								}
+							}
+						}
+					}
+				}
+				Item {
+					width: idEditProfileFilter.width - 13
+					height : 2
+
+					Rectangle {
+						// anchors.left: idCol.left
+						// anchors.leftMargin: -10
+						x: -23*screenScaleFactor
+						width:parent.width > parent.height ?  parent.width : 2
+						height: parent.width > parent.height ?  2 : parent.height
+						color: Constants.splitLineColor
+						Rectangle {
+							width: parent.width > parent.height ? parent.width : 1
+							height: parent.width > parent.height ? 1 : parent.height
+							color: Constants.splitLineColorDark
+						}
+					}
+				}
+				Row {
+					spacing: 20
+					width: parent.width
+					BasicScrollView {
+						width: 125*screenScaleFactor
+						height: 450*screenScaleFactor
+						hpolicy: ScrollBar.AlwaysOff
+						vpolicy: ScrollBar.AsNeeded
+						clip : true
+						Column
+						{
+							id: profileTypeBtnList
+							width:125
+						}
+					}
+
+					Item {
+						width:2
+						height: 450*screenScaleFactor
+						BasicSeparator{
+							anchors.fill: parent
+						}
+					}
+					BasicScrollView	{
+						id: idParamScrollView
+						width: 500*screenScaleFactor
+						height: 450*screenScaleFactor
+						hpolicy: ScrollBar.AlwaysOff
+						vpolicy: ScrollBar.AsNeeded
+						clip : true
+						Grid{
+							id: profileValuelList
+							columns: 2
+							rows: 6
+							rowSpacing: 5
+							columnSpacing: 10
+						}
+					}
+				}
+				Item {
+					width: idEditProfileFilter.width - 13*screenScaleFactor
+					height : 2
+
+					Rectangle {
+						// anchors.left: idCol.left
+						// anchors.leftMargin: -10
+						x: -23*screenScaleFactor
+						width:parent.width > parent.height ?  parent.width : 2
+						height: parent.width > parent.height ?  2 : parent.height
+						color: Constants.splitLineColor
+						Rectangle {
+							width: parent.width > parent.height ? parent.width : 1
+							height: parent.width > parent.height ? 1 : parent.height
+							color: Constants.splitLineColorDark
+						}
+					}
+				}
+				Row {
+					id: idBtnrow
+					spacing: 10
+					width: 395*screenScaleFactor
+					height: 30*screenScaleFactor
+					x: 120
+					BasicButton {
+						width: 125 * screenScaleFactor
+						height: 28 * screenScaleFactor
+						btnRadius:3
+						btnBorderW:0
+						defaultBtnBgColor: Constants.profileBtnColor
+						hoveredBtnBgColor: Constants.profileBtnHoverColor
+						text: qsTr("Reset")
+						onSigButtonClicked: {
+							idEditProfileFilter.hideEditProfileFilter()
+						}
+					}
+
+					BasicButton {
+						width: 125*screenScaleFactor
+						height: 28*screenScaleFactor
+						btnRadius:3
+						btnBorderW:0
+						defaultBtnBgColor: Constants.profileBtnColor
+						hoveredBtnBgColor: Constants.profileBtnHoverColor
+						text: qsTr("Save")
+						onSigButtonClicked:{
+							idEditProfileFilter.hideEditProfileFilter()
+						}
+					}
+
+					BasicButton {
+						width: 125*screenScaleFactor
+						height: 28*screenScaleFactor
+						btnRadius:3
+						btnBorderW:0
+						defaultBtnBgColor: Constants.profileBtnColor
+						hoveredBtnBgColor: Constants.profileBtnHoverColor
+						text: qsTr("Cancel")
+						onSigButtonClicked: {
+							idEditProfileFilter.hideEditProfileFilter()
+						}
+					}
+				}
+			}
+		}
+	}
+
 }
-

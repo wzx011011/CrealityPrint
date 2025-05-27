@@ -1,56 +1,88 @@
 #include "splitplane.h"
-#include "qtuser3d/entity/basicentity.h"
-#include "qtuser3d/effect/effectmanager.h"
-#include "qtuser3d/geometry/gridcreatehelper.h"
+#include "qtuser3d/geometry/boxcreatehelper.h"
+#include "kernel/kernel.h"
+#include "kernel/visualscene.h"
+#include "qtuser3d/framegraph/texturerendertarget.h"
+#include "data/modeln.h"
+#include "qtuser3d/refactor/xrenderpass.h"
+#include "qtuser3d/refactor/xeffect.h"
 
 using namespace qtuser_3d;
 SplitPlane::SplitPlane(Qt3DCore::QNode* parent)
-	:BasicEntity(parent)
-	, m_grid(nullptr)
+	:XEntity(parent)
 {
-	m_plane = new BasicEntity(this);
-	//m_grid = new BasicEntity(this);
+	XRenderPass* pass = new XRenderPass("splitplane", this);
+	pass->addFilterKeyMask("alpha", 0);
+	pass->setPassBlend(Qt3DRender::QBlendEquationArguments::SourceAlpha, Qt3DRender::QBlendEquationArguments::OneMinusSourceAlpha);
 
-	m_plane->createParameter("borderWidth", 0.4);
+	XEffect* effect = new XEffect(this);
+	effect->addRenderPass(pass);
+	setEffect(effect);
 
-	QVector4D color = QVector4D(246.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f, 1.0f);
-	//m_grid->createParameter("color", color);
-	color.setW(0.1f);
-	m_plane->createParameter("color", color);
+	m_color = setParameter("color", QVector4D(1.0f, 0.965f, 0.0f, 0.2f));
 
-	//m_grid->setEffect(EFFECT("splitplane"));
-	m_plane->setEffect(EFFECTCREATE("splitplane.alpha", m_plane));
+	qtuser_3d::TextureRenderTarget* rt = creative_kernel::getKernel()->visScene()->textureRenderTarget();
 
-	Qt3DRender::QBlendEquationArguments* blend = m_plane->blendArguments();
-	if (blend)
+	if (rt)
 	{
-		blend->setSourceRgba(Qt3DRender::QBlendEquationArguments::SourceAlpha);
-		blend->setDestinationRgba(Qt3DRender::QBlendEquationArguments::OneMinusSourceAlpha);
+		Qt3DRender::QTexture2D* texture = rt->depthTexture();
+		if (texture)
+		{
+			setParameter("depthTexture", QVariant::fromValue(texture));
+		}
+		
+		texture = rt->worldPosTexture();
+		if (texture)
+		{
+			setParameter("positionTexture", QVariant::fromValue(texture));
+		}
+
+		texture = rt->worldNormalTexture();
+		if (texture)
+		{
+			setParameter("normalTexture", QVariant::fromValue(texture));
+		}
+
+		texture = rt->colorTexture();
+		if (texture)
+		{
+			setParameter("faceTexture", QVariant::fromValue(texture));
+		}
 	}
-
-	QVariantList values = QVariantList();
-	values << QVector3D(-50.0f, -50.0f, -50.0f) << QVector3D(50.0f, 50.0f, 50.0f);
-
-	//m_gridClip = m_grid->createParameter("clip[0]", values);
-	m_planeClip = m_plane->createParameter("clip[0]", values);
 }
 
 SplitPlane::~SplitPlane()
 {
 }
 
-void SplitPlane::setWidthHeight(float width, float height)
-{
-    m_plane->setGeometry(GridCreateHelper::createPlane(width, height));
-	//m_grid->setGeometry(GridCreateHelper::createPlane(width, height, false), Qt3DRender::QGeometryRenderer::Lines);
-}
-
 void SplitPlane::updateBox(Box3D box)
 {
-	QVector3D offset = QVector3D(20.0f, 20.0f, 20.0f);
-	QVariantList values = QVariantList();
-	values << (box.min - offset) << (box.max + offset);
+	QVector3D size = box.size();
+	float length = size.length();
+	float radius = length * 0.5;
 
-	//m_gridClip->setValue(values);
-	m_planeClip->setValue(values);
+	QVector3D min(-radius, -radius, -0.1);
+	QVector3D max(radius, radius, 0.1);
+	qtuser_3d::Box3D thinbox(min, max);
+	setGeometry(qtuser_3d::BoxCreateHelper::createWithTriangle(thinbox));
 }
+
+void SplitPlane::setGlobalNormal(const QVector3D& normal)
+{
+	setParameter("globalNormal", normal);
+}
+
+void SplitPlane::setTargetModel(creative_kernel::ModelN* model)
+{
+	if (model)
+	{
+		int num = model->primitiveNum();
+		int facebase = model->faceBase();
+
+		setParameter("faceRange", QPoint(facebase, num));
+	}else {
+		setParameter("faceRange", QPoint(0, 0));
+	}
+}
+
+

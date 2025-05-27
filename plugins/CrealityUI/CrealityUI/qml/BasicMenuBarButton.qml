@@ -21,7 +21,7 @@ Button {
     // set font
     font{
             family: Constants.labelFontFamily
-            pointSize: Constants.labelFontPointSize
+            pointSize: Constants.labelFontPointSize_9
             weight: Constants.labelFontWeight
 
         }

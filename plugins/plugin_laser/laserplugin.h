@@ -1,6 +1,6 @@
 #ifndef _NULLSPACE_LASERPLUGIN_1589979999085_H
 #define _NULLSPACE_LASERPLUGIN_1589979999085_H
-#include "creativeinterface.h"
+#include "qtusercore/module/creativeinterface.h"
 #include <QtQml/QQmlComponent>
 #include "laserscene.h"
 #include "drawobject.h"
@@ -9,8 +9,8 @@ class ZSliderInfo;
 class LaserPlugin: public QObject, public CreativeInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "creative.InfoPlugin")
-	Q_INTERFACES(CreativeInterface)
+	//Q_PLUGIN_METADATA(IID "creative.InfoPlugin")
+	//Q_INTERFACES(CreativeInterface)
 public:
     LaserPlugin(QObject* parent = nullptr);
     virtual ~LaserPlugin();

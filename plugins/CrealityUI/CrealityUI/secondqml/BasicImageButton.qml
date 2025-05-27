@@ -1,18 +1,21 @@
 import QtQuick 2.10
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0 as QQC2
-import CrealityUI 1.0
+import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
-import "qrc:/CrealityUI"
+
+import CrealityUI 1.0
+
 import ".."
 import "../qml"
+import "qrc:/CrealityUI"
+
 Item {
-    property var btnBorderW: 2
+    property int btnRadius: 0
+    property int btnBorderW: 2
     property var keystr: 0
     property var id: ""
-    property var btnImgUrl: ""
-    property var btnSelect: false
+    property string btnImgUrl: ""
+    property bool btnSelect: false
     signal sigBtnClicked(var key)
 
     id: basicButton
@@ -21,42 +24,30 @@ Item {
 
     Button {
         id : propertyButton
-        width: parent.width
-        height: parent.height
-       // contentItem: Item {
-            Rectangle {
-                anchors{
-                    horizontalCenter: parent.horizontalCenter
-                    verticalCenter: parent.verticalCenter
-                }
-                    width: parent.width - btnBorderW*2
-                    height: parent.height - btnBorderW*2
-                    opacity: 1
-                    color: (propertyButton.hovered || btnSelect) ? "#E9E9E9" : "#DBDBDB"
-                Image{
-                    width: parent.width
-                    height: parent.height  
-                    opacity: (propertyButton.hovered || btnSelect) ? 1 : 0.3 
-                    mipmap: true
-                    smooth: true
-                    cache: false
-                    asynchronous: true
-                    fillMode: Image.PreserveAspectFit
-                    source: btnImgUrl
-                }
-            }
-        //}
+        anchors.fill: parent
+
+        readonly property bool focused: hovered || btnSelect
 
         background: Rectangle {
-            width: parent.width
-            height: parent.height
-            color: "transparent"
+            anchors.fill: parent
+            radius: btnRadius
             border.width: btnBorderW
-            border.color: (propertyButton.hovered || btnSelect)? "#1E9BE2" : "#DBDBDB"
+            border.color: propertyButton.focused ? Constants.themeGreenColor : "#DBDBDB"
+            color: propertyButton.focused ? "#E9E9E9" : "#DBDBDB"
+
+            Image {
+                anchors.fill: parent
+                opacity: propertyButton.focused ? 1 : 0.3
+                mipmap: true
+                smooth: true
+                cache: false
+                asynchronous: true
+                fillMode: Image.PreserveAspectFit
+                source: btnImgUrl
+            }
         }
 
-        onClicked:
-        {
+        onClicked: {
             sigBtnClicked(keystr)
         }
     }

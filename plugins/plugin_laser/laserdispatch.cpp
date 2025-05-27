@@ -2,7 +2,7 @@
 #include "trimesh2/TriMesh.h"
 
 #include "qtuser3d/camera/cameracontroller.h"
-#include "qtuserqml/property/qmlpropertysetter.h"
+#include "qtusercore/property/qmlpropertysetter.h"
 
 #include "interface/camerainterface.h"
 #include "interface/selectorinterface.h"
@@ -62,10 +62,12 @@ void LaserDispatch::selectChanged(Pickable* pickable)
 {
 
 }
-void LaserDispatch::onBoxChanged(qtuser_3d::Box3D& box)
-{}
 
-void LaserDispatch::onSceneChanged(qtuser_3d::Box3D& box)
+void LaserDispatch::onBoxChanged(const qtuser_3d::Box3D& box)
+{
+}
+
+void LaserDispatch::onSceneChanged(const qtuser_3d::Box3D& box)
 {
     QList<ModelN*> selections = selectionms();
     if (selections.size() == 1)

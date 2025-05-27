@@ -1,4 +1,4 @@
 file(GLOB SRCS *.h *.cpp)
-set(LIBS ${QtQmlQ3dLibs} trimesh2 ${qtuser} UserSettings CreativeKernel BasicKernel mmesh qhullWrapper)
 
-__add_real_target(plugin_pick_bottom dll SOURCE ${SRCS} LIB ${LIBS} FOLDER plugin)
+list(APPEND LIBS BasicKernel)
+add_kernel_plugin(pick_bottom)

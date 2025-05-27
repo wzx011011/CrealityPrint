@@ -23,10 +23,6 @@ Item {
 	
 	function initState()
 	{
-		console.log("~~~~initState~~~~~")
-		//vectorRadio.checked = false
-		//blackRadio.checked = true
-		//grayRadio.checked = false
         idBlackWhiteBtn.sigBtnClicked()
 	}
 
@@ -143,12 +139,13 @@ Item {
             StyleCheckBox {
                 width: 100
                 height: 16
-                fontSize: 12
                 text: qsTr("Original Image Show")
-                checked: selShape.originalShow
-
+                checked: selShape ? selShape.originalShow : true
+                // fontSize: Constants.labelFontPointSize_12
                 onCheckedChanged:
                 {
+                    if(!selShape)
+                        return;
                     selShape.originalShow = !checked
                     originalImageShow(checked)
                 }
@@ -156,12 +153,13 @@ Item {
             StyleCheckBox {
                 width: 48
                 height: 16
-                fontSize: 12
                 text: qsTr("Reverse")
-                checked: selShape.reverse
-
+                checked: selShape ? selShape.reverse : true
+                // fontSize: Constants.labelFontPointSize_12
                 onCheckedChanged:
                 {
+                    if(!selShape)
+                        return;
                     selShape.reverse = !checked
                     reverseImage(checked)
                 }
@@ -173,10 +171,12 @@ Item {
                 height: 16
                 fontSize: 12
                 text: "M4"
-                checked: selShape.m4mode
+                checked: selShape ? selShape.m4mode : true
 
                 onCheckedChanged:
                 {
+                    if(!selShape)
+                        return;
                     selShape.m4mode = !checked
                     m4modeChanged(checked)
                 }
@@ -201,14 +201,14 @@ Item {
                     height: 28
                     text: qsTr("Flip Model")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                 }
                 BasicCombobox{
                     width: 120
                     height: 28
-                    font.pixelSize: 12
-                    currentIndex: selShape.filpModelValue//0
+                    font.pointSize: Constants.labelFontPointSize_10
+                    currentIndex: selShape ? selShape.filpModelValue : 0
 
                     model: ListModel {
                         id: modelType
@@ -218,6 +218,8 @@ Item {
                         ListElement {key:"Simultaneously"; modelData: qsTr("Simultaneously");}
                     }
                      onCurrentIndexChanged: {
+                         if(!selShape)
+                             return;
                          selShape.filpModelValue = currentIndex
                          flipModelValueChanged(currentIndex)
                      }
@@ -233,7 +235,7 @@ Item {
                     height: 28
                     text: qsTr("Threshold")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_9
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -243,7 +245,7 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     id : control
-                    value: selShape.threshold
+                    value: selShape ? selShape.threshold : 0
                     width: 74
                     maximumValue:255
                     minimumValue:1
@@ -251,6 +253,8 @@ Item {
                     height: 25
                     onValueChanged:
                     { 
+                        if(!selShape)
+                            return;
                         selShape.threshold = value
                         thresholdChanged(value)
                     }
@@ -261,6 +265,8 @@ Item {
                     horizontalAlignment: Text.AlignVCenter
                     text: control.value
                     onTextChanged: {
+                        if(!selShape)
+                            return;
                         if(Number(text) > 255)
                         {
                             selShape.threshold = 255
@@ -286,7 +292,7 @@ Item {
                     height: 28
                     text: qsTr("Contrast")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -296,7 +302,7 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     id : control1
-                    value: selShape.contrastValue
+                    value: selShape ? selShape.contrastValue : 0
                     width: 74
                     maximumValue:100
                     minimumValue:1
@@ -304,6 +310,8 @@ Item {
                     height: 25
                     onValueChanged:
                     { 
+                        if(!selShape)
+                            return;
                         selShape.contrastValue = value
                         contrastValueChanged(value)
                     }
@@ -314,6 +322,8 @@ Item {
                     horizontalAlignment: Text.AlignVCenter
                     text: control1.value
                     onTextChanged: {
+                        if(!selShape)
+                            return;
                         if(Number(text) > 100)
                         {
                             selShape.contrastValue = 100
@@ -337,9 +347,9 @@ Item {
                 StyledLabel{
                     width: 110
                     height: 28
-                    text: qsTr("Packing Density")
+                    text: qsTr("Sparse infill density")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -377,7 +387,7 @@ Item {
                     height: 28
                     text: qsTr("Brightness")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -387,7 +397,7 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     id : control3
-                    value: selShape.brightnessValue
+                    value: selShape ? selShape.brightnessValue : 0
                     width: 74
                     maximumValue:100
                     minimumValue:1
@@ -395,6 +405,8 @@ Item {
                     height: 25
                     onValueChanged:
                     {
+                        if(!selShape)
+                            return;
                         selShape.brightnessValue = value 
                         brightnessValueChanged(value)
                     }
@@ -405,6 +417,8 @@ Item {
                     horizontalAlignment: Text.AlignVCenter
                     text: control3.value
                     onTextChanged: {
+                        if(!selShape)
+                            return;
                         if(Number(text) > 100)
                         {
                             selShape.brightnessValue = 100
@@ -430,7 +444,7 @@ Item {
                     height: 28
                     text: qsTr("White")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     verticalAlignment: Qt.AlignVCenter
                 }
                 StyledSlider
@@ -440,7 +454,7 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     id : control4
-                    value: selShape.whiteValue
+                    value: selShape ? selShape.whiteValue : 0
                     width: 74
                     maximumValue:255
                     minimumValue:1
@@ -448,6 +462,8 @@ Item {
                     height: 25
                     onValueChanged:
                     { 
+                        if(!selShape)
+                            return;
                         selShape.whiteValue = value 
                         whiteValueChanged(value)
                     }
@@ -458,6 +474,8 @@ Item {
                     horizontalAlignment: Text.AlignVCenter
                     text: control4.value
                     onTextChanged: {
+                        if(!selShape)
+                            return;
                         if(Number(text) > 255)
                         {
                             selShape.whiteValue = 255
@@ -483,7 +501,7 @@ Item {
                     height: 28
                     text: qsTr("Density")
                     color: Constants.textColor
-                    font.pixelSize: 12
+                    font.pointSize: Constants.labelFontPointSize_10
                     verticalAlignment: Qt.AlignVCenter
                 }
                 BasicDialogTextField {
@@ -491,8 +509,10 @@ Item {
                     height: 28
                     horizontalAlignment: Text.AlignLeft
                     unitChar:"dot/mm"
-                    text: selShape.densityValue//"7"
+                    text: selShape ? selShape.densityValue : ""
                     onTextChanged: {
+                        if(!selShape)
+                            return;
                         if(text == "")
                         {
                         }
@@ -512,92 +532,4 @@ Item {
             }
         }
     }
-	
-    // ColumnLayout{
-    //     anchors.fill: parent
-    //     StyledLabel {
-    //         font.family: Constants.labelFontFamily
-    //         text:qsTr("Image")
-    //         font.pixelSize: 16
-    //     }
-    //     RowLayout {
-    //         ButtonGroup { id: idConfigurationGroup }
-    //         BasicRadioButton {
-    //             id: vectorRadio
-    //             text: qsTr("Vector")
-    //             checked: false
-    //             visible:false
-    //             ButtonGroup.group: idConfigurationGroup
-    //             font.pixelSize: 14
-    //             onClicked:
-    //             {
-    //                 vectorSelected()
-	// 				control.value = 127
-    //             }
-    //         }
-    //         BasicRadioButton {
-    //             id: blackRadio
-    //             text: qsTr("Black")
-    //             checked: true
-    //             ButtonGroup.group: idConfigurationGroup
-    //             font.pixelSize: 14
-    //             onClicked:
-    //             {
-    //                 blackSelected()
-	// 				control.value = 127
-    //             }
-    //         }
-    //         BasicRadioButton {
-    //             id: grayRadio
-    //             text: qsTr("Gray")
-    //             checked: false
-    //             ButtonGroup.group: idConfigurationGroup
-    //             font.pixelSize: 14
-    //             onClicked:
-    //             {
-    //                 graySelected()
-	// 				control.value = 127
-    //             }
-    //         }
-    //       }
-    //     Row {
-    //         spacing:5
-    //         StyledLabel {
-    //             id:idLabel2
-	// 			width: 80
-    //             font.family: Constants.labelFontFamily
-    //             text:qsTr("threshold")
-    //             font.pixelSize: 14
-	// 			verticalAlignment: Qt.AlignVCenter
-    //             horizontalAlignment: Qt.AlignLeft
-    //         }
-    //         StyledSlider//BasicSlider
-    //         {
-    //             id : control
-    //             value: 127
-    //             width: 120
-    //             y:-2
-    //             maximumValue:255
-    //             minimumValue:1
-    //             sliderHeight: 2
-    //             height: 25
-    //             onValueChanged:
-    //             {
-    //                 thresholdChanged(value)
-    //             }
-    //         }
-
-    //         StyledLabel {
-    //             id:idLabel3
-	// 			width: 40
-    //             font.family: Constants.labelFontFamily
-    //             text: Number(control.value).toFixed(0)
-    //             font.pixelSize: 14
-	// 			verticalAlignment: Qt.AlignVCenter
-    //             horizontalAlignment: Qt.AlignLeft
-    //         }
-    //     }
-
-    // }
-
 }

@@ -42,7 +42,6 @@ BasicDialog
                     text : qsTr("Export to")
                     onTextChanged:
                     {
-                        console.log("Preview Way changed !!")
                         idExportSelectCmb.displayText = idCmb_export.get(idExportSelectCmb.currentIndex).name
                     }
                 }

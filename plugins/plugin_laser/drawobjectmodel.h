@@ -1,6 +1,7 @@
 #ifndef DRAWOBJECTMODEL_H
 #define DRAWOBJECTMODEL_H
 
+#include <QObject>
 #include <QAbstractListModel>
 #include "drawobject.h"
 class DrawObjectModel : public QAbstractListModel
@@ -31,6 +32,12 @@ public slots:
     DrawObject* getData(int index);
     DrawObject* getDataByQmlObj(QObject *obj);
     int getIndex(QObject *obj);
+
+public:
+  Q_PROPERTY(int modelCount READ getModelCount NOTIFY sigModelCountChanged);
+  Q_INVOKABLE int getModelCount() const;
+  Q_SIGNAL void sigModelCountChanged(int model_count);
+
 private:
     QList<DrawObject*> m_drawItemList;
 };

@@ -1,11 +1,10 @@
 #include "letterplugin.h"
 #include "lettercommand.h"
-#include "kernel/abstractkernel.h"
 #include "kernel/translator.h"
 #include "kernel/kernelui.h"
+#include "interface/commandinterface.h"
 
 using namespace creative_kernel;
-
 LetterPlugin::LetterPlugin(QObject* parent) : QObject(parent), m_command(nullptr)
 {
 
@@ -29,55 +28,30 @@ QString LetterPlugin::info()
 void LetterPlugin::initialize()
 {
 	m_command = new LetterCommand(this);
-	m_command->setName(tr("Letter"));
-	/*m_command->setEnabledIcon("qrc:/UI/photo/letter.png");
-	m_command->setPressedIcon("qrc:/UI/photo/letter_d.png");
-	m_command->setDisabledIcon("qrc:/UI/photo/letter_f.png");*/
-	slotThemeChanged();
+	m_command->setName(tr("Letter") + ": T");
 
 	m_command->setSource("qrc:/letter/letter/info.qml");
 
-    AbstractKernelUI::getSelf()->addToolCommand(m_command, "left", 5);
-
-	disconnect(Translator::getInstance(), SIGNAL(languageChanged()), this, SLOT(slotLanguageChanged()));
-	connect(Translator::getInstance(), SIGNAL(languageChanged()), this, SLOT(slotLanguageChanged()));
-
-	disconnect(getKernelUI(), SIGNAL(sigChangeThemeColor()), this, SLOT(slotThemeChanged()));
-	connect(getKernelUI(), SIGNAL(sigChangeThemeColor()), this, SLOT(slotThemeChanged()));
+  getKernelUI()->addToolCommand(m_command,
+    qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_OTHER,
+    qtuser_qml::ToolCommandType::LETTER);
+	addUIVisualTracer(this,this);
 }
 
 void LetterPlugin::uninitialize()
 {
-	AbstractKernelUI::getSelf()->removeToolCommand(m_command, "left");
+  getKernelUI()->removeToolCommand(m_command, qtuser_qml::ToolCommandGroupType::LEFT_TOOLBAR_OTHER);
 }
 
-void LetterPlugin::slotLanguageChanged()
+void LetterPlugin::onThemeChanged(ThemeCategory category)
+{
+	m_command->setDisabledIcon("qrc:/UI/photo/cToolBar/letter_dark_disable.svg");
+	m_command->setEnabledIcon(category == ThemeCategory::tc_dark ? "qrc:/UI/photo/cToolBar/letter_dark_default.svg" : "qrc:/UI/photo/cToolBar/letter_light_default.svg");
+	m_command->setHoveredIcon(category == ThemeCategory::tc_dark ? "qrc:/UI/photo/leftBar/letter_pressed.svg" : "qrc:/UI/photo/leftBar/letter_lite.svg");
+	m_command->setPressedIcon("qrc:/UI/photo/cToolBar/letter_dark_press.svg");
+}
+
+void LetterPlugin::onLanguageChanged(creative_kernel::MultiLanguage language)
 {
 	m_command->setName(tr("Letter"));
-}
-
-void LetterPlugin::slotThemeChanged()
-{
-	QSettings setting;
-	setting.beginGroup("themecolor_config");
-	int nThemeType = setting.value("themecolor_config", 0).toInt();
-	setting.endGroup();
-
-	m_command->setEnabledIcon(nThemeType == 0 ? "qrc:/UI/photo/letter.png": "qrc:/UI/photo/letter2.png");
-	m_command->setPressedIcon(nThemeType == 0 ? "qrc:/UI/photo/letter_d.png": "qrc:/UI/photo/letter_d.png");
-	m_command->setDisabledIcon(nThemeType == 0 ? "qrc:/UI/photo/letter.png": "qrc:/UI/photo/letter.png");
-}
-
-void LetterPlugin::visibleLeftBarButton(SlicerManager::SLICERTYPE type)
-{
-	if (type == SlicerManager::SLICERTYPE::DLP && !m_command->enabled())
-	{
-		AbstractKernelUI::getSelf()->addToolCommand(m_command, "left");
-		m_command->setEnabled(true);
-	}
-	else if (type == SlicerManager::SLICERTYPE::FDM && m_command->enabled())
-	{
-		AbstractKernelUI::getSelf()->removeToolCommand(m_command, "left");
-		m_command->setEnabled(false);
-	}
 }

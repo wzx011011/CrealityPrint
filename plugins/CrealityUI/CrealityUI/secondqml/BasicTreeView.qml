@@ -165,7 +165,7 @@ Rectangle{
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                             text: name   //modelData.text
-                            font.pixelSize: 14
+                            font.pointSize: Constants.labelFontPointSize_12
                             font.family: "Microsoft YaHei UI"
                             color: "black"//Qt.rgba(101/255,1,1,1)
                         }

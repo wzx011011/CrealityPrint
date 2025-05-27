@@ -2,38 +2,68 @@
 #define _NULLSPACE_SPLITJOB_1591256424823_H
 #include <QtCore/QObject>
 #include "qtusercore/module/job.h"
-#include "qtuser3d/math/plane.h"
 
-#include "trimesh2/TriMesh.h"
+#include "data/modeln.h"
+#include "data/modelgroup.h"
 
-namespace creative_kernel
+#include "cxkernel/data/meshdata.h"
+
+struct CutParam
 {
-	class ModelN;
-}
+	bool cut2Parts;
+	double gap;
+	trimesh::vec3 position;
+	trimesh::vec3 normal;
+	bool isCutGroup;
+};
 
 class SplitJob: public qtuser_core::Job
 {
+	Q_OBJECT
 public:
 	SplitJob(QObject* parent = nullptr);
 	virtual ~SplitJob();
 
-	void setModel(creative_kernel::ModelN* model);
-	void setPlane(const qtuser_3d::Plane& plane);
+	void setParts(const QList<creative_kernel::ModelN*>& models, creative_kernel::ModelGroup* modelGroup);
+	void setModelGroups(const QList<creative_kernel::ModelGroup*>& modelGroups);
+
+	void setCutParam(const CutParam& param);
+
+	void prepareWork();
+
+signals:
+	void beforeModifyScene();
+	void onSplitSuccess();
+
 protected:
+	bool isTriMeshAtPlaneForward(trimesh::TriMesh* mesh, trimesh::vec3 pos, trimesh::vec3 dir);
+	QVector3D getOffset(bool isForward, trimesh::vec3 direction, float gap);
 	QString name() override;
 	QString description() override;
     void work(qtuser_core::Progressor* progressor) override;
     void failed() override; 
     void successed(qtuser_core::Progressor* progressor) override;
 
-	void lines2polygon(std::vector<trimesh::vec3>& lines, std::vector<std::vector<int>>& polygons, std::vector<trimesh::vec3>& uniPoints);
 protected:
-	creative_kernel::ModelN* m_model;
-	qtuser_3d::Plane m_plane;
+	/* operate parts in single group */
+	QList<creative_kernel::ModelN*> m_models;
+	creative_kernel::ModelGroup* m_modelGroup {NULL};
 
-	std::vector<trimesh::TriMesh*> m_meshes;
-
-	std::vector<std::vector<int>> m_polygons;
-	std::vector<trimesh::vec3> m_points;
+	/* operate groups */
+	QList<creative_kernel::ModelGroup*> m_modelGroups;
+	
+	CutParam m_param;
+	struct SplitResult
+	{
+		// creative_kernel::ModelGroup* modelGroup = NULL;
+		creative_kernel::ModelN* model = NULL;
+		//QList<cxkernel::MeshDataPtr> datas;
+		QList<int> splitIDs; 
+		QList<int> meshIDs;
+		QList<bool> directions;
+		QList<QVector3D> centers;
+		QList<QVector3D> centerOffsets;;
+	};
+	QMap<creative_kernel::ModelGroup*, QList<SplitResult>> m_results;
 };
 #endif // _NULLSPACE_SPLITJOB_1591256424823_H

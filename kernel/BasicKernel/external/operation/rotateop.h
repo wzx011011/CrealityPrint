@@ -1,85 +1,116 @@
 #ifndef _NULLSPACE_ROTATEOP_1589770383921_H
 #define _NULLSPACE_ROTATEOP_1589770383921_H
 #include "basickernelexport.h"
-#include "qtuser3d/scene/sceneoperatemode.h"
-#include "qtuser3d/module/pickableselecttracer.h"
-
-#include <QVector3D>
-#include "qtuser3d/entity/rotatehelperentity.h"
+#include <QPointer>
+#include <QQmlComponent>
+#include "entity/rotate3dhelperentity.h"
 #include "data/modeln.h"
 #include "data/undochange.h"
-#include "kernel/abstractkernel.h"
+#include "data/interface.h"
+#include "qtuser3d/scene/sceneoperatemode.h"
+#include "qtuser3d/module/manipulatecallback.h"
 
-class BASIC_KERNEL_API RotateOp : public qtuser_3d::SceneOperateMode
-	, public qtuser_3d::SelectorTracer
+#include <QVector3D>
+#include "moveoperatemode.h"
+#include "scaleop.h"
+
+namespace creative_kernel
 {
-	enum class TMode
+	class BASIC_KERNEL_API RotateOp : public MoveOperateMode
+		, public ModelNSelectorTracer
+		, public qtuser_3d::RotateCallback
+		, public SpaceTracer
 	{
-		null,
-		x,
-		y,
-		z,
+		Q_OBJECT
+	public:
+		RotateOp(QObject* parent = nullptr);
+		virtual ~RotateOp();
+
+		void reset();
+		QVector3D rotate();
+		void setRotate(QVector3D rotate);
+		//void startRotate();
+
+		bool getShowPop();
+
+	signals:
+		void rotateChanged();
+		void mouseLeftClicked();
+
+	protected:
+		void onAttach() override;
+		void onDettach() override;
+		void onLeftMouseButtonPress(QMouseEvent* event) override;
+		void onLeftMouseButtonRelease(QMouseEvent* event) override;
+		void onLeftMouseButtonMove(QMouseEvent* event) override;
+		void onLeftMouseButtonClick(QMouseEvent* event) override;
+		void onWheelEvent(QWheelEvent* event) override;
+
+		void onHoverEnter(QHoverEvent* event);
+		void onHoverLeave(QHoverEvent* event);
+		void onHoverMove(QHoverEvent* event);
+
+		void onSelectionsChanged() override;
+		void onSceneChanged(const trimesh::dbox3& box) override;
+
+		void onModelGroupModified(ModelGroup* _model_group, const QList<ModelN*>& removes, const QList<ModelN*>& adds) override;
+
+		void onStartRotate() override;
+		void onRotate(QQuaternion q) override;
+		void onEndRotate(QQuaternion q) override;
+		void setRotateAngle(QVector3D axis, float angle) override;
+
+		bool shouldMultipleSelect() override;
+
+	protected:
+		void setSelectedModel(QList<creative_kernel::ModelN*> models);
+
+		void buildFromSelections();
+		void rotateByAxis(const QList<creative_kernel::ModelN*>& models, QVector3D axis, float angle);
+
+		void updateHelperEntity();
+
+		void setTipObjectPos(const QPoint& pos);
+		void setTipObjectVisible(bool visible);
+		bool getTipObjectVisible();
+
+	protected:
+		void reset_models(QList<creative_kernel::ModelN*>& models);
+		QVector3D rotate_models(QList<creative_kernel::ModelN*>& models);
+		void setRotate_models(QVector3D rotate, QList<creative_kernel::ModelN*>& models);
+		
+		void reset_groups(QList<creative_kernel::ModelGroup*>& groups);
+		QVector3D rotate_groups(QList<creative_kernel::ModelGroup*>& groups);
+		void setRotate_groups(QVector3D rotate, QList<creative_kernel::ModelGroup*>& groups);
+		
+
+		void onStartRotate_models(QList<creative_kernel::ModelN*>& models);
+		void onRotate_models(QQuaternion q, QList<creative_kernel::ModelN*>& models);
+		void onEndRotate_models(QQuaternion q, QList<creative_kernel::ModelN*>& models);
+
+		void onStartRotate_groups(QList<creative_kernel::ModelGroup*>& groups);
+		void onRotate_groups(QQuaternion q, QList<creative_kernel::ModelGroup*>& groups);
+		void onEndRotate_groups(QQuaternion q, QList<creative_kernel::ModelGroup*>& groups);
+
+	private:
+
+		qtuser_3d::Rotate3DHelperEntity* m_helperEntity;
+
+		float m_saveAngle;
+
+		bool m_isRoate;
+		bool m_isMoving{ false };
+
+		QList<creative_kernel::ModelN*> m_selectedModels;
+		QVector3D m_displayRotate;
+		bool m_bShowPop = false;
+
+		QPointer<QQmlComponent> tip_component_;
+		QPointer<QObject> tip_object_;
+
+		trimesh::dvec3 m_rotateCenter;
+
+		QList<GroupBoundingBox> m_lastGroupBoxes;
 	};
-
-	Q_OBJECT
-public:
-	RotateOp(creative_kernel::AbstractKernelUI* pKernel, QObject* parent = nullptr);
-	virtual ~RotateOp();
-
-	void setMessage(bool isRemove);
-	bool getMessage();
-
-	void reset();
-	QVector3D rotate();
-	void setRotate(QVector3D rotate);
-    void startRotate();
-	bool getShowPop();
-	
-
-signals:
-	void rotateChanged();
-	void supportMessage();
-	void mouseLeftClicked();
-protected:
-	void onAttach() override;
-	void onDettach() override;
-	void onLeftMouseButtonPress(QMouseEvent* event) override;
-	void onLeftMouseButtonRelease(QMouseEvent* event) override;
-	void onLeftMouseButtonMove(QMouseEvent* event) override;
-	void onLeftMouseButtonClick(QMouseEvent* event) override;
-	void onSelectionsChanged() override;
-	void selectChanged(qtuser_3d::Pickable* pickable) override;
-
-	void onMachineSelectChange() override;
-protected:
-	void setSelectedModel(QList<creative_kernel::ModelN*> models);
-
-	void buildFromSelections();
-	QVector3D process(const QPoint& point, creative_kernel::ModelN* model);
-	void process(const QPoint& point, QVector3D& axis, float& angle);
-	void getProperPlane(QVector3D& planeCenter, QVector3D& planeDir, qtuser_3d::Ray& ray, creative_kernel::ModelN* model);
-    void rotateByAxis(QVector3D& axis,float & angle);
-
-	void updateHelperEntity();
-
-	void perform(const QPoint& point, bool reversible, bool needcheck);
-private:
-	qtuser_3d::RotateHelperEntity* m_helperEntity;
-
-	QVector3D m_spacePoint;
-	QList<QVector3D> m_spacePoints;
-	TMode m_mode;
-
-	creative_kernel::AbstractKernelUI* m_pKernelUI;
-
-	float m_saveAngle;
-
-	bool m_isRoate;
-
-	QList<creative_kernel::ModelN*> m_selectedModels;
-    QVector3D m_displayRotate;
-    bool m_bShowPop=false;
-
-	QList<creative_kernel::NUnionChangedStruct> m_changes;
-};
+}
 #endif // _NULLSPACE_ROTATEOP_1589770383921_H

@@ -27,7 +27,7 @@ Column{
     signal sigPanelVidelBtnClick()
 
     visible: {
-         isWaitItem ? updateWaitingContentPanelHeight() :updateContentPanelHeight()
+        isWaitItem ? updateWaitingContentPanelHeight() :updateContentPanelHeight()
         if((IotData.taskListBtnStatus === "printing")&&(printingCnt != 0))
         {
             return true
@@ -86,7 +86,7 @@ Column{
         }
         else{}
 
-       
+
     }
 
     function updateQMLData(id)
@@ -116,17 +116,17 @@ Column{
                         }
                         else
                         {
-                            var obj = componentGcode.createObject(idChildTaskItemGrid, {"deviceName": IotData.groupChildTaskPrintNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "gcodeName": IotData.groupChildTaskGcodeNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "progressBarValue": IotData.groupChildTaskPrintProgressMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "printStatus": IotData.groupChildTaskStatusMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "printTimes": IotData.groupChildTaskPrintTimeMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "printImgSource": IotData.groupChildTaskPrintPictureMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]], 
-                                    "dnName": IotData.groupChildDeviceNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
-                                    "isCameraShow": IotData.groupChildTaskVideoMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
-                                    "taskId": IotData.groupDeviceModelTypeTaskMap[series_id][key],
-                                    "isWaitingTaskItem": isWaitItem,
-                                    "printLeftTimes": IotData.groupChildTaskPrintLeftTimeMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]]})
+                            var obj = componentGcode.createObject(idChildTaskItemGrid, {"deviceName": IotData.groupChildTaskPrintNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "gcodeName": IotData.groupChildTaskGcodeNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "progressBarValue": IotData.groupChildTaskPrintProgressMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "printStatus": IotData.groupChildTaskStatusMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "printTimes": IotData.groupChildTaskPrintTimeMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "printImgSource": IotData.groupChildTaskPrintPictureMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "dnName": IotData.groupChildDeviceNameMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "isCameraShow": IotData.groupChildTaskVideoMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]],
+                                                                      "taskId": IotData.groupDeviceModelTypeTaskMap[series_id][key],
+                                                                      "isWaitingTaskItem": isWaitItem,
+                                                                      "printLeftTimes": IotData.groupChildTaskPrintLeftTimeMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]]})
                             obj.sigConformPrinterStatus.connect(conformPrinterStatus)
                             obj.sigControlChildTaskStatus.connect(controlChildTaskStatus)
                             childTaskItemMap[IotData.groupDeviceModelTypeTaskMap[series_id][key]] = obj
@@ -240,7 +240,7 @@ Column{
         for(var key in childTaskItemMap)
         {
             var strkey = "-%1-".arg(key)
-			if(strkey != "-0-")
+            if(strkey != "-0-")
             {
                 childTaskItemMap[key].destroy()
                 delete childTaskItemMap[key]
@@ -258,7 +258,7 @@ Column{
         width: parent.width
         height: isBtnVisible ? 40 : 0
         visible: isBtnVisible
-        //  
+        //
         //padding : 0
         MouseArea{
             //anchors.fill: parent
@@ -276,13 +276,13 @@ Column{
         contentItem: Item{
             width: parent.width
             height: parent.height
-            z:idTitleBtn.z -1 
+            z:idTitleBtn.z -1
             Row{
                 anchors.left: parent.left
                 anchors.leftMargin: 10
                 width: parent.width - 10
                 height: parent.height
-                spacing: 8 
+                spacing: 8
                 Rectangle{
                     anchors{
                         //horizontalCenter: parent.horizontalCenter
@@ -296,7 +296,7 @@ Column{
                 StyledLabel{
                     width: 100
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: seriesName
                     elide: Text.ElideRight
@@ -306,7 +306,7 @@ Column{
                 StyledLabel{
                     width: 100
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: qsTr("Device Count") + ": "
                     verticalAlignment: Text.AlignVCenter
@@ -315,7 +315,7 @@ Column{
                 StyledLabel{
                     width: 20
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: deviceNum
                     verticalAlignment: Text.AlignVCenter
@@ -324,7 +324,7 @@ Column{
                 StyledLabel{
                     width: 100
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: qsTr("Printing") + ": "
                     verticalAlignment: Text.AlignVCenter
@@ -333,7 +333,7 @@ Column{
                 StyledLabel{
                     width: 20
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: printingCnt
                     verticalAlignment: Text.AlignVCenter
@@ -342,7 +342,7 @@ Column{
                 StyledLabel{
                     width: 100
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: qsTr("Waiting") + ": "
                     visible: false
@@ -352,7 +352,7 @@ Column{
                 StyledLabel{
                     width: 20
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     visible: false
                     text: waitingCnt
@@ -362,7 +362,7 @@ Column{
                 StyledLabel{
                     width: 100
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: qsTr("Allocating") + ": "
                     verticalAlignment: Text.AlignVCenter
@@ -371,7 +371,7 @@ Column{
                 StyledLabel{
                     width: 20
                     height: parent.height
-                    font.pixelSize:14
+                    font.pointSize: Constants.labelFontPointSize_12
                     color: "#333333"
                     text: finishCnt
                     verticalAlignment: Text.AlignVCenter
@@ -388,7 +388,7 @@ Column{
                         //horizontalCenter: parent.horizontalCenter
                         verticalCenter: parent.verticalCenter
                     }
-                    z:idTitleBtn.z + 1 
+                    z:idTitleBtn.z + 1
                     width: 12
                     height: 15
                     btnImgUrl: isFoldPanelCameraShow ? "qrc:/UI/photo/print_camera_h.png" : "qrc:/UI/photo/print_camera.png"

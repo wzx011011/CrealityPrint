@@ -1,9 +1,11 @@
-﻿pragma Singleton
+﻿//pragma Singleton
 import QtQuick 2.10
 
 QtObject {
 	property var jsonMaps;
 	property var globalSettingKeys;
+	property var classListLength : 0;
+	property var paramListLength : 0;
 
 	//一般参数
 	property var layer_height: 0
@@ -34,12 +36,10 @@ QtObject {
 
 	Component.onCompleted:{
 		jsonMaps = actionCommands.getJsonMap()
-		console.log("----jsonMaps onCompleted")
 		initSettingData()
 	}
 
-	function updateSettingData()
-	{
+	function updateSettingData(){
 		//一般
 		layer_height = getSettingValue("layer_height")
 		line_width = getSettingValue("line_width")
@@ -130,6 +130,7 @@ QtObject {
 	{
 		console.log("getClassType beg")
 		var keyList = actionCommands.getClassTypeList()
+		classListLength = keyList.length
 		return keyList
 	}
 
@@ -137,27 +138,23 @@ QtObject {
 	{
 		console.log("getAllSettingKeyList beg")
 		var keyList = actionCommands.getAllSettingKey()
+		paramListLength = keyList.length
 		return keyList
 	}
 	
 	function initSettingValue(key)
 	{
-		//console.log("----initSettingValue beg: key=" + key)
-		
 		var rst
 		var showvale
 		var value
-		//console.log("----initSettingValue getSourceValue=" + jsonMaps[key].getSourceValue())
-		
+
 		var type = jsonMaps[key].getType();
 		showvale = jsonMaps[key].getShowValue();
 		if(type == "enum" || type == "[int]" || type == "str" || type == "polygons")
 		{
-			//console.log("----initSettingValue enum: key=" + key)
 			value = jsonMaps[key].getSourceValue();
 			if(value.indexOf("eval") != -1 || value.indexOf("getEnumValue") != -1)
 			{
-				//console.log("----initSettingValue value.indexOf('eval') != -1")
 				value = eval(value)
 			}
 		}
@@ -165,8 +162,6 @@ QtObject {
 		{
 			value = eval(jsonMaps[key].getSourceValue());
 		}
-		//console.log("----initSettingValue showvale=" + showvale)
-		//console.log("----initSettingValue value=" + value)
 		
 		if(type == "float")
 		{
@@ -210,18 +205,14 @@ QtObject {
 			rst = value
 			jsonMaps[key].setIsCustomSetting(false)
 		}
-		//console.log("----initSettingValue rst=" + rst)
 		return rst;
 	}
 	
 	function getSettingValue(key)
 	{
-		//console.log("----getSettingValue beg: key=" + key)
-		
 		var rst
 		var showvale
 		var value
-		//console.log("----getSettingValue getValue=" + jsonMaps[key].getValue())
 		
 		var type = jsonMaps[key].getType();
 		showvale = jsonMaps[key].getShowValue();
@@ -239,9 +230,6 @@ QtObject {
 			value = eval(jsonMaps[key].getValue());
 		}
 
-		//console.log("getSettingValue showvale=" + showvale)
-		//console.log("getSettingValue value=" + value)
-		
 		if(type == "float")
 		{
 			showvale = Number(showvale).toFixed(2)
@@ -283,7 +271,6 @@ QtObject {
 		}
 
 		jsonMaps[key].setValue(key,rst)
-		//console.log("----getSettingValue rst=" + rst)
 		return rst;
 	}
 	
@@ -315,7 +302,6 @@ QtObject {
 	{
 		if(value == "")
 		{
-			console.log("----checkSettingValue value is empty")
 			return false;
 		}
 		
@@ -323,23 +309,18 @@ QtObject {
 		var min = eval(jsonMaps[key].getMin());
 		var max = eval(jsonMaps[key].getMax());
 		
-		//console.log("----checkSettingValue value=" + value + " max = " + max + " min = " + min)
-		
 		if(type == "float" || type == "int")
 		{
 			if(min != "" && Number(value) < Number(min).toFixed(3))
 			{
-				console.log("----checkSettingValue min false, min: " + min + " key: " + key)
 				return false
 			}
 			else if(max != "" && Number(value) > Number(max).toFixed(3))
 			{
-				console.log("----checkSettingValue max false")
 				return false
 			}
 			else
 			{
-				//console.log("----checkSettingValue true")
 				return true
 			}
 		}
@@ -363,8 +344,6 @@ QtObject {
 	
 	function setSettingValue(key,value)
 	{
-		//console.log("----setSettingValue beg: key=" + key)
-		
 		var valuecale;
 		var type = jsonMaps[key].getType();
 		if(type == "float")

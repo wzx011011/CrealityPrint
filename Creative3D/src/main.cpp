@@ -1,12 +1,32 @@
-#include "qtuserqml/main/main.h"
-#include <QtQml/QQmlContext>
-#include <QtQml/QQmlEngine>
-#include <QtCore/QCoreApplication>
-#include <QtSerialPort/QSerialPort>
+#include "cxkernel/kernel/entry.h"
+#include "kernel/kernel.h"
 
-#include "scence3dapp.h"
+#include <QtWidgets/QAction>
+#include <QtCore/QStandardPaths>
+#include <QtWebSockets/QWebSocket>
+#include <QtQuick/QQuickItem>
+#include <QResource>
+#include <QtXml/QDomDocument>
+//#include <windows.h>
 
-int main(int argc, char *argv[])
+void dumpFunc()
 {
-	return qtuser_qml::qmlAppMain(argc, argv, scene3dapp_startEngine);
+    QAction action;
+    QWebSocket socket;
+    QDomDocument doc;
+    QQuickItem item;
+}
+int main(int argc, char* argv[])
+{
+    //HINSTANCE p = LoadLibrary("C:\\Program Files\\RenderDoc\\renderdoc.dll");
+    //if (p) {
+    //    qDebug() << "load success";
+    //}
+    //else {
+    //    qDebug() << "load fail";
+    //}
+
+    dumpFunc();
+    cxkernel::AppModuleCreateFunc func = creative_kernel::createC3DContext;
+    return cxkernel::appMain(argc, argv, func);
 }

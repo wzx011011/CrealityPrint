@@ -2666,8 +2666,6 @@ Entity {
         onClicked:{
             if (pick.button === PickEvent.LeftButton)
             {
-                console.log("~~~~~~~~~~~~~~~~~~")
-                console.log("vertexPositionSurface1 at:triangleIndex =  " + pick.triangleIndex)
                 changeShowPos(3, 2)
             }
         }
@@ -2752,8 +2750,6 @@ Entity {
         onClicked:{
             if (pick.button === PickEvent.LeftButton)
             {
-                console.log("~~~~~~~~~~~~~~~~~~")
-                console.log("vertexPositionSurface1 at:triangleIndex =  " + pick.triangleIndex)
                 changeShowPos(3, 3)
             }
         }
@@ -2839,8 +2835,6 @@ Entity {
         onClicked:{
             if (pick.button === PickEvent.LeftButton)
             {
-                console.log("~~~~~~~~~~~~~~~~~~")
-                console.log("vertexPositionSurface1 at:triangleIndex =  " + pick.triangleIndex)
                 changeShowPos(3, 4)
             }
         }
@@ -2926,8 +2920,6 @@ Entity {
         onClicked:{
             if (pick.button === PickEvent.LeftButton)
             {
-                console.log("~~~~~~~~~~~~~~~~~~")
-                console.log("vertexPositionSurface1 at:triangleIndex =  " + pick.triangleIndex)
                 changeShowPos(3, 5)
             }
         }
@@ -3013,8 +3005,6 @@ Entity {
         onClicked:{
             if (pick.button === PickEvent.LeftButton)
             {
-                console.log("~~~~~~~~~~~~~~~~~~")
-                console.log("vertexPositionSurface1 at:triangleIndex =  " + pick.triangleIndex)
                 changeShowPos(3, 6)
             }
         }

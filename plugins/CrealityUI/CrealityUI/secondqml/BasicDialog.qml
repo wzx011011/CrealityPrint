@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import QtQuick.Controls 2.12
 //import QtQuick.Layouts 1.3
 import QtQuick.Window 2.0
@@ -10,15 +10,18 @@ Window {
     width: 300
     height: 200
     property string title: "baisc dialog"
-    property var titleIcon: ""//"qrc:/UI/photo/LOGO.png"
-    property var closeIcon: closeButton.hovered ? "qrc:/UI/photo/closeBtn_d.png" : "qrc:/UI/photo/closeBtn.png"//"qrc:/UI/photo/closeBtn.png"
+    property var titleIcon: ""//"qrc:/scence3d/res/logo.png"
+    property string closeIcon: closeButton.hovered ? "qrc:/UI/photo/closeBtn_d.svg" : "qrc:/UI/photo/closeBtn.svg"//"qrc:/UI/photo/closeBtn.png"
     // property int titleIconWidth: 30     //defalut 30
     property string titleBackground:  Constants.dialogTitleColor //"#061F3B"     //
     property string contentBackground: Constants.themeColor
     property string titleColor: Constants.dialogTitleTextColor
+    property alias closeEnabled: closeButton.enabled
     property var updateBtnVisible: false
     property var shadowEnabled: true
     property var titleHeight: 30* screenScaleFactor
+
+    property int radius: 5 * screenScaleFactor
 
     flags: Qt.FramelessWindowHint | Qt.Dialog
     // A model window prevents other windows from receiving input events. Possible values are Qt.NonModal (the default), Qt.WindowModal, and Qt.ApplicationModal.
@@ -47,8 +50,10 @@ Window {
         implicitHeight: 30* screenScaleFactor
         color: titleBackground
         z:mainLayout.z + 1
+        radius: eo_askDialog.radius
         border.color: Constants.dialogBorderColor
         border.width: 1
+
         //标题栏
         Rectangle{
             border.width: 0
@@ -72,11 +77,12 @@ Window {
             //        border.width: 1
             MouseArea{
                 id: mouseControler
-                property point clickPos: "0,0"
+                width: parent.width
+                height: parent.height
                 property var dialogX: "0"
                 property var dialogY: "0"
-                height: parent.height
-                width: parent.width
+                property point clickPos: "0,0"
+
                 //title
                 Image {
                     id: idTitleImg
@@ -85,27 +91,23 @@ Window {
                     source: titleIcon
                     anchors.verticalCenter: parent.verticalCenter
                 }
-                Text{
+                Text {
                     text: title
                     font.family: Constants.labelFontFamily
                     font.weight: Constants.labelFontWeight
-                    font.pointSize: Constants.labelFontPointSize
+                    font.pointSize: Constants.labelFontPointSize_9
                     anchors.left: parent.left
                     anchors.leftMargin: 10 + idTitleImg.width
                     anchors.verticalCenter: parent.verticalCenter
                     color: titleColor//"white"
                 }
 
-                onPressed: {
-                    clickPos = Qt.point(mouse.x,mouse.y)
-                }
+                onPressed: clickPos = Qt.point(mouse.x, mouse.y)
 
                 onPositionChanged: {
-                    //鼠标偏移量motai
-                    var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                    //如果mainwindow继承自QWidget,用setPos
-                    eo_askDialog.setX(eo_askDialog.x+delta.x)
-                    eo_askDialog.setY(eo_askDialog.y+delta.y)
+                    var cursorPos = WizardUI.cursorGlobalPos()
+                    eo_askDialog.x = cursorPos.x - clickPos.x
+                    eo_askDialog.y = cursorPos.y - clickPos.y
                 }
             }
             Button{
@@ -148,7 +150,6 @@ Window {
                 anchors.right: parent.right
                 // anchors.rightMargin: 10
                 onClicked: {
-                    console.log("close button clicked.");
                     eo_askDialog.visible = false;
                     dialogClosed()
                 }
@@ -167,14 +168,14 @@ Window {
                 background: Rectangle
                 {
                     anchors.fill: parent
-                    color: closeButton.hovered? "red"/*"#3968E9"*/:"transparent"
+                    color: closeButton.hovered? Constants.left_model_list_close_button_hovered_color:"transparent"
                     //opacity: enabled ? 1 : 0.3
 
                 }
             }
         }
     }
-    
+
 
     Rectangle
     {

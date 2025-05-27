@@ -12,7 +12,6 @@ TextField {
     property var value:0
     property var userWidth: 160
     property var uesrHeight: 28
-    property alias fontPixelSize: unit.font.pixelSize
     property alias fontPointSize: unit.font.pointSize
     selectByMouse: true
     signal valueEdited

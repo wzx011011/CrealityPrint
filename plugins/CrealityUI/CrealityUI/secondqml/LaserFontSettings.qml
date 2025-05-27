@@ -10,31 +10,30 @@ Column {
     property alias fontFamily: idFontFamily.currentText
     property alias fontSize: idFontSize.text
     property var fontStyle //:idFontStyles.currentText
-    width: 300
-    height: 130
-	spacing:5
+    width: 300* screenScaleFactor
+    height: 130* screenScaleFactor
+    spacing:5* screenScaleFactor
     Rectangle{
         width: parent.width
-        height: 5
+        height: 5* screenScaleFactor
         color: "transparent"
     }
     Row{
-        spacing:25
+        spacing:25* screenScaleFactor
         StyledLabel {
             text: qsTr("Text")
-            font.pixelSize: 12
-			width: 90
-            height: 28
-			verticalAlignment: Qt.AlignVCenter
-			horizontalAlignment: Qt.AlignLeft
+            font.pointSize: Constants.labelFontPointSize_10
+            width: 90* screenScaleFactor
+            height: 28* screenScaleFactor
+            verticalAlignment: Qt.AlignVCenter
+            horizontalAlignment: Qt.AlignLeft
         }
         BasicDialogTextField {
             id:idTextArea
-            width: 120
-            height: 28
+            width: 120* screenScaleFactor
+            height: 28* screenScaleFactor
             baseValidator:RegExpValidator { regExp: /^\S{100}$/ }
             placeholderText: qsTr("Please input text")
-            font.pointSize: 12
             text: "Creality"
             onTextChanged: {
                 fontTextChanged(text)
@@ -42,19 +41,19 @@ Column {
         }
     }
     Row{
-		spacing:25
+        spacing:25
         StyledLabel {
             text: qsTr("Font Family")
-            font.pixelSize: 12
-			width: 90
-            height: 28
-			verticalAlignment: Qt.AlignVCenter
-			horizontalAlignment: Qt.AlignLeft
+            font.pointSize: Constants.labelFontPointSize_10
+            width: 90* screenScaleFactor
+            height: 28* screenScaleFactor
+            verticalAlignment: Qt.AlignVCenter
+            horizontalAlignment: Qt.AlignLeft
         }
         BasicCombobox {
             id:idFontFamily
-            width: 120
-            height: 28
+            width: 120* screenScaleFactor
+            height: 28* screenScaleFactor
             model: control.getFontFamilys()
             onCurrentTextChanged:  {
                 //idFontStyles.model = control.getFontFamilysStyles(currentText);
@@ -62,21 +61,21 @@ Column {
             }
         }
     }
-	
+
     Row{
-        spacing:25
+        spacing:25* screenScaleFactor
         StyledLabel {
             text: qsTr("Font Size")
-            font.pixelSize: 12
-			width: 90
-            height: 28
-			verticalAlignment: Qt.AlignVCenter
-			horizontalAlignment: Qt.AlignLeft
+            font.pointSize: Constants.labelFontPointSize_10
+            width: 90* screenScaleFactor
+            height: 28* screenScaleFactor
+            verticalAlignment: Qt.AlignVCenter
+            horizontalAlignment: Qt.AlignLeft
         }
         BasicDialogTextField {
             id:idFontSize
-            width: 120
-            height: 28
+            width: 120* screenScaleFactor
+            height: 28* screenScaleFactor
             unitChar:"pt"
             text: "30"
         }
@@ -87,10 +86,10 @@ Column {
     //     StyledLabel {
     //         text: qsTr("Font Style")
     //         font.pixelSize: 14
-	// 		width: 90
+    // 		width: 90
     //         height: 28
-	// 		verticalAlignment: Qt.AlignVCenter
-	// 		horizontalAlignment: Qt.AlignLeft
+    // 		verticalAlignment: Qt.AlignVCenter
+    // 		horizontalAlignment: Qt.AlignLeft
     //     }
     //     BasicCombobox {
     //         id:idFontStyles

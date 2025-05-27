@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-
 #include "basickernelexport.h"
 
 class ActionCommand;
@@ -17,13 +16,14 @@ public:
     void addCommand(ActionCommand* command);
     void addCommandFront(ActionCommand* command);
 
-
     void removeCommandFromQString(QString strName);
     void removeCommand(ActionCommand* command);
     void changeCommand(ActionCommand* command);
     Q_INVOKABLE void removeAllCommand();
     void removeCommandButLastIndex();
-   // Q_INVOKABLE QVariant getCommands();
+    ActionCommand* getData(int index);
+
+    QList<ActionCommand*> actionCommands();
 protected:
     int rowCount(const QModelIndex& parent) const override;
     int columnCount(const QModelIndex& parent) const override;
@@ -33,7 +33,6 @@ protected:
 
 protected:
     QList<ActionCommand*> m_actionCommands;
-
     QHash<int, QByteArray> m_rolesName;
 };
 #endif // ACTIONCOMMANDMODEL_H

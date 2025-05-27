@@ -1,0 +1,137 @@
+{
+    "printerList": [
+        {
+            "engineVersion": "1.6.0",
+            "printerIntName": "CR-K1 Max",
+            "nozzleDiameter": [
+                "0.4"
+            ],
+            "name": "K1 Max",
+            "type": 1,
+            "xSize": 300,
+            "ySize": 300,
+            "zSize": 300,
+            "thumbnail": "https://pic-cdn.creality.com/printer/cb91f7b4071444b1f4b192f65efe9d47",
+            "seriesId": 10,
+            "version": "1715593541",
+            "showVersion": "V1.1.2",
+            "zipUrl": "https://file-cdn.creality.com/slice-profile/package/1.6.0/CR-K1 Max/0.4/1715593541/CR-K1 Max-0.4.zip",
+            "supMaterialType": [
+                "PLA",
+                "TPU",
+                "PETG",
+                "ABS",
+                "PA",
+                "PC",
+                "ASA",
+                "HIPS",
+                "Carbon",
+                "PP",
+                "PVA",
+                "PET-CF",
+                "PLA-CF",
+                "PET",
+                "TPC",
+                "PA-CF",
+                "BVOH",
+                "PA6-CF",
+                "PAHT-CF",
+                "PPS",
+                "PPS-CF",
+                "PETG-CF"
+            ],
+            "descriptionI18n": "更新机型参数"
+        },
+		{
+            "engineVersion": "1.6.0",
+            "printerIntName": "CR-K1 Max",
+            "nozzleDiameter": [
+                "0.6"
+            ],
+            "name": "K1 Max",
+            "type": 1,
+            "xSize": 300,
+            "ySize": 300,
+            "zSize": 300,
+            "thumbnail": "https://pic-cdn.creality.com/printer/cb91f7b4071444b1f4b192f65efe9d47",
+            "seriesId": 10,
+            "version": "1715593541",
+            "showVersion": "V1.1.2",
+            "zipUrl": "https://file-cdn.creality.com/slice-profile/package/1.6.0/CR-K1 Max/0.4/1715593541/CR-K1 Max-0.4.zip",
+            "supMaterialType": [
+                "PLA",
+                "TPU",
+                "PETG",
+                "ABS",
+                "PA",
+                "PC",
+                "ASA",
+                "HIPS",
+                "Carbon",
+                "PP",
+                "PVA",
+                "PET-CF",
+                "PLA-CF",
+                "PET",
+                "TPC",
+                "PA-CF",
+                "BVOH",
+                "PA6-CF",
+                "PAHT-CF",
+                "PPS",
+                "PPS-CF",
+                "PETG-CF"
+            ],
+            "descriptionI18n": "更新机型参数"
+        },
+		{
+            "engineVersion": "1.6.0",
+            "printerIntName": "CR-K1 Max",
+            "nozzleDiameter": [
+                "0.8"
+            ],
+            "name": "K1 Max",
+            "type": 1,
+            "xSize": 300,
+            "ySize": 300,
+            "zSize": 300,
+            "thumbnail": "https://pic-cdn.creality.com/printer/cb91f7b4071444b1f4b192f65efe9d47",
+            "seriesId": 10,
+            "version": "1715593541",
+            "showVersion": "V1.1.2",
+            "zipUrl": "https://file-cdn.creality.com/slice-profile/package/1.6.0/CR-K1 Max/0.4/1715593541/CR-K1 Max-0.4.zip",
+            "supMaterialType": [
+                "PLA",
+                "TPU",
+                "PETG",
+                "ABS",
+                "PA",
+                "PC",
+                "ASA",
+                "HIPS",
+                "Carbon",
+                "PP",
+                "PVA",
+                "PET-CF",
+                "PLA-CF",
+                "PET",
+                "TPC",
+                "PA-CF",
+                "BVOH",
+                "PA6-CF",
+                "PAHT-CF",
+                "PPS",
+                "PPS-CF",
+                "PETG-CF"
+            ],
+            "descriptionI18n": "更新机型参数"
+        }
+    ],
+    "series": [
+        {
+            "name": "旗舰系列",
+            "id": 10,
+            "type": 1
+        }
+    ]
+}

@@ -38,6 +38,8 @@ bool DrawObjectModel::insertRows(int row, int count, const QModelIndex &parent)
     beginInsertRows(parent, row, row + count - 1);
     // FIXME: Implement me!
     endInsertRows();
+
+    Q_EMIT sigModelCountChanged(getModelCount());
     return true;
 }
 
@@ -50,6 +52,8 @@ bool DrawObjectModel::removeRows(int row, int count, const QModelIndex &parent)
         beginRemoveRows(parent, row, row + count - 1);
         m_drawItemList.removeAt(row);
         endRemoveRows();
+
+        Q_EMIT sigModelCountChanged(getModelCount());
     }
     
     return true;
@@ -68,6 +72,8 @@ void DrawObjectModel::addDrawObject(DrawObject* obj)
             int index = m_drawItemList.size()-1;
             beginInsertRows(QModelIndex(), index, index);
             endInsertRows();
+
+            Q_EMIT sigModelCountChanged(getModelCount());
         }
 }
 DrawObject* DrawObjectModel::getData(int index)
@@ -102,4 +108,8 @@ DrawObject* DrawObjectModel::getDataByQmlObj(QObject *obj)
         return nullptr;
     }
 
+}
+
+int DrawObjectModel::getModelCount() const {
+  return m_drawItemList.size();
 }
