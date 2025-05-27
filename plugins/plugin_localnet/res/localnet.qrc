@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/localNet">
+        <file>WifiLocalNet.qml</file>
+        <file>CusConnectMessageDlg.qml</file>
+        <file>CusControlTableView.qml</file>
+        <file>CusManualTableView.qml</file>
+        <file>CusSearchTableView.qml</file>
+        <file>CusTableViewHead.qml</file>
+        <file>DeviceConnectDlg.qml</file>
+        <file>DeviceControlDlg.qml</file>
+        <file>MyPrintControlDlg.qml</file>
+        <file>MyProgressBar.qml</file>
+        <file>CusTransFileMessageDlg.qml</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>photo/wifiwarning.png</file>
+    </qresource>
+</RCC>

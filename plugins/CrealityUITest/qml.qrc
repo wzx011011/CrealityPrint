@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>TopToolBarModel.qml</file>
+        <file>LeftToolBarModel.qml</file>
+        <file>DlgTest.qml</file>
+        <file>Test.qml</file>
+        <file>BasicComponent/BasicShadowRectangle.qml</file>
+        <file>BasicComponent/CusButton.qml</file>
+        <file>BasicComponent/CusImglButton.qml</file>
+        <file>BasicComponent/CusListView.qml</file>
+        <file>BasicComponent/CusText.qml</file>
+        <file>BasicComponent/StyleCheckBox.qml</file>
+        <file>HalotBoxTotalRightUIPanel.qml</file>
+        <file>BasicComponent/BasicCombobox_Metarial.qml</file>
+        <file>BasicComponent/PanelComponent.qml</file>
+        <file>BasicComponent/BasicImageButton.qml</file>
+        <file>BasicComponent/CusImage.qml</file>
+        <file>BasicComponent/CusRoundedBg.qml</file>
+        <file>Photo/materialPanel.png</file>
+        <file>Photo/printerPanel.png</file>
+        <file>Photo/profile_fast.png</file>
+        <file>Photo/profile_high.png</file>
+        <file>Photo/profile_normal.png</file>
+        <file>Photo/profile_sfast.png</file>
+        <file>Photo/profile_usr.png</file>
+        <file>Photo/right_export.png</file>
+        <file>Photo/right_import.png</file>
+        <file>Photo/paramPanel.png</file>
+        <file>Photo/downBtn.png</file>
+        <file>Photo/cmb_delete.png</file>
+    </qresource>
+</RCC>

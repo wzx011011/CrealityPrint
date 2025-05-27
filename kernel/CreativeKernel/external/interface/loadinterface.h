@@ -1,0 +1,9 @@
+#ifndef CREATIVE_KERNEL_LOADINTERFACE_1592719134544_H
+#define CREATIVE_KERNEL_LOADINTERFACE_1592719134544_H
+#include "creativekernelexport.h"
+
+namespace creative_kernel
+{
+	CREATIVE_KERNEL_API void requestLoad();
+}
+#endif // CREATIVE_KERNEL_LOADINTERFACE_1592719134544_H

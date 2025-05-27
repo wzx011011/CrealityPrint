@@ -1,0 +1,127 @@
+﻿singleton Constants 1.0 qml/Constants.qml
+singleton GlobalCache 1.0 qml/GlobalCache.qml
+LeftToolBar 1.0 qml/LeftToolBar.qml
+StyledTextInput 1.0 qml/StyledTextInput.qml
+StyledLabel 1.0 qml/StyledLabel.qml
+EnableButton 1.0 qml/EnableButton.qml
+StyledToolBar 1.0 qml/StyledToolBar.qml
+InfoPanel 1.0 qml/InfoPanel.qml
+InfoPanelRepair 1.0 qml/InfoPanelRepair.qml
+InfoPanelMini 1.0 qml/InfoPanelMini.qml
+InfoPanelMulit 1.0 qml/InfoPanelMulit.qml
+CameraPosButtons 1.0 qml/CameraPosButtons.qml
+ComButton 1.0 qml/ComButton.qml
+SizeTextField 1.0 qml/SizeTextField.qml
+StyledSpinBox 1.0 qml/StyledSpinBox.qml
+StyledStatusBar 1.0 qml/StyledStatusBar.qml
+Splash 1.0 qml/Splash.qml
+ReleaseNote 1.0 qml/ReleaseNote.qml
+MovePanel 1.0 qml/MovePanel.qml
+RotatePanel 1.0 qml/RotatePanel.qml
+ScalePanel 1.0 qml/ScalePanel.qml
+MirrorPanel 1.0 qml/MirrorPanel.qml
+ClonePanel 1.0 qml/ClonePanel.qml
+ModelsTree 1.0 qml/ModelsTree.qml
+PartPanel 1.0 qml/PartPanel.qml
+
+BasicCombobox_Metarial 1.0 qml/BasicCombobox_Metarial.qml
+BasicImageButton 1.0 qml/BasicImageButton.qml
+BasicShadowRectangle 1.0 qml/BasicShadowRectangle.qml
+CusButton 1.0 qml/CusButton.qml
+CusImage 1.0 qml/CusImage.qml
+CusImglButton 1.0 qml/CusImglButton.qml
+CusListView 1.0 qml/CusListView.qml
+CusRoundedBg 1.0 qml/CusRoundedBg.qml
+PanelComponent 1.0 qml/PanelComponent.qml
+
+SelectModelDlg 1.0 qml/SelectModelDlg.qml
+SliceStart 1.0 qml/SliceStart.qml
+ModelSelectionCmb 1.0 qml/ModelSelectionCmb.qml
+BasicMenuBar 1.0 qml/BasicMenuBar.qml
+BasicMenu 1.0 qml/BasicMenu.qml
+CusRoundedBg 1.0 qml/CusRoundedBg.qml
+BasicButton 1.0 qml/BasicButton.qml
+
+BasicDialogNoWin_V4 1.0 secondqml/BasicDialogNoWin_V4.qml
+CusSupportPanel 1.0 secondqml/CusSupportPanel.qml
+AddPrinterDlgNew 1.0 secondqml/AddPrinterDlgNew.qml
+SelectPrinter 1.0 secondqml/SelectPrinter.qml
+ModelList 1.0 secondqml/ModelList.qml
+SelectPrinterModel 1.0 secondqml/SelectPrinterModel.qml
+SliceExecute 1.0 secondqml/SliceExecute.qml
+RightInfoPanel 1.0  secondqml/RightInfoPanel.qml
+AddPrinterDlg  1.0  secondqml/AddPrinterDlg.qml
+BasicScrollView 1.0 secondqml/BasicScrollView.qml
+BasicSplitView 1.0 secondqml/BasicSplitView.qml
+ManagerPrinterDlg 1.0 secondqml/ManagerPrinterDlg.qml
+ManagerFdmGroupShow 1.0 secondqml/ManagerFdmGroupShow.qml
+CusSkinButton_Image 1.0 secondqml/CusSkinButton_Image.qml
+ModelAlwaysShowPopupDlg 1.0 secondqml/ModelAlwaysShowPopupDlg.qml
+StyleCheckBox 1.0 qml/StyleCheckBox.qml
+FDMRightPanel 1.0 secondqml/FDMRightPanel.qml
+BasicCombobox 1.0 qml/BasicCombobox.qml
+SpeedColorPanel 1.0 qml/SpeedColorPanel.qml
+StructureColorPanel 1.0 qml/StructureColorPanel.qml
+NozzleColorPanel 1.0 qml/NozzleColorPanel.qml
+
+HalotBoxTotalRightUIPanel 1.0 secondqml/HalotBoxTotalRightUIPanel.qml
+FDMColorPanel 1.0 secondqml/FDMColorPanel.qml
+FDMFooterPanel 1.0 secondqml/FDMFooterPanel.qml
+StyledSlider 1.0 qml/StyledSlider.qml
+
+
+MouseCombo 1.0 secondqml/MouseCombo.qml
+ModelListCombo 1.0 secondqml/ModelListCombo.qml
+BasicDialogNoWin_V4 1.0 secondqml/BasicDialogNoWin_V4.qml
+FDMPreviewPanel 1.0 secondqml/FDMPreviewPanel.qml
+BasicGroupBox 1.0 secondqml/BasicGroupBox.qml
+BasicComButton 1.0 secondqml/BasicComButton.qml
+MessageDiagbasic 1.0 secondqml/MessageDiagbasic.qml
+CameraPosViewBtn 1.0 qml/CameraPosViewBtn.qml
+AllMenuDialog 1.0 secondqml/AllMenuDialog.qml
+BasicRadioButton 1.0 qml/BasicRadioButton.qml
+BasicRClickMenu 1.0 qml/BasicRClickMenu.qml
+BasicNoTitleDialog 1.0 secondqml/BasicNoTitleDialog.qml
+BasicDialogButton 1.0 secondqml/BasicDialogButton.qml
+ZSliderPreview 1.0 secondqml/ZSliderPreview.qml
+BasicMessageDialog 1.0 secondqml/BasicMessageDialog.qml
+ImportImageDlg 1.0 secondqml/ImportImageDlg.qml
+ResizeItem 1.0 secondqml/ResizeItem.qml
+CusSkinButton 1.0 secondqml/CusSkinButton.qml
+BasicTabBar 1.0 secondqml/BasicTabBar.qml
+BasicTabButton 1.0 secondqml/BasicTabButton.qml
+SupportTabPanel 1.0 secondqml/SupportTabPanel.qml
+BasicSeparator 1.0 qml/BasicSeparator.qml
+SwitchModel 1.0 secondqml/SwitchModel.qml
+LaserToolBar 1.0 secondqml/LaserToolBar.qml
+LaserPanel 1.0 secondqml/LaserPanel.qml
+LaserPlotterModelList 1.0 secondqml/LaserPlotterModelList.qml
+LaserRClickMenu 1.0 secondqml/LaserRClickMenu.qml
+LaserScene 1.0 secondqml/LaserScene.qml
+PlotterPanel 1.0 secondqml/PlotterPanel.qml
+PlotterScene 1.0 secondqml/PlotterScene.qml
+singleton SettingJson 1.0 qml/SettingJson.qml
+singleton IotData 1.0 qml/IotData.qml
+BasicSeparator 1.0 secondqml/LoginDlg.qml
+BasicLoginTextEdit 1.0 secondqml/BasicLoginTextEdit.qml
+BasicAreaCodeCombobox 1.0 secondqml/BasicAreaCodeCombobox.qml
+BasicDialogTextField 1.0 secondqml/BasicDialogTextField.qml
+LeftToolSpinBox 1.0 qml/LeftToolSpinBox.qml
+AboutUsDlg 1.0 secondqml/AboutUsDlg.qml
+BasicDialog 1.0 secondqml/BasicDialog.qml
+CusPopViewTitle 1.0 secondqml/CusPopViewTitle.qml
+CusPopViewTitle_V4 1.0 secondqml/CusPopViewTitle_V4.qml
+BasicDialogV4 1.0 secondqml/BasicDialogV4.qml
+BasicDialog_V4 1.0 secondqml/BasicDialog_V4.qml
+CusText 1.0 qml/CusText.qml
+PrintControlInfoDlg_Local 1.0 controlQml/PrintControlInfoDlg_Local.qml
+UploadMessageDlg 1.0 secondqml/UploadMessageDlg.qml
+PrintControlSpinBox 1.0 qml/PrintControlSpinBox.qml
+CusProgressBar 1.0 secondqml/CusProgressBar.qml
+BasicVideoItem 1.0 secondqml/BasicVideoItem.qml
+BasicShadowRect 1.0 qml/BasicShadowRect.qml
+
+LanPrinterListLocal 1.0 lanprinterqml/LanPrinterListLocal.qml
+LanPrinterPanel 1.0 lanprinterqml/LanPrinterPanel.qml
+LanPrintingDetail 1.0 lanprinterqml/LanPrintingDetail.qml
+UsbControlDlg 1.0 usbControlQml/UsbControlDlg.qml

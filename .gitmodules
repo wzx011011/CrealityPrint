@@ -1,0 +1,36 @@
+[submodule "cmake"]
+	path = cmake
+	url = http://172.20.180.12:8050/yanfa4/shared/cmake
+[submodule "qtuser"]
+	path = qtuser
+	url = http://172.20.180.12:8050/yanfa4/corelib/qtuser
+[submodule "mmesh"]
+	path = mmesh
+	url = http://172.20.180.12:8050/yanfa4/corelib/mmesh
+[submodule "scripts/build"]
+	path = scripts/build
+	url = http://172.20.180.12:8050/yanfa4/shared/jenkins-build
+[submodule "plugins/plugin_laser/laserclip"]
+	path = plugins/plugin_laser/laserclip
+	url = http://172.20.180.12:8050/yanfa4/corelib/laserclip
+[submodule "cxss"]
+	path = cxss
+	url = http://172.20.180.12:8050/yanfa4/core/cxss
+[submodule "cxutil"]
+	path = cxutil
+	url = http://172.20.180.12:8050/yanfa4/corelib/cxutil
+[submodule "cxnet"]
+	path = cxnet
+	url = http://172.20.180.12:8050/yanfa4/lib/cxnet
+[submodule "cxmdns"]
+	path = cxmdns
+	url = http://172.20.180.12:8050/yanfa4/lib/cxmdns
+[submodule "resources/sliceconfig"]
+	path = resources/sliceconfig
+	url = http://172.20.180.12:8050/yanfa4/c3d/sliceconfig
+[submodule "cserialport"]
+	path = cserialport
+	url = http://172.20.180.12:8050/a/yanfa4/thirdpary/cserialport
+[submodule "qcxffmpeg"]
+	path = qcxffmpeg
+	url = http://172.20.180.12:8050/yanfa4/corelib/qcxffmpeg

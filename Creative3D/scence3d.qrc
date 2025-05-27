@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/scence3d">
+        <file>res/MainWindow.qml</file>
+        <file>res/Creative3D.ico</file>
+        <file>res/main.qml</file>
+    </qresource>
+</RCC>
