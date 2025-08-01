@@ -1,3 +1,0 @@
-clipper/0.0.2
-eigen/0.0.2
-tbb_static/2.0.0

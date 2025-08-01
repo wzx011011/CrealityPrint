@@ -1,2 +1,0 @@
-cxlog/0.0.2
-quazip_static/1.0.0
